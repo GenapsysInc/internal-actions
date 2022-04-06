@@ -1,10 +1,6 @@
 name: SonarQube 
 on:
-  push:
-    branches:
-      - $[branches]
-  pull_request:
-    types: [opened, synchronize, reopened]
+  workflow_call:
 jobs:
   build:
     name: Build
