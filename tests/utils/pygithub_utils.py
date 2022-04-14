@@ -10,7 +10,6 @@ import github
 
 
 class MockGithubException(github.GithubException):
-
     def __init__(self, msg):
         super().__init__(None, None, None)
 
@@ -21,7 +20,6 @@ class MockGithubException(github.GithubException):
 
 
 class MockUser(mock.Mock):
-
     def __init__(self, name):
         super().__init__()
 
@@ -32,7 +30,6 @@ class MockUser(mock.Mock):
 
 
 class MockTeam(mock.Mock):
-
     def __init__(self, name, users):
         super().__init__()
 
@@ -44,7 +41,6 @@ class MockTeam(mock.Mock):
 
 
 class MockReview(mock.Mock):
-
     def __init__(self, user, state):
         super().__init__()
 
@@ -53,7 +49,6 @@ class MockReview(mock.Mock):
 
 
 class MockPull(mock.Mock):
-
     def __init__(self, pull_num, reviews):
         super().__init__()
 
@@ -65,7 +60,6 @@ class MockPull(mock.Mock):
 
 
 class MockRepo(mock.Mock):
-
     def __init__(self, name, pulls=None):
         super().__init__()
 
@@ -83,7 +77,6 @@ class MockRepo(mock.Mock):
 
 
 class MockOrg(mock.Mock):
-
     def __init__(self, name, teams=None, repos=None):
         super().__init__()
 
@@ -117,7 +110,6 @@ class MockOrg(mock.Mock):
 
 
 class MockClient(mock.Mock):
-
     def __init__(self, orgs, authenticated=True):
         super().__init__()
 
