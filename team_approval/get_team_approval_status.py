@@ -1,5 +1,9 @@
 """Determine if a PR has approvals from specific teams"""
 
+__author__ = "David McConnell"
+__credits__ = ["David McConnell"]
+__maintainer__ = "David McConnell"
+
 import argparse
 from collections import defaultdict
 from typing import List
@@ -10,6 +14,7 @@ import github
 GENAPSYS_GITHUB = "GenapsysInc"
 
 APPROVED = "APPROVED"
+COMMENTED = "COMMENTED"
 CHANGES_REQUESTED = "CHANGES_REQUESTED"
 
 
@@ -33,7 +38,7 @@ def team_member_has_approved_pr(team: github.Team.Team, pull: github.PullRequest
     for review in pull.get_reviews():
         # Ignore any reviews by users not in the relevant team
         if review.user in team_members:
-            reviews_by_user[review.user.id].append(review)
+            reviews_by_user[review.user].append(review)
 
     # Go over each users review in reverse chronilogical order, ignoring plain comments and handling
     # approvals and change requests accordingly
@@ -52,11 +57,11 @@ def team_member_has_approved_pr(team: github.Team.Team, pull: github.PullRequest
     return False
 
 
-def pr_has_appropriate_reviews(secret: str, repo: str, pr_num: int, team_names: List[str]) -> bool:
+def pr_has_appropriate_reviews(client: github.MainClass.Github, repo: str, pr_num: int, team_names: List[str]) -> bool:
     """Given a repository, PR number, and list of teams, determine if the given PR has at least one
     approval from each of the listed teams
 
-    :param secret: Github secret/PAT for authentication
+    :param client: Authenticated Github client
     :param repo: The GitHub repo to inspect
     :param pr_num: The Pull Request number in the given repo
     :param team_names: The list of teams that are required to be approvers
@@ -64,8 +69,6 @@ def pr_has_appropriate_reviews(secret: str, repo: str, pr_num: int, team_names: 
     """
     # Ignore caps for downstream lookup
     team_names = [team_name.lower() for team_name in team_names]
-
-    client = github.Github(secret)
 
     try:
         org = client.get_organization(GENAPSYS_GITHUB)
@@ -86,7 +89,7 @@ def pr_has_appropriate_reviews(secret: str, repo: str, pr_num: int, team_names: 
 
     all_teams_approved = True
 
-    # Do this instead of an all so that each team's result is processed and output
+    # Do this instead of an "all" so that each team's result is processed and output to stdout
     for team in teams:
         all_teams_approved &= team_member_has_approved_pr(team, pull)
 
@@ -111,7 +114,9 @@ def parse_args():
 if __name__ == '__main__':
     opts = parse_args()
 
-    if pr_has_appropriate_reviews(opts.secret, opts.repo, opts.pull_request, opts.teams):
+    git_client = github.Github(opts.secret)
+
+    if pr_has_appropriate_reviews(git_client, opts.repo, opts.pull_request, opts.teams):
         sys.exit(0)
 
     sys.exit(1)

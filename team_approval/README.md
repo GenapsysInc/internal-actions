@@ -23,3 +23,4 @@ If the appropriate teams have approved the pull request, the process will exit w
 
 #. Increment the version listed at the top of this README
 #. Change the version specified in the github action under `.github/workflows`
+#. If adding yum or python package dependencies, update the yum-requirements.txt and python-requirements.txt files, respectively
