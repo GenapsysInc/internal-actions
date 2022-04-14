@@ -146,21 +146,13 @@ def fixture_test_repo(
     pull_qa_recent_change_request_1,
     pull_qa_recent_change_request_2,
 ):
-    all_pulls = {
-        pull.num: pull
-        for pull in [
-            pull_all_teams_approved,
-            pull_all_teams_commented,
-            pull_all_teams_requested_changes,
-            pull_mixed_reviews,
-            pull_qa_recent_approval_1,
-            pull_qa_recent_approval_2,
-            pull_qa_recent_change_request_1,
-            pull_qa_recent_change_request_2,
-        ]
-    }
+    all_pulls = [
+        pull_all_teams_approved, pull_all_teams_commented, pull_all_teams_requested_changes, pull_mixed_reviews,
+        pull_qa_recent_approval_1, pull_qa_recent_approval_2, pull_qa_recent_change_request_1,
+        pull_qa_recent_change_request_2
+    ]
 
-    return pgh_utils.MockRepo("my-repo", pulls=all_pulls)
+    return pgh_utils.MockRepo("my-repo", pulls={pull.num: pull for pull in all_pulls})
 
 
 @pytest.fixture(name="test_org")
