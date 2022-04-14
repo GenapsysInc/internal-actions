@@ -1,6 +1,6 @@
 name: build_team_approval_docker
 
-on:g
+on:
   workflow_dispatch:
 
 jobs:
