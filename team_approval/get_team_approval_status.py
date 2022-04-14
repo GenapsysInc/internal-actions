@@ -73,7 +73,6 @@ def pr_has_appropriate_reviews(secret: str, repo: str, pr_num: int, team_names: 
         raise ConfigurationError("Could not authenticate with given secret") from failed_org_query
 
     teams = [team for team in org.get_teams() if team.name.lower() in team_names]
-    print([team.name for team in org.get_teams()])
 
     missing_teams = set(team_names) - {team.name.lower() for team in teams}
 
@@ -81,9 +80,9 @@ def pr_has_appropriate_reviews(secret: str, repo: str, pr_num: int, team_names: 
         raise ConfigurationError(f"Could not find these teams: {', '.join(missing_teams)}")
 
     try:
-        pull = client.get_repo(repo).get_pull(pr_num)
+        pull = org.get_repo(repo).get_pull(pr_num)
     except github.GithubException as failed_pull_query:
-        raise ConfigurationError(f"Could not find PR with number {pr_num} in repo {repo}") from failed_pull_query
+        raise ConfigurationError(f"Could not find PR in repo {repo} with number {pr_num}") from failed_pull_query
 
     all_teams_approved = True
 

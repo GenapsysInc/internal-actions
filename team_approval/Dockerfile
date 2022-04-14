@@ -10,6 +10,8 @@ RUN yum install -y `cat /tmp/yum-requirements.txt`
 RUN python3 -m ensurepip --upgrade
 RUN python3 -m pip install -r /tmp/python-requirements.txt
 
-COPY team_approval/get_team_approval_status.py /usr/bin/
+RUN mkdir -p /workdir
+COPY team_approval/get_team_approval_status.py /workdir/get_team_approval_status.py
+WORKDIR /workdir
 
-ENTRYPOINT ["get_team_approval_status.py"]
+ENTRYPOINT ["python3", "get_team_approval_status.py"]
