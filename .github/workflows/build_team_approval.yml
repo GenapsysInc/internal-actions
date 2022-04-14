@@ -1,8 +1,6 @@
 name: build_team_approval_docker
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 jobs:
