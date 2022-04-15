@@ -1,0 +1,45 @@
+name: team-approval-action
+
+on:
+  workflow_call:
+    inputs:
+      repo:
+        description: "The repository to inspect"
+        type: string
+        required: true
+      pull:
+        description: "The pull request number to inspect"
+        type: string
+        required: true
+      teams:
+        description: "Teams required to be approvers"
+        type: string
+        required: true
+  workflow_dispatch:
+    inputs:
+      repo:
+        description: "The repository to inspect"
+        type: string
+        required: true
+      pull:
+        description: "The pull request number to inspect"
+        type: string
+        required: true
+      teams:
+        description: "Teams required to be approvers"
+        type: string
+        required: true
+
+jobs:
+  run_workflow:
+    name: Run the team approval workflow
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/genapsysinc/team-approval:latest
+      credentials:
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GHCR_TOKEN }}
+    steps:
+      - name:
+        uses: docker://ghcr.io/genapsysinc/team-approval:latest
+        args: -s ${{ github.token }} -r ${{ inputs.repo }} -p ${{ inputs.pull }} -t ${{ inputs.teams }}
