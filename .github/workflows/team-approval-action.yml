@@ -41,7 +41,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_TOKEN }}
           registry: ghcr.io
-          image: genapsysinc/team-approval:latest
+          image: ghcr.io/genapsysinc/team-approval:latest
           run: |
             -s
             ${{ github.token }}
