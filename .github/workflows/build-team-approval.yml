@@ -32,11 +32,9 @@ jobs:
           context: .
           file: team_approval/Dockerfile
           push: true
-          tags: genapsysinc/team-approval-action:latest
+          tags: ghcr.io/genapsysinc/team-approval-action:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
-          secrets: |
-            GIT_AUTH_TOKEN=${{ secrets.GHCR_TOKEN }}
       - name: Move cache
         run: |
           rm -rf /tmp/.buildx-cache
