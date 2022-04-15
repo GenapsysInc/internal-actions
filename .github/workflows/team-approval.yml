@@ -25,11 +25,11 @@ on:
 jobs:
   run_workflow:
     name: Run the team approval workflow
-    runs-on: ubuntu-latest
     container:
       image: gchr.io/genapsysinc/team-approval:latest
-      username: ${{ github.repository_owner }}
-      password: ${{ secrets.GHCR_TOKEN }}
+      credentials:
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GHCR_TOKEN }}
       args:
         - -s
         - ${{ github.token }}
