@@ -32,7 +32,7 @@ jobs:
           context: .
           file: team_approval/Dockerfile
           push: true
-          tags: ghcr.io/genapsysinc/team-approval-action:latest
+          tags: ghcr.io/genapsysinc/team-approval:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
       - name: Move cache
