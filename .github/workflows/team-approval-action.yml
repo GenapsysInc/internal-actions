@@ -1,0 +1,45 @@
+name: team-approval-action
+
+on:
+  workflow_call:
+    repo:
+      description: "The repository to inspect"
+      required: true
+    pull:
+      description: "The pull request number to inspect"
+      required: true
+    teams:
+      description: "Teams required to be approvers"
+      required: true
+  workflow_dispatch:
+    repo:
+      description: "The repository to inspect"
+      required: true
+    pull:
+      description: "The pull request number to inspect"
+      required: true
+    teams:
+      description: "Teams required to be approvers"
+      required: true
+
+jobs:
+  run_workflow:
+    name: Run the team approval workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run get_team_approval_status.py with given args
+        uses: addnab/docker-run-action@v3
+        with:
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_TOKEN }}
+          registry: ghcr.io
+          image: genapsysinc/team-approval:latest
+          run: |
+            -s
+            ${{ github.token }}
+            -r
+            ${{ inputs.repo }}
+            -p
+            ${{ inputs.pull }}
+            -t
+            ${{ inputs.teams }}
