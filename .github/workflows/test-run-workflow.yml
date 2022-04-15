@@ -8,10 +8,8 @@ on:
 
 jobs:
   call-workflow:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: GenapsysInc/internal-actions/.github/workflows/team-approval-action.yml@team_approval_action
-        with:
-          repo: ${{ github.event.repository.name }}
-          pull: ${{ github.event.number }}
-          teams: instrument
+    uses: GenapsysInc/internal-actions/.github/workflows/team-approval-action.yml@team_approval_action
+    with:
+      repo: ${{ github.event.repository.name }}
+      pull: ${{ github.event.number }}
+      teams: software
