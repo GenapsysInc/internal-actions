@@ -22,7 +22,7 @@ jobs:
       password: ${{ secrets.GHCR_TOKEN }}
       args:
         - -s
-        - ${{ secrets.GHCR_TOKEN }}
+        - ${{ github.token }}
         - -r
         - ${{ inputs.repo }}
         - -p
