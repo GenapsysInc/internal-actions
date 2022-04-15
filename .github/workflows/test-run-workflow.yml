@@ -3,7 +3,7 @@ name: team-approval-run
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-  pull_request_reivew:
+  pull_request_review:
     types: [submitted, edited, dismissed]
 
 jobs:
