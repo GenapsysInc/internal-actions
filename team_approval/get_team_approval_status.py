@@ -116,6 +116,9 @@ if __name__ == "__main__":
 
     git_client = github.Github(opts.secret)
 
+    print("this is very dumb")
+    print([opts.secret])
+
     if pr_has_appropriate_reviews(git_client, opts.repo, opts.pull_request, opts.teams):
         sys.exit(0)
 
