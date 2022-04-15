@@ -1,4 +1,4 @@
-name: test-team-approval-action
+name: team-approval-action
 
 on:
   workflow_call:
@@ -32,7 +32,7 @@ on:
 
 jobs:
   run_workflow:
-    name: Run the team approval workflow
+    name: Team Approval Workflow
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -44,4 +44,4 @@ jobs:
           password: ${{ github.token }}
           registry: ghcr.io
           image: ghcr.io/genapsysinc/team-approval:latest
-          args: -s this_should_fail_earlier -r ${{ github.event.inputs.repo }} -p ${{ github.event.inputs.pull }} -t ${{ github.event.inputs.teams }}
+          args: -s ${{ secrets.TEAM_APPROVAL_TOKEN }} -r ${{ github.event.inputs.repo }} -p ${{ github.event.inputs.pull }} -t ${{ github.event.inputs.teams }}
