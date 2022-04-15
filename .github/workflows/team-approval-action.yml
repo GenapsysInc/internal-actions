@@ -5,23 +5,29 @@ on:
     inputs:
       repo:
         description: "The repository to inspect"
+        type: string
         required: true
       pull:
         description: "The pull request number to inspect"
+        type: string
         required: true
       teams:
         description: "Teams required to be approvers"
+        type: string
         required: true
   workflow_dispatch:
     inputs:
       repo:
         description: "The repository to inspect"
+        type: string
         required: true
       pull:
         description: "The pull request number to inspect"
+        type: string
         required: true
       teams:
         description: "Teams required to be approvers"
+        type: string
         required: true
 
 jobs:
