@@ -25,21 +25,24 @@ on:
 jobs:
   run_workflow:
     name: Run the team approval workflow
-    uses: addnab/docker-run-action@v3
-    with:
-      username: ${{ github.repository_owner }}
-      password: ${{ secrets.GHCR_TOKEN }}
-      registry: ghcr.io
-      image: genapsysinc/team-approval:latest
-      run: |
-        -s
-        ${{ github.token }}
-        -r
-        ${{ inputs.repo }}
-        -p
-        ${{ inputs.pull }}
-        -t
-        ${{ inputs.teams }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run get_team_approval_status.py with given args
+        uses: addnab/docker-run-action@v3
+        with:
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_TOKEN }}
+          registry: ghcr.io
+          image: genapsysinc/team-approval:latest
+          run: |
+            -s
+            ${{ github.token }}
+            -r
+            ${{ inputs.repo }}
+            -p
+            ${{ inputs.pull }}
+            -t
+            ${{ inputs.teams }}
 
     # name: Run the team approval workflow
     # runs-on: ubuntu-latest
