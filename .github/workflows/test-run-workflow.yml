@@ -1,0 +1,15 @@
+name: team-approval-run
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  pull_request_reivew:
+    types: [submitted, edited, dismissed]
+
+jobs:
+  call-workflow:
+    uses: GenapsysInc/internal-actions/.github/workflows/team-approval-action.yml@main
+    with:
+      repo: ${{ github.event.repository.name }}
+      pull: ${{ github.event.number }}
+      teams: team-1 team-2 team-3
