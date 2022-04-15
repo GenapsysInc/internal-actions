@@ -36,9 +36,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/genapsysinc/team-approval:latest
-        credentials:
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GHCR_TOKEN }}
+      credentials:
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GHCR_TOKEN }}
     steps:
       - name: super-step
         run: -s ${{ github.token }} -r ${{ inputs.repo }} -p ${{ inputs.pull }} -t ${{ inputs.teams }}
