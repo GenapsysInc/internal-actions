@@ -1,4 +1,4 @@
-name: build_team_approval_docker
+name: build-team-approval-docker
 
 on:
   push:
