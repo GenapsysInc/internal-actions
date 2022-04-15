@@ -118,6 +118,7 @@ if __name__ == "__main__":
 
     print("this is very dumb")
     print([opts.secret])
+    print(opts.secret == "***")
 
     if pr_has_appropriate_reviews(git_client, opts.repo, opts.pull_request, opts.teams):
         sys.exit(0)
