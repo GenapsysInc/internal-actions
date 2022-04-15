@@ -31,14 +31,14 @@ jobs:
       credentials:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GHCR_TOKEN }}
-      steps:
-        - name: Run get_team_approval_status.py with given args
-          args:
-            - -s
-            - ${{ github.token }}
-            - -r
-            - ${{ inputs.repo }}
-            - -p
-            - ${{ inputs.pull }}
-            - -t
-            - ${{ inputs.teams }}
+    steps:
+      - name: Run get_team_approval_status.py with given args
+        args:
+          - -s
+          - ${{ github.token }}
+          - -r
+          - ${{ inputs.repo }}
+          - -p
+          - ${{ inputs.pull }}
+          - -t
+          - ${{ inputs.teams }}
