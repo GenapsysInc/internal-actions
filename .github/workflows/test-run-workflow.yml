@@ -14,4 +14,4 @@ jobs:
         with:
           repo: ${{ github.event.repository.name }}
           pull: ${{ github.event.number }}
-          teams: software
+          teams: instrument
