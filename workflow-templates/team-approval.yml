@@ -1,0 +1,14 @@
+name: team-approval
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  pull_request_comment:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  call-workflow:
+    uses: GenapsysInc/internal-actions/.github/workflows/sonarqube.yml@main
+    secrets:
+      token: ${{ secrets.SONAR_TOKEN }}
+      url: ${{ secrets.SONAR_HOST_URL }}
