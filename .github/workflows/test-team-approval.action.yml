@@ -36,23 +36,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume
-      - uses: dvmcconnell/docker-run-action@main
+        uses: actions/checkout@v2
+      - name: Run get_team_approval_status.py with given arguments
+        uses: dvmcconnell/docker-run-action@main
         with:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_TOKEN }}
           registry: ghcr.io
           image: ghcr.io/genapsysinc/team-approval:latest
-    # options: -v ${{ github.workspace }}:/work -e ABC=123
-    # run: |
-    #   echo "Running Script"
-    #   /work/run-script
-    # container:
-    #   image: ghcr.io/genapsysinc/team-approval:latest
-    #   credentials:
-    #     username: ${{ github.repository_owner }}
-    #     password: ${{ secrets.GHCR_TOKEN }}
-    # steps:
-    #   - name: hello
-    #     uses: docker://ghcr.io/genapsysinc/team-approval:latest
-    #     args: -s ${{ github.token }} -r ${{ inputs.repo }} -p ${{ inputs.pull }} -t ${{ inputs.teams }}
+          args: -s ${{ github.token }} -r ${{ inputs.repo }} -p ${{ inputs.pull }} -t ${{ inputs.teams }}
