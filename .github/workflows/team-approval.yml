@@ -33,6 +33,7 @@ jobs:
         password: ${{ secrets.GHCR_TOKEN }}
     steps:
       - name: Run get_team_approval_status.py with given args
+        run:
         args:
           - -s
           - ${{ github.token }}
