@@ -1,15 +1,26 @@
 name: team-approval-action
 
-on: [workflow_call, workflow_dispatch]
-  repo:
-    description: "The repository to inspect"
-    required: true
-  pull:
-    description: "The pull request number to inspect"
-    required: true
-  teams:
-    description: "Teams required to be approvers"
-    required: true
+on:
+  workflow_call:
+    repo:
+      description: "The repository to inspect"
+      required: true
+    pull:
+      description: "The pull request number to inspect"
+      required: true
+    teams:
+      description: "Teams required to be approvers"
+      required: true
+  workflow_dispatch:
+    repo:
+      description: "The repository to inspect"
+      required: true
+    pull:
+      description: "The pull request number to inspect"
+      required: true
+    teams:
+      description: "Teams required to be approvers"
+      required: true
 
 jobs:
   run_workflow:
