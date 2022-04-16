@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Run get_team_approval_status.py with given arguments
+      - name: Run ghcr.io/genapsysinc/team-approval:latest with given arguments
         uses: dvmcconnell/docker-run-action@main
         with:
           username: ${{ github.repository_owner }}
