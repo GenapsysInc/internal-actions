@@ -15,9 +15,9 @@ on:
         description: "Teams required to be approvers"
         type: string
         required: true
+    secrets:
       token:
         description: "Github PAT for authentication to REST API"
-        type: string
         required: true
 
 jobs:
@@ -34,4 +34,4 @@ jobs:
           password: ${{ github.token }}
           registry: ghcr.io
           image: ghcr.io/genapsysinc/team-approval:latest
-          args: -s ${{ inputs.token }} -r ${{ inputs.repo }} -p ${{ inputs.pull }} -t ${{ inputs.teams }}
+          args: -s ${{ secrets.token }} -r ${{ inputs.repo }} -p ${{ inputs.pull }} -t ${{ inputs.teams }}
