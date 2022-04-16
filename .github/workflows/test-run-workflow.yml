@@ -10,6 +10,7 @@ jobs:
   call-workflow:
     uses: GenapsysInc/internal-actions/.github/workflows/team-approval-action.yml@team_approval_action
     with:
+      token: ${{ secrets.TEAM_APPROVAL_TOKEN }}
       repo: ${{ github.event.repository.name }}
       pull: ${{ github.event.number }}
       teams: software
