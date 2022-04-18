@@ -14,4 +14,4 @@ jobs:
       pull: ${{ github.event.pull_request.number }}
       teams: <team1> <team2> <team3>
     secrets:
-      token: ${{ secrets.TEAM_APPROVAL_TOKEN }}
+      token: ${{ secrets.REST_API_TOKEN }}
