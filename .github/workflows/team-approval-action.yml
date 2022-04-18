@@ -34,4 +34,4 @@ jobs:
           password: ${{ github.token }}
           registry: ghcr.io
           image: ghcr.io/genapsysinc/team-approval:latest
-          args: "-s ${{ secrets.token }} -r ${{ inputs.repo }} -p ${{ inputs.pull }} -t \'${{ inputs.teams }}\'"
+          args: -s ${{ secrets.token }} -r ${{ inputs.repo }} -p ${{ inputs.pull }} -t "'${{ inputs.teams }}'"
