@@ -1,0 +1,17 @@
+name: team-approval-check
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+
+jobs:
+  call-workflow:
+    uses: GenapsysInc/internal-actions/.github/workflows/team-approval-action.yml@main
+    with:
+      repo: ${{ github.event.repository.name }}
+      pull: ${{ github.event.pull_request.number }}
+      teams: <team1> <team2> <team3>
+    secrets:
+      token: ${{ secrets.GH_REST_API_TOKEN }}
