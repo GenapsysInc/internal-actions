@@ -19,7 +19,7 @@ on:
       token:
         description: "Github PAT for authentication to REST API"
         required: true
-
+g
 jobs:
   run_workflow:
     name: Team Approval Workflow
@@ -28,7 +28,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run ghcr.io/genapsysinc/team-approval:latest with given arguments
-        uses: dvmcconnell/docker-run-action@main
+        uses: genapsysinc/internal-actions/docker-run-action@main
         with:
           username: ${{ github.repository_owner }}
           password: ${{ github.token }}
