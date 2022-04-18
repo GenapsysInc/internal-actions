@@ -1,0 +1,32 @@
+# action.yml
+name: 'Docker Run Action'
+description: 'Run a command in a new container'
+inputs:
+  image:
+    description: 'Image'
+    required: true
+  options:
+    description: 'Options'
+    required: false
+  run:
+    description: 'Run command in container'
+    required: false
+  registry:
+    description: 'Registry'
+    required: false
+  username:
+    description: 'Username'
+    required: false
+  password:
+    description: 'Password'
+    required: false
+  docker_network:
+    description: 'Docker Network ID'
+    default: ${{ job.container.network }}
+    required: false
+  args:
+    description: 'Arguments to pass to the image entrypoint'
+    required: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
