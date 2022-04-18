@@ -19,7 +19,7 @@ on:
       token:
         description: "Github PAT for authentication to REST API"
         required: true
-g
+
 jobs:
   run_workflow:
     name: Team Approval Workflow
