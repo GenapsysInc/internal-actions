@@ -99,9 +99,6 @@ def pr_has_appropriate_reviews(client: github.MainClass.Github, repo: str, pr_nu
 def parse_args():
     """Parse commandline args"""
 
-    def csv_split(string):
-        return string.split(",")
-
     parser = argparse.ArgumentParser(description="Determine if relevant teams have approved a PR")
 
     parser.add_argument("-s", "--secret", required=True, help="GitHub token for authentication")
@@ -110,7 +107,7 @@ def parse_args():
 
     parser.add_argument("-p", "--pull-request", type=int, required=True, help="The PR to inspect")
 
-    parser.add_argument("-t", "--teams", required=True, type=csv_split, help="Teams required for approval")
+    parser.add_argument("-t", "--teams", required=True, nargs="+", help="Teams required for approval")
 
     return parser.parse_args()
 
