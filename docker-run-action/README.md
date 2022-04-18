@@ -16,7 +16,7 @@ Branched off/modified from https://github.com/addnab/docker-run-action/releases/
   with:
     username: ${{ github.repository_owner }}
     password: ${{ secrets.GHCR_TOKEN }}
-    registry: gchr.io
+    registry: ghcr.io
     image: ghcr.io/genapsysinc/private-image:latest
     options: -v ${{ github.workspace }}:/work -e ABC=123
     run: |
