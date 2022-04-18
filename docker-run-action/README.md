@@ -19,9 +19,6 @@ Branched off/modified from https://github.com/addnab/docker-run-action/releases/
     registry: ghcr.io
     image: ghcr.io/genapsysinc/private-image:latest
     options: -v ${{ github.workspace }}:/work -e ABC=123
-    run: |
-      echo "Running Script"
-      /work/run-script
 ```
 
 #### Run an image built by a previous step
@@ -33,7 +30,6 @@ Branched off/modified from https://github.com/addnab/docker-run-action/releases/
 - uses: genapsysinc/internal-actions/docker-run-action@main
   with:
     image: test-image:latest
-    run: echo "hello world"
 ```
 
 #### Pass arguments to an image
