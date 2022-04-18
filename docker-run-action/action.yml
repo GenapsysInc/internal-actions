@@ -1,15 +1,12 @@
 # action.yml
 name: 'Docker Run Action'
-description: 'Run a command in a new container'
+description: 'Run a docker image with given options and arguments'
 inputs:
   image:
     description: 'Image'
     required: true
   options:
     description: 'Options'
-    required: false
-  run:
-    description: 'Run command in container'
     required: false
   registry:
     description: 'Registry'
