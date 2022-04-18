@@ -1,6 +1,0 @@
-findutils
-gcc
-libffi-devel
-make
-python3
-python3-devel
