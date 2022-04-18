@@ -36,7 +36,7 @@ Branched off/modified from https://github.com/addnab/docker-run-action/releases/
     run: echo "hello world"
 ```
 
-#### Pass arguments to an image.
+#### Pass arguments to an image
 ```yaml
 - uses: genapsysinc/internal-actions/docker-run-action@main
   with:
