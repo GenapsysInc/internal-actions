@@ -33,7 +33,6 @@ jobs:
           INPUTS_CONTEXT: ${{ toJson(inputs) }}
         run: |
           echo "$GITHUB_CONTEXT"
-          echo "$INPUTS_CONTEXT"
       - name: Run ghcr.io/genapsysinc/team-approval:latest with given arguments
         uses: genapsysinc/internal-actions/docker-run-action@main
         with:
@@ -41,4 +40,4 @@ jobs:
           password: ${{ github.token }}
           registry: ghcr.io
           image: ghcr.io/genapsysinc/team-approval:latest
-          args: -s ${{ secrets.token }} -r ${{ inputs.repo }} -p ${{ inputs.pull }} -t ${{ inputs.teams }}
+          args: -s ${{ github.event.secrets.token }} -r ${{ github.event.inputs.repo }} -p ${{ github.event.inputs.pull }} -t ${{ github.event.inputs.teams }}
