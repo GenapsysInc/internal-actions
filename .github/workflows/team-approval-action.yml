@@ -35,10 +35,10 @@ jobs:
           echo "$GITHUB_CONTEXT"
           echo "$INPUTS_CONTEXT"
       - name: Run ghcr.io/genapsysinc/team-approval:latest with given arguments
-        uses: genapsysinc/internal-actions/docker-run-action@input_handling
+        uses: genapsysinc/internal-actions/docker-run-action@main
         with:
           username: ${{ github.repository_owner }}
           password: ${{ github.token }}
           registry: ghcr.io
           image: ghcr.io/genapsysinc/team-approval:latest
-          args: -s ${{ github.event.secrets.token }} -r ${{ github.event.inputs.repo }} -p ${{ github.event.inputs.pull }} -t ${{ github.event.inputs.teams }}
+          args: -s ${{ secrets.token }} -r ${{ inputs.repo }} -p ${{ inputs.pull }} -t ${{ inputs.teams }}
