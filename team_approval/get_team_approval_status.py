@@ -22,6 +22,16 @@ class ConfigurationError(Exception):
     """Should be raised when input arguments are found to be incorrect/invalid"""
 
 
+def _format_team_name(team_name: str) -> str:
+    """Formatting utility to support passing arguments via GitHub actions. Converts '-' and '_'
+    characters to spaces and converts all characters to lowercase for comparisons
+
+    :param team_name: The team name to format
+    :return: The formatted team name
+    """
+    return team_name.replace("-", " ").replace("_", " ").lower()
+
+
 def team_member_has_approved_pr(team: github.Team.Team, pull: github.PullRequest.PullRequest) -> bool:
     """Determine if a member of the given team as approved the given pull request
 
@@ -68,16 +78,16 @@ def pr_has_appropriate_reviews(client: github.MainClass.Github, repo: str, pr_nu
     :return: True if the PR has appropriate reviews, False if not
     """
     # Ignore caps for downstream lookup
-    team_names = [team_name.lower() for team_name in team_names]
+    team_names = [_format_team_name(team_name) for team_name in team_names]
 
     try:
         org = client.get_organization(GENAPSYS_GITHUB)
     except github.GithubException as failed_org_query:
         raise ConfigurationError("Could not authenticate with given secret") from failed_org_query
 
-    teams = [team for team in org.get_teams() if team.name.lower() in team_names]
+    teams = [team for team in org.get_teams() if _format_team_name(team.name) in team_names]
 
-    missing_teams = set(team_names) - {team.name.lower() for team in teams}
+    missing_teams = set(team_names) - {_format_team_name(team.name) for team in teams}
 
     if missing_teams:
         raise ConfigurationError(f"Could not find these teams: {', '.join(missing_teams)}")
