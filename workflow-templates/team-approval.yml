@@ -12,6 +12,8 @@ jobs:
     with:
       repo: ${{ github.event.repository.name }}
       pull: ${{ github.event.pull_request.number }}
+      # Teams with spaces i.e. "developer experience" should have spaces replaced with either a '-' or '_'
+      # This will allow proper input handling with the reuseable team-approval-action workflow
       teams: <team1> <team2> <team3>
     secrets:
       token: ${{ secrets.GH_REST_API_TOKEN }}
