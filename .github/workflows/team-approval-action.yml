@@ -33,6 +33,7 @@ jobs:
           INPUTS_CONTEXT: ${{ toJson(inputs) }}
         run: |
           echo "$GITHUB_CONTEXT"
+          echo "$INPUTS_CONTEXT"
       - name: Run ghcr.io/genapsysinc/team-approval:latest with given arguments
         uses: genapsysinc/internal-actions/docker-run-action@main
         with:
