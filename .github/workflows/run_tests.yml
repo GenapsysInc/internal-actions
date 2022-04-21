@@ -8,4 +8,4 @@ on:
 jobs:
   run_test:
     name: runs the test
-    uses: genapsysinc/internal-actions/.github/workflows/org-wide-checks@submodule_check
+    uses: genapsysinc/internal-actions/.github/workflows/org-wide-checks.yml@submodule_check
