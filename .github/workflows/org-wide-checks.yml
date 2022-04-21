@@ -20,3 +20,12 @@ jobs:
       - name: what's the repo?
         run: |
           ls -la
+  test_3:
+    name: test 3
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+      - name: what's the repo?
+        run: |
+          ls -la
