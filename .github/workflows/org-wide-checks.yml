@@ -30,4 +30,11 @@ jobs:
         run: |
           git status
           git branch --show-current
-          git submodule foreach git branch --show-current
+          git submodule foreach git rev-parse HEAD
+  test_4:
+    name: test 4
+    runs-on: ubuntu-latest
+    steps:
+      - name: do we have python3
+        run: |
+          python3 --version
