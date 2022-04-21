@@ -26,6 +26,7 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v3
-      - name: what's the repo?
+      - name: do we have git
         run: |
-          ls -la
+          git status
+          git branch --show-current
