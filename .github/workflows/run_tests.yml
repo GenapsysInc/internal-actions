@@ -1,0 +1,14 @@
+name: test-org-checks
+
+on:
+  push:
+    branches: [submodule_check]
+
+
+jobs:
+  run_test:
+    name: runs the test
+    uses: ubuntu-latest
+    steps:
+      - name: run the workflow
+        uses: genapsysinc/internal-actions/.github/workflows/org-wide-checks@submodule_check
