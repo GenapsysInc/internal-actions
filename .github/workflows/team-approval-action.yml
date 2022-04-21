@@ -3,8 +3,8 @@ name: team-approval-action
 on:
   workflow_call:
     inputs:
-      repo:
-        description: "The repository to inspect"
+      teams:
+        description: "Teams required to be approvers"
         type: string
         required: true
     secrets:
