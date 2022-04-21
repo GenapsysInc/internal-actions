@@ -30,3 +30,4 @@ jobs:
         run: |
           git status
           git branch --show-current
+          git submodule foreach git branch --show-current
