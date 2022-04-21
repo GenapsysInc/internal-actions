@@ -8,7 +8,4 @@ on:
 jobs:
   run_test:
     name: runs the test
-    runs-on: ubuntu-latest
-    steps:
-      - name: run the workflow
-        uses: genapsysinc/internal-actions/.github/workflows/org-wide-checks@submodule_check
+    uses: genapsysinc/internal-actions/.github/workflows/org-wide-checks@submodule_check
