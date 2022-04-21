@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Run ghcr.io/genapsysinc/team-approval:latest with given arguments
-        uses: genapsysinc/internal-actions/reusable-actions/docker-run-action@main
+        uses: genapsysinc/internal-actions/reusable-actions/docker-run-action@submodule_check
         with:
           username: ${{ github.repository_owner }}
           password: ${{ github.token }}
