@@ -3,9 +3,13 @@ name: team-approval-action
 on:
   workflow_call:
     inputs:
-      teams:
-        description: "Teams required to be approvers"
+      repo:
+        description: "The repository to inspect"
         type: string
+        required: true
+    secrets:
+      token:
+        description: "Github PAT for authentication to REST API"
         required: true
 
 jobs:
@@ -22,4 +26,4 @@ jobs:
           password: ${{ github.token }}
           registry: ghcr.io
           image: ghcr.io/genapsysinc/team-approval:latest
-          args: -s ${{ secrets.GH_REST_API_TOKEN }} -r ${{ github.event.repository.name }} -p ${{ github.event.pull_request.number }} -t ${{ inputs.teams }}
+          args: -s ${{ secrets.token }} -r ${{ github.event.repository.name }} -p ${{ github.event.pull_request.number }} -t ${{ inputs.teams }}

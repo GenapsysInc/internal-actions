@@ -10,8 +10,6 @@ jobs:
   call-workflow:
     uses: GenapsysInc/internal-actions/.github/workflows/team-approval-action.yml@main
     with:
-      repo: ${{ github.event.repository.name }}
-      pull: ${{ github.event.pull_request.number }}
       # Teams with spaces should have spaces replaced with either a '-' or '_', casing does not matter
       # i.e. "Developer Experience" could be listed as "developer-experience"
       # This will allow proper input handling with the reuseable team-approval-action workflow
