@@ -12,6 +12,6 @@ jobs:
       - name: Set up Python 3.10
         uses: genapsysinc/internal-actions/reusable-actions/setup-py3@submodule_check
         with:
-          requirements_txt: 'action-utils/tests/requirements.txt'
+          requirements_txt: 'action_utils/tests/requirements.txt'
       - name: Run tests
-        run: python -m pytest -v action_utils
+        run: python -m pytest -v
