@@ -6,8 +6,8 @@ __maintainer__ = "David McConnell"
 
 import pytest
 
-import team_approval.get_team_approval_status as gtas
-import tests.utils.pygithub_utils as pgh_utils
+import action_utils.get_team_approval_status as gtas
+import action_utils.tests.utils.pygithub_utils as pgh_utils
 
 
 @pytest.fixture(name="user_1")
