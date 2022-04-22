@@ -1,6 +1,11 @@
 name: org-wide-checkg
 
-on: [workflow_call, workflow_dispatch]
+on:
+  workflow_call:
+    secrets:
+      token:
+        description: "Github PAT for authentication to REST API and cloning internal repositories"
+        required: true
 
 
 jobs:
