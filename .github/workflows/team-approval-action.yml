@@ -27,7 +27,7 @@ jobs:
       - name: Set up Python 3.10
         uses: genapsysinc/internal-actions/reusable-actions/setup-py3@submodule_check
         with:
-          requirements_txt: 'action_utils/requirements.txt'
+          requirements_txt: 'internal-actions/action_utils/requirements.txt'
       - name: Run get_team_approval_status.py with input args
         run: |
           python internal-actions/action_utils/get_team_approval_status.py \
