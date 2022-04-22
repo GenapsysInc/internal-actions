@@ -24,6 +24,7 @@ runs:
       with:
         requirements_txt: 'internal-actions/action_utils/requirements.txt'
     - name: Run get_team_approval_status.py with input args
+      shell: bash
       run: |
         python internal-actions/action_utils/get_team_approval_status.py \
           -s ${{ inputs.token }} \
