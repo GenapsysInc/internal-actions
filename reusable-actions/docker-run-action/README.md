@@ -12,7 +12,7 @@ Branched off/modified from https://github.com/addnab/docker-run-action/releases/
 ```yaml
 - name: Checkout
   uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume
-- uses: genapsysinc/internal-actions/docker-run-action@main
+- uses: GenapsysInc/internal-actions/reusable-workflow/docker-run-action@main
   with:
     username: ${{ github.repository_owner }}
     password: ${{ secrets.GHCR_TOKEN }}
@@ -27,14 +27,14 @@ Branched off/modified from https://github.com/addnab/docker-run-action/releases/
   with:
     tags: test-image:latest
     push: false
-- uses: genapsysinc/internal-actions/docker-run-action@main
+- uses: GenapsysInc/internal-actions/reusable-workflow/docker-run-action@main
   with:
     image: test-image:latest
 ```
 
 #### Pass arguments to an image
 ```yaml
-- uses: genapsysinc/internal-actions/docker-run-action@main
+- uses: GenapsysInc/internal-actions/reusable-workflow/docker-run-action@main
   with:
     image: docker:latest  # Has an entrypoint called entrypoint.sh
     args: <arg1> <arg2> <arg3> ...

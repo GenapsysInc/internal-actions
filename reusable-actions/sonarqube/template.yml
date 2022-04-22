@@ -1,3 +1,5 @@
+# This template is intended to be incorporated as a workflow in another repository to run on pushes
+# to the default branch and to gate pull requests behind passing results
 name: SonarQube
 
 on:

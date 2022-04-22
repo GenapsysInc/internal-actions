@@ -1,3 +1,3 @@
-## Setup py3 action
+## setup-python action
 
-This action is intended to be used by other actions within the internal-actions repository. It will run python3.10 setup, install python requirements, and cache dependency installation appropriately.
+This action is intended to be used by other actions/workflows to setup a given python environment. It will run python setup (default is version 3.10), install python requirements given a requirements.txt file path, and cache dependency installation appropriately.
