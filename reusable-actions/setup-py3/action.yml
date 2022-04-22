@@ -1,20 +1,31 @@
-# action.yml
 name: 'Setup Python3 Action'
 description: 'Setup Python 3.10 and install dependencies in given requirements.txt files'
 inputs:
+  python-version:
+    description: 'Version of python to setup'
+    default: '3.10'
+    required: false
   requirements_txt:
     description: 'Relative path to requirements.txt file. Wildcards can be submitted as well'
+    default: null
     required: false
 
 runs:
   using: 'composite'
   steps:
-    - name: Set up Python 3.10
+    - name: Set up Python version ${{ inputs.python-version }} (with cache)
+      if: ${{ inputs.python-version != null }}
       uses: actions/setup-python@v3
       with:
-        python-version: '3.10'
+        python-version: ${{ inputs.python-version }}
         cache: 'pip'
         cache-dependency-path: ${{ inputs.requirements_txt }}
+    - name: Set up Python version ${{ inputs.python-version }} (no cache)
+      if: ${{ inputs.python-version == null }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ inputs.python-version }}
     - name: Install dependencies
+      if: ${{ inputs.python-version != null }}
       run: pip install `for r in ${{ inputs.requirements_txt }}; do echo "-r $r"; done`
       shell: bash
