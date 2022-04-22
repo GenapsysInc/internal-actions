@@ -22,6 +22,7 @@ jobs:
         with:
           repository: genapsysinc/internal-actions
           path: internal-actions
+          ref: submodule_check
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
