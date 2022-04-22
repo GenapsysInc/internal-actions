@@ -26,6 +26,5 @@ runs:
         SONAR_HOST_URL: ${{ inputs.url }}
     - uses: sonarsource/sonarqube-quality-gate-action@master
       if: ${{ inputs.fail_when_red == true }}
-      timeout-minutes: 5
       env:
         SONAR_TOKEN: ${{ inputs.token }}
