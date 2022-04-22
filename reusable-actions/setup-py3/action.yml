@@ -17,3 +17,4 @@ runs:
         cache-dependency-path: ${{ inputs.requirements_txt }}
     - name: Install dependencies
       run: pip install `for r in ${{ inputs.requirements_txt }}; do echo "-r $r"; done`
+      shell: bash
