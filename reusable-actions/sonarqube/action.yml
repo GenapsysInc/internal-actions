@@ -8,11 +8,6 @@ inputs:
   url:
     description: SonarQube Host URL
     required: true
-  fail_when_red:
-    description: Should the build fail when the SonarQube Quality Gate is red?
-    default: true
-    required: true
-
 
 runs:
   using: 'composite'
@@ -24,7 +19,3 @@ runs:
       env:
         SONAR_TOKEN: ${{ inputs.token }}
         SONAR_HOST_URL: ${{ inputs.url }}
-    - uses: sonarsource/sonarqube-quality-gate-action@master
-      if: ${{ inputs.fail_when_red == true }}
-      env:
-        SONAR_TOKEN: ${{ inputs.token }}

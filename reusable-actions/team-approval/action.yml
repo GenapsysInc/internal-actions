@@ -1,5 +1,5 @@
 name: team-approval-action
-description: Determines if relevant teams have approved a pull request
+description: Determines if relevant teams within the GenapsysInc org have approved a pull request
 
 inputs:
   teams:
