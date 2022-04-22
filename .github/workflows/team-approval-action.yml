@@ -24,8 +24,8 @@ jobs:
           path: internal-actions
           ref: submodule_check
           token: ${{ secrets.token }}
-      - name: Set up Python 3.10
-        uses: genapsysinc/internal-actions/reusable-actions/setup-py3@submodule_check
+      - name: Set up Python 3.10 and install dependencies
+        uses: genapsysinc/internal-actions/reusable-actions/setup-python@submodule_check
         with:
           requirements_txt: 'internal-actions/action_utils/requirements.txt'
       - name: Run get_team_approval_status.py with input args

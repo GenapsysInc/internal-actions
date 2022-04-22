@@ -1,5 +1,6 @@
-name: 'Setup Python3 Action'
-description: 'Setup Python 3.10 and install dependencies in given requirements.txt files'
+name: 'Setup Python Action'
+description: 'Setup Python and install dependencies in given requirements.txt files'
+
 inputs:
   python-version:
     description: 'Version of python to setup'
