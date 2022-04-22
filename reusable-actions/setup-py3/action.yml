@@ -4,7 +4,7 @@ description: 'Setup Python 3.10 and install dependencies in given requirements.t
 inputs:
   requirements_txt:
     description: 'Relative path to requirements.txt file. Wildcards can be submitted as well'
-    required: true
+    required: false
 
 runs:
   using: 'composite'
