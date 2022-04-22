@@ -37,5 +37,5 @@ jobs:
           python3 internal-actions/team_approval/get_team_approval_status.py \
             -s ${{ secrets.token }} \
             -r ${{ github.event.repository.name }} \
-            -p ${{ github.event.pull_request.number }}
+            -p ${{ github.event.pull_request.number }} \
             -t ${{ inputs.teams }}
