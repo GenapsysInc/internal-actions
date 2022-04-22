@@ -23,6 +23,7 @@ jobs:
           repository: genapsysinc/internal-actions
           path: internal-actions
           ref: submodule_check
+          token: ${{ secrets.token }}
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
