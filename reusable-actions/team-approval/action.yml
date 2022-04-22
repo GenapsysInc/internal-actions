@@ -1,0 +1,34 @@
+name: team-approval-action
+description: Determines if relevant teams have approved a pull request
+
+inputs:
+  teams:
+    description: "Teams required to be approvers"
+    type: string
+    required: true
+secrets:
+  token:
+    description: "Github PAT for authentication to REST API"
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        repository: genapsysinc/internal-actions
+        path: internal-actions
+        ref: submodule_check
+        token: ${{ secrets.token }}
+    - name: Set up Python 3.10 and install dependencies
+      uses: genapsysinc/internal-actions/reusable-actions/setup-python@submodule_check
+      with:
+        requirements_txt: 'internal-actions/action_utils/requirements.txt'
+    - name: Run get_team_approval_status.py with input args
+      run: |
+        python internal-actions/action_utils/get_team_approval_status.py \
+          -s ${{ secrets.token }} \
+          -r ${{ github.event.repository.name }} \
+          -p ${{ github.event.pull_request.number }} \
+          -t ${{ inputs.teams }}
