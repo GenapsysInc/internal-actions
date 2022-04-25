@@ -17,10 +17,10 @@ runs:
       with:
         repository: genapsysinc/internal-actions
         path: internal-actions
-        ref: main
+        ref: workflow_reorg
         token: ${{ inputs.token }}
     - name: Set up Python 3.10 and install dependencies
-      uses: genapsysinc/internal-actions/reusable-actions/setup-python@main
+      uses: genapsysinc/internal-actions/reusable-actions/setup-python@workflow_reorg
       with:
         requirements-txt: 'internal-actions/action_utils/requirements.txt'
     - name: Run get_team_approval_status.py with input args

@@ -13,7 +13,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Set up Python and install dependencies
-        uses: genapsysinc/internal-actions/reusable-actions/setup-python@main
+        uses: genapsysinc/internal-actions/reusable-actions/setup-python@workflow_reorg
         with:
           python-version: ${{ matrix.python-version }}
           requirements-txt: action_utils/tests/requirements.txt
