@@ -1,28 +1,16 @@
 name: SonarQube
+
 on:
-  workflow_call:
-    secrets:
-      token:
-        required: true
-      url:
-        required: true
+  push:
+    branches: [main]  # or the name of your main branch
+  pull_request:
+    types: [opened, synchronize, reopened]
+
 jobs:
-  build:
-    name: Build
+  call-workflow:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@submodule_check
         with:
-          fetch-depth: 0
-      - uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.token }}
-          SONAR_HOST_URL: ${{ secrets.url }}
-      # If you wish to fail your job when the Quality Gate is red, uncomment the
-      # following lines. This would typically be used to fail a deployment.
-      # We do not recommend to use this in a pull request. Prefer using pull request
-      # decoration instead.
-      # - uses: sonarsource/sonarqube-quality-gate-action@master
-      #   timeout-minutes: 5
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          token: ${{ secrets.SONAR_TOKEN }}
+          url: ${{ secrets.SONAR_HOST_URL }}
