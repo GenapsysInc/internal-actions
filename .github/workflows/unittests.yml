@@ -4,14 +4,18 @@ on:
     types: [opened, edited, synchronize, reopened]
 
 jobs:
-  test:
+  run-unit-tests:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ '3.7', '3.10' ]
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Set up Python 3.10 and install dependencies
+      - name: Set up Python and install dependencies
         uses: genapsysinc/internal-actions/reusable-actions/setup-python@submodule_check
         with:
-          requirements-txt: 'action_utils/tests/requirements.txt'
+          python-version: ${{ matrix.python-version }}
+          requirements-txt: action_utils/tests/requirements.txt
       - name: Run tests
         run: python -m pytest -v
