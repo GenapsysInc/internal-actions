@@ -1,4 +1,4 @@
-# Docker Run Action
+# docker-run-action
 
 Branched off/modified from https://github.com/addnab/docker-run-action/releases/tag/v3. This version differs in that a "shell" is not defined, as this caused the image's entrypoint to be overriden. Instead the defined entrypoint for the image is honored, and arguments can be passed to it via the `args` input. If an entrypoint override is desired, you can do so via the `options` input.
 
@@ -11,7 +11,7 @@ Branched off/modified from https://github.com/addnab/docker-run-action/releases/
 
 ```yaml
 - name: Checkout
-  uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume
+  uses: actions/checkout@v3 # Required to mount the Github Workspace to a volume
 - uses: GenapsysInc/internal-actions/reusable-workflow/docker-run-action@main
   with:
     username: ${{ github.repository_owner }}
