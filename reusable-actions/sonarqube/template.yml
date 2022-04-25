@@ -1,0 +1,18 @@
+# This template is intended to be incorporated as a workflow in another repository to run on pushes
+# to the default branch and to gate pull requests behind passing results
+name: SonarQube
+
+on:
+  push:
+    branches: [main]  # Replace with branches you want to run on
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  call-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@main
+        with:
+          token: ${{ secrets.SONAR_TOKEN }}
+          url: ${{ secrets.SONAR_HOST_URL }}

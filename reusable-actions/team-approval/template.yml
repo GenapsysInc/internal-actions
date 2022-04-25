@@ -1,0 +1,23 @@
+# This template is intended to be incorporated as a workflow in another repository for pull request gating
+name: team-approval-check
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+
+jobs:
+  call-workflow:
+    name: Run the team approval check workflow
+    runs-on: ubuntu-latest
+    steps:
+      - uses: GenapsysInc/internal-actions/reusable-actions/team-approval@main
+        with:
+          # Teams with spaces should have double quotes around them or spaces replaced with a '-' or '_',
+          # casing does not matter. i.e. Developer Experience could be listed as "developer experience"
+          # or as developer-experience. This will allow proper input handling with the reuseable
+          # team-approval action
+          # See https://github.com/orgs/GenapsysInc/teams for the available teams for the check
+          teams: '<team 1> "<team 2>" ... <team n>'
+          token: ${{ secrets.GH_REST_API_TOKEN }}

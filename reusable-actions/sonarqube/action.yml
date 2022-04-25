@@ -1,0 +1,21 @@
+name: SonarQube
+description: Runs SonarQube on the repository using this action
+
+inputs:
+  token:
+    description: SonarQube Token
+    required: true
+  url:
+    description: SonarQube Host URL
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ inputs.token }}
+        SONAR_HOST_URL: ${{ inputs.url }}

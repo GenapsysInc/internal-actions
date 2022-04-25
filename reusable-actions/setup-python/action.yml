@@ -1,0 +1,32 @@
+name: 'Setup Python Action'
+description: 'Setup Python and install dependencies in given requirements.txt files'
+
+inputs:
+  python-version:
+    description: 'Version of python to setup'
+    default: '3.10'
+    required: false
+  requirements-txt:
+    description: 'Relative path to requirements.txt file. Wildcards can be submitted as well'
+    default: null
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python version ${{ inputs.python-version }} (with cache)
+      if: ${{ inputs.requirements-txt != null }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ inputs.python-version }}
+        cache: 'pip'
+        cache-dependency-path: ${{ inputs.requirements-txt }}
+    - name: Set up Python version ${{ inputs.python-version }} (no cache)
+      if: ${{ inputs.requirements-txt == null }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ inputs.python-version }}
+    - name: Install dependencies
+      if: ${{ inputs.requirements-txt != null }}
+      run: pip install `for r in ${{ inputs.requirements-txt }}; do echo "-r $r"; done`
+      shell: bash
