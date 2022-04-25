@@ -6,7 +6,7 @@ inputs:
     description: 'Version of python to setup'
     default: '3.10'
     required: false
-  requirements_txt:
+  requirements-txt:
     description: 'Relative path to requirements.txt file. Wildcards can be submitted as well'
     default: null
     required: false
@@ -15,18 +15,18 @@ runs:
   using: 'composite'
   steps:
     - name: Set up Python version ${{ inputs.python-version }} (with cache)
-      if: ${{ inputs.requirements_txt != null }}
+      if: ${{ inputs.requirements-txt != null }}
       uses: actions/setup-python@v3
       with:
         python-version: ${{ inputs.python-version }}
         cache: 'pip'
-        cache-dependency-path: ${{ inputs.requirements_txt }}
+        cache-dependency-path: ${{ inputs.requirements-txt }}
     - name: Set up Python version ${{ inputs.python-version }} (no cache)
-      if: ${{ inputs.requirements_txt == null }}
+      if: ${{ inputs.requirements-txt == null }}
       uses: actions/setup-python@v3
       with:
         python-version: ${{ inputs.python-version }}
     - name: Install dependencies
-      if: ${{ inputs.requirements_txt != null }}
-      run: pip install `for r in ${{ inputs.requirements_txt }}; do echo "-r $r"; done`
+      if: ${{ inputs.requirements-txt != null }}
+      run: pip install `for r in ${{ inputs.requirements-txt }}; do echo "-r $r"; done`
       shell: bash

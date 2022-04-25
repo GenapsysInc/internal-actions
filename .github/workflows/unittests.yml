@@ -12,6 +12,6 @@ jobs:
       - name: Set up Python 3.10 and install dependencies
         uses: genapsysinc/internal-actions/reusable-actions/setup-python@submodule_check
         with:
-          requirements_txt: 'action_utils/tests/requirements.txt'
+          requirements-txt: 'action_utils/tests/requirements.txt'
       - name: Run tests
         run: python -m pytest -v
