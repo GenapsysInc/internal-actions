@@ -22,7 +22,7 @@ runs:
     - name: Set up Python 3.10 and install dependencies
       uses: genapsysinc/internal-actions/reusable-actions/setup-python@submodule_check
       with:
-        requirements_txt: 'internal-actions/action_utils/requirements.txt'
+        requirements-txt: 'internal-actions/action_utils/requirements.txt'
     - name: Run get_team_approval_status.py with input args
       shell: bash
       run: |
