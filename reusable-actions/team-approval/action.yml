@@ -6,7 +6,7 @@ inputs:
     description: "Teams required to be approvers"
     required: true
   token:
-    description: "Github PAT for authentication to REST API"
+    description: "Github token for authentication to REST API"
     required: true
 
 runs:
