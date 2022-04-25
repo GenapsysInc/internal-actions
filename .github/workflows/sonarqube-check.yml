@@ -10,7 +10,7 @@ jobs:
   call-workflow:
     runs-on: ubuntu-latest
     steps:
-      - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@main
+      - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@workflow_reorg
         with:
           token: ${{ secrets.SONAR_TOKEN }}
           url: ${{ secrets.SONAR_HOST_URL }}
