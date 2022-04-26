@@ -1,4 +1,4 @@
-"""Unit tests for the get_team_approval_status module"""
+"""Unit tests for the action_utils.get_team_approval_status module"""
 
 __author__ = "David McConnell"
 __credits__ = ["David McConnell"]
