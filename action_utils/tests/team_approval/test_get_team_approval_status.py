@@ -6,6 +6,7 @@ __maintainer__ = "David McConnell"
 
 import pytest
 
+from action_utils import common
 import action_utils.get_team_approval_status as gtas
 import action_utils.tests.utils.pygithub_utils as pgh_utils
 
@@ -52,47 +53,47 @@ def fixture_all_teams(qa_team, devops_team, bioinformatics_team):
 
 @pytest.fixture(name="qa_approval")
 def fixture_qa_approval(user_1):
-    return pgh_utils.MockReview(user_1, gtas.APPROVED)
+    return pgh_utils.MockReview(user_1, common.APPROVED)
 
 
 @pytest.fixture(name="qa_comment")
 def fixture_qa_comment(user_1):
-    return pgh_utils.MockReview(user_1, gtas.COMMENTED)
+    return pgh_utils.MockReview(user_1, common.COMMENTED)
 
 
 @pytest.fixture(name="qa_change_request")
 def fixture_qa_change_request(user_1):
-    return pgh_utils.MockReview(user_1, gtas.CHANGES_REQUESTED)
+    return pgh_utils.MockReview(user_1, common.CHANGES_REQUESTED)
 
 
 @pytest.fixture(name="devops_approval")
 def fixture_devops_approval(user_2):
-    return pgh_utils.MockReview(user_2, gtas.APPROVED)
+    return pgh_utils.MockReview(user_2, common.APPROVED)
 
 
 @pytest.fixture(name="devops_comment")
 def fixture_devops_comment(user_2):
-    return pgh_utils.MockReview(user_2, gtas.COMMENTED)
+    return pgh_utils.MockReview(user_2, common.COMMENTED)
 
 
 @pytest.fixture(name="devops_change_request")
 def fixture_devops_change_request(user_2):
-    return pgh_utils.MockReview(user_2, gtas.CHANGES_REQUESTED)
+    return pgh_utils.MockReview(user_2, common.CHANGES_REQUESTED)
 
 
 @pytest.fixture(name="bioinformatics_approval")
 def fixture_bioinformatics_approval(user_4):
-    return pgh_utils.MockReview(user_4, gtas.APPROVED)
+    return pgh_utils.MockReview(user_4, common.APPROVED)
 
 
 @pytest.fixture(name="bioinformatics_comment")
 def fixture_bioinformatics_comment(user_4):
-    return pgh_utils.MockReview(user_4, gtas.COMMENTED)
+    return pgh_utils.MockReview(user_4, common.COMMENTED)
 
 
 @pytest.fixture(name="bioinformatics_change_request")
 def fixture_bioinformatics_change_request(user_4):
-    return pgh_utils.MockReview(user_4, gtas.CHANGES_REQUESTED)
+    return pgh_utils.MockReview(user_4, common.CHANGES_REQUESTED)
 
 
 @pytest.fixture(name="pull_all_teams_approved")
@@ -157,7 +158,7 @@ def fixture_test_repo(
 
 @pytest.fixture(name="test_org")
 def fixture_test_org(all_teams, test_repo):
-    return pgh_utils.MockOrg(gtas.GENAPSYS_GITHUB, teams=all_teams, repos={test_repo.name: test_repo})
+    return pgh_utils.MockOrg(common.GENAPSYS_GITHUB, teams=all_teams, repos={test_repo.name: test_repo})
 
 
 @pytest.fixture(name="authenticated_client")
@@ -249,23 +250,23 @@ def test_pr_has_appropriate_reviews_authentication_fail(
     unauthenticated_client, test_repo, pull_all_teams_approved, all_teams
 ):
     """End-to-end style test to assert proper handling of authentication failure"""
-    with pytest.raises(gtas.ConfigurationError):
+    with pytest.raises(common.ConfigurationError):
         gtas.pr_has_appropriate_reviews(unauthenticated_client, test_repo.name, pull_all_teams_approved.num, all_teams)
 
 
 def test_pr_has_appropriate_reviews_invalid_repo(authenticated_client, pull_all_teams_approved, all_teams):
     """End-to-end style test to assert proper handling of invalid repo"""
-    with pytest.raises(gtas.ConfigurationError):
+    with pytest.raises(common.ConfigurationError):
         gtas.pr_has_appropriate_reviews(authenticated_client, "not-a-repo", pull_all_teams_approved.num, all_teams)
 
 
 def test_pr_has_appropriate_reviews_invalid_pull(authenticated_client, test_repo, all_teams):
     """End-to-end style test to assert proper handling of invalid PR number"""
-    with pytest.raises(gtas.ConfigurationError):
+    with pytest.raises(common.ConfigurationError):
         gtas.pr_has_appropriate_reviews(authenticated_client, test_repo, 10000, all_teams)
 
 
 def test_pr_has_appropriate_reviews_missing_teams(authenticated_client, test_repo, pull_all_teams_approved):
     """End-to-end style test to assert proper handling of invalid team name"""
-    with pytest.raises(gtas.ConfigurationError):
+    with pytest.raises(common.ConfigurationError):
         gtas.pr_has_appropriate_reviews(authenticated_client, test_repo, pull_all_teams_approved.num, ["not-a-team"])
