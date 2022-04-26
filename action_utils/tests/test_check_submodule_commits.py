@@ -7,3 +7,4 @@ __maintainer__ = "David McConnell"
 import pytest
 
 from action_utils import common
+import action_utils.check_submodule_commits as csc
