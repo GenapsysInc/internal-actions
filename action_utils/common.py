@@ -17,7 +17,7 @@ class ConfigurationError(Exception):
     """Should be raised when input arguments are found to be incorrect/invalid"""
 
 
-def _get_repo_name_from_url(url: str) -> str:
+def get_repo_name_from_url(url: str) -> str:
     """Given a https/git url, get the repository name
 
     :param url: The url to parse, either https://github.com/... or git@github.com:...
@@ -32,7 +32,7 @@ def get_repo_name(git_repo: git.repo.base.Repo) -> str:
     :param git_repo: The Repo instance
     :return: The name of the repository
     """
-    return _get_repo_name_from_url(git_repo.remotes.origin.url)
+    return get_repo_name_from_url(git_repo.remotes.origin.url)
 
 
 def get_submodule_name(git_submodule: git.Submodule) -> str:
@@ -41,4 +41,4 @@ def get_submodule_name(git_submodule: git.Submodule) -> str:
     :param git_submodule: The Submodule instance
     :return: The name of the repository
     """
-    return _get_repo_name_from_url(git_submodule.url)
+    return get_repo_name_from_url(git_submodule.url)

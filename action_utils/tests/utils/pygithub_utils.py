@@ -4,6 +4,7 @@ __author__ = "David McConnell"
 __credits__ = ["David McConnell"]
 __maintainer__ = "David McConnell"
 
+from collections import defaultdict
 from unittest import mock
 
 import github
@@ -48,6 +49,13 @@ class MockGithubReview(mock.Mock):
         self.state = state
 
 
+class MockGithubCommit(mock.Mock):
+    def __init__(self, sha):
+        super().__init__()
+
+        self.sha = sha
+
+
 class MockGithubPull(mock.Mock):
     def __init__(self, pull_num, reviews):
         super().__init__()
@@ -60,11 +68,19 @@ class MockGithubPull(mock.Mock):
 
 
 class MockGithubRepo(mock.Mock):
-    def __init__(self, name, pulls=None):
+    def __init__(self, name, default_branch="main", commits=None, pulls=None):
         super().__init__()
 
         self.name = name
+        self.default_branch = default_branch
+        self.commits = commits if commits else defaultdict(list)
         self.pulls = pulls if pulls else {}
+
+    def add_commit(self, branch, commit):
+        self.commits[branch].append(commit)
+
+    def get_commits(self, sha=None):
+        return self.commits[sha]
 
     def add_pull(self, pull):
         self.pulls[pull.num] = pull
