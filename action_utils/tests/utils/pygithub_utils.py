@@ -19,7 +19,7 @@ class MockGithubException(github.GithubException):
         return self.msg
 
 
-class MockUser(mock.Mock):
+class MockGithubUser(mock.Mock):
     def __init__(self, name):
         super().__init__()
 
@@ -29,7 +29,7 @@ class MockUser(mock.Mock):
         return hash(self.name)
 
 
-class MockTeam(mock.Mock):
+class MockGithubTeam(mock.Mock):
     def __init__(self, name, users):
         super().__init__()
 
@@ -40,7 +40,7 @@ class MockTeam(mock.Mock):
         return self.users
 
 
-class MockReview(mock.Mock):
+class MockGithubReview(mock.Mock):
     def __init__(self, user, state):
         super().__init__()
 
@@ -48,7 +48,7 @@ class MockReview(mock.Mock):
         self.state = state
 
 
-class MockPull(mock.Mock):
+class MockGithubPull(mock.Mock):
     def __init__(self, pull_num, reviews):
         super().__init__()
 
@@ -59,7 +59,7 @@ class MockPull(mock.Mock):
         return self.reviews
 
 
-class MockRepo(mock.Mock):
+class MockGithubRepo(mock.Mock):
     def __init__(self, name, pulls=None):
         super().__init__()
 
@@ -76,7 +76,7 @@ class MockRepo(mock.Mock):
         return self.pulls[pull_num]
 
 
-class MockOrg(mock.Mock):
+class MockGithubOrg(mock.Mock):
     def __init__(self, name, teams=None, repos=None):
         super().__init__()
 
@@ -109,7 +109,7 @@ class MockOrg(mock.Mock):
         return self.teams.values()
 
 
-class MockClient(mock.Mock):
+class MockGithubClient(mock.Mock):
     def __init__(self, orgs, authenticated=True):
         super().__init__()
 
