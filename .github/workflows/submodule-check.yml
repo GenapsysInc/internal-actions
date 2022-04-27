@@ -9,3 +9,5 @@ jobs:
     steps:
       - name: Check out repository code
         uses: GenapsysInc/internal-actions/reusable-actions/submodule-check@submodule_check
+        with:
+          token: ${{ secrets.GH_REST_API_TOKEN }}
