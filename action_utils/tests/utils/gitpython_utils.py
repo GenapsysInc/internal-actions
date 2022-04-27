@@ -31,6 +31,7 @@ class MockGitSubmodule(mock.Mock):
         self.url = url
         self.commit = commit
 
+    @property
     def hexsha(self):
         return self.commit
 
