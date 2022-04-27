@@ -9,14 +9,14 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Checkout
+    - name: Checkout calling repo
       uses: actions/checkout@v3
     - name: Checkout internal-actions
       uses: actions/checkout@v3
       with:
         repository: genapsysinc/internal-actions
         path: internal-actions
-        ref: submodule_check
+        ref: main
         token: ${{ inputs.token }}
     - name: Set up Python 3.10 and install dependencies
       uses: genapsysinc/internal-actions/reusable-actions/setup-python@main
