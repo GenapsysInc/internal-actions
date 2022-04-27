@@ -9,7 +9,7 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Checkout
+    - name: Checkout calling repo
       uses: actions/checkout@v3
     - name: Checkout internal-actions
       uses: actions/checkout@v3
