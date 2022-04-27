@@ -9,7 +9,7 @@ jobs:
   run-submodule-check:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
-        uses: GenapsysInc/internal-actions/reusable-actions/submodule-check@submodule_check
+      - name: Run the submodule check workflow
+        uses: GenapsysInc/internal-actions/reusable-actions/submodule-check@submodule_check_test
         with:
           token: ${{ secrets.GH_REST_API_TOKEN }}
