@@ -1,0 +1,11 @@
+name: Run Submodule Check
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  run-unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: GenapsysInc/internal-actions/reusable-actions/submodule-check@submodule_check
