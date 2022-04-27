@@ -23,7 +23,7 @@ def get_repo_name_from_url(url: str) -> str:
     :param url: The url to parse, either https://github.com/... or git@github.com:...
     :return: The repository name parsed from the url
     """
-    return url.split('.git')[0].split('/')[-1]
+    return url.split(".git")[0].split("/")[-1]
 
 
 def get_repo_name(git_repo: git.repo.base.Repo) -> str:

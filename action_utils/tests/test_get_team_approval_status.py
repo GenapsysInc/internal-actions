@@ -148,9 +148,14 @@ def fixture_test_repo(
     pull_qa_recent_change_request_2,
 ):
     all_pulls = [
-        pull_all_teams_approved, pull_all_teams_commented, pull_all_teams_requested_changes, pull_mixed_reviews,
-        pull_qa_recent_approval_1, pull_qa_recent_approval_2, pull_qa_recent_change_request_1,
-        pull_qa_recent_change_request_2
+        pull_all_teams_approved,
+        pull_all_teams_commented,
+        pull_all_teams_requested_changes,
+        pull_mixed_reviews,
+        pull_qa_recent_approval_1,
+        pull_qa_recent_approval_2,
+        pull_qa_recent_change_request_1,
+        pull_qa_recent_change_request_2,
     ]
 
     return pgh_utils.MockGithubRepo("my-repo", pulls={pull.num: pull for pull in all_pulls})
