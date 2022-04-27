@@ -11,7 +11,7 @@ jobs:
     name: Run the team approval workflow
     runs-on: ubuntu-latest
     steps:
-      - uses: genapsysinc/internal-actions/reusable-actions/team-approval@submodule_check
+      - uses: genapsysinc/internal-actions/reusable-actions/team-approval@submodule_check_test
         with:
           teams: '"developer experience" inst-software'
           token: ${{ secrets.GH_REST_API_TOKEN }}
