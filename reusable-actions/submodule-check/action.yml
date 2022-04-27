@@ -26,6 +26,6 @@ runs:
       shell: bash
       run: |
         export PYTHONPATH="`pwd`/internal-actions" && \
-        python internal-actions/action_utils/get_team_approval_status.py \
+        python internal-actions/action_utils/check_submodule_commits.py \
           -s ${{ inputs.token }} \
           -r .
