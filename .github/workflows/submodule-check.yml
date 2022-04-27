@@ -4,10 +4,10 @@ on:
     types: [opened, edited, synchronize, reopened]
 
 jobs:
-  run-unit-tests:
+  run-submodule-check:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
-        uses: GenapsysInc/internal-actions/reusable-actions/submodule-check@submodule_check
+        uses: GenapsysInc/internal-actions/reusable-actions/submodule-check@submodule_check_test
         with:
           token: ${{ secrets.GH_REST_API_TOKEN }}
