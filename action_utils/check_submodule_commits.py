@@ -74,7 +74,7 @@ def parse_args():
     return parser.parse_args()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     opts = parse_args()
 
     if repo_has_valid_submodules(git.Repo(opts.repo_path), github.Github(opts.secret)):
