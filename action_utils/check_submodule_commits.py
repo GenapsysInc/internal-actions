@@ -21,9 +21,7 @@ def submodule_is_valid(git_submodule: git.Submodule, github_repo: github.Reposit
     :param client: The GitHub Organization to use to pull commit history for the submodule
     :return: True if the submodule's commit is in the history of the default branch for the submodule, else False
     """
-    print(git_submodule.hexsha)
-    print([commit.sha for commit in github_repo.get_commits(sha=github_repo.default_branch)])
-    if any(git_submodule.hexsha == commit.sha for commit in github_repo.get_commits(sha=github_repo.default_branch)):
+    if any(commit.sha == git_submodule.hexsha for commit in github_repo.get_commits(sha=github_repo.default_branch)):
         print(f"Found matching commit in {github_repo.name} in default branch {github_repo.default_branch}")
         return True
 
