@@ -1,0 +1,3 @@
+[submodule "instrument_configs"]
+	path = instrument_configs
+	url = git@github.com:GenapsysInc/instrument_configs.git
