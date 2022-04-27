@@ -1,10 +1,7 @@
-name: team-approval-action
-description: Determines if relevant teams within the GenapsysInc org have approved a pull request
+name: submodule-check-action
+description: Asserts submodules in the calling repository are on commits in the commit history of their default branch
 
 inputs:
-  teams:
-    description: "Teams required to be approvers"
-    required: true
   token:
     description: "Github token for authentication to REST API"
     required: true
@@ -13,6 +10,8 @@ runs:
   using: 'composite'
   steps:
     - name: Checkout
+      uses: actions/checkout@v3
+    - name: Checkout internal-actions
       uses: actions/checkout@v3
       with:
         repository: genapsysinc/internal-actions
@@ -23,12 +22,10 @@ runs:
       uses: genapsysinc/internal-actions/reusable-actions/setup-python@main
       with:
         requirements-txt: 'internal-actions/action_utils/requirements.txt'
-    - name: Run get_team_approval_status.py with input args
+    - name: Run check_submodule_commits.py with input args
       shell: bash
       run: |
         export PYTHONPATH="`pwd`/internal-actions" && \
         python internal-actions/action_utils/get_team_approval_status.py \
           -s ${{ inputs.token }} \
-          -r ${{ github.event.repository.name }} \
-          -p ${{ github.event.pull_request.number }} \
-          -t ${{ inputs.teams }}
+          -r .
