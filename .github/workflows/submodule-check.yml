@@ -2,7 +2,7 @@
 name: Run Submodule Check
 on:
   pull_request:
-    branches: [main] # Uncomment to gate only pull requests to main (or another default branch)
+    branches: [main, submodule_check] # Uncomment to gate only pull requests to main (or another default branch)
     types: [opened, edited, synchronize, reopened]
 
 jobs:
