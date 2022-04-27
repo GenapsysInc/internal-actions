@@ -63,7 +63,7 @@ def repo_has_valid_submodules(git_repo: git.repo.base.Repo, github_client: githu
 def parse_args():
     """Parse commandline args"""
 
-    parser = argparse.ArgumentParser(description="Determine if relevant teams have approved a PR")
+    parser = argparse.ArgumentParser(description="Assert a repo's submodules are on valid commits")
 
     parser.add_argument("-s", "--secret", required=True, help="GitHub token for authentication")
 
