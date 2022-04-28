@@ -11,11 +11,6 @@ inputs:
     default: null
     required: false
 
-outputs:
-  coverage-xml:
-    description: 'coverage-report.xml file content'
-    value: ${{ steps.set-coverage-output.outputs.coverage-xml }}
-
 runs:
   using: 'composite'
   steps:
@@ -30,10 +25,8 @@ runs:
     - name: Run pytest and capture code coverage
       run: 'python -m pytest -v --cov --cov-report xml:coverage-report.xml'
       shell: bash
-    - name: Set coverage output
-      id: set-coverage-output
-      run: echo "::set-output name=coverage-xml::$(cat coverage-report.xml)"
-      shell: bash
-    - name: test?
-      run: echo ${{ steps.set-coverage-output.outputs.coverage-xml }}
-      shell: bash
+    - name: Archive code coverage xml
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage-xml
+        path: coverage-report.xml

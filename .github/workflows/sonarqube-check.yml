@@ -12,8 +12,6 @@ jobs:
     strategy:
       matrix:
         python-version: [ '3.7', '3.10' ]
-    outputs:
-      coverage-xml: ${{ steps.pytest.outputs.coverage-xml }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -29,6 +27,5 @@ jobs:
     steps:
       - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@code_cov
         with:
-          coverage-xml: ${{ steps.run-unit-tests.outputs.coverage-xml }}
           token: ${{ secrets.SONAR_TOKEN }}
           url: ${{ secrets.SONAR_HOST_URL }}
