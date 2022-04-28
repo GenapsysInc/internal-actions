@@ -11,6 +11,10 @@ inputs:
     default: null
     required: false
 
+outputs:
+  coverage-xml:
+    description: 'coverage-report.xml file content'
+
 runs:
   using: 'composite'
   steps:
@@ -24,4 +28,7 @@ runs:
       shell: bash
     - name: Run pytest and capture code coverage
       run: 'python -m pytest -v --cov --cov-report xml:coverage-report.xml'
+      shell: bash
+    - name: Set coverage output
+      run: echo ::set-output name=coverage-xml::$(cat coverage-report.xml)
       shell: bash

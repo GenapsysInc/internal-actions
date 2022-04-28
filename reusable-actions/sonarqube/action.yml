@@ -8,6 +8,10 @@ inputs:
   url:
     description: SonarQube Host URL
     required: true
+  coverage-xml:
+    description: XML coverage report file content
+    required: true
+    default: ""
 
 runs:
   using: 'composite'
@@ -15,6 +19,11 @@ runs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
+    - name: Write coverage
+      shell: bash
+      run: |
+        mkdir coverage-reports/
+        echo ${{ inputs.coverage-xml}} > coverage-reports/coverage-report.xml
     - uses: sonarsource/sonarqube-scan-action@master
       env:
         SONAR_TOKEN: ${{ inputs.token }}
