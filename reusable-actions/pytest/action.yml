@@ -14,17 +14,11 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Set up Python version ${{ inputs.python-version }} (requirements provided)
-      if: ${{ inputs.requirements-txt != null }}
+    - name: Set up Python version ${{ inputs.python-version }}
       uses: GenapsysInc/internal-actions/setup-python@main
       with:
         python-version: ${{ inputs.python-version }}
         requirements-txt: ${{ inputs.requirements-txt }}
-    - name: Set up Python version ${{ inputs.python-version }} (requirements not provided)
-      if: ${{ inputs.requirements-txt == null }}
-      uses: GenapsysInc/internal-actions/setup-python@main
-      with:
-        python-version: ${{ inputs.python-version }}
     - name: Install pytest and pytest-cov
       run: pip install pytest pytest-cov
       shell: bash
