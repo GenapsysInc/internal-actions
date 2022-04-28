@@ -36,3 +36,4 @@ runs:
       shell: bash
     - name: test?
       run: echo ${{ steps.set-coverage-output.outputs.coverage-xml }}
+      shell: bash
