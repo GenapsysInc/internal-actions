@@ -1,6 +1,6 @@
 [run]
 source =
-    action_utils
+    .
 
 omit =
     action_utils/tests/**
