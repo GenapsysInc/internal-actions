@@ -12,10 +12,5 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Set up Python and install dependencies
-        uses: genapsysinc/internal-actions/reusable-actions/setup-python@main
-        with:
-          python-version: ${{ matrix.python-version }}
-          requirements-txt: action_utils/tests/requirements.txt
-      - name: Run tests
-        run: python -m pytest -v
+      - name: Run unit tests
+        uses: GenapsysInc/internal-actions/pytest@code_cov
