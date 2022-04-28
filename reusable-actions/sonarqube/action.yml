@@ -22,7 +22,7 @@ runs:
       uses: actions/download-artifact@v3
       with:
         name: coverage-xml
-        path: coverage-report.xml
+        path: coverage-reports
     - name: check artifact loc
       shell: bash
       run: |
