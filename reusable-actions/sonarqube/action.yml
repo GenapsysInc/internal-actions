@@ -23,6 +23,11 @@ runs:
       with:
         name: coverage-xml
         path: coverage-reports/coverage-report.xml
+    - name: check artifact loc
+      shell: bash
+      run: |
+        pwd
+        ls -la
     - uses: sonarsource/sonarqube-scan-action@master
       env:
         SONAR_TOKEN: ${{ inputs.token }}
