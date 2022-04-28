@@ -32,5 +32,7 @@ runs:
       shell: bash
     - name: Set coverage output
       id: set-coverage-output
-      run: echo ::set-output name=coverage-xml::$(cat coverage-report.xml)
+      run: echo "::set-output name=coverage-xml::$(cat coverage-report.xml)"
       shell: bash
+    - name: test?
+      run: echo ${{ steps.set-coverage-output.outputs.coverage-xml }}
