@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: run-unit-tests
     steps:
-      - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@main
+      - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@code_cov
         with:
           coverage-xml: ${{ steps.run-unit-tests.outputs.coverage-xml }}
           token: ${{ secrets.SONAR_TOKEN }}
