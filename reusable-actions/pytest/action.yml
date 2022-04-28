@@ -14,6 +14,7 @@ inputs:
 outputs:
   coverage-xml:
     description: 'coverage-report.xml file content'
+    value: ${{ steps.set-coverage-output.outputs.coverage-xml }}
 
 runs:
   using: 'composite'
@@ -30,5 +31,6 @@ runs:
       run: 'python -m pytest -v --cov --cov-report xml:coverage-report.xml'
       shell: bash
     - name: Set coverage output
+      id: set-coverage-output
       run: echo ::set-output name=coverage-xml::$(cat coverage-report.xml)
       shell: bash
