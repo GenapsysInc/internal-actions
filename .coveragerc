@@ -1,0 +1,9 @@
+[run]
+omit =
+    action_utils/tests/**
+    **/__init__.py
+
+[report]
+exclude_lines =
+    def parse_args
+    if __name__ == "__main__"

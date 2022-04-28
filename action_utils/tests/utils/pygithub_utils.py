@@ -4,6 +4,7 @@ __author__ = "David McConnell"
 __credits__ = ["David McConnell"]
 __maintainer__ = "David McConnell"
 
+from collections import defaultdict
 from unittest import mock
 
 import github
@@ -19,7 +20,7 @@ class MockGithubException(github.GithubException):
         return self.msg
 
 
-class MockUser(mock.Mock):
+class MockGithubUser(mock.Mock):
     def __init__(self, name):
         super().__init__()
 
@@ -29,7 +30,7 @@ class MockUser(mock.Mock):
         return hash(self.name)
 
 
-class MockTeam(mock.Mock):
+class MockGithubTeam(mock.Mock):
     def __init__(self, name, users):
         super().__init__()
 
@@ -40,7 +41,7 @@ class MockTeam(mock.Mock):
         return self.users
 
 
-class MockReview(mock.Mock):
+class MockGithubReview(mock.Mock):
     def __init__(self, user, state):
         super().__init__()
 
@@ -48,7 +49,14 @@ class MockReview(mock.Mock):
         self.state = state
 
 
-class MockPull(mock.Mock):
+class MockGithubCommit(mock.Mock):
+    def __init__(self, sha):
+        super().__init__()
+
+        self.sha = sha
+
+
+class MockGithubPull(mock.Mock):
     def __init__(self, pull_num, reviews):
         super().__init__()
 
@@ -59,12 +67,20 @@ class MockPull(mock.Mock):
         return self.reviews
 
 
-class MockRepo(mock.Mock):
-    def __init__(self, name, pulls=None):
+class MockGithubRepo(mock.Mock):
+    def __init__(self, name, default_branch="main", commits=None, pulls=None):
         super().__init__()
 
         self.name = name
+        self.default_branch = default_branch
+        self.commits = commits if commits else defaultdict(list)
         self.pulls = pulls if pulls else {}
+
+    def add_commit(self, branch, commit):
+        self.commits[branch].append(commit)
+
+    def get_commits(self, sha=None):
+        return self.commits[sha]
 
     def add_pull(self, pull):
         self.pulls[pull.num] = pull
@@ -76,7 +92,7 @@ class MockRepo(mock.Mock):
         return self.pulls[pull_num]
 
 
-class MockOrg(mock.Mock):
+class MockGithubOrg(mock.Mock):
     def __init__(self, name, teams=None, repos=None):
         super().__init__()
 
@@ -109,7 +125,7 @@ class MockOrg(mock.Mock):
         return self.teams.values()
 
 
-class MockClient(mock.Mock):
+class MockGithubClient(mock.Mock):
     def __init__(self, orgs, authenticated=True):
         super().__init__()
 
