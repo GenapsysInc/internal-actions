@@ -1,0 +1,33 @@
+name: 'pytest Action'
+description: 'Setup Python, install dependencies in given requirements.txt files, and run pytest'
+
+inputs:
+  python-version:
+    description: 'Version of python to setup'
+    default: '3.10'
+    required: false
+  requirements-txt:
+    description: 'Relative path to requirements.txt file. Wildcards can be submitted as well'
+    default: null
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python version ${{ inputs.python-version }} (requirements provided)
+      if: ${{ inputs.requirements-txt != null }}
+      uses: GenapsysInc/internal-actions/setup-python@main
+      with:
+        python-version: ${{ inputs.python-version }}
+        requirements-txt: ${{ inputs.requirements-txt }}
+    - name: Set up Python version ${{ inputs.python-version }} (requirements not provided)
+      if: ${{ inputs.requirements-txt == null }}
+      uses: GenapsysInc/internal-actions/setup-python@main
+      with:
+        python-version: ${{ inputs.python-version }}
+    - name: Install pytest and pytest-cov
+      run: pip install pytest pytest-cov
+      shell: bash
+    - name: Run pytest and capture code coverage
+      run: 'python -m pytest -v --cov --cov-report xml:coverage-report.xml'
+      shell: bash

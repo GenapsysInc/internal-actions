@@ -1,0 +1,3 @@
+## pytest
+
+This action will set up python, install requirements, and then run pytest with code coverage capture turned on and reported in XML format. The code coverage file will be set as an output of the action and can be used by subsequent jobs/steps. This action will use a `.coveragerc` in the root directory of the calling repository to configure coverage running and reporting. Information in the `.coveragerc` file will define the set of files that will have coverage information captured. See https://coverage.readthedocs.io/en/6.3.2/source.html for more information about source file configuration.
