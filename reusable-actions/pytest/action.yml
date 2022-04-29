@@ -23,10 +23,10 @@ runs:
       run: pip install pytest pytest-cov
       shell: bash
     - name: Run pytest and capture code coverage
-      run: 'python -m pytest -v --cov --cov-report xml:coverage-report.xml'
+      run: 'python -m pytest -v --junitxml=pytest-report.xml --cov --cov-report xml:coverage-report.xml'
       shell: bash
-    - name: Archive code coverage xml
+    - name: Archive test report and code coverage xml files
       uses: actions/upload-artifact@v3
       with:
-        name: coverage-xml
-        path: coverage-report.xml
+        name: test-reports
+        path: '*report.xml'

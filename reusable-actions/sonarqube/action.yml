@@ -18,11 +18,11 @@ runs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - name: Pull down coverage report if it exists
+    - name: Pull down test and coverage reports if they exist
       uses: actions/download-artifact@v3
       with:
-        name: coverage-xml
-        path: coverage-reports
+        name: test-reports
+        path: test-reports
     - name: check artifact loc
       shell: bash
       run: |
@@ -32,3 +32,7 @@ runs:
       env:
         SONAR_TOKEN: ${{ inputs.token }}
         SONAR_HOST_URL: ${{ inputs.url }}
+      with:
+        args: >
+          -Dsonar.sonar.python.coverage.reportPaths=test-reports/coverage-report.xml
+          -Dsonar.python.xunit.reportPath=test-reports/pytest-report.xml
