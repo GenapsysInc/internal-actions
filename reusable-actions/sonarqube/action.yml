@@ -36,3 +36,4 @@ runs:
         args: >
           -Dsonar.sonar.python.coverage.reportPaths=test-reports/coverage-report.xml
           -Dsonar.python.xunit.reportPath=test-reports/pytest-report.xml
+          -Dsonar.exclusions=test-reports/**
