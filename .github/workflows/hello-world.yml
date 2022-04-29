@@ -4,7 +4,7 @@ on:
     branches: [docker-build-upload]
 
 jobs:
-  run-unit-tests:
+  run-hello-world-docker:
     runs-on: ubuntu-latest
     steps:
       - name: run hello-world:latest
