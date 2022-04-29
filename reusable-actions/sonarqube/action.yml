@@ -15,7 +15,7 @@ runs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - name: Pull down test and coverage reports if they exist
+    - name: Pull down test and coverage reports
       uses: actions/download-artifact@v3
       with:
         name: test-reports
