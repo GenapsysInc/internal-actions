@@ -1,0 +1,35 @@
+name: test-build-and-run
+on:
+  push:
+    branches: [docker-build-upload]
+
+jobs:
+  build-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build my fancy image
+        uses: GenapsysInc/internal-actions/reusable-actions/docker-build-push@docker-build-upload
+        with:
+          context: .
+          dockerfile: test-build/Dockerfile
+          push: false
+          tags: my-image:v1,my-image:latest
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_TOKEN }}
+  run-docker-tag-v1:
+    needs: build-docker
+    steps:
+      - name: Run my fancy image
+        uses: GenapsysInc/internal-actions/reusable-actions/docker-run@docker-build-upload
+        with:
+          image: my-image:v1
+          args: -c 'echo "hi you sure ran that image on v1"'
+  run-docker-tag-latest:
+    needs: build-docker
+    steps:
+      - name: Run my fancy image
+        uses: GenapsysInc/internal-actions/reusable-actions/docker-run@docker-build-upload
+        with:
+          image: my-image:latest
+          args: -c 'echo "hi you sure ran that image on latest"'
