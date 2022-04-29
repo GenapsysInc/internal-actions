@@ -1,0 +1,13 @@
+name: hello world
+on:
+  push:
+    branches: [docker-build-upload]
+
+jobs:
+  run-unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run hello-world:latest
+        uses: GenapsysInc/internal-actions/reusable-actions/docker-run-action@docker-build-upload
+        with:
+          image: hello-world:latest
