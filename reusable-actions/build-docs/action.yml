@@ -39,7 +39,7 @@ runs:
         ref: main
         token: ${{ inputs.token }}
     - name: Run docbuilder
-      uses: GenapsysInc/internal-actions/reusable-actions/docker-run-action@main
+      uses: GenapsysInc/internal-actions/reusable-actions/docker-run@docker-build-upload
       with:
           username: ${{ github.repository_owner }}
           password: ${{ inputs.token }}
