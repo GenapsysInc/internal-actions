@@ -12,4 +12,4 @@ jobs:
         with:
           image: ubuntu:latest
           options: -e ENV_VAR="env_var" --entrypoint bash
-          args: -c echo $ENV_VAR
+          args: -c 'echo $ENV_VAR'
