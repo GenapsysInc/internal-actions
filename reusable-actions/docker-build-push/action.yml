@@ -11,6 +11,10 @@ inputs:
   platforms:
     description: Comma-delimited list of platforms to build for
     required: false
+  load:
+    description: Load the docker image for subsequent steps
+    required: false
+    default: true
   push:
     description: Push the built image
     required: false
@@ -58,6 +62,7 @@ runs:
         file: ${{ inputs.dockerfile }}
         platforms: ${{ inputs.platforms }}
         tags: ${{ inputs.tags }}
+        load: ${{ inputs.load }}
         push: ${{ inputs.push }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new
