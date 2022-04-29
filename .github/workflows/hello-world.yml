@@ -8,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: run hello-world:latest
-        uses: GenapsysInc/internal-actions/reusable-actions/docker-run-action@docker-build-upload
+        uses: GenapsysInc/internal-actions/reusable-actions/docker-run@docker-build-upload
         with:
           image: hello-world:latest

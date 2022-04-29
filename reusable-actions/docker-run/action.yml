@@ -3,26 +3,22 @@ description: 'Run a docker image with given options and arguments'
 
 inputs:
   image:
-    description: 'Image'
+    description: The docker image to run
     required: true
   options:
-    description: 'Options'
+    description: Options to pass to docker run
     required: false
   registry:
-    description: 'Registry'
+    description: Registry to pull image from if using an image in a private repository
     required: false
   username:
-    description: 'Username'
+    description: Username for login if using an image in a private repository
     required: false
   password:
-    description: 'Password'
-    required: false
-  docker_network:
-    description: 'Docker Network ID'
-    default: ${{ job.container.network }}
+    description: Password for login if using an image in a private repository
     required: false
   args:
-    description: 'Arguments to pass to the image entrypoint'
+    description: Arguments to pass to the image entrypoint
     required: false
 
 runs:
@@ -34,9 +30,4 @@ runs:
       runs: echo ${{ inputs.password }} | docker login ${{ inputs.registry }} -u ${{ inputs.username }} --password-stdin
     - name: Run image
       shell: bash
-      runs: |
-        docker run \
-        -v "/var/run/docker.sock":"/var/run/docker.sock" \
-        ${{ inputs.options }} ${{ (inputs.docker_network && '--network inputs.docker_network') || '' }} \
-        ${{ inputs.image }} \
-        ${{ inputs.args }}
+      runs: docker run -v "/var/run/docker.sock":"/var/run/docker.sock" ${{ inputs.options }} ${{ inputs.image }} ${{ inputs.args }}
