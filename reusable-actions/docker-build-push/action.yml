@@ -68,4 +68,4 @@ runs:
         mv /tmp/.buildx-cache-new /tmp/.buildx-cache
     - name: Image digest
       shell: bash
-      run: echo "${{ steps.docker-build.outputs.metadata.digest }}"
+      run: echo "${{ steps.docker-build.outputs.digest }}"
