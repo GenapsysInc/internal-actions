@@ -12,9 +12,6 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: check workspace
-      shell: bash
-      run: echo $GITHUB_WORKSPACE
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
@@ -22,12 +19,7 @@ runs:
       uses: actions/download-artifact@v3
       with:
         name: test-reports
-        path: test-reports
-    - name: check artifact loc
-      shell: bash
-      run: |
-        pwd
-        ls -la
+        path: .test-reports
     - uses: sonarsource/sonarqube-scan-action@master
       env:
         SONAR_TOKEN: ${{ inputs.token }}
@@ -36,5 +28,5 @@ runs:
         args: >
           -Dsonar.python.coverage.reportPaths=test-reports/coverage-report.xml
           -Dsonar.python.xunit.reportPath=test-reports/pytest-report.xml
-          -Dsonar.exclusions=test-reports/**
+          -Dsonar.exclusions=.test-reports/**
           -Dsonar.coverage.exclusions=**/tests/**,**/pytests/**
