@@ -1,0 +1,53 @@
+name: build-docs
+description: Build documentation based on sphinx
+
+inputs:
+  confluence_secret:
+    description: "Confluence API token for publication"
+    required: false
+  build_confluence:
+    description: "Build documentation as pages for Confluence - boolean"
+    required: false
+    default: null
+  publish_confluence:
+    description: "Publish Confluence pages - boolean"
+    required: false
+    default: null
+  build_html:
+    description: "Build documentation as HTML - boolean"
+    required: false
+    default: null
+  warn_as_errors:
+    description: "Treat warnings raised as errors - boolean"
+    required: false
+    default: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout calling repo
+      uses: actions/checkout@v3
+    - name: Setup Confluence Build
+      id: confluence_build
+      if: ${{input.confluence_build}}
+      shell: bash
+      run: echo "-c"
+    - name: Setup Confluence Publish
+      id: confluence_publish
+      if: ${{input.confluence_publish}}
+      shell: bash
+      run: echo "-p"
+    - name: Setup Warnings as Errors
+      id: warn_as_error
+      if: ${{input.warn_as_errors}}
+      shell: bash
+      run: echo "-w"
+    - name: Run docbuilder
+      uses: GenapsysInc/internal-actions/reusable-workflow/docker-run-action@main
+      with:
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_TOKEN }}
+          registry: ghcr.io
+          image: ghcr.io/genapsysinc/docbuiler:latest
+          options: -v ${{ github.workspace }}:/repo
+          args: ${{steps.confluence_build.outputs}} ${{steps.confluence_publish.outputs}} ${{steps.warn_as_error.outputs}}
