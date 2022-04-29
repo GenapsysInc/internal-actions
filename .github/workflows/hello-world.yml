@@ -10,6 +10,6 @@ jobs:
       - name: run ubuntu:latest
         uses: GenapsysInc/internal-actions/reusable-actions/docker-run@docker-build-upload
         with:
-          image: alpine:latest
+          image: ubuntu:latest
           options: -e ENV_VAR="env_var" --entrypoint bash
           args: -c echo $ENV_VAR
