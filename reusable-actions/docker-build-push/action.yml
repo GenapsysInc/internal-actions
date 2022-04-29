@@ -51,6 +51,7 @@ runs:
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
     - name: Build and push
+      id: docker-build
       uses: docker/build-push-action@v2
       with:
         context: ${{ inputs.context }}
@@ -67,4 +68,4 @@ runs:
         mv /tmp/.buildx-cache-new /tmp/.buildx-cache
     - name: Image digest
       shell: bash
-      run: echo ${{ steps.docker_build.outputs.digest }}
+      run: echo ${{ steps.docker-build.outputs.digest }}
