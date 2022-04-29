@@ -20,7 +20,7 @@ Inspiration from https://github.com/addnab/docker-run-action/releases/tag/v3, co
 ```
 
 This would roughly translate to:
-```
+```bash
 echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
 docker run -v ${{ github.workspace }}:/workspace -e ENV_VAR="env_var" ghcr.io/genapsysinc/private-image:latest --arg-1 value_1 --arg-2 value_2
 ```
