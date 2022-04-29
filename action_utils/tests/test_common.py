@@ -56,3 +56,8 @@ def test_get_repo_name(repo):
 def test_get_submodule_name(submodule):
     """Test getting repository name from Submodule object"""
     assert common.get_submodule_name(submodule) == TEST_GIT_REPO
+
+
+def test_a_test_to_show_code_coverage():
+    """A test to show coverage in a PR"""
+    assert common.a_function_to_show_code_coverage(5, 7) == 12

@@ -42,3 +42,15 @@ def get_submodule_name(git_submodule: git.Submodule) -> str:
     :return: The name of the repository
     """
     return get_repo_name_from_url(git_submodule.url)
+
+
+def a_function_to_show_code_coverage(int1: int, int2: int) -> int:
+    """Adds 2 ints together!
+
+    :param int1: The first int
+    :param int2: The second int
+    :return: The sum of the ints
+    """
+    print(f"Adding {int1} and {int2} together!")
+
+    return int1 + int2
