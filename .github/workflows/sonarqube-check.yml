@@ -2,7 +2,7 @@ name: SonarQube
 
 on:
   push:
-    branches: [main, code_cov]  # or the name of your main branch
+    branches: [main]  # or the name of your main branch
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -16,8 +16,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Run pytest
-        id: pytest
-        uses: GenapsysInc/internal-actions/reusable-actions/pytest@code_cov
+        uses: GenapsysInc/internal-actions/reusable-actions/pytest@main
         with:
           python-version: ${{ matrix.python-version }}
           requirements-txt: action_utils/tests/requirements.txt
@@ -25,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: run-unit-tests
     steps:
-      - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@code_cov
+      - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@main
         with:
           token: ${{ secrets.SONAR_TOKEN }}
           url: ${{ secrets.SONAR_HOST_URL }}
