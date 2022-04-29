@@ -2,7 +2,7 @@ name: build-docs
 description: Build documentation based on sphinx
 
 inputs:
-  container_secret:
+  token:
     description: "Token to pull the docbuilder container"
     required: true
   confluence_secret:
@@ -31,11 +31,18 @@ runs:
   steps:
     - name: Checkout calling repo
       uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        repository: genapsysinc/internal-actions
+        path: internal-actions
+        ref: main
+        token: ${{ inputs.token }}
     - name: Run docbuilder
       uses: GenapsysInc/internal-actions/reusable-workflow/docker-run-action@main
       with:
           username: ${{ github.repository_owner }}
-          password: ${{ inputs.container_secret }}
+          password: ${{ inputs.token }}
           registry: ghcr.io
           image: ghcr.io/genapsysinc/docbuiler:latest
           options: -v ${{ github.workspace }}:/repo
