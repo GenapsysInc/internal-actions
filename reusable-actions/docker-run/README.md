@@ -2,8 +2,6 @@
 
 Inspiration from https://github.com/addnab/docker-run-action/releases/tag/v3, converted to a composite action. Run a docker image pulled from a repository or built by a previous step, allowing options and arguments to be set for the `docker run` command. See `action.yml` for available inputs.
 
-## Examples
-
 #### Pull and run an image
 
 ```yaml

@@ -38,5 +38,5 @@ This action is intended to be used by other actions/workflows to setup a given p
 - name: Install and set up Python 3.10 and install dependencies
   uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main
   with:
-    requirements-txt: **/requirements.txt
+    requirements-txt: '**/requirements.txt'
 ```
