@@ -21,6 +21,7 @@ runs:
         name: test-reports
         path: .test-reports
     - uses: sonarsource/sonarqube-scan-action@master
+      if: always()
       env:
         SONAR_TOKEN: ${{ inputs.token }}
         SONAR_HOST_URL: ${{ inputs.url }}
