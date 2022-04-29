@@ -2,6 +2,9 @@ name: build-docs
 description: Build documentation based on sphinx
 
 inputs:
+  container_secret:
+    description: "Token to pull the docbuilder container"
+    required: true
   confluence_secret:
     description: "Confluence API token for publication"
     required: false
@@ -32,8 +35,8 @@ runs:
       uses: GenapsysInc/internal-actions/reusable-workflow/docker-run-action@main
       with:
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.GHCR_TOKEN }}
+          password: ${{ inputs.container_secret }}
           registry: ghcr.io
           image: ghcr.io/genapsysinc/docbuiler:latest
           options: -v ${{ github.workspace }}:/repo
-          args: -s ${{input.confluence_secret}} ${{ inputs.build_confluence == true && '-c' || '' }} ${{ inputs.publish_confluence == true && '-p' || '' }} ${{ inputs.warn_as_errors == true && '-w' || '' }}
+          args: -s ${{inputs.confluence_secret}} ${{ inputs.build_confluence == true && '-c' || '' }} ${{ inputs.publish_confluence == true && '-p' || '' }} ${{ inputs.warn_as_errors == true && '-w' || '' }}
