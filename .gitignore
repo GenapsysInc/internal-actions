@@ -1,3 +1,4 @@
 .github/.DS_Store
 .coverage
-coverage-report.xml
+**/coverage-report.xml
+**/pytest-report.xml
