@@ -28,11 +28,6 @@ runs:
   steps:
     - name: Checkout calling repo
       uses: actions/checkout@v3
-    - name: Setup Confluence Publish
-      id: confluence_publish
-      if: ${{input.confluence_publish}}
-      shell: bash
-      run: echo '::set-output name=CONF_PUB::-p'
     - name: Run docbuilder
       uses: GenapsysInc/internal-actions/reusable-workflow/docker-run-action@main
       with:
@@ -41,4 +36,4 @@ runs:
           registry: ghcr.io
           image: ghcr.io/genapsysinc/docbuiler:latest
           options: -v ${{ github.workspace }}:/repo
-          args: -s ${{input.confluence_secret}} ${{ inputs.build_confluence == true && '-c' || '' }} ${{steps.confluence_build.outputs.CONF_BUILD}}     ${{steps.confluence_publish.outputs.CONF_PUB}} ${{ inputs.warn_as_errors == true && '-w' || '' }}
+          args: -s ${{input.confluence_secret}} ${{ inputs.build_confluence == true && '-c' || '' }} ${{ inputs.publish_confluence == true && '-p' || '' }} ${{ inputs.warn_as_errors == true && '-w' || '' }}
