@@ -1,5 +1,5 @@
-name: 'Docker Run Action'
-description: 'Run a docker image with given options and arguments'
+name: docker-run
+description: Run a docker image with given options and arguments
 
 inputs:
   image:
