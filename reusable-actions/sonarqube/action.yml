@@ -27,7 +27,7 @@ runs:
       with:
         args: >
           -Dsonar.sources=/github/workspace/
-          -Dsonar.python.coverage.reportPaths=test-reports/coverage-report.xml
-          -Dsonar.python.xunit.reportPath=test-reports/pytest-report.xml
+          -Dsonar.python.coverage.reportPaths=.test-reports/coverage-report.xml
+          -Dsonar.python.xunit.reportPath=.test-reports/pytest-report.xml
           -Dsonar.exclusions=.test-reports/**
           -Dsonar.coverage.exclusions=**/tests/**,**/pytests/**
