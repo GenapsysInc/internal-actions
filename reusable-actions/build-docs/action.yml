@@ -51,7 +51,7 @@ runs:
           registry: ghcr.io
           image: ghcr.io/genapsysinc/docbuilder:latest
           options: -v ${{ github.workspace }}:/repo
-          args: ${{ (inputs.confluence_secret && '-s') || '' }} inputs.confluence_secret
+          args: ${{ (inputs.confluence_secret && '-s') || '' }} ${{ inputs.confluence_secret }}
                 ${{ (inputs.build_confluence == 'true' && '-c') || '' }} 
                 ${{ (inputs.publish_confluence == 'true' && '-p') || '' }} 
                 ${{ (inputs.warn_as_errors == 'true' && '-w') || '' }}
