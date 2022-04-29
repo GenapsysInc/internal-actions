@@ -1,6 +1,4 @@
 [run]
-relative_files = True
-
 source =
     .
 
