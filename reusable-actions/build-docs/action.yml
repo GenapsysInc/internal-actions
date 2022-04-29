@@ -40,7 +40,7 @@ runs:
         token: ${{ inputs.token }}
     - name: Echo
       shell: bash
-      run: echo "inputs.build_confluence inputs.publish_confluence inputs.warn_as_errors"
+      run: echo "${{inputs.build_confluence}} ${{inputs.publish_confluence}} ${{inputs.warn_as_errors}}"
     - name: Run docbuilder
       uses: GenapsysInc/internal-actions/reusable-actions/docker-run@docker-build-upload
       with:
@@ -49,5 +49,5 @@ runs:
           registry: ghcr.io
           image: ghcr.io/genapsysinc/docbuilder:latest
           options: -v ${{ github.workspace }}:/repo
-          args: -s ${{inputs.confluence_secret}} ${{ (inputs.build_confluence && '-c') || '' }} ${{ (inputs.publish_confluence && '-p') || '' }} ${{ (inputs.warn_as_errors && '-w') || '' }}
+          args: -s ${{inputs.confluence_secret}} ${{ (inputs.build_confluence == "true" && '-c') || '' }} ${{ (inputs.publish_confluence == "true" && '-p') || '' }} ${{ (inputs.warn_as_errors == "true" && '-w') || '' }}
 
