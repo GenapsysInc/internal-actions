@@ -5,6 +5,7 @@ inputs:
   confluence_secret:
     description: "Confluence API token for publication"
     required: false
+    default: "XXXXXXXX"
   build_confluence:
     description: "Build documentation as pages for Confluence - boolean"
     required: false
@@ -27,21 +28,11 @@ runs:
   steps:
     - name: Checkout calling repo
       uses: actions/checkout@v3
-    - name: Setup Confluence Build
-      id: confluence_build
-      if: ${{input.confluence_build}}
-      shell: bash
-      run: echo "-c"
     - name: Setup Confluence Publish
       id: confluence_publish
       if: ${{input.confluence_publish}}
       shell: bash
-      run: echo "-p"
-    - name: Setup Warnings as Errors
-      id: warn_as_error
-      if: ${{input.warn_as_errors}}
-      shell: bash
-      run: echo "-w"
+      run: echo '::set-output name=CONF_PUB::-p'
     - name: Run docbuilder
       uses: GenapsysInc/internal-actions/reusable-workflow/docker-run-action@main
       with:
@@ -50,4 +41,4 @@ runs:
           registry: ghcr.io
           image: ghcr.io/genapsysinc/docbuiler:latest
           options: -v ${{ github.workspace }}:/repo
-          args: ${{steps.confluence_build.outputs}} ${{steps.confluence_publish.outputs}} ${{steps.warn_as_error.outputs}}
+          args: -s ${{input.confluence_secret}} ${{ inputs.build_confluence == true && '-c' || '' }} ${{steps.confluence_build.outputs.CONF_BUILD}}     ${{steps.confluence_publish.outputs.CONF_PUB}} ${{ inputs.warn_as_errors == true && '-w' || '' }}
