@@ -1,15 +1,19 @@
-name: 'pytest Action'
-description: 'Setup Python, install dependencies in given requirements.txt files, and run pytest'
+name: pytest Action
+description: Setup Python, install dependencies in given requirements.txt files, and run pytest
 
 inputs:
   python-version:
-    description: 'Version of python to setup'
+    description: Version of python to setup
     default: '3.10'
-    required: false
+    required: true
   requirements-txt:
-    description: 'Relative path to requirements.txt file. Wildcards can be submitted as well'
+    description: Relative path to requirements.txt file. Wildcards can be submitted as well
     default: null
-    required: false
+    required: true
+  coverage-source:
+    description: Source to use for gathering coverage
+    default: '.'
+    required: true
 
 runs:
   using: 'composite'
@@ -23,7 +27,7 @@ runs:
       run: pip install pytest pytest-cov
       shell: bash
     - name: Run pytest and capture code coverage
-      run: 'python -m pytest -v --junitxml=pytest-report.xml --cov --cov-report xml:coverage-report.xml'
+      run: 'python -m pytest -v --junitxml=pytest-report.xml --cov=${{ inputs.coverage-source }} --cov-report xml:coverage-report.xml'
       shell: bash
     - name: Archive test report and code coverage xml files
       uses: actions/upload-artifact@v3
