@@ -30,4 +30,4 @@ runs:
       run: echo ${{ inputs.password }} | docker login ${{ inputs.registry }} -u ${{ inputs.username }} --password-stdin
     - name: Run image with given options and args
       shell: bash
-      run: docker run -v "/var/run/docker.sock":"/var/run/docker.sock" ${{ inputs.options }} ${{ inputs.image }} ${{ inputs.args }}
+      run: docker run -v /var/run/docker.sock:/var/run/docker.sock ${{ inputs.options }} ${{ inputs.image }} ${{ inputs.args }}
