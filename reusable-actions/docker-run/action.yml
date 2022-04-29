@@ -25,9 +25,11 @@ runs:
   using: composite
   steps:
     - name: Log into docker registry
-      if: ${{ inputs.username && inputs.registry }}
-      shell: bash
-      run: echo ${{ inputs.password }} | docker login ${{ inputs.registry }} -u ${{ inputs.username }} --password-stdin
+      uses: docker/login-action@v1
+      with:
+        registry: ${{ inputs.registry }}
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
     - name: Run image with given options and args
       shell: bash
       run: docker run -v /var/run/docker.sock:/var/run/docker.sock ${{ inputs.options }} ${{ inputs.image }} ${{ inputs.args }}
