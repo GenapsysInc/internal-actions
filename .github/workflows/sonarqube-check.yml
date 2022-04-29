@@ -2,7 +2,7 @@ name: SonarQube
 
 on:
   push:
-    branches: [main, code_cov_test]  # or the name of your main branch
+    branches: [main, code_cov_test]
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Run pytest
+      - name: Run pytest, Python version ${{ matrix.python-version }}
         uses: GenapsysInc/internal-actions/reusable-actions/pytest@code_cov_test
         with:
           python-version: ${{ matrix.python-version }}
