@@ -20,7 +20,7 @@ inputs:
   docker_network:
     description: 'Docker Network ID'
     default: ${{ job.container.network }}
-    required: false
+    required: true
   args:
     description: 'Arguments to pass to the image entrypoint'
     required: false
