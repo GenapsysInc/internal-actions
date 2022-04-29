@@ -20,8 +20,8 @@ runs:
       with:
         name: test-reports
         path: .test-reports
+      continue-on-error: true  # If tests weren't run upstream, that's ok - keep going
     - uses: sonarsource/sonarqube-scan-action@master
-      if: always()
       env:
         SONAR_TOKEN: ${{ inputs.token }}
         SONAR_HOST_URL: ${{ inputs.url }}
