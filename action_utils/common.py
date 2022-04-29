@@ -42,9 +42,3 @@ def get_submodule_name(git_submodule: git.Submodule) -> str:
     :return: The name of the repository
     """
     return get_repo_name_from_url(git_submodule.url)
-
-def my_new_util(option):
-    if option == 43:
-        return False
-
-    return option == "this string"
