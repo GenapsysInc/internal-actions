@@ -1,9 +1,6 @@
 [run]
 relative_files = True
 
-source =
-    .
-
 omit =
     action_utils/tests/**
     **/__init__.py
