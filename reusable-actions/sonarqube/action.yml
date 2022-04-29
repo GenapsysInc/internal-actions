@@ -34,7 +34,7 @@ runs:
         SONAR_HOST_URL: ${{ inputs.url }}
       with:
         args: >
-          -Dsonar.sonar.python.coverage.reportPaths=test-reports/coverage-report.xml
+          -Dsonar.python.coverage.reportPaths=test-reports/coverage-report.xml
           -Dsonar.python.xunit.reportPath=test-reports/pytest-report.xml
           -Dsonar.exclusions=test-reports/**
           -Dsonar.coverage.exclusions=**/tests/**,**/pytests/**
