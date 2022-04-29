@@ -17,6 +17,8 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_TOKEN }}
+      - name: check images
+        run: docker images
       - name: Run my fancy image
         uses: GenapsysInc/internal-actions/reusable-actions/docker-run@docker-build-upload
         with:
