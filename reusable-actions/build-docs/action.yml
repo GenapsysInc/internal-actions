@@ -1,6 +1,8 @@
 name: build-docs
 description: Build documentation based on sphinx
-
+branding:
+  icon: 'clipboard'
+  color: 'purple'
 inputs:
   token:
     description: "Token to pull the docbuilder container"
@@ -12,15 +14,15 @@ inputs:
   build_confluence:
     description: "Build documentation as pages for Confluence - boolean"
     required: false
-    default: null
+    default: false
   publish_confluence:
     description: "Publish Confluence pages - boolean"
     required: false
-    default: null
+    default: false
   build_html:
     description: "Build documentation as HTML - boolean"
     required: false
-    default: null
+    default: false
   warn_as_errors:
     description: "Treat warnings raised as errors - boolean"
     required: false
@@ -49,5 +51,8 @@ runs:
           registry: ghcr.io
           image: ghcr.io/genapsysinc/docbuilder:latest
           options: -v ${{ github.workspace }}:/repo
-          args: -s ${{inputs.confluence_secret}} ${{ (inputs.build_confluence == 'true' && '-c') || '' }} ${{ (inputs.publish_confluence == 'true' && '-p') || '' }} ${{ (inputs.warn_as_errors == 'true' && '-w') || '' }}
-
+          args: ${{ (inputs.confluence_secret == 'true' && '-s' confluence_secret) || '' }}
+                ${{ (inputs.build_confluence == 'true' && '-c') || '' }} 
+                ${{ (inputs.publish_confluence == 'true' && '-p') || '' }} 
+                ${{ (inputs.warn_as_errors == 'true' && '-w') || '' }}
+                ${{ (inputs.build_html == 'true' && '-m') || '' }}
