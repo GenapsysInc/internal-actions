@@ -1,0 +1,42 @@
+name: 'Docker Run Action'
+description: 'Run a docker image with given options and arguments'
+
+inputs:
+  image:
+    description: 'Image'
+    required: true
+  options:
+    description: 'Options'
+    required: false
+  registry:
+    description: 'Registry'
+    required: false
+  username:
+    description: 'Username'
+    required: false
+  password:
+    description: 'Password'
+    required: false
+  docker_network:
+    description: 'Docker Network ID'
+    default: ${{ job.container.network }}
+    required: false
+  args:
+    description: 'Arguments to pass to the image entrypoint'
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Log into registry
+      if: ${{ inputs.username && inputs.registry }}
+      shell: bash
+      runs: echo ${{ inputs.password }} | docker login ${{ inputs.registry }} -u ${{ inputs.username }} --password-stdin
+    - name: Run image
+      shell: bash
+      runs: |
+        docker run \
+        -v "/var/run/docker.sock":"/var/run/docker.sock" \
+        ${{ inputs.options }} ${{ (inputs.docker_network && '--network inputs.docker_network') || '' }} \
+        ${{ inputs.image }} \
+        ${{ inputs.args }}
