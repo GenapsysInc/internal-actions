@@ -1,0 +1,37 @@
+on:
+  push:
+    branches:
+      - main # or the name of your main branch
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  call-workflow:
+    name: Run the documentation builder workflow
+    runs-on: ubuntu-latest
+    steps:
+      # Just run the documentation but don't publish it.  This is good to check that the documents build without errors
+      - name: Documentation build
+        uses: GenapsysInc/internal-actions/reusable-actions/build-docs@main
+        if: github.event_name == 'pull_request'
+        with:
+          token: ${{ secrets.GHCR_TOKEN }} # Token needs read access to the container registry
+          confluence_secret: ${{ secrets.CONFLUENCE_SECRET }} # optional - Needed for confluence publishing
+          build_confluence: true # boolean true || false
+          publish_confluence: false # boolean true || false
+          build_html: true # boolean true || false
+          publish_html: false # boolean true || false
+          warn_as_errors: false # boolean true || false
+
+      # Run the documentation and publish it.  This is good after the PR has been merged so that the published documents are always up-to-date.
+      - name: Documentation build and publish
+        uses: GenapsysInc/internal-actions/reusable-actions/build-docs@main
+        if: github.event_name == 'push'
+        with:
+          token: ${{ secrets.GHCR_TOKEN }} # Token needs read access to the container registry
+          confluence_secret: ${{ secrets.CONFLUENCE_SECRET }} # optional - Needed for confluence publishing
+          build_confluence: true # boolean true || false
+          publish_confluence: true # boolean true || false
+          build_html: true # boolean true || false
+          publish_html: true # boolean true || false
+          warn_as_errors: false # boolean true || false
