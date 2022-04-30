@@ -35,7 +35,7 @@ runs:
   steps:
     - name: Checkout calling repo
       uses: actions/checkout@v3
-    - name: Checkout
+    - name: Checkout internal-actions
       uses: actions/checkout@v3
       with:
         repository: genapsysinc/internal-actions
