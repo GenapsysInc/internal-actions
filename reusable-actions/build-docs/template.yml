@@ -10,7 +10,6 @@ jobs:
     name: Run the documentation builder workflow
     runs-on: ubuntu-latest
     steps:
-      -
       # Just run the documentation but don't publish it.  This is good to check that the documents build without errors
       - name: Documentation build
         uses: GenapsysInc/internal-actions/reusable-actions/build-docs@main
