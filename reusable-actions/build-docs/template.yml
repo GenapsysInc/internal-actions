@@ -16,7 +16,7 @@ jobs:
         uses: GenapsysInc/internal-actions/reusable-actions/build-docs@main
         if: github.event_name == 'pull_request'
         with:
-          token: ${{ secrets.GHCR_TOKEN }} #Token needs read access to the container registry
+          token: ${{ secrets.GHCR_TOKEN }} # Token needs read access to the container registry
           confluence_secret: ${{ secrets.CONFLUENCE_SECRET }} # optional - Needed for confluence publishing
           build_confluence: true # boolean true || false
           publish_confluence: false # boolean true || false
