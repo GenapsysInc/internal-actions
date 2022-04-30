@@ -1,4 +1,4 @@
-## docker-run
+# docker-run
 
 Inspiration from https://github.com/addnab/docker-run-action/releases/tag/v3, converted to a composite action. Run a docker image pulled from a repository or built by a previous step, allowing options and arguments to be set for the `docker run` command. See `action.yml` for available inputs.
 
@@ -7,7 +7,7 @@ Inspiration from https://github.com/addnab/docker-run-action/releases/tag/v3, co
 ```yaml
 - name: Checkout
   uses: actions/checkout@v3 # Required to mount the Github Workspace to a volume
-- uses: GenapsysInc/internal-actions/reusable-workflow/docker-run@main
+- uses: GenapsysInc/internal-actions/reusable-actions/docker-run@main
   with:
     username: ${{ github.repository_owner }}
     password: ${{ secrets.GHCR_TOKEN }}
@@ -25,11 +25,11 @@ docker run -v ${{ github.workspace }}:/workspace -e ENV_VAR="env_var" ghcr.io/ge
 
 #### Run an image built by a previous step
 ```yaml
-- uses: docker/build-push-action@v2
+- uses: GenapsysInc/internal-actions/reusable-actions/docker-build-push@main
   with:
     tags: test-image:latest
-    push: false
-- uses: GenapsysInc/internal-actions/reusable-workflow/docker-run-action@main
+    load: true
+- uses: GenapsysInc/internal-actions/reusable-actions/docker-run@main
   with:
     image: test-image:latest
 ```
