@@ -1,0 +1,16 @@
+# This is a template for a .coveragerc file to be included in a repository. To function with SonarQube, relative_files
+# must be set to True. source should be set to whatever the base level of the package/s undergoing test is/are.
+[run]
+relative_files = True
+
+source =
+    .
+
+omit =
+    **/tests/**
+    **/__init__.py
+
+[report]
+exclude_lines =
+    def parse_args
+    if __name__ == "__main__"

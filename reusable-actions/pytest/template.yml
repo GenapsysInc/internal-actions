@@ -1,0 +1,22 @@
+# This template is intended to be incorporated as a workflow in another repository to gate pull requests
+# behind passing results. It should not be used if the sonarqube workflow is running unit tests.
+name: Run pytest
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  run-unit-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ '3.7', '3.10' ]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Run pytest
+        uses: GenapsysInc/internal-actions/reusable-actions/pytest@main
+        with:
+          python-version: ${{ matrix.python-version }}
+          requirements-txt: path/to/python/requirements.txt

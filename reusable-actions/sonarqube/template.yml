@@ -9,8 +9,22 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  call-workflow:
+  run-unit-tests:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ '3.7', '3.10' ]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Run pytest, Python version ${{ matrix.python-version }}
+        uses: GenapsysInc/internal-actions/reusable-actions/pytest@main
+        with:
+          python-version: ${{ matrix.python-version }}
+          requirements-txt: path/to/python/requirements.txt  # Replace with path to requirements.txt (wildcards work)
+  run-sonarqube:
+    runs-on: ubuntu-latest
+    needs: run-unit-tests
     steps:
       - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@main
         with:
