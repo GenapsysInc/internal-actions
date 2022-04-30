@@ -1,3 +1,5 @@
+# This workflow is still here for backwards compatibility with the repos that were running sonarqube before the
+# reusable action was created
 name: SonarQube
 on:
   workflow_call:
