@@ -1,0 +1,15 @@
+name: Run ubuntu:latest
+on:
+  push:
+    branches: [docker-build-upload-test]
+
+jobs:
+  run-hello-world-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run ubuntu:latest
+        uses: GenapsysInc/internal-actions/reusable-actions/docker-run@docker-build-upload
+        with:
+          image: ubuntu:latest
+          options: -e ENV_VAR="env_var" --entrypoint bash
+          args: -c 'echo $ENV_VAR'
