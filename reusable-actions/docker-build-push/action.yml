@@ -14,9 +14,11 @@ inputs:
   load:
     description: Load the docker image for subsequent steps
     required: false
+    default: false
   push:
     description: Push the built image
     required: false
+    default: false
   tags:
     description: List of tags for the build image
     required: false
