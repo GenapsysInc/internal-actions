@@ -36,7 +36,7 @@ runs:
     - name: Checkout calling repo
       uses: actions/checkout@v3
     - name: Run docbuilder
-      uses: GenapsysInc/internal-actions/reusable-actions/docker-run-action@main
+      uses: GenapsysInc/internal-actions/reusable-actions/docker-run@main
       with:
           username: ${{ github.repository_owner }}
           password: ${{ inputs.token }}
