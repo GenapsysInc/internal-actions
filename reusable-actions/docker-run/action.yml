@@ -1,0 +1,36 @@
+name: docker-run
+description: Run a docker image with given options and arguments
+
+inputs:
+  image:
+    description: The docker image to run
+    required: true
+  options:
+    description: Options to pass to docker run
+    required: false
+  args:
+    description: Arguments to pass to the image entrypoint
+    required: false
+  registry:
+    description: Registry to pull image from if using an image in a private registry
+    required: false
+  username:
+    description: Username for login if using an image in a private registry
+    required: false
+  password:
+    description: Password for login if using an image in a private registry
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Log into docker registry
+      uses: docker/login-action@v1
+      if: ${{ inputs.registry && inputs.username && inputs.password }}
+      with:
+        registry: ${{ inputs.registry }}
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
+    - name: Run image with given options and args
+      shell: bash
+      run: docker run -v /var/run/docker.sock:/var/run/docker.sock ${{ inputs.options }} ${{ inputs.image }} ${{ inputs.args }}

@@ -1,4 +1,4 @@
-## pytest
+# pytest
 
 This action will set up python, install requirements, and then run pytest with code coverage capture turned on and reported in XML format. The test result and code coverage files will be uploaded as an artifact called `test-reports` and can be used by subsequent jobs/steps.
 
