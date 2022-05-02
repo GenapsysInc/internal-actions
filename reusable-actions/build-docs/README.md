@@ -1,12 +1,11 @@
-build-docs
-----------
+# build-docs
 
 This action will build the sphinx base documentation and if desired publish it to confluence and/or the repo's github pages.  The expectation of the code is that the index and sphinx conf.py exist in the `/docs` dir. 
 
-Build the docs but don't publish
-================================
+## Build the docs but don't publish
 
-.. code-block:: yaml
+
+```yaml
 
       - name: Documentation build and publish
         uses: GenapsysInc/internal-actions/reusable-actions/build-docs@main
@@ -18,12 +17,12 @@ Build the docs but don't publish
           build_html: true
           publish_html: false
           warn_as_errors: false
+```
+
+## Build the HTML docs only 
 
 
-Build the HTML docs only 
-========================
-
-.. code-block:: yaml
+```yaml
 
       - name: Documentation build and publish
         uses: GenapsysInc/internal-actions/reusable-actions/build-docs@main
@@ -35,12 +34,12 @@ Build the HTML docs only
           build_html: true
           publish_html: true
           warn_as_errors: false
+```
+
+## Build and publish docs
 
 
-Build and publish docs
-======================
-
-.. code-block:: yaml
+```yaml
 
       - name: Documentation build and publish
         uses: GenapsysInc/internal-actions/reusable-actions/build-docs@main
@@ -52,3 +51,6 @@ Build and publish docs
           build_html: true
           publish_html: true
           warn_as_errors: false
+```
+
+
