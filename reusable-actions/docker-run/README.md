@@ -27,6 +27,8 @@ docker run -v ${{ github.workspace }}:/workspace -e ENV_VAR="env_var" ghcr.io/ge
 ```yaml
 - uses: GenapsysInc/internal-actions/reusable-actions/docker-build-push@main
   with:
+    context: .
+    dockerfile: path/to/Dockerfile
     tags: test-image:latest
     load: true
 - uses: GenapsysInc/internal-actions/reusable-actions/docker-run@main
