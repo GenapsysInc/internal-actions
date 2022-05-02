@@ -1,4 +1,5 @@
-.github/.DS_Store
+**/.DS_Store
 .coverage
 coverage-report.xml
 pytest-report.xml
+.idea

@@ -1,0 +1,63 @@
+name: Build Docs
+description: Build documentation based on sphinx
+
+inputs:
+  token:
+    description: "Token to pull the docbuilder container"
+    required: true
+  confluence_secret:
+    description: "Confluence API token for publication"
+    required: false
+    default: ''
+  build_confluence:
+    description: "Build documentation as pages for Confluence - boolean"
+    required: false
+    default: false
+  publish_confluence:
+    description: "Publish Confluence pages - boolean"
+    required: false
+    default: false
+  build_html:
+    description: "Build documentation as HTML - boolean"
+    required: false
+    default: false
+  publish_html:
+    description: "Publish HTML to github pages - boolean"
+    required: false
+    default: false
+  warn_as_errors:
+    description: "Treat warnings raised as errors - boolean"
+    required: false
+    default: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout calling repo
+      uses: actions/checkout@v3
+    - name: Checkout internal-actions
+      uses: actions/checkout@v3
+      with:
+        repository: genapsysinc/internal-actions
+        path: internal-actions
+        ref: main
+        token: ${{ inputs.token }}
+    - name: Run docbuilder
+      uses: GenapsysInc/internal-actions/reusable-actions/docker-run-action@main
+      with:
+          username: ${{ github.repository_owner }}
+          password: ${{ inputs.token }}
+          registry: ghcr.io
+          image: ghcr.io/genapsysinc/docbuilder:latest
+          options: -v ${{ github.workspace }}:/repo
+          args: ${{ (inputs.confluence_secret && '-s') || '' }} ${{ inputs.confluence_secret }}
+                ${{ (inputs.build_confluence == 'true' && '-c') || '' }} 
+                ${{ (inputs.publish_confluence == 'true' && '-p') || '' }} 
+                ${{ (inputs.warn_as_errors == 'true' && '-w') || '' }}
+                ${{ (inputs.build_html == 'true' && '-m') || '' }}
+    - name: Build GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: ${{inputs.publish_html}} && ${{inputs.build_html}}
+      with:
+        github_token: ${{ inputs.token }}
+        publish_dir: _builder/html
