@@ -1,4 +1,4 @@
-## setup-python
+# setup-python
 
 This action is intended to be used by other actions/workflows to setup a given python environment. It will run python setup (default is version 3.10), install python requirements given a requirements.txt file path, and cache dependency installation appropriately. Wildcards may be used for the path to the requirements.txt file(s).
 
@@ -38,5 +38,5 @@ This action is intended to be used by other actions/workflows to setup a given p
 - name: Install and set up Python 3.10 and install dependencies
   uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main
   with:
-    requirements-txt: **/requirements.txt
+    requirements-txt: '**/requirements.txt'
 ```

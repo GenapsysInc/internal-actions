@@ -35,13 +35,6 @@ runs:
   steps:
     - name: Checkout calling repo
       uses: actions/checkout@v3
-    - name: Checkout internal-actions
-      uses: actions/checkout@v3
-      with:
-        repository: genapsysinc/internal-actions
-        path: internal-actions
-        ref: main
-        token: ${{ inputs.token }}
     - name: Run docbuilder
       uses: GenapsysInc/internal-actions/reusable-actions/docker-run-action@main
       with:
