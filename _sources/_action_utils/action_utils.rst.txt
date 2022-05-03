@@ -1,0 +1,25 @@
+action\_utils package
+=====================
+
+.. automodule:: action_utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   action_utils.tests
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   action_utils.check_submodule_commits
+   action_utils.common
+   action_utils.get_team_approval_status
