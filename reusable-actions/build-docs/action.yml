@@ -17,22 +17,27 @@ inputs:
     description: "Build documentation as pages for Confluence - boolean"
     required: false
     default: false
+    type: boolean
   publish_confluence:
     description: "Publish Confluence pages - boolean"
     required: false
     default: false
+    type: boolean
   build_html:
     description: "Build documentation as HTML - boolean"
     required: false
     default: false
+    type: boolean
   publish_html:
     description: "Publish HTML to github pages - boolean"
     required: false
     default: false
+    type: boolean
   warn_as_errors:
     description: "Treat warnings raised as errors - boolean"
     required: false
     default: false
+    type: boolean
 
 runs:
   using: 'composite'
@@ -55,7 +60,7 @@ runs:
                 ${{ (inputs.build_html == 'true' && '-m') || '' }}
     - name: Build GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
-      if: ${{ (inputs.publish_html == 'true') && (inputs.build_html == 'true')}}
+      if: ${{ inputs.publish_html  && inputs.build_html }}
       with:
         github_token: ${{ inputs.token }}
         publish_dir: _builder/html
