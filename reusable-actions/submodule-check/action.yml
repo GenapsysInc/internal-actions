@@ -25,7 +25,7 @@ runs:
     - name: Run check_submodule_commits.py with input args
       shell: bash
       run: |
-        export PYTHONPATH="`pwd`/internal-actions" && \
+        export PYTHONPATH="`pwd`/internal-actions"
         python internal-actions/action_utils/check_submodule_commits.py \
           -s ${{ inputs.token }} \
           -r .

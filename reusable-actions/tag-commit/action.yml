@@ -1,0 +1,35 @@
+name: tag-commit
+description: Tag calling repository commit based on information in a metadata JSON file
+
+inputs:
+  json:
+    description: Path to metadata JSON file containing version
+    required: true
+    default: repo-data.json
+  use-date:
+    description: Include a date string in the tag
+    required: false
+    default: false
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout calling repo
+      uses: actions/checkout@v3
+    - name: Checkout internal-actions
+      uses: actions/checkout@v3
+      with:
+        repository: genapsysinc/internal-actions
+        path: internal-actions
+        ref: main
+        token: ${{ inputs.token }}
+    - name: Run tag_commit.py with given arguments
+      run: |
+        export PYTHONPATH="`pwd`/internal-actions"
+        python internal-actions/action_utils/tag_commit.py \
+          -s ${{ inputs.token }} \
+          -j ${{ inputs.json }} \
+          -d ${{ inputs.use-date }}
+
+    - name: Push new tag to GitHub
+      run: git push --tags
