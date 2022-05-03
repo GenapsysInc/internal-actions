@@ -6,3 +6,4 @@ pytest-report.xml
 docs/_*
 doctrees/
 _builder/
+confluence/
