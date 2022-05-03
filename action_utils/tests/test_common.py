@@ -38,21 +38,45 @@ def fixture_submodule(git_url):
     return gpy_utils.MockGitSubmodule(git_url, "c6ab5c34293c5d4c4b845ff1fb43b6c1a14efc0f")
 
 
-def test_get_repo_name_from_url_git(git_url):
-    """Assert correct parsing of a git url"""
-    assert common.get_repo_name_from_url(git_url) == TEST_GIT_REPO
+class TestGetRepoNameFromUrl:
+    """Tests for the get_repo_name_from_url function"""
+
+    @staticmethod
+    def test_from_git_url(git_url):
+        """Assert correct parsing of a git url"""
+        assert common.get_repo_name_from_url(git_url) == TEST_GIT_REPO
+
+    @staticmethod
+    def test_from_https_url(https_url):
+        """Assert correct parsing of a https url"""
+        assert common.get_repo_name_from_url(https_url) == TEST_HTTPS_REPO
 
 
-def test_get_repo_name_from_url_https(https_url):
-    """Assert correct parsing of a https url"""
-    assert common.get_repo_name_from_url(https_url) == TEST_HTTPS_REPO
+class TestGetRepoName:
+    """Tests for the get_repo_name function"""
+
+    @staticmethod
+    def test_get_repo_name(repo):
+        """Test getting repository name from Repo object"""
+        assert common.get_repo_name(repo) == TEST_GIT_REPO
 
 
-def test_get_repo_name(repo):
-    """Test getting repository name from Repo object"""
-    assert common.get_repo_name(repo) == TEST_GIT_REPO
+class TestGetSubmoduleName:
+    """Tests for the get_submodule_name function"""
+
+    @staticmethod
+    def test_get_submodule_name(submodule):
+        """Test getting repository name from Submodule object"""
+        assert common.get_submodule_name(submodule) == TEST_GIT_REPO
 
 
-def test_get_submodule_name(submodule):
-    """Test getting repository name from Submodule object"""
-    assert common.get_submodule_name(submodule) == TEST_GIT_REPO
+class TestVersionTag:
+    """Tests for the VersionTag class"""
+
+
+def test_version_tag_standard():
+    pass
+
+
+def test_version_tag_commit_string_appended():
+    pass
