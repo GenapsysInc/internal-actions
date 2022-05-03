@@ -55,7 +55,7 @@ runs:
                 ${{ (inputs.build_html == 'true' && '-m') || '' }}
     - name: Build GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
-      if: ${{inputs.publish_html}} && ${{inputs.build_html}}
+      if: ${{inputs.publish_html && inputs.build_html}}
       with:
         github_token: ${{ inputs.token }}
         publish_dir: _builder/html
