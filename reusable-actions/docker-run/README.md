@@ -2,7 +2,7 @@
 
 Inspiration from https://github.com/addnab/docker-run-action/releases/tag/v3, converted to a composite action. Run a docker image pulled from a repository or built by a previous step, allowing options and arguments to be set for the `docker run` command. See `action.yml` for available inputs.
 
-#### Pull and run an image
+## Pull and run an image
 
 ```yaml
 - name: Checkout
@@ -23,7 +23,7 @@ echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.repository_o
 docker run -v ${{ github.workspace }}:/workspace -e ENV_VAR="env_var" ghcr.io/genapsysinc/private-image:latest --arg-1 value_1 --arg-2 value_2
 ```
 
-#### Run an image built by a previous step
+## Run an image built by a previous step
 ```yaml
 - uses: GenapsysInc/internal-actions/reusable-actions/docker-build-push@main
   with:

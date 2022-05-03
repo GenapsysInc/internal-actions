@@ -1,0 +1,24 @@
+on:
+  push:
+    branches:
+      - main # or the name of your main branch
+
+# Run the documentation and publish it.  This is good after the PR has been merged so that the published documents are always up-to-date.
+
+jobs:
+  call-workflow:
+    name: Run the documentation builder workflow
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Documentation build and publish
+        uses: GenapsysInc/internal-actions/reusable-actions/build-docs@main
+        with:
+          token: ${{ secrets.GHCR_TOKEN }}
+          confluence_secret: ${{ secrets.CONFLUENCE_SECRET }}
+          build_confluence: true
+          publish_confluence: true
+          build_html: true
+          publish_html: true
+          warn_as_errors: false
+          api_dirs: "action_utils"

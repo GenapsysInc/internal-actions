@@ -3,3 +3,7 @@
 coverage-report.xml
 pytest-report.xml
 .idea
+docs/_*
+doctrees/
+_builder/
+confluence/
