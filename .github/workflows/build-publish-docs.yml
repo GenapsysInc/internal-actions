@@ -21,4 +21,4 @@ jobs:
           build_html: true
           publish_html: true
           warn_as_errors: false
-          api_docs: "action_utils"
+          api_dirs: "action_utils"
