@@ -10,6 +10,9 @@ inputs:
     description: Include a date string in the tag
     required: false
     default: false
+  token:
+    description: GitHub token with ability to push tags to calling repo
+    required: true
 
 runs:
   using: composite
@@ -23,13 +26,13 @@ runs:
         path: internal-actions
         ref: main
         token: ${{ inputs.token }}
-    - name: Run tag_commit.py with given arguments
+    - name: Run tag_commit.py with given arguments - lays down a new tag or errors if specified version is invalid
       run: |
         export PYTHONPATH="`pwd`/internal-actions"
         python internal-actions/action_utils/tag_commit.py \
           -s ${{ inputs.token }} \
           -j ${{ inputs.json }} \
-          -d ${{ inputs.use-date }}
-
-    - name: Push new tag to GitHub
+          ${{ (fromJson(inputs.use-date) && '-d') || '' }}
+    - name: Push new tag to GitHub - only runs when the calling workflow was triggered by a push event
+      if: ${{ github.event_name == 'push' }}
       run: git push --tags

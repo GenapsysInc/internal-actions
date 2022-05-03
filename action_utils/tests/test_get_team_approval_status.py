@@ -224,19 +224,19 @@ class TestPRHasAppropriateReviews:
     """Tests for the pr_has_appropriate_reviews function"""
 
     @staticmethod
-    def test_pr_has_appropriate_reviews_true_all(authenticated_client, test_repo, pull_all_teams_approved, all_teams):
+    def test_true_all(authenticated_client, test_repo, pull_all_teams_approved, all_teams):
         """End-to-end style test for when a PR has required team approvals"""
         assert gtas.pr_has_appropriate_reviews(
             authenticated_client, test_repo.name, pull_all_teams_approved.num, all_teams
         )
 
     @staticmethod
-    def test_pr_has_appropriate_reviews_true_mixed(authenticated_client, test_repo, pull_mixed_reviews, all_teams):
+    def test_true_mixed(authenticated_client, test_repo, pull_mixed_reviews, all_teams):
         """End-to-end style test for when a PR has some change requests and some approvals but meets overall approval"""
         assert gtas.pr_has_appropriate_reviews(authenticated_client, test_repo.name, pull_mixed_reviews.num, all_teams)
 
     @staticmethod
-    def test_pr_has_appropriate_reviews_false_comments(
+    def test_false_comments(
         authenticated_client, test_repo, pull_all_teams_commented, all_teams
     ):
         """End-to-end style test for when a PR has only comments"""
@@ -245,7 +245,7 @@ class TestPRHasAppropriateReviews:
         )
 
     @staticmethod
-    def test_pr_has_appropriate_reviews_false_changes_requested(
+    def test_false_changes_requested(
         authenticated_client, test_repo, pull_all_teams_requested_changes, all_teams
     ):
         """End-to-end style test for when a PR has only change requests"""
@@ -254,7 +254,7 @@ class TestPRHasAppropriateReviews:
         )
 
     @staticmethod
-    def test_pr_has_appropriate_reviews_false_mixed(
+    def test_false_mixed(
         authenticated_client, test_repo, pull_qa_recent_approval_1, all_teams
     ):
         """End-to-end style test for when a PR has some change requests and some approvals but meets overall approval"""
@@ -263,7 +263,7 @@ class TestPRHasAppropriateReviews:
         )
 
     @staticmethod
-    def test_pr_has_appropriate_reviews_authentication_fail(
+    def test_authentication_fail(
         unauthenticated_client, test_repo, pull_all_teams_approved, all_teams
     ):
         """End-to-end style test to assert proper handling of authentication failure"""
@@ -273,19 +273,19 @@ class TestPRHasAppropriateReviews:
             )
 
     @staticmethod
-    def test_pr_has_appropriate_reviews_invalid_repo(authenticated_client, pull_all_teams_approved, all_teams):
+    def test_invalid_repo(authenticated_client, pull_all_teams_approved, all_teams):
         """End-to-end style test to assert proper handling of invalid repo"""
         with pytest.raises(common.ConfigurationError):
             gtas.pr_has_appropriate_reviews(authenticated_client, "not-a-repo", pull_all_teams_approved.num, all_teams)
 
     @staticmethod
-    def test_pr_has_appropriate_reviews_invalid_pull(authenticated_client, test_repo, all_teams):
+    def test_invalid_pull(authenticated_client, test_repo, all_teams):
         """End-to-end style test to assert proper handling of invalid PR number"""
         with pytest.raises(common.ConfigurationError):
             gtas.pr_has_appropriate_reviews(authenticated_client, test_repo, 10000, all_teams)
 
     @staticmethod
-    def test_pr_has_appropriate_reviews_missing_teams(authenticated_client, test_repo, pull_all_teams_approved):
+    def test_missing_teams(authenticated_client, test_repo, pull_all_teams_approved):
         """End-to-end style test to assert proper handling of invalid team name"""
         with pytest.raises(common.ConfigurationError):
             gtas.pr_has_appropriate_reviews(

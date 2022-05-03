@@ -137,12 +137,12 @@ class TestSubmoduleIsValid:
     """Tests for the submodule_is_valid function"""
 
     @staticmethod
-    def test_submodule_is_valid_true(git_submodule_1, github_submodule_1):
+    def test_valid(git_submodule_1, github_submodule_1):
         """Test submodule commit being in list of commits in github"""
         assert csc.submodule_is_valid(git_submodule_1, github_submodule_1)
 
     @staticmethod
-    def test_submodule_is_valid_false(git_submodule_3, github_submodule_3):
+    def test_invalid(git_submodule_3, github_submodule_3):
         """Test submodule commit not being in list of commits in github"""
         assert not csc.submodule_is_valid(git_submodule_3, github_submodule_3)
 
@@ -151,27 +151,27 @@ class TestRepoHasValidSubmodules:
     """Tests for the repo_has_valid_submodules function"""
 
     @staticmethod
-    def test_repo_has_valid_submodules_all(git_repo_all_valid, github_authed_client):
+    def test_all_valid(git_repo_all_valid, github_authed_client):
         """End-to-end style test, repo has 2 submodules on valid commits"""
         assert csc.repo_has_valid_submodules(git_repo_all_valid, github_authed_client)
 
     @staticmethod
-    def test_repo_has_valid_submodules_mixed(git_repo_mixed, github_authed_client):
+    def test_mixed_valid(git_repo_mixed, github_authed_client):
         """End-to-end style test, repo has 1 submodule on a valid commit, but another on an invalid commit"""
         assert not csc.repo_has_valid_submodules(git_repo_mixed, github_authed_client)
 
     @staticmethod
-    def test_repo_has_valid_submodules_none(git_repo_all_invalid, github_authed_client):
+    def test_none_valid(git_repo_all_invalid, github_authed_client):
         """End-to-end style test, repo has 2 submodules on invalid commits"""
         assert not csc.repo_has_valid_submodules(git_repo_all_invalid, github_authed_client)
 
     @staticmethod
-    def test_repo_has_valid_submodules_no_submodules(git_repo_no_submodules, github_authed_client):
+    def test_no_submodules(git_repo_no_submodules, github_authed_client):
         """End-to-end style test, repo has no submodules so it should pass by default"""
         assert csc.repo_has_valid_submodules(git_repo_no_submodules, github_authed_client)
 
     @staticmethod
-    def test_repo_has_valid_submodules_auth_failure(git_repo_all_valid, github_unauthed_client):
+    def test_auth_failure(git_repo_all_valid, github_unauthed_client):
         """Assert proper handling of authentication failure"""
         with pytest.raises(common.ConfigurationError):
             csc.repo_has_valid_submodules(git_repo_all_valid, github_unauthed_client)
