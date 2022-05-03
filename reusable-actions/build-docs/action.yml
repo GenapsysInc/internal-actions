@@ -49,12 +49,12 @@ runs:
           options: -v ${{ github.workspace }}:/repo
           args: ${{ (inputs.confluence_secret && '-s') || '' }} ${{ inputs.confluence_secret }}
                 ${{ (inputs.api_docs && '-d') || '' }} ${{ inputs.api_docs }}
-                ${{ (inputs.build_confluence == 'true' && '-c') || '' }} 
-                ${{ (inputs.publish_confluence == 'true' && '-p') || '' }} 
-                ${{ (inputs.warn_as_errors == 'true' && '-w') || '' }}
-                ${{ (inputs.build_html == 'true' && '-m') || '' }}
+                ${{ (fromJSON(inputs.build_confluence) && '-c') || '' }} 
+                ${{ (fromJSON(inputs.publish_confluence) && '-p') || '' }} 
+                ${{ (fromJSON(inputs.warn_as_errors) && '-w') || '' }}
+                ${{ (fromJSON(inputs.build_html) && '-m') || '' }}
     - name: Build GitHub Pages
-      if: ${{ inputs.publish_html == 'true' && inputs.build_html == 'true'}}
+      if: ${{ fromJSON(inputs.publish_html) && fromJSON(inputs.build_html)}}
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ inputs.token }}
