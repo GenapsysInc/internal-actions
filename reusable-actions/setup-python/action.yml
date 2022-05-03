@@ -15,18 +15,18 @@ runs:
   using: 'composite'
   steps:
     - name: Set up Python version ${{ inputs.python-version }} (with cache)
-      if: ${{ inputs.requirements-txt != null }}
+      if: ${{ inputs.requirements-txt }}
       uses: actions/setup-python@v3
       with:
         python-version: ${{ inputs.python-version }}
         cache: 'pip'
         cache-dependency-path: ${{ inputs.requirements-txt }}
     - name: Set up Python version ${{ inputs.python-version }} (no cache)
-      if: ${{ inputs.requirements-txt == null }}
+      if: ${{ !inputs.requirements-txt }}
       uses: actions/setup-python@v3
       with:
         python-version: ${{ inputs.python-version }}
     - name: Install dependencies
-      if: ${{ inputs.requirements-txt != null }}
+      if: ${{ inputs.requirements-txt }}
       run: pip install `for r in ${{ inputs.requirements-txt }}; do echo "-r $r"; done`
       shell: bash
