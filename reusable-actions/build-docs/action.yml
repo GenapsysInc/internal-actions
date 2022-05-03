@@ -57,5 +57,5 @@ runs:
       if: ${{ inputs.publish_html == 'true' && inputs.build_html == 'true'}}
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ inputs.token }}
         publish_dir: _builder/html
