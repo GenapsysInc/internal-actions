@@ -9,6 +9,10 @@ inputs:
     description: "Confluence API token for publication"
     required: false
     default: ''
+  api_dirs:
+    description: "Directories to build api docs for (space separated) - str"
+    required: false
+    default: ''
   build_confluence:
     description: "Build documentation as pages for Confluence - boolean"
     required: false
@@ -44,13 +48,14 @@ runs:
           image: ghcr.io/genapsysinc/docbuilder:latest
           options: -v ${{ github.workspace }}:/repo
           args: ${{ (inputs.confluence_secret && '-s') || '' }} ${{ inputs.confluence_secret }}
-                ${{ (inputs.build_confluence == 'true' && '-c') || '' }} 
-                ${{ (inputs.publish_confluence == 'true' && '-p') || '' }} 
-                ${{ (inputs.warn_as_errors == 'true' && '-w') || '' }}
-                ${{ (inputs.build_html == 'true' && '-m') || '' }}
+                ${{ (inputs.api_dirs && '-d') || '' }} ${{ inputs.api_dirs }}
+                ${{ (fromJSON(inputs.build_confluence) && '-c') || '' }} 
+                ${{ (fromJSON(inputs.publish_confluence) && '-p') || '' }} 
+                ${{ (fromJSON(inputs.warn_as_errors) && '-w') || '' }}
+                ${{ (fromJSON(inputs.build_html) && '-m') || '' }}
     - name: Build GitHub Pages
+      if: ${{ fromJSON(inputs.publish_html) && fromJSON(inputs.build_html)}}
       uses: peaceiris/actions-gh-pages@v3
-      if: ${{inputs.publish_html}} && ${{inputs.build_html}}
       with:
         github_token: ${{ inputs.token }}
         publish_dir: _builder/html
