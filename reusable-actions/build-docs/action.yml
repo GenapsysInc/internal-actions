@@ -25,12 +25,10 @@ inputs:
     description: "Build documentation as HTML - boolean"
     required: false
     default: false
-    type: boolean
   publish_html:
     description: "Publish HTML to github pages - boolean"
     required: false
     default: false
-    type: boolean
   warn_as_errors:
     description: "Treat warnings raised as errors - boolean"
     required: false
@@ -56,8 +54,8 @@ runs:
                 ${{ (inputs.warn_as_errors == 'true' && '-w') || '' }}
                 ${{ (inputs.build_html == 'true' && '-m') || '' }}
     - name: Build GitHub Pages
-      if: ${{ inputs.publish_html && inputs.build_html}}
+      if: ${{ inputs.publish_html == 'true' && inputs.build_html == 'true'}}
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ inputs.token }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: _builder/html
