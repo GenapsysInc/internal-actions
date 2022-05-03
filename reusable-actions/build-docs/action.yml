@@ -48,7 +48,7 @@ runs:
           image: ghcr.io/genapsysinc/docbuilder:latest
           options: -v ${{ github.workspace }}:/repo
           args: ${{ (inputs.confluence_secret && '-s') || '' }} ${{ inputs.confluence_secret }}
-                ${{ (inputs.api_docs && '-d') || '' }} ${{ inputs.api_docs }}
+                ${{ (inputs.api_dirs && '-d') || '' }} ${{ inputs.api_dirs }}
                 ${{ (fromJSON(inputs.build_confluence) && '-c') || '' }} 
                 ${{ (fromJSON(inputs.publish_confluence) && '-p') || '' }} 
                 ${{ (fromJSON(inputs.warn_as_errors) && '-w') || '' }}
