@@ -2,32 +2,25 @@
 Internal Actions
 ################
 
-This is a collection of GitHub Actions meant to be used internally.
-
-**********
-Build Docs
-**********
-
-.. include:: ../reusable-actions/build-docs/README.md
-   :parser: myst_parser.sphinx_
-
-Templates
-=========
-
-.. include:: ../reusable-actions/build-docs/template.yml
-   :parser: myst_parser.sphinx_
-   :literal:
-
-*****************
-Docker Build Push
-*****************
-
-.. include:: ../reusable-actions/docker-build-push/README.md
+.. include:: ../README.md
    :parser: myst_parser.sphinx_
 
 *****************
-PyTest
+Actions
 *****************
 
-.. include:: ../reusable-actions/pytest/README.md
-   :parser: myst_parser.sphinx_
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   actions/*
+
+*****************
+Action Utils
+*****************
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+
+   _action_utils/modules

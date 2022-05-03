@@ -1,0 +1,23 @@
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+# Just run the documentation but don't publish it.  This is good to check that the documents build without errors
+
+jobs:
+  call-workflow:
+    name: Run the documentation builder workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Documentation build
+        uses: GenapsysInc/internal-actions/reusable-actions/build-docs@main
+        with:
+          token: ${{ secrets.GHCR_TOKEN }} # Token needs read access to the container registry
+          confluence_secret: ${{ secrets.CONFLUENCE_SECRET }} # optional - Needed for confluence publishing
+          build_confluence: true # boolean true || false
+          publish_confluence: false # boolean true || false
+          build_html: true # boolean true || false
+          publish_html: false # boolean true || false
+          warn_as_errors: false # boolean true || false
+          api_docs: "code tests" # optional
+

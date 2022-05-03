@@ -9,6 +9,10 @@ inputs:
     description: "Confluence API token for publication"
     required: false
     default: ''
+  api_dirs:
+    description: "Directories to build api docs for (space separated) - str"
+    required: false
+    default: ''
   build_confluence:
     description: "Build documentation as pages for Confluence - boolean"
     required: false
@@ -44,6 +48,7 @@ runs:
           image: ghcr.io/genapsysinc/docbuilder:latest
           options: -v ${{ github.workspace }}:/repo
           args: ${{ (inputs.confluence_secret && '-s') || '' }} ${{ inputs.confluence_secret }}
+                ${{ (inputs.api_docs && '-d') || '' }} ${{ inputs.api_docs }}
                 ${{ (inputs.build_confluence == 'true' && '-c') || '' }} 
                 ${{ (inputs.publish_confluence == 'true' && '-p') || '' }} 
                 ${{ (inputs.warn_as_errors == 'true' && '-w') || '' }}

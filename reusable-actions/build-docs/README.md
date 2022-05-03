@@ -17,6 +17,7 @@ This action will build the sphinx base documentation and if desired publish it t
           build_html: true
           publish_html: false
           warn_as_errors: false
+          api_docs: "code" 
 ```
 
 ## Build the HTML docs only 
@@ -34,6 +35,7 @@ This action will build the sphinx base documentation and if desired publish it t
           build_html: true
           publish_html: true
           warn_as_errors: false
+          api_docs: "code"
 ```
 
 ## Build and publish docs
@@ -51,6 +53,7 @@ This action will build the sphinx base documentation and if desired publish it t
           build_html: true
           publish_html: true
           warn_as_errors: false
+          api_docs: "code"
 ```
 
 
