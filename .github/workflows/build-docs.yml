@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Documentation build
-        uses: GenapsysInc/internal-actions/reusable-actions/build-docs@meta-docs-meta-build
+        uses: GenapsysInc/internal-actions/reusable-actions/build-docs@main
         with:
           token: ${{ secrets.GHCR_TOKEN }}
           confluence_secret: ${{ secrets.CONFLUENCE_SECRET }}
