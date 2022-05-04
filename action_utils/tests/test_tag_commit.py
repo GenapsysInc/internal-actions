@@ -31,6 +31,7 @@ class TestTagCurrentCommit:
 
     @staticmethod
     def test_major_bump(git_repo):
+        """Test successful major version bump when given valid new version"""
         new_version = common.VersionTag("2.0.0-1")
         tag_commit.tag_current_commit(git_repo, new_version)
 
@@ -39,6 +40,7 @@ class TestTagCurrentCommit:
 
     @staticmethod
     def test_minor_bump(git_repo):
+        """Test successful minor version bump when given valid new version"""
         new_version = common.VersionTag("1.3.0-1")
         tag_commit.tag_current_commit(git_repo, new_version)
 
@@ -47,6 +49,7 @@ class TestTagCurrentCommit:
 
     @staticmethod
     def test_patch_bump(git_repo):
+        """Test successful patch version bump when given valid new version"""
         new_version = common.VersionTag("1.2.4-1")
         tag_commit.tag_current_commit(git_repo, new_version)
 
@@ -55,6 +58,7 @@ class TestTagCurrentCommit:
 
     @staticmethod
     def test_release_bump(git_repo):
+        """Test successful release version bump when given valid new version"""
         new_version = common.VersionTag("1.2.3-1")
         tag_commit.tag_current_commit(git_repo, new_version)
 
@@ -63,6 +67,7 @@ class TestTagCurrentCommit:
 
     @staticmethod
     def test_bump_with_date(git_repo):
+        """Test successful version bump when requested to add current date"""
         new_version = common.VersionTag("2.0.0-1")
         tag_commit.tag_current_commit(git_repo, new_version, add_date=True)
 
