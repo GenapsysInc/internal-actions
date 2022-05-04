@@ -11,3 +11,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run the increment-version action
+        uses: GenapsysInc/internal-actions/reusable-actions/increment-version@tag-commit-action
