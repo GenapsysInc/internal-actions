@@ -33,6 +33,8 @@ def tag_current_commit(git_repo: git.repo.base.Repo, new_version: common.Version
 
     git_repo.create_tag(new_tag, m=new_tag)
 
+    print(f"Created new tag {new_tag}")
+
 
 def parse_args():
     """Parse commandline args"""
