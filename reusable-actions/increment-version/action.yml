@@ -26,6 +26,10 @@ runs:
         path: internal-actions
         ref: tag-commit-action
         token: ${{ inputs.token }}
+    - name: Set up Python 3.10 and install dependencies
+      uses: genapsysinc/internal-actions/reusable-actions/setup-python@main
+      with:
+        requirements-txt: 'internal-actions/action_utils/requirements.txt'
     - name: Run tag_commit.py with given arguments - lays down a new tag or errors if specified version is invalid
       shell: bash
       run: |
