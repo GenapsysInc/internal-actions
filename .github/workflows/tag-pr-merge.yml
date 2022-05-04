@@ -2,7 +2,7 @@ name: tag-pr-merge
 
 on:
   push:
-    branches: [main]
+    branches: [tag-commit-action-test]
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -11,6 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run the increment-version action
-        uses: GenapsysInc/internal-actions/reusable-actions/increment-version@main
+        uses: GenapsysInc/internal-actions/reusable-actions/increment-version@tag-commit-action-test
         with:
           token: ${{ secrets.GH_REST_API_TOKEN }}
