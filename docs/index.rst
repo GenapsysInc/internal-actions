@@ -24,3 +24,12 @@ Action Utils
    :glob:
 
    _action_utils/modules
+
+********
+Releases
+********
+
+.. toctree::
+   :glob:
+
+   releases
