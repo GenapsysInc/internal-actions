@@ -1,5 +1,5 @@
-name: tag-commit
-description: Tag calling repository commit based on information in a metadata JSON file
+name: increment-version
+description: Create + push new tag based on calling repo's current version and version information in a metadata JSON file
 
 inputs:
   json:
@@ -10,9 +10,6 @@ inputs:
     description: Include a date string in the tag
     required: false
     default: false
-  token:
-    description: GitHub token with ability to push tags to calling repo
-    required: true
 
 runs:
   using: composite
@@ -24,13 +21,13 @@ runs:
       with:
         repository: genapsysinc/internal-actions
         path: internal-actions
-        ref: main
+        ref: tag-commit-action
         token: ${{ inputs.token }}
     - name: Run tag_commit.py with given arguments - lays down a new tag or errors if specified version is invalid
       run: |
         export PYTHONPATH="`pwd`/internal-actions"
         python internal-actions/action_utils/tag_commit.py \
-          -s ${{ inputs.token }} \
+          -r . \
           -j ${{ inputs.json }} \
           ${{ (fromJson(inputs.use-date) && '-d') || '' }}
     - name: Push new tag to GitHub - only runs when the calling workflow was triggered by a push event

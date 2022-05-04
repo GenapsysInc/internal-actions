@@ -1,0 +1,13 @@
+name: tag-pr-merge
+
+on:
+  push:
+    branches: [main, tag-commit-action]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  increment-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run the increment-version action
