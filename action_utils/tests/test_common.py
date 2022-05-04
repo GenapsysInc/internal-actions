@@ -38,6 +38,56 @@ def fixture_submodule(git_url):
     return gpy_utils.MockGitSubmodule(git_url, "c6ab5c34293c5d4c4b845ff1fb43b6c1a14efc0f")
 
 
+@pytest.fixture(name="patch_1")
+def fixture_patch_1():
+    return common.VersionTag("0.0.1-1")
+
+
+@pytest.fixture(name="patch_2")
+def fixture_patch_2():
+    return common.VersionTag("0.0.2-1")
+
+
+@pytest.fixture(name="minor_1")
+def fixture_minor_1():
+    return common.VersionTag("0.1.0-1")
+
+
+@pytest.fixture(name="minor_2")
+def fixture_minor_2():
+    return common.VersionTag("0.2.0-1")
+
+
+@pytest.fixture(name="major_1")
+def fixture_major_1():
+    return common.VersionTag("1.0.0-1")
+
+
+@pytest.fixture(name="major_2")
+def fixture_major_2():
+    return common.VersionTag("2.0.0-1")
+
+
+@pytest.fixture(name="major_with_new_release")
+def fixture_major_with_new_release():
+    return common.VersionTag("2.0.0-2")
+
+
+@pytest.fixture(name="version_with_date")
+def fixture_version_with_date():
+    return common.VersionTag("2.0.0-2-05022022")
+
+
+@pytest.fixture(name="version_with_commit")
+def fixture_version_with_commit():
+    return common.VersionTag("2.0.0-2-1-ac5601de")
+
+
+@pytest.fixture(name="version_with_date_and_commit")
+def fixture_version_with_date_and_commit():
+    return common.VersionTag("2.0.0-2-05022022-1-ac5601de")
+
+
 class TestGetRepoNameFromUrl:
     """Tests for the get_repo_name_from_url function"""
 
@@ -73,10 +123,30 @@ class TestGetSubmoduleName:
 class TestVersionTag:
     """Tests for the VersionTag class"""
 
+    @staticmethod
+    def test_major_minor_patch_release_standard(major_with_new_release):
+        assert major_with_new_release.major == 2
+        assert major_with_new_release.minor == 0
+        assert major_with_new_release.patch == 0
+        assert major_with_new_release.release == 2
 
-def test_version_tag_standard():
-    pass
+    @staticmethod
+    def test_major_minor_patch_release_date_added(version_with_date):
+        assert version_with_date.major == 2
+        assert version_with_date.minor == 0
+        assert version_with_date.patch == 0
+        assert version_with_date.release == 2
 
+    @staticmethod
+    def test_major_minor_patch_release_commit_addded(version_with_commit):
+        assert version_with_commit.major == 2
+        assert version_with_commit.minor == 0
+        assert version_with_commit.patch == 0
+        assert version_with_commit.release == 2
 
-def test_version_tag_commit_string_appended():
-    pass
+    @staticmethod
+    def test_major_minor_patch_release_date_and_commit_added(version_with_date_and_commit):
+        assert version_with_date_and_commit.major == 2
+        assert version_with_date_and_commit.minor == 0
+        assert version_with_date_and_commit.patch == 0
+        assert version_with_date_and_commit.release == 2
