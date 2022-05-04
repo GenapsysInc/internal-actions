@@ -136,8 +136,7 @@ class VersionTag:
                 raise InvalidVersion(f"Expected patch version of 0 with minor version increment but was {other.patch}")
 
         # Patch version increment
-        if other.patch > self.patch:
-            if other.patch - self.patch != 1:
+        if other.patch > self.patch and other.patch - self.patch != 1:
                 raise InvalidVersion(f"Patch version increment > 1 between {self} and {other}")
 
     def get_new_release(self) -> str:
