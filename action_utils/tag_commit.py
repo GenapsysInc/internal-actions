@@ -5,7 +5,7 @@ __credits__ = ["David McConnell"]
 __maintainer__ = "David McConnell"
 
 import argparse
-import datetime
+from datetime import date
 import json
 
 import git
@@ -26,18 +26,18 @@ def tag_current_commit(git_repo: git.repo.base.Repo, new_version: common.Version
 
     new_tag = str(new_version) if new_version > old_version else old_version.get_new_release()
 
-    git_repo.create_tag(new_tag, a=new_tag, m=new_tag)
+    curr_date = date.today().strftime('%Y-%m-%d')
 
+    if add_date:
+        new_tag = f"{new_tag}-{curr_date}"
 
-
+    git_repo.create_tag(new_tag, m=new_tag)
 
 
 def parse_args():
     """Parse commandline args"""
 
     parser = argparse.ArgumentParser(description="Determine if relevant teams have approved a PR")
-
-    parser.add_argument("-s", "--secret", required=True, help="GitHub token for authentication")
 
     parser.add_argument("-r", "--repo-path", required=True, help="Path to local git repository")
 
@@ -54,4 +54,6 @@ if __name__ == "__main__":
     with open(opts.json, 'r', encoding="utf-8") as json_fh:
         json_content = json.load(json_fh)
 
-    tag_current_commit(git.Repo(opts.repo_path), json_content["version"], opts.date)
+    new_version = f"{json_content['version']}-1"
+
+    tag_current_commit(git.Repo(opts.repo_path), new_version, opts.date)
