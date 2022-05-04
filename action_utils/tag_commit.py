@@ -26,7 +26,7 @@ def tag_current_commit(git_repo: git.repo.base.Repo, new_version: common.Version
 
     new_tag = str(new_version) if new_version > old_version else old_version.get_new_release()
 
-    curr_date = date.today().strftime('%Y-%m-%d')
+    curr_date = date.today().strftime("%Y-%m-%d")
 
     if add_date:
         new_tag = f"{new_tag}-{curr_date}"
@@ -53,7 +53,7 @@ def parse_args():
 if __name__ == "__main__":
     opts = parse_args()
 
-    with open(opts.json, 'r', encoding="utf-8") as json_fh:
+    with open(opts.json, "r", encoding="utf-8") as json_fh:
         json_content = json.load(json_fh)
 
     json_version = common.VersionTag(f"{json_content['version']}-1")
