@@ -28,6 +28,8 @@ runs:
         path: internal-actions
         ref: tag-commit-action
         token: ${{ inputs.token }}
+    - name: Set up git user based on current action environment
+      uses: fregante/setup-git-user@v1
     - name: Set up Python 3.10 and install dependencies
       uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main
       with:
