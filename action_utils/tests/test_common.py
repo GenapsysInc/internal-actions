@@ -150,3 +150,88 @@ class TestVersionTag:
         assert version_with_date_and_commit.minor == 0
         assert version_with_date_and_commit.patch == 0
         assert version_with_date_and_commit.release == 2
+
+    @staticmethod
+    def test_invalid_tag_handling():
+        with pytest.raises(common.InvalidVersion):
+            common.VersionTag("not remotely a version")
+
+        with pytest.raises(common.InvalidVersion):
+            common.VersionTag("a.2.3-4")
+
+        with pytest.raises(common.InvalidVersion):
+            common.VersionTag("1.b.3-4")
+
+        with pytest.raises(common.InvalidVersion):
+            common.VersionTag("1.2.c-4")
+
+        with pytest.raises(common.InvalidVersion):
+            common.VersionTag("1.2.3-d")
+
+    @staticmethod
+    def test_get_new_release(major_with_new_release):
+        assert major_with_new_release.get_new_release() == "2.0.0-3"
+
+    @staticmethod
+    def test_str(major_1):
+        assert str(major_1) == "1.0.0-1"
+
+    @staticmethod
+    def test_operator_major_major(major_1, major_2):
+        assert major_1 < major_2
+        assert major_1 <= major_2
+        assert major_2 > major_1
+        assert major_2 >= major_1
+        assert major_1 == major_1
+        assert major_2 == major_2
+        assert major_1 != major_2
+        assert not major_1 < major_1
+        assert not major_2 < major_2
+
+    @staticmethod
+    def test_operator_major_minor(major_1, minor_1):
+        assert minor_1 < major_1
+        assert minor_1 <= major_1
+        assert major_1 > minor_1
+        assert major_1 >= minor_1
+        assert major_1 != minor_1
+
+    @staticmethod
+    def test_operator_major_patch(major_1, patch_1):
+        assert patch_1 < major_1
+        assert patch_1 <= major_1
+        assert major_1 > patch_1
+        assert major_1 >= patch_1
+        assert major_1 != patch_1
+
+    @staticmethod
+    def test_operator_minor_minor(minor_1, minor_2):
+        assert minor_1 < minor_2
+        assert minor_1 <= minor_2
+        assert minor_2 > minor_1
+        assert minor_2 >= minor_1
+        assert minor_1 == minor_1
+        assert minor_2 == minor_2
+        assert minor_1 != minor_2
+        assert not minor_1 < minor_1
+        assert not minor_2 < minor_2
+
+    @staticmethod
+    def test_operator_minor_patch(minor_1, patch_1):
+        assert patch_1 < minor_1
+        assert patch_1 <= minor_1
+        assert minor_1 > patch_1
+        assert minor_1 >= patch_1
+        assert minor_1 != patch_1
+
+    @staticmethod
+    def test_operator_patch_patch(patch_1, patch_2):
+        assert patch_1 < patch_2
+        assert patch_1 <= patch_2
+        assert patch_2 > patch_1
+        assert patch_2 >= patch_1
+        assert patch_1 == patch_1
+        assert patch_2 == patch_2
+        assert patch_1 != patch_2
+        assert not patch_1 < patch_1
+        assert not patch_2 < patch_2
