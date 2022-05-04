@@ -1,5 +1,7 @@
 """Constants, classes, and utilities related to git/GitHub common across scripts"""
 
+from __future__ import annotations
+
 __author__ = "David McConnell"
 __credits__ = ["David McConnell"]
 __maintainer__ = "David McConnell"
@@ -104,6 +106,39 @@ class VersionTag:
     def release(self) -> int:
         """The release number"""
         return self.__release
+
+    def assert_valid_new_version(self, other: VersionTag):
+        """Is the other VersionTag a valid increment of self? Asserts that the new version is >= the old version, that
+        the minor and patch versions are 0 for a major increment, that the patch version is 0 for a minor increment, and
+        that version increments are equal to 1.
+
+        :param other: The VersionTag representing a version increment
+        :raises InvalidVersion: If the given VersionTag is not a valid increment
+        """
+        # If the new version is less than
+        if self > other:
+            raise InvalidVersion(f"Current version {self} > new version {other}")
+
+        # Major version increment
+        if other.major > self.major:
+            if other.major - self.major != 1:
+                raise InvalidVersion(f"Major version increment > 1 between {self} and {other}")
+            if other.minor:
+                raise InvalidVersion(f"Expected minor version of 0 with major version increment but was {other.minor}")
+            if other.patch:
+                raise InvalidVersion(f"Expected patch version of 0 with major version increment but was {other.patch}")
+
+        # Minor version increment
+        if other.minor > self.minor:
+            if other.minor - self.minor != 1:
+                raise InvalidVersion(f"Minor version increment > 1 between {self} and {other}")
+            if other.patch:
+                raise InvalidVersion(f"Expected patch version of 0 with minor version increment but was {other.patch}")
+
+        # Patch version increment
+        if other.patch > self.patch:
+            if other.patch - self.patch != 1:
+                raise InvalidVersion(f"Patch version increment > 1 between {self} and {other}")
 
     def get_new_release(self) -> str:
         """Return a new tag with the release number incremented by 1
