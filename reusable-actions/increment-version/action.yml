@@ -10,6 +10,9 @@ inputs:
     description: Include a date string in the tag
     required: false
     default: false
+  token:
+    description: Token to checkout internal-actions
+    required: true
 
 runs:
   using: composite

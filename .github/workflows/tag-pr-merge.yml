@@ -12,3 +12,5 @@ jobs:
     steps:
       - name: Run the increment-version action
         uses: GenapsysInc/internal-actions/reusable-actions/increment-version@tag-commit-action
+        with:
+          token: ${{ secrets.GH_REST_API_TOKEN }}
