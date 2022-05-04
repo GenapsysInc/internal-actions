@@ -54,6 +54,6 @@ if __name__ == "__main__":
     with open(opts.json, 'r', encoding="utf-8") as json_fh:
         json_content = json.load(json_fh)
 
-    new_version = f"{json_content['version']}-1"
+    json_version = common.VersionTag(f"{json_content['version']}-1")
 
-    tag_current_commit(git.Repo(opts.repo_path), new_version, opts.date)
+    tag_current_commit(git.Repo(opts.repo_path), json_version, opts.date)
