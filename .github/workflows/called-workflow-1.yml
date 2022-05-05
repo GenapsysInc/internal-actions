@@ -1,21 +1,21 @@
-name: example-called-workflow
+name: example-called-workflow-1
 
 on:
   workflow_call
 
 jobs:
-  job-1:
-    name: Job 1
-    runs-on: ubuntu-latest
-    steps:
-      - name: print out current job name
-        run: echo ${{ job.name }}
-  job-2:
-    name: Job 2
-    runs-on: ubuntu-latest
-    steps:
-      - name: print out current directory
-        run: echo `pwd`
+  # job-1:
+  #   name: Job 1
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: print out current job name
+  #       run: echo ${{ job.name }}
+  # job-2:
+  #   name: Job 2
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: print out current directory
+  #       run: echo `pwd`
   job-3:
     name: Job 3
     runs-on: ubuntu-latest
