@@ -1,4 +1,4 @@
-name: example-calling-workflow
+name: calling-workflow
 
 on:
   push:

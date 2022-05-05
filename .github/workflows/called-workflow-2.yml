@@ -1,4 +1,4 @@
-name: example-called-workflow-2
+name: called-workflow-2
 
 on:
   workflow_call:
