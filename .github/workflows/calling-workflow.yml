@@ -13,5 +13,5 @@ jobs:
     name: Run the second reusable workflow
     uses: GenapsysInc/internal-actions/.github/workflows/called-workflow-2.yml@actions-demo
     with:
-      input-string: Burritos rock
+      to-print: Burritos rock
       print-string: true
