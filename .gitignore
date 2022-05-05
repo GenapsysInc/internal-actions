@@ -7,3 +7,4 @@ docs/_*
 doctrees/
 _builder/
 confluence/
+**/__pycache__/
