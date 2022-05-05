@@ -14,4 +14,4 @@ jobs:
     uses: GenapsysInc/internal-actions/.github/workflows/called-workflow-2.yml@actions-demo
     with:
       to-print: Burritos rock
-      print-string: false
+      print-string: true
