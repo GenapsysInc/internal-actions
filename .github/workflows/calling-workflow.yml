@@ -8,4 +8,4 @@ on:
 jobs:
   run-workflow:
     name: Run the reusable workflow
-    uses: GenapsysInc/.github/workflows/called-workflow.yml@actions-demo
+    uses: GenapsysInc/internal-actions/.github/workflows/called-workflow.yml@actions-demo
