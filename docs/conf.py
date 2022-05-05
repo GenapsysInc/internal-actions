@@ -11,21 +11,13 @@
 project = 'Internal Actions'
 copyright = '2021, Genapsys'
 
+# The full version, including alpha/beta/rc tags
+version = '0.0.1'
+# The short X.Y version
+release = '1.0'
 
 import os
 import sys
-
-import git
-
-
-repo_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-
-git_repo = git.Repo(repo_path)
-
-# The full version, including alpha/beta/rc tags
-version = git_repo.git.describe(tags=True)
-# The short X.Y version
-release = ".".join(version.split(".")[0:2])
 
 sys.path.insert(0, os.path.abspath('..'))
 
