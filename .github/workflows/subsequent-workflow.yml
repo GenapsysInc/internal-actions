@@ -1,0 +1,15 @@
+name: subsequent-workflow
+
+on:
+  workflow_run:
+    workflows: [example-called-workflow-2]
+    types:
+      - completed
+
+jobs:
+  job-8:
+    name: Job 8
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say we got called
+        run: echo "Job 8 was run"
