@@ -10,7 +10,7 @@ inputs:
     required: true
 
 runs:
-  using: 'composite'
+  using: composite
   steps:
     - uses: actions/checkout@v3
       with:

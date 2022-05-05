@@ -10,7 +10,7 @@ inputs:
     required: true
 
 runs:
-  using: 'composite'
+  using: composite
   steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -20,13 +20,13 @@ runs:
         ref: main
         token: ${{ inputs.token }}
     - name: Set up Python 3.10 and install dependencies
-      uses: genapsysinc/internal-actions/reusable-actions/setup-python@main
+      uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main
       with:
         requirements-txt: 'internal-actions/action_utils/requirements.txt'
     - name: Run get_team_approval_status.py with input args
       shell: bash
       run: |
-        export PYTHONPATH="`pwd`/internal-actions" && \
+        export PYTHONPATH="`pwd`/internal-actions"
         python internal-actions/action_utils/get_team_approval_status.py \
           -s ${{ inputs.token }} \
           -r ${{ github.event.repository.name }} \

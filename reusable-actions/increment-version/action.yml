@@ -1,0 +1,48 @@
+name: increment-version
+description: Create + push new tag based on calling repo's current version and version information in a metadata JSON file
+
+inputs:
+  json:
+    description: Path to metadata JSON file containing version
+    required: true
+    default: repo-data.json
+  use-date:
+    description: Include a date string in the tag
+    required: false
+    default: false
+  token:
+    description: Token to checkout internal-actions
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout calling repo
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Checkout internal-actions
+      uses: actions/checkout@v3
+      with:
+        repository: genapsysinc/internal-actions
+        path: internal-actions
+        ref: main
+        token: ${{ inputs.token }}
+    - name: Set up git user based on current action environment
+      uses: fregante/setup-git-user@v1
+    - name: Set up Python 3.10 and install dependencies
+      uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main
+      with:
+        requirements-txt: 'internal-actions/action_utils/requirements.txt'
+    - name: Run tag_commit.py with given arguments - lays down a new tag or errors if specified version is invalid
+      shell: bash
+      run: |
+        export PYTHONPATH="`pwd`/internal-actions"
+        python internal-actions/action_utils/tag_commit.py \
+          -r . \
+          -j ${{ inputs.json }} \
+          ${{ (fromJson(inputs.use-date) && '-d') || '' }}
+    - name: Push new tag to GitHub - only runs when the calling workflow was triggered by a push event
+      if: ${{ github.event_name == 'push' }}
+      shell: bash
+      run: git push --tags

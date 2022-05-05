@@ -1,0 +1,20 @@
+# This template is intended to be incorporated as a workflow in another repository to semi-automatically increment
+# an internal/external version number for a repository
+name: tag-pr-merge
+
+on:
+  push:
+    branches: [main]  # Or the name of your default branch
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  increment-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run the increment-version action
+        uses: GenapsysInc/internal-actions/reusable-actions/increment-version@main
+        with:
+          token: ${{ secrets.GH_REST_API_TOKEN }}
+          json: <path/to/repo-data.json>
+          use-date: <true|false>, append date string to generated version tag

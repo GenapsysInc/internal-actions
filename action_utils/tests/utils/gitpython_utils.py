@@ -46,12 +46,34 @@ class MockGitRemote(mock.Mock):
         setattr(self, name, self)
 
 
+class MockGitTag(mock.Mock):
+    def __init__(self, tag, message):
+        super().__init__()
+
+        self.tag = tag
+        self.message = message
+
+
 class MockGitRepo(mock.Mock):
-    def __init__(self, remotes, submodules=None):
+    def __init__(self, remotes, submodules=None, tags=None, latest_tag=None):
         super().__init__()
 
         self.remotes = MockIterableList(remotes)
         self.submodules = submodules if submodules else []
+        self.tags = tags if tags else []
+        self.latest_tag = latest_tag
+        self.git = mock.Mock()
+
+        if latest_tag:
+            self.git.describe = mock.Mock(return_value=self.latest_tag.tag)
 
     def iter_submodules(self):
         return iter(self.submodules)
+
+    def create_tag(self, tag_str, m=None):
+        new_tag = MockGitTag(tag_str, message=m)
+
+        self.tags.append(new_tag)
+        self.latest_tag = new_tag
+
+        return new_tag

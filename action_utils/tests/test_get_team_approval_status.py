@@ -1,4 +1,4 @@
-"""Unit tests for the action_utils.get_team_approval_status module"""
+"""Tests for the action_utils.get_team_approval_status module"""
 
 __author__ = "David McConnell"
 __credits__ = ["David McConnell"]
@@ -176,102 +176,110 @@ def fixture_unauthenticated_client(test_org):
     return pgh_utils.MockGithubClient({test_org.name: test_org}, authenticated=False)
 
 
-def test_team_member_has_approved_pr_true(qa_team, pull_all_teams_approved):
-    """All teams have approved, so QA should be marked as having approved"""
-    assert gtas.team_member_has_approved_pr(qa_team, pull_all_teams_approved)
+class TestTeamMemberHasApprovedPR:
+    """Tests for the team_member_has_approved_pr function"""
+
+    @staticmethod
+    def test_true_all(qa_team, pull_all_teams_approved):
+        """All teams have approved, so QA should be marked as having approved"""
+        assert gtas.team_member_has_approved_pr(qa_team, pull_all_teams_approved)
+
+    @staticmethod
+    def test_true_mixed_team(qa_team, pull_mixed_reviews):
+        """Case where 1 QA team member has not approved but another has, QA should be marked as having approved"""
+        assert gtas.team_member_has_approved_pr(qa_team, pull_mixed_reviews)
+
+    @staticmethod
+    def test_true_multiple_reviews_1(qa_team, pull_qa_recent_approval_1):
+        """QA previously requested changes, but the most recent review is an approval, should be marked as approved"""
+        assert gtas.team_member_has_approved_pr(qa_team, pull_qa_recent_approval_1)
+
+    @staticmethod
+    def test_true_multiple_reviews_2(qa_team, pull_qa_recent_approval_2):
+        """QA previously requested changes, but the most recent was an approval, should be marked as approved"""
+        assert gtas.team_member_has_approved_pr(qa_team, pull_qa_recent_approval_2)
+
+    @staticmethod
+    def test_false_comment(qa_team, pull_all_teams_commented):
+        """All teams have only commented, QA should not be marked as having approved"""
+        assert not gtas.team_member_has_approved_pr(qa_team, pull_all_teams_commented)
+
+    @staticmethod
+    def test_false_change_request(qa_team, pull_all_teams_requested_changes):
+        """All teams have only requested changes, QA should not be marked as having approved"""
+        assert not gtas.team_member_has_approved_pr(qa_team, pull_all_teams_requested_changes)
+
+    @staticmethod
+    def test_false_multiple_reviews_1(qa_team, pull_qa_recent_change_request_1):
+        """QA previously approved, but the most recent review is a change request, should not be marked as approved"""
+        assert not gtas.team_member_has_approved_pr(qa_team, pull_qa_recent_change_request_1)
+
+    @staticmethod
+    def test_false_multiple_reviews_2(qa_team, pull_qa_recent_change_request_2):
+        """QA previously approved, but the most recent was a change request, should not be marked as approved"""
+        assert not gtas.team_member_has_approved_pr(qa_team, pull_qa_recent_change_request_2)
 
 
-def test_team_member_has_approved_pr_true_mixed_team(qa_team, pull_mixed_reviews):
-    """Case where 1 QA team member has not approved but another has, QA should be marked as having approved"""
-    assert gtas.team_member_has_approved_pr(qa_team, pull_mixed_reviews)
+class TestPRHasAppropriateReviews:
+    """Tests for the pr_has_appropriate_reviews function"""
 
+    @staticmethod
+    def test_true_all(authenticated_client, test_repo, pull_all_teams_approved, all_teams):
+        """End-to-end style test for when a PR has required team approvals"""
+        assert gtas.pr_has_appropriate_reviews(
+            authenticated_client, test_repo.name, pull_all_teams_approved.num, all_teams
+        )
 
-def test_team_member_has_approved_pr_true_multiple_reviews_1(qa_team, pull_qa_recent_approval_1):
-    """QA previously requested changes, but the most recent review is an approval, should be marked as approved"""
-    assert gtas.team_member_has_approved_pr(qa_team, pull_qa_recent_approval_1)
+    @staticmethod
+    def test_true_mixed(authenticated_client, test_repo, pull_mixed_reviews, all_teams):
+        """End-to-end style test for when a PR has some change requests and some approvals but meets overall approval"""
+        assert gtas.pr_has_appropriate_reviews(authenticated_client, test_repo.name, pull_mixed_reviews.num, all_teams)
 
+    @staticmethod
+    def test_false_comments(authenticated_client, test_repo, pull_all_teams_commented, all_teams):
+        """End-to-end style test for when a PR has only comments"""
+        assert not gtas.pr_has_appropriate_reviews(
+            authenticated_client, test_repo.name, pull_all_teams_commented.num, all_teams
+        )
 
-def test_team_member_has_approved_pr_true_multiple_reviews_2(qa_team, pull_qa_recent_approval_2):
-    """QA previously requested changes, but the most recent non-comment was an approval, should be marked as approved"""
-    assert gtas.team_member_has_approved_pr(qa_team, pull_qa_recent_approval_2)
+    @staticmethod
+    def test_false_changes_requested(authenticated_client, test_repo, pull_all_teams_requested_changes, all_teams):
+        """End-to-end style test for when a PR has only change requests"""
+        assert not gtas.pr_has_appropriate_reviews(
+            authenticated_client, test_repo.name, pull_all_teams_requested_changes.num, all_teams
+        )
 
+    @staticmethod
+    def test_false_mixed(authenticated_client, test_repo, pull_qa_recent_approval_1, all_teams):
+        """End-to-end style test for when a PR has some change requests and some approvals but meets overall approval"""
+        assert not gtas.pr_has_appropriate_reviews(
+            authenticated_client, test_repo.name, pull_qa_recent_approval_1.num, all_teams
+        )
 
-def test_team_member_has_approved_pr_false_comment(qa_team, pull_all_teams_commented):
-    """All teams have only commented, QA should not be marked as having approved"""
-    assert not gtas.team_member_has_approved_pr(qa_team, pull_all_teams_commented)
+    @staticmethod
+    def test_authentication_fail(unauthenticated_client, test_repo, pull_all_teams_approved, all_teams):
+        """End-to-end style test to assert proper handling of authentication failure"""
+        with pytest.raises(common.ConfigurationError):
+            gtas.pr_has_appropriate_reviews(
+                unauthenticated_client, test_repo.name, pull_all_teams_approved.num, all_teams
+            )
 
+    @staticmethod
+    def test_invalid_repo(authenticated_client, pull_all_teams_approved, all_teams):
+        """End-to-end style test to assert proper handling of invalid repo"""
+        with pytest.raises(common.ConfigurationError):
+            gtas.pr_has_appropriate_reviews(authenticated_client, "not-a-repo", pull_all_teams_approved.num, all_teams)
 
-def test_team_member_has_approved_pr_false_change_request(qa_team, pull_all_teams_requested_changes):
-    """All teams have only requested changes, QA should not be marked as having approved"""
-    assert not gtas.team_member_has_approved_pr(qa_team, pull_all_teams_requested_changes)
+    @staticmethod
+    def test_invalid_pull(authenticated_client, test_repo, all_teams):
+        """End-to-end style test to assert proper handling of invalid PR number"""
+        with pytest.raises(common.ConfigurationError):
+            gtas.pr_has_appropriate_reviews(authenticated_client, test_repo, 10000, all_teams)
 
-
-def test_team_member_has_approved_pr_false_multiple_reviews_1(qa_team, pull_qa_recent_change_request_1):
-    """QA previously approved, but the most recent review is a change request, should not be marked as approved"""
-    assert not gtas.team_member_has_approved_pr(qa_team, pull_qa_recent_change_request_1)
-
-
-def test_team_member_has_approved_pr_false_multiple_reviews_2(qa_team, pull_qa_recent_change_request_2):
-    """QA previously approved, but the most recent non-comment was a change request, should not be marked as approved"""
-    assert not gtas.team_member_has_approved_pr(qa_team, pull_qa_recent_change_request_2)
-
-
-def test_pr_has_appropriate_reviews_true_all(authenticated_client, test_repo, pull_all_teams_approved, all_teams):
-    """End-to-end style test for when a PR has required team approvals"""
-    assert gtas.pr_has_appropriate_reviews(authenticated_client, test_repo.name, pull_all_teams_approved.num, all_teams)
-
-
-def test_pr_has_appropriate_reviews_true_mixed(authenticated_client, test_repo, pull_mixed_reviews, all_teams):
-    """End-to-end style test for when a PR has some change requests and some approvals but meets overall approval"""
-    assert gtas.pr_has_appropriate_reviews(authenticated_client, test_repo.name, pull_mixed_reviews.num, all_teams)
-
-
-def test_pr_has_appropriate_reviews_false_comments(
-    authenticated_client, test_repo, pull_all_teams_commented, all_teams
-):
-    """End-to-end style test for when a PR has only comments"""
-    assert not gtas.pr_has_appropriate_reviews(
-        authenticated_client, test_repo.name, pull_all_teams_commented.num, all_teams
-    )
-
-
-def test_pr_has_appropriate_reviews_false_changes_requested(
-    authenticated_client, test_repo, pull_all_teams_requested_changes, all_teams
-):
-    """End-to-end style test for when a PR has only change requests"""
-    assert not gtas.pr_has_appropriate_reviews(
-        authenticated_client, test_repo.name, pull_all_teams_requested_changes.num, all_teams
-    )
-
-
-def test_pr_has_appropriate_reviews_false_mixed(authenticated_client, test_repo, pull_qa_recent_approval_1, all_teams):
-    """End-to-end style test for when a PR has some change requests and some approvals but meets overall approval"""
-    assert not gtas.pr_has_appropriate_reviews(
-        authenticated_client, test_repo.name, pull_qa_recent_approval_1.num, all_teams
-    )
-
-
-def test_pr_has_appropriate_reviews_authentication_fail(
-    unauthenticated_client, test_repo, pull_all_teams_approved, all_teams
-):
-    """End-to-end style test to assert proper handling of authentication failure"""
-    with pytest.raises(common.ConfigurationError):
-        gtas.pr_has_appropriate_reviews(unauthenticated_client, test_repo.name, pull_all_teams_approved.num, all_teams)
-
-
-def test_pr_has_appropriate_reviews_invalid_repo(authenticated_client, pull_all_teams_approved, all_teams):
-    """End-to-end style test to assert proper handling of invalid repo"""
-    with pytest.raises(common.ConfigurationError):
-        gtas.pr_has_appropriate_reviews(authenticated_client, "not-a-repo", pull_all_teams_approved.num, all_teams)
-
-
-def test_pr_has_appropriate_reviews_invalid_pull(authenticated_client, test_repo, all_teams):
-    """End-to-end style test to assert proper handling of invalid PR number"""
-    with pytest.raises(common.ConfigurationError):
-        gtas.pr_has_appropriate_reviews(authenticated_client, test_repo, 10000, all_teams)
-
-
-def test_pr_has_appropriate_reviews_missing_teams(authenticated_client, test_repo, pull_all_teams_approved):
-    """End-to-end style test to assert proper handling of invalid team name"""
-    with pytest.raises(common.ConfigurationError):
-        gtas.pr_has_appropriate_reviews(authenticated_client, test_repo, pull_all_teams_approved.num, ["not-a-team"])
+    @staticmethod
+    def test_missing_teams(authenticated_client, test_repo, pull_all_teams_approved):
+        """End-to-end style test to assert proper handling of invalid team name"""
+        with pytest.raises(common.ConfigurationError):
+            gtas.pr_has_appropriate_reviews(
+                authenticated_client, test_repo, pull_all_teams_approved.num, ["not-a-team"]
+            )

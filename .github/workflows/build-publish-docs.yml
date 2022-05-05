@@ -1,3 +1,5 @@
+name: build-publish-docs
+
 on:
   push:
     branches:
@@ -10,7 +12,6 @@ jobs:
     name: Run the documentation builder workflow
     runs-on: ubuntu-latest
     steps:
-
       - name: Documentation build and publish
         uses: GenapsysInc/internal-actions/reusable-actions/build-docs@main
         with:

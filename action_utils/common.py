@@ -1,8 +1,13 @@
 """Constants, classes, and utilities related to git/GitHub common across scripts"""
 
+from __future__ import annotations
+
 __author__ = "David McConnell"
 __credits__ = ["David McConnell"]
 __maintainer__ = "David McConnell"
+
+from functools import total_ordering
+import re
 
 import git
 
@@ -12,9 +17,140 @@ APPROVED = "APPROVED"
 COMMENTED = "COMMENTED"
 CHANGES_REQUESTED = "CHANGES_REQUESTED"
 
+RELEASE_VERSION_DELIM = "-"
+SEMANTIC_VERSION_DELIM = "."
+VERSION_TAG_REGEX = re.compile(rf"\d+{SEMANTIC_VERSION_DELIM}\d+{SEMANTIC_VERSION_DELIM}\d+{RELEASE_VERSION_DELIM}\d+")
+
 
 class ConfigurationError(Exception):
     """Should be raised when input arguments are found to be incorrect/invalid"""
+
+
+class InvalidVersion(Exception):
+    """Should be raised when parsing a tag that does not conform to expected version format"""
+
+
+@total_ordering
+class VersionTag:
+    """Representation of a git tag in the form of major.minor.patch-release"""
+
+    def __init__(self, tag: str):
+        """Ctor.
+
+        :param tag: Tag string in "major.minor.patch-release" format
+        """
+        # Will be set by setting self.tag
+        self.__major = None
+        self.__minor = None
+        self.__patch = None
+        self.__release = None
+
+        self.tag = tag
+
+    def __str__(self):
+        return self.tag
+
+    def __eq__(self, other):
+        return self.major == other.major and self.minor == other.minor and self.patch == other.patch
+
+    def __lt__(self, other):
+        if self.major != other.major:
+            return self.major < other.major
+
+        if self.minor != other.minor:
+            return self.minor < other.minor
+
+        if self.patch != other.patch:
+            return self.patch < other.patch
+
+        # If we got this far then major, minor, and patch are identical
+        return False
+
+    @property
+    def tag(self) -> str:
+        """The tag string"""
+        return self.__tag
+
+    @tag.setter
+    def tag(self, new_tag: str):
+        """Assert valid format, store the given tag, and determine major, minor, patch, and release numbers
+
+        :param new_tag: The new tag to store and parse
+        """
+        try:
+            self.__tag = re.match(VERSION_TAG_REGEX, new_tag).group()
+        except AttributeError as attr_error:
+            raise InvalidVersion(f"{new_tag} did not conform to major.minor.patch-release format") from attr_error
+
+        major_minor_patch, release = self.tag.split(RELEASE_VERSION_DELIM)
+        major, minor, patch = major_minor_patch.split(SEMANTIC_VERSION_DELIM)
+
+        self.__major = int(major)
+        self.__minor = int(minor)
+        self.__patch = int(patch)
+        self.__release = int(release)
+
+    @property
+    def major(self) -> int:
+        """The major version number"""
+        return self.__major
+
+    @property
+    def minor(self) -> int:
+        """The minor version number"""
+        return self.__minor
+
+    @property
+    def patch(self) -> int:
+        """The patch version number"""
+        return self.__patch
+
+    @property
+    def release(self) -> int:
+        """The release number"""
+        return self.__release
+
+    def assert_valid_new_version(self, other: VersionTag):
+        """Is the other VersionTag a valid increment of self? Asserts that the new version is >= the old version, that
+        the minor and patch versions are 0 for a major increment, that the patch version is 0 for a minor increment, and
+        that version increments are equal to 1.
+
+        :param other: The VersionTag representing a version increment
+        :raises InvalidVersion: If the given VersionTag is not a valid increment
+        """
+        # Current version is greater than the new one
+        if self > other:
+            raise InvalidVersion(f"Current version {self} > new version {other}")
+
+        # Major version increment
+        if other.major > self.major:
+            if other.major - self.major != 1:
+                raise InvalidVersion(f"Major version increment > 1 between {self} and {other}")
+            if other.minor:
+                raise InvalidVersion(f"Expected minor version of 0 with major version increment but was {other.minor}")
+            if other.patch:
+                raise InvalidVersion(f"Expected patch version of 0 with major version increment but was {other.patch}")
+
+        # Minor version increment
+        if other.minor > self.minor:
+            if other.minor - self.minor != 1:
+                raise InvalidVersion(f"Minor version increment > 1 between {self} and {other}")
+            if other.patch:
+                raise InvalidVersion(f"Expected patch version of 0 with minor version increment but was {other.patch}")
+
+        # Patch version increment
+        if other.patch > self.patch and other.patch - self.patch != 1:
+            raise InvalidVersion(f"Patch version increment > 1 between {self} and {other}")
+
+    def get_new_release(self) -> str:
+        """Return a new tag with the release number incremented by 1
+
+        :return: The new tag string
+        """
+        return (
+            f"{self.major}{SEMANTIC_VERSION_DELIM}{self.minor}{SEMANTIC_VERSION_DELIM}"
+            f"{self.patch}{RELEASE_VERSION_DELIM}{self.release + 1}"
+        )
 
 
 def get_repo_name_from_url(url: str) -> str:

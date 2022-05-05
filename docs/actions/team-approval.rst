@@ -1,6 +1,6 @@
-***************
+*************
 Team Approval
-***************
+*************
 
 .. include:: ../../reusable-actions/team-approval/README.md
    :parser: myst_parser.sphinx_

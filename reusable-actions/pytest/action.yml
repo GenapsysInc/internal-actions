@@ -12,7 +12,7 @@ inputs:
     required: true
 
 runs:
-  using: 'composite'
+  using: composite
   steps:
     - name: Set up Python version ${{ inputs.python-version }}
       uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main

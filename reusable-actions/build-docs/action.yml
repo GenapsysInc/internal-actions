@@ -35,7 +35,7 @@ inputs:
     default: false
 
 runs:
-  using: 'composite'
+  using: composite
   steps:
     - name: Checkout calling repo
       uses: actions/checkout@v3

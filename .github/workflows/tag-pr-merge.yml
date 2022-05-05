@@ -1,0 +1,16 @@
+name: tag-pr-merge
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  increment-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run the increment-version action
+        uses: GenapsysInc/internal-actions/reusable-actions/increment-version@main
+        with:
+          token: ${{ secrets.GH_REST_API_TOKEN }}

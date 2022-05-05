@@ -1,0 +1,3 @@
+# increment-version
+
+This action will create a new tag based on a version in a JSON file in source control, and on pushes to specified branches will push the newly created tag. This is intended to automate semantic versioning (https://semver.org/) tags for repositories for each PR merge to main (or another default branch). Version tags will be generated in the format `major.minor.patch-release` with a date string optionally appended to the tag if specified in the calling workflow. If the version is not changed for a given PR, the `release` number will be incremented by 1, intended to reflect changes to things like process, build, docs, tests, etc. that do not impact actual code. An example template is included in this directory.
