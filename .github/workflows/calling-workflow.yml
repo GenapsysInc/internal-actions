@@ -6,6 +6,9 @@ on:
 
 
 jobs:
-  run-workflow:
-    name: Run the reusable workflow
-    uses: GenapsysInc/internal-actions/.github/workflows/called-workflow.yml@actions-demo
+  run-workflow-1:
+    name: Run the first reusable workflow
+    uses: GenapsysInc/internal-actions/.github/workflows/called-workflow-1.yml@actions-demo
+  run-workflow-2:
+    name: Run the second reusable workflow
+    uses: GenapsysInc/internal-actions/.github/workflows/called-workflow-2.yml@actions-demo

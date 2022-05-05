@@ -1,0 +1,37 @@
+name: example-called-workflow-2
+
+on:
+  workflow_call:
+    inputs:
+      to-print:
+        description: A string to print
+        required: true
+      print-string:
+        description: Should we actually print the string?
+        required: false
+        default: false
+
+jobs:
+  job-5:
+    name: Job 5
+    runs-on: ubuntu-latest
+    if: ${{ fromJSON(inputs.print-string) }}
+    steps:
+      - name: Print out the input string
+        run: echo ${{ inputs.to-print }}
+  job-6:
+    name: Job 6
+    needs: job-5
+    runs-on: ubuntu-latest
+    outputs:
+      my-output: ${{ steps.write-output.outputs.output-string }}
+    steps:
+      - id: write-output
+        run: echo "::set-output name=output-string::burrito"
+  job-7:
+    name: Job 7
+    needs: job-6
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo the set output
+        run: echo ${{ jobs.job-6.outputs.my-output }}
