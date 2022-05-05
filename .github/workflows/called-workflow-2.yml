@@ -23,7 +23,6 @@ jobs:
         run: echo ${{ inputs.to-print }}
   job-6:
     name: Job 6
-    needs: job-5
     runs-on: ubuntu-latest
     outputs:
       my-output: ${{ steps.write-output.outputs.output-string }}
