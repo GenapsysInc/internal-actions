@@ -2,7 +2,7 @@ name: subsequent-workflow
 
 on:
   workflow_run:
-    workflows: [called-workflow-2]
+    workflows: [example-calling-workflow]
     types:
       - completed
 
