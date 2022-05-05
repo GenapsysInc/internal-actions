@@ -25,7 +25,7 @@ git_repo = git.Repo(repo_path)
 # The full version, including alpha/beta/rc tags
 version = git_repo.git.describe(tags=True)
 # The short X.Y version
-release = ".".join(version.split(".")[0:1])
+release = ".".join(version.split(".")[0:2])
 
 sys.path.insert(0, os.path.abspath('..'))
 
