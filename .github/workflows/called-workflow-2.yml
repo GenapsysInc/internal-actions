@@ -32,7 +32,7 @@ jobs:
         run: echo "::set-output name=output-string::burrito"
   job-7:
     name: Job 7
-    needs: job-5 job-6
+    needs: [job-5, job-6]
     runs-on: ubuntu-latest
     steps:
       - name: Echo the set output
