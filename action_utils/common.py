@@ -17,9 +17,9 @@ APPROVED = "APPROVED"
 COMMENTED = "COMMENTED"
 CHANGES_REQUESTED = "CHANGES_REQUESTED"
 
-VERSION_RELEASE_DELIM = "-"
-VERSION_MAJOR_MINOR_PATCH_DELIM = "."
-VERSION_TAG_REGEX = re.compile(r"\d+\.\d+\.\d+-\d+")
+RELEASE_VERSION_DELIM = "-"
+SEMANTIC_VERSION_DELIM = "."
+VERSION_TAG_REGEX = re.compile(rf"\d+{SEMANTIC_VERSION_DELIM}\d+{SEMANTIC_VERSION_DELIM}\d+{RELEASE_VERSION_DELIM}\d+")
 
 
 class ConfigurationError(Exception):
@@ -73,14 +73,17 @@ class VersionTag:
 
     @tag.setter
     def tag(self, new_tag: str):
-        """Assert valid format, store the given tag, and determine major, minor, patch, and release numbers"""
+        """Assert valid format, store the given tag, and determine major, minor, patch, and release numbers
+
+        :param new_tag: The new tag to store and parse
+        """
         try:
             self.__tag = re.match(VERSION_TAG_REGEX, new_tag).group()
         except AttributeError as attr_error:
             raise InvalidVersion(f"{new_tag} did not conform to major.minor.patch-release format") from attr_error
 
-        major_minor_patch, release = self.tag.split(VERSION_RELEASE_DELIM)
-        major, minor, patch = major_minor_patch.split(VERSION_MAJOR_MINOR_PATCH_DELIM)
+        major_minor_patch, release = self.tag.split(RELEASE_VERSION_DELIM)
+        major, minor, patch = major_minor_patch.split(SEMANTIC_VERSION_DELIM)
 
         self.__major = int(major)
         self.__minor = int(minor)
@@ -115,7 +118,7 @@ class VersionTag:
         :param other: The VersionTag representing a version increment
         :raises InvalidVersion: If the given VersionTag is not a valid increment
         """
-        # If the new version is less than
+        # Current version is greater than the new one
         if self > other:
             raise InvalidVersion(f"Current version {self} > new version {other}")
 
@@ -137,14 +140,17 @@ class VersionTag:
 
         # Patch version increment
         if other.patch > self.patch and other.patch - self.patch != 1:
-                raise InvalidVersion(f"Patch version increment > 1 between {self} and {other}")
+            raise InvalidVersion(f"Patch version increment > 1 between {self} and {other}")
 
     def get_new_release(self) -> str:
         """Return a new tag with the release number incremented by 1
 
         :return: The new tag string
         """
-        return f"{self.major}.{self.minor}.{self.patch}-{self.release + 1}"
+        return (
+            f"{self.major}{SEMANTIC_VERSION_DELIM}{self.minor}{SEMANTIC_VERSION_DELIM}"
+            f"{self.patch}{RELEASE_VERSION_DELIM}{self.release + 1}"
+        )
 
 
 def get_repo_name_from_url(url: str) -> str:
