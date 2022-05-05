@@ -1,0 +1,11 @@
+name: example-calling-workflow
+
+on:
+  push:
+    branches: [actions-demo]
+
+
+jobs:
+  run-workflow:
+    name: Run the reusable workflow
+    uses: GenapsysInc/.github/workflows/called-workflow.yml@actions-demo
