@@ -5,9 +5,11 @@ on:
     inputs:
       to-print:
         description: A string to print
+        type: string
         required: true
       print-string:
         description: Should we actually print the string?
+        type: boolean
         required: false
         default: false
 
