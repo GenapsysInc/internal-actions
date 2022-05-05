@@ -47,9 +47,16 @@
 <li class="toctree-l1"><a class="reference internal" href="build-docs.html">Build Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docker-build-push.html">Docker Build and Push</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docker-run.html">Docker Run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="increment-version.html">Increment Version</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTest</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Setup Python</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#pytest">pytest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-python">setup-python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setup-python-3-10">Setup Python 3.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setup-python-3-x">Setup Python 3.x</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-specific-python-dependencies">Install Specific Python Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-wildcard-python-dependencies">Install Wildcard Python Dependencies</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sonarqube.html">SonarQube</a></li>
@@ -58,6 +65,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../_action_utils/modules.html">action_utils</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">Internal Actions Releases</a></li>
 </ul>
 
         </div>
@@ -86,11 +96,47 @@
              
   <section id="setup-python">
 <h1>Setup Python<a class="headerlink" href="#setup-python" title="Permalink to this headline"></a></h1>
-<section id="pytest">
-<h2>pytest<a class="headerlink" href="#pytest" title="Permalink to this headline"></a></h2>
-<p>This action will set up python, install requirements, and then run pytest with code coverage capture turned on and reported in XML format. The test result and code coverage files will be uploaded as an artifact called <code class="docutils literal notranslate"><span class="pre">test-reports</span></code> and can be used by subsequent jobs/steps.</p>
-<p>This action will use a <code class="docutils literal notranslate"><span class="pre">.coveragerc</span></code> (or <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>, or <code class="docutils literal notranslate"><span class="pre">tox.ini</span></code>) in the root directory of the calling repository to configure coverage running and reporting. Information in the configuration file will define the set of files that will have coverage information captured. See https://coverage.readthedocs.io/en/6.3.2/source.html for more information about source file configuration. Note that <code class="docutils literal notranslate"><span class="pre">relative_files</span></code> should be set to <code class="docutils literal notranslate"><span class="pre">True</span></code> to integrate a coverage report into another tool like SonarQube, in which the absolute path of where files exist might be different. An example <code class="docutils literal notranslate"><span class="pre">.coveragerc</span></code> is included in this directory to be used if wanted.</p>
-<p>This action can be called independently but is intended to be used as part of the <code class="docutils literal notranslate"><span class="pre">internal-actions/reusable-actions/sonarqube</span></code> action for test result and coverage report integration in a Sonar project. An example template for running pytest followed by SonarQube is included in that action’s directory.</p>
+<section id="setup-python">
+<h2>setup-python<a class="headerlink" href="#setup-python" title="Permalink to this headline"></a></h2>
+<p>This action is intended to be used by other actions/workflows to setup a given python environment. It will run python setup (default is version 3.10), install python requirements given a requirements.txt file path, and cache dependency installation appropriately. Wildcards may be used for the path to the requirements.txt file(s).</p>
+<section id="setup-python-3-10">
+<h3>Setup Python 3.10<a class="headerlink" href="#setup-python-3-10" title="Permalink to this headline"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install and set up Python 3.10</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/setup-python@main</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="setup-python-3-x">
+<h3>Setup Python 3.x<a class="headerlink" href="#setup-python-3-x" title="Permalink to this headline"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install and set up Python 3.x</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/setup-python@main</span><span class="w"></span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.x</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="install-specific-python-dependencies">
+<h3>Install Specific Python Dependencies<a class="headerlink" href="#install-specific-python-dependencies" title="Permalink to this headline"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout source tree</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install and set up Python 3.10 and install dependencies</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/setup-python@main</span><span class="w"></span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">requirements-txt</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path/to/requirements.txt</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="install-wildcard-python-dependencies">
+<h3>Install Wildcard Python Dependencies<a class="headerlink" href="#install-wildcard-python-dependencies" title="Permalink to this headline"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout source tree</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install and set up Python 3.10 and install dependencies</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/setup-python@main</span><span class="w"></span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">requirements-txt</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;**/requirements.txt&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 

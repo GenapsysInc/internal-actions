@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>action_utils package &mdash; Internal Actions 1.0 documentation</title>
+  <title>action_utils.tag_commit module &mdash; Internal Actions 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="action_utils.tests package" href="action_utils.tests.html" />
-    <link rel="prev" title="action_utils" href="modules.html" /> 
+    <link rel="next" title="Internal Actions Releases" href="../releases.html" />
+    <link rel="prev" title="action_utils.get_team_approval_status module" href="action_utils.get_team_approval_status.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,16 +56,13 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">action_utils</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">action_utils package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="action_utils.tests.html">action_utils.tests package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="action_utils.html">action_utils package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="action_utils.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="action_utils.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="action_utils.check_submodule_commits.html">action_utils.check_submodule_commits module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="action_utils.common.html">action_utils.common module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="action_utils.get_team_approval_status.html">action_utils.get_team_approval_status module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="action_utils.tag_commit.html">action_utils.tag_commit module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">action_utils.tag_commit module</a></li>
 </ul>
 </li>
 </ul>
@@ -92,9 +89,10 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="modules.html">action_utils</a> &raquo;</li>
-      <li>action_utils package</li>
+          <li><a href="action_utils.html">action_utils package</a> &raquo;</li>
+      <li>action_utils.tag_commit module</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/_action_utils/action_utils.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/_action_utils/action_utils.tag_commit.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -102,51 +100,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-action_utils">
-<span id="action-utils-package"></span><h1>action_utils package<a class="headerlink" href="#module-action_utils" title="Permalink to this headline"></a></h1>
-<section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline"></a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="action_utils.tests.html">action_utils.tests package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="action_utils.tests.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="action_utils.tests.utils.html">action_utils.tests.utils package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="action_utils.tests.utils.html#submodules">Submodules</a></li>
+  <section id="module-action_utils.tag_commit">
+<span id="action-utils-tag-commit-module"></span><h1>action_utils.tag_commit module<a class="headerlink" href="#module-action_utils.tag_commit" title="Permalink to this headline"></a></h1>
+<p>Tag the current git commit based on version information in a JSON file</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="action_utils.tag_commit.parse_args">
+<span class="sig-prename descclassname"><span class="pre">action_utils.tag_commit.</span></span><span class="sig-name descname"><span class="pre">parse_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tag_commit.parse_args" title="Permalink to this definition"></a></dt>
+<dd><p>Parse commandline args</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="action_utils.tag_commit.tag_current_commit">
+<span class="sig-prename descclassname"><span class="pre">action_utils.tag_commit.</span></span><span class="sig-name descname"><span class="pre">tag_current_commit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_repo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">git.repo.base.Repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="action_utils.common.html#action_utils.common.VersionTag" title="action_utils.common.VersionTag"><span class="pre">action_utils.common.VersionTag</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#action_utils.tag_commit.tag_current_commit" title="Permalink to this definition"></a></dt>
+<dd><p>Given a new version, tag the current commit accordingly</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_version</strong> – The new version to use to tag</p></li>
+<li><p><strong>add_date</strong> – Append current date to the tag</p></li>
 </ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="action_utils.tests.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="action_utils.tests.test_check_submodule_commits.html">action_utils.tests.test_check_submodule_commits module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="action_utils.tests.test_common.html">action_utils.tests.test_common module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="action_utils.tests.test_get_team_approval_status.html">action_utils.tests.test_get_team_approval_status module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="action_utils.tests.test_tag_commit.html">action_utils.tests.test_tag_commit module</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-</section>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="action_utils.check_submodule_commits.html">action_utils.check_submodule_commits module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="action_utils.common.html">action_utils.common module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="action_utils.get_team_approval_status.html">action_utils.get_team_approval_status module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="action_utils.tag_commit.html">action_utils.tag_commit module</a></li>
-</ul>
-</div>
-</section>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="action_utils.common.html#action_utils.common.InvalidVersion" title="action_utils.common.InvalidVersion"><strong>common.InvalidVersion</strong></a> – If the new version does not make sense with respect to the current version</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-left" title="action_utils" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="action_utils.tests.html" class="btn btn-neutral float-right" title="action_utils.tests package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="action_utils.get_team_approval_status.html" class="btn btn-neutral float-left" title="action_utils.get_team_approval_status module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../releases.html" class="btn btn-neutral float-right" title="Internal Actions Releases" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

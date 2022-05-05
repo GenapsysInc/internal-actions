@@ -2,5 +2,5 @@
 Setup Python
 ************
 
-.. include:: ../../reusable-actions/pytest/README.md
+.. include:: ../../reusable-actions/setup-python/README.md
    :parser: myst_parser.sphinx_

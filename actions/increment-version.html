@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Team Approval &mdash; Internal Actions 1.0 documentation</title>
+  <title>Increment Version &mdash; Internal Actions 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="action_utils" href="../_action_utils/modules.html" />
-    <link rel="prev" title="Submodule Check" href="submodule-check.html" /> 
+    <link rel="next" title="PyTest" href="pytest.html" />
+    <link rel="prev" title="Docker Run" href="docker-run.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,16 +47,16 @@
 <li class="toctree-l1"><a class="reference internal" href="build-docs.html">Build Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docker-build-push.html">Docker Build and Push</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docker-run.html">Docker Run</a></li>
-<li class="toctree-l1"><a class="reference internal" href="increment-version.html">Increment Version</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Increment Version</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#increment-version">increment-version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#templates">Templates</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="setup-python.html">Setup Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sonarqube.html">SonarQube</a></li>
 <li class="toctree-l1"><a class="reference internal" href="submodule-check.html">Submodule Check</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Team Approval</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#team-approval">team-approval</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#templates">Templates</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="team-approval.html">Team Approval</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../_action_utils/modules.html">action_utils</a></li>
@@ -79,9 +79,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Team Approval</li>
+      <li>Increment Version</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/actions/team-approval.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/actions/increment-version.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -89,37 +89,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="team-approval">
-<h1>Team Approval<a class="headerlink" href="#team-approval" title="Permalink to this headline"></a></h1>
-<section id="team-approval">
-<h2>team-approval<a class="headerlink" href="#team-approval" title="Permalink to this headline"></a></h2>
-<p>This action will determine if a pull request has been approved by relevant teams in the GenapsysInc organzation. By including the provided template and adding names of teams, those teams will become required to merge pull requests moving forward.</p>
+  <section id="increment-version">
+<h1>Increment Version<a class="headerlink" href="#increment-version" title="Permalink to this headline"></a></h1>
+<section id="increment-version">
+<h2>increment-version<a class="headerlink" href="#increment-version" title="Permalink to this headline"></a></h2>
+<p>This action will create a new tag based on a version in a JSON file in source control, and on pushes to specified branches will push the newly created tag. This is intended to automate semantic versioning (https://semver.org/) tags for repositories for each PR merge to main (or another default branch). Version tags will be generated in the format <code class="docutils literal notranslate"><span class="pre">major.minor.patch-release</span></code> with a date string optionally appended to the tag if specified in the calling workflow. If the version is not changed for a given PR, the <code class="docutils literal notranslate"><span class="pre">release</span></code> number will be incremented by 1, intended to reflect changes to things like process, build, docs, tests, etc. that do not impact actual code. An example template is included in this directory.</p>
 </section>
 <section id="templates">
 <h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># This template is intended to be incorporated as a workflow in another repository for pull request gating
-name: team-approval-check
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># This template is intended to be incorporated as a workflow in another repository to semi-automatically increment
+# an internal/external version number for a repository
+name: tag-pr-merge
 
 on:
+  push:
+    branches: [main]  # Or the name of your default branch
   pull_request:
-    types: [opened, edited, synchronize, reopened]
-  pull_request_review:
-    types: [submitted, edited, dismissed]
+    types: [opened, synchronize, reopened]
 
 jobs:
-  call-workflow:
-    name: Run the team approval check workflow
+  increment-version:
     runs-on: ubuntu-latest
     steps:
-      - uses: GenapsysInc/internal-actions/reusable-actions/team-approval@main
+      - name: Run the increment-version action
+        uses: GenapsysInc/internal-actions/reusable-actions/increment-version@main
         with:
-          # Teams with spaces should have double quotes around them or spaces replaced with a &#39;-&#39; or &#39;_&#39;,
-          # casing does not matter. i.e. Developer Experience could be listed as &quot;developer experience&quot;
-          # or as developer-experience. This will allow proper input handling with the reuseable
-          # team-approval action
-          # See https://github.com/orgs/GenapsysInc/teams for the available teams for the check
-          teams: &#39;&lt;team 1&gt; &quot;&lt;team 2&gt;&quot; ... &lt;team n&gt;&#39;
           token: ${{ secrets.GH_REST_API_TOKEN }}
+          json: &lt;path/to/repo-data.json&gt;
+          use-date: &lt;true|false&gt;, append date string to generated version tag
 </pre></div>
 </div>
 </section>
@@ -129,8 +126,8 @@ jobs:
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="submodule-check.html" class="btn btn-neutral float-left" title="Submodule Check" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../_action_utils/modules.html" class="btn btn-neutral float-right" title="action_utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="docker-run.html" class="btn btn-neutral float-left" title="Docker Run" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pytest.html" class="btn btn-neutral float-right" title="PyTest" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -47,6 +47,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../actions/build-docs.html">Build Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/docker-build-push.html">Docker Build and Push</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/docker-run.html">Docker Run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/increment-version.html">Increment Version</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/pytest.html">PyTest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/setup-python.html">Setup Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/sonarqube.html">SonarQube</a></li>
@@ -65,6 +66,9 @@
 </li>
 </ul>
 </li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">Internal Actions Releases</a></li>
 </ul>
 
         </div>
@@ -96,7 +100,63 @@
              
   <section id="module-action_utils.tests.test_check_submodule_commits">
 <span id="action-utils-tests-test-check-submodule-commits-module"></span><h1>action_utils.tests.test_check_submodule_commits module<a class="headerlink" href="#module-action_utils.tests.test_check_submodule_commits" title="Permalink to this headline"></a></h1>
-<p>Unit tests for the action_utils.check_submodule_commits module</p>
+<p>Tests for the action_utils.check_submodule_commits module</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">action_utils.tests.test_check_submodule_commits.</span></span><span class="sig-name descname"><span class="pre">TestRepoHasValidSubmodules</span></span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Tests for the repo_has_valid_submodules function</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_all_valid">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_all_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_repo_all_valid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">github_authed_client</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_all_valid" title="Permalink to this definition"></a></dt>
+<dd><p>End-to-end style test, repo has 2 submodules on valid commits</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_auth_failure">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_auth_failure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_repo_all_valid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">github_unauthed_client</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_auth_failure" title="Permalink to this definition"></a></dt>
+<dd><p>Assert proper handling of authentication failure</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_mixed_valid">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_mixed_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_repo_mixed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">github_authed_client</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_mixed_valid" title="Permalink to this definition"></a></dt>
+<dd><p>End-to-end style test, repo has 1 submodule on a valid commit, but another on an invalid commit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_no_submodules">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_no_submodules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_repo_no_submodules</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">github_authed_client</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_no_submodules" title="Permalink to this definition"></a></dt>
+<dd><p>End-to-end style test, repo has no submodules so it should pass by default</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_none_valid">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_none_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_repo_all_invalid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">github_authed_client</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_none_valid" title="Permalink to this definition"></a></dt>
+<dd><p>End-to-end style test, repo has 2 submodules on invalid commits</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.TestSubmoduleIsValid">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">action_utils.tests.test_check_submodule_commits.</span></span><span class="sig-name descname"><span class="pre">TestSubmoduleIsValid</span></span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.TestSubmoduleIsValid" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Tests for the submodule_is_valid function</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.TestSubmoduleIsValid.test_invalid">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_invalid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_submodule_3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">github_submodule_3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.TestSubmoduleIsValid.test_invalid" title="Permalink to this definition"></a></dt>
+<dd><p>Test submodule commit not being in list of commits in github</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.TestSubmoduleIsValid.test_valid">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_submodule_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">github_submodule_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.TestSubmoduleIsValid.test_valid" title="Permalink to this definition"></a></dt>
+<dd><p>Test submodule commit being in list of commits in github</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.fixture_git_remote">
 <span class="sig-prename descclassname"><span class="pre">action_utils.tests.test_check_submodule_commits.</span></span><span class="sig-name descname"><span class="pre">fixture_git_remote</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.fixture_git_remote" title="Permalink to this definition"></a></dt>
@@ -186,48 +246,6 @@
 <dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.fixture_github_unauthed_client">
 <span class="sig-prename descclassname"><span class="pre">action_utils.tests.test_check_submodule_commits.</span></span><span class="sig-name descname"><span class="pre">fixture_github_unauthed_client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">github_org</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.fixture_github_unauthed_client" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.test_repo_has_valid_submodules_all">
-<span class="sig-prename descclassname"><span class="pre">action_utils.tests.test_check_submodule_commits.</span></span><span class="sig-name descname"><span class="pre">test_repo_has_valid_submodules_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_repo_all_valid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">github_authed_client</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.test_repo_has_valid_submodules_all" title="Permalink to this definition"></a></dt>
-<dd><p>End-to-end style test, repo has 2 submodules on valid commits</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.test_repo_has_valid_submodules_auth_failure">
-<span class="sig-prename descclassname"><span class="pre">action_utils.tests.test_check_submodule_commits.</span></span><span class="sig-name descname"><span class="pre">test_repo_has_valid_submodules_auth_failure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_repo_all_valid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">github_unauthed_client</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.test_repo_has_valid_submodules_auth_failure" title="Permalink to this definition"></a></dt>
-<dd><p>Assert proper handling of authentication failure</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.test_repo_has_valid_submodules_mixed">
-<span class="sig-prename descclassname"><span class="pre">action_utils.tests.test_check_submodule_commits.</span></span><span class="sig-name descname"><span class="pre">test_repo_has_valid_submodules_mixed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_repo_mixed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">github_authed_client</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.test_repo_has_valid_submodules_mixed" title="Permalink to this definition"></a></dt>
-<dd><p>End-to-end style test, repo has 1 submodule on a valid commit, but another on an invalid commit</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.test_repo_has_valid_submodules_no_submodules">
-<span class="sig-prename descclassname"><span class="pre">action_utils.tests.test_check_submodule_commits.</span></span><span class="sig-name descname"><span class="pre">test_repo_has_valid_submodules_no_submodules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_repo_no_submodules</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">github_authed_client</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.test_repo_has_valid_submodules_no_submodules" title="Permalink to this definition"></a></dt>
-<dd><p>End-to-end style test, repo has no submodules so it should pass by default</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.test_repo_has_valid_submodules_none">
-<span class="sig-prename descclassname"><span class="pre">action_utils.tests.test_check_submodule_commits.</span></span><span class="sig-name descname"><span class="pre">test_repo_has_valid_submodules_none</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_repo_all_invalid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">github_authed_client</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.test_repo_has_valid_submodules_none" title="Permalink to this definition"></a></dt>
-<dd><p>End-to-end style test, repo has 2 submodules on invalid commits</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.test_submodule_is_valid_false">
-<span class="sig-prename descclassname"><span class="pre">action_utils.tests.test_check_submodule_commits.</span></span><span class="sig-name descname"><span class="pre">test_submodule_is_valid_false</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_submodule_3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">github_submodule_3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.test_submodule_is_valid_false" title="Permalink to this definition"></a></dt>
-<dd><p>Test submodule commit not being in list of commits in github</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="action_utils.tests.test_check_submodule_commits.test_submodule_is_valid_true">
-<span class="sig-prename descclassname"><span class="pre">action_utils.tests.test_check_submodule_commits.</span></span><span class="sig-name descname"><span class="pre">test_submodule_is_valid_true</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_submodule_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">github_submodule_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_check_submodule_commits.test_submodule_is_valid_true" title="Permalink to this definition"></a></dt>
-<dd><p>Test submodule commit being in list of commits in github</p>
-</dd></dl>
 
 </section>
 

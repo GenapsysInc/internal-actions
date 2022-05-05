@@ -47,6 +47,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../actions/build-docs.html">Build Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/docker-build-push.html">Docker Build and Push</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/docker-run.html">Docker Run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/increment-version.html">Increment Version</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/pytest.html">PyTest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/setup-python.html">Setup Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/sonarqube.html">SonarQube</a></li>
@@ -61,12 +62,16 @@
 <li class="toctree-l4"><a class="reference internal" href="action_utils.check_submodule_commits.html">action_utils.check_submodule_commits module</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">action_utils.common module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="action_utils.get_team_approval_status.html">action_utils.get_team_approval_status module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="action_utils.tag_commit.html">action_utils.tag_commit module</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">Internal Actions Releases</a></li>
 </ul>
 
         </div>
@@ -103,6 +108,77 @@
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">action_utils.common.</span></span><span class="sig-name descname"><span class="pre">ConfigurationError</span></span><a class="headerlink" href="#action_utils.common.ConfigurationError" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Should be raised when input arguments are found to be incorrect/invalid</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="action_utils.common.InvalidVersion">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">action_utils.common.</span></span><span class="sig-name descname"><span class="pre">InvalidVersion</span></span><a class="headerlink" href="#action_utils.common.InvalidVersion" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Should be raised when parsing a tag that does not conform to expected version format</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="action_utils.common.VersionTag">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">action_utils.common.</span></span><span class="sig-name descname"><span class="pre">VersionTag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.common.VersionTag" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Representation of a git tag in the form of major.minor.patch-release</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="action_utils.common.VersionTag.assert_valid_new_version">
+<span class="sig-name descname"><span class="pre">assert_valid_new_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#action_utils.common.VersionTag" title="action_utils.common.VersionTag"><span class="pre">action_utils.common.VersionTag</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.common.VersionTag.assert_valid_new_version" title="Permalink to this definition"></a></dt>
+<dd><p>Is the other VersionTag a valid increment of self? Asserts that the new version is &gt;= the old version, that
+the minor and patch versions are 0 for a major increment, that the patch version is 0 for a minor increment, and
+that version increments are equal to 1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>other</strong> – The VersionTag representing a version increment</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#action_utils.common.InvalidVersion" title="action_utils.common.InvalidVersion"><strong>InvalidVersion</strong></a> – If the given VersionTag is not a valid increment</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="action_utils.common.VersionTag.get_new_release">
+<span class="sig-name descname"><span class="pre">get_new_release</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#action_utils.common.VersionTag.get_new_release" title="Permalink to this definition"></a></dt>
+<dd><p>Return a new tag with the release number incremented by 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The new tag string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="action_utils.common.VersionTag.major">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">major</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#action_utils.common.VersionTag.major" title="Permalink to this definition"></a></dt>
+<dd><p>The major version number</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="action_utils.common.VersionTag.minor">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">minor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#action_utils.common.VersionTag.minor" title="Permalink to this definition"></a></dt>
+<dd><p>The minor version number</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="action_utils.common.VersionTag.patch">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">patch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#action_utils.common.VersionTag.patch" title="Permalink to this definition"></a></dt>
+<dd><p>The patch version number</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="action_utils.common.VersionTag.release">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">release</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#action_utils.common.VersionTag.release" title="Permalink to this definition"></a></dt>
+<dd><p>The release number</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="action_utils.common.VersionTag.tag">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tag</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#action_utils.common.VersionTag.tag" title="Permalink to this definition"></a></dt>
+<dd><p>The tag string</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py function">
