@@ -52,7 +52,7 @@ runs:
           ${{ (fromJson(inputs.use-date) && '-d') || '' }}
     - name: Set new-version output
       shell: bash
-      run: echo "::set-output name=::new-version=$(git describe --tags)"
+      run: echo "::set-output name=new-version::$(git describe --tags)"
     - name: Push new tag to GitHub - only runs when the calling workflow was triggered by a push event
       if: ${{ github.event_name == 'push' && github.ref == github.event.repository.default_branch }}
       shell: bash
