@@ -8,5 +8,6 @@ Increment Version
 Templates
 =========
 
-.. literalinclude:: ../../reusable-actions/increment-version/template.yml
-   :language: yaml
+.. include:: ../../reusable-actions/increment-version/template.yml
+   :parser: myst_parser.sphinx_
+   :literal:

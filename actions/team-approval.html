@@ -97,29 +97,29 @@
 </section>
 <section id="templates">
 <h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline"></a></h2>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This template is intended to be incorporated as a workflow in another repository for pull request gating</span><span class="w"></span>
-<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">team-approval-check</span><span class="w"></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># This template is intended to be incorporated as a workflow in another repository for pull request gating
+name: team-approval-check
 
-<span class="nt">on</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">opened</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">edited</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">synchronize</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">reopened</span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">  </span><span class="nt">pull_request_review</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">submitted</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">edited</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dismissed</span><span class="p p-Indicator">]</span><span class="w"></span>
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
 
-<span class="nt">jobs</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">call-workflow</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run the team approval check workflow</span><span class="w"></span>
-<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w"></span>
-<span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/team-approval@main</span><span class="w"></span>
-<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="c1"># Teams with spaces should have double quotes around them or spaces replaced with a &#39;-&#39; or &#39;_&#39;,</span><span class="w"></span>
-<span class="w">          </span><span class="c1"># casing does not matter. i.e. Developer Experience could be listed as &quot;developer experience&quot;</span><span class="w"></span>
-<span class="w">          </span><span class="c1"># or as developer-experience. This will allow proper input handling with the reuseable</span><span class="w"></span>
-<span class="w">          </span><span class="c1"># team-approval action</span><span class="w"></span>
-<span class="w">          </span><span class="c1"># See https://github.com/orgs/GenapsysInc/teams for the available teams for the check</span><span class="w"></span>
-<span class="w">          </span><span class="nt">teams</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;team</span><span class="nv"> </span><span class="s">1&gt;</span><span class="nv"> </span><span class="s">&quot;&lt;team</span><span class="nv"> </span><span class="s">2&gt;&quot;</span><span class="nv"> </span><span class="s">...</span><span class="nv"> </span><span class="s">&lt;team</span><span class="nv"> </span><span class="s">n&gt;&#39;</span><span class="w"></span>
-<span class="w">          </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GH_REST_API_TOKEN }}</span><span class="w"></span>
+jobs:
+  call-workflow:
+    name: Run the team approval check workflow
+    runs-on: ubuntu-latest
+    steps:
+      - uses: GenapsysInc/internal-actions/reusable-actions/team-approval@main
+        with:
+          # Teams with spaces should have double quotes around them or spaces replaced with a &#39;-&#39; or &#39;_&#39;,
+          # casing does not matter. i.e. Developer Experience could be listed as &quot;developer experience&quot;
+          # or as developer-experience. This will allow proper input handling with the reuseable
+          # team-approval action
+          # See https://github.com/orgs/GenapsysInc/teams for the available teams for the check
+          teams: &#39;&lt;team 1&gt; &quot;&lt;team 2&gt;&quot; ... &lt;team n&gt;&#39;
+          token: ${{ secrets.GH_REST_API_TOKEN }}
 </pre></div>
 </div>
 </section>
