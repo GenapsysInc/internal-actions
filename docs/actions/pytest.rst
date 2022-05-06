@@ -8,6 +8,5 @@ PyTest
 Templates
 =========
 
-.. include:: ../../reusable-actions/pytest/template.yml
-   :parser: myst_parser.sphinx_
-   :literal:
+.. literalinclude:: ../../reusable-actions/pytest/template.yml
+   :language: yaml

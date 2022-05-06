@@ -8,6 +8,5 @@ Team Approval
 Templates
 =========
 
-.. include:: ../../reusable-actions/team-approval/template.yml
-   :parser: myst_parser.sphinx_
-   :literal:
+.. literalinclude:: ../../reusable-actions/team-approval/template.yml
+   :language: yaml

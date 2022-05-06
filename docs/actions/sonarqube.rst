@@ -8,6 +8,5 @@ SonarQube
 Templates
 =========
 
-.. include:: ../../reusable-actions/sonarqube/template.yml
-   :parser: myst_parser.sphinx_
-   :literal:
+.. literalinclude:: ../../reusable-actions/sonarqube/template.yml
+   :language: yaml
