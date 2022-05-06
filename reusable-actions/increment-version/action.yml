@@ -45,7 +45,7 @@ runs:
           -r . \
           -j ${{ inputs.json }} \
           ${{ (fromJson(inputs.use-date) && '-d') || '' }}
-    - name: Push new tag to GitHub - only runs when the calling workflow was triggered by a push event
-      if: ${{ github.event_name == 'push' }}
-      shell: bash
-      run: git push --tags
+    # - name: Push new tag to GitHub - only runs when the calling workflow was triggered by a push event
+    #   if: ${{ github.event_name == 'push' }}
+    #   shell: bash
+    #   run: git push --tags
