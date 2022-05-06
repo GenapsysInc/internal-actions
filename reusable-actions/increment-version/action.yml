@@ -22,6 +22,7 @@ runs:
       with:
         fetch-depth: 0
     - name: Pull tags down
+      shell: bash
       run: git fetch origin --tags
     - name: Checkout internal-actions
       uses: actions/checkout@v3
