@@ -26,8 +26,11 @@ jobs:
   increment-version:
     if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
+    outputs:
+      new-version: ${{ steps.increment-version.outputs.new-version }}
     steps:
       - name: Run the increment-version action
+        id: increment-version
         uses: GenapsysInc/internal-actions/reusable-actions/increment-version@workflow_consolidation
         with:
           token: ${{ secrets.GH_REST_API_TOKEN }}
@@ -71,4 +74,5 @@ jobs:
           build_html: true
           publish_html: ${{ github.event_name == 'push' }}
           warn_as_errors: false
+          version: ${{ needs.increment-version.outputs.new-version }}
           api_dirs: action_utils
