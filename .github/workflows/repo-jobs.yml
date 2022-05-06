@@ -58,7 +58,7 @@ jobs:
           language: ${{ matrix.language }}
   doc-build:
     if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
-    name: Run the documentation builder workflow
+    needs: increment-version
     runs-on: ubuntu-latest
     steps:
       - name: Documentation build and publish
