@@ -8,6 +8,5 @@ Submodule Check
 Templates
 =========
 
-.. include:: ../../reusable-actions/submodule-check/template.yml
-   :parser: myst_parser.sphinx_
-   :literal:
+.. literalinclude:: ../../reusable-actions/submodule-check/template.yml
+   :language: yaml
