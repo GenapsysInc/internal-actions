@@ -6,7 +6,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
   schedule:
-    cron: '21 13 * * 2'
+    - cron: '21 13 * * 2'
 
 jobs:
   run-unit-tests:
