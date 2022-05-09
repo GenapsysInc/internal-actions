@@ -34,6 +34,8 @@ jobs:
         uses: GenapsysInc/internal-actions/reusable-actions/increment-version@workflow_consolidation
         with:
           token: ${{ secrets.GH_REST_API_TOKEN }}
+      - name: Check output version?
+        run: echo "${{ steps.increment-version.outputs.new-version }}"
   # sonarqube:
   #   if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
   #   runs-on: ubuntu-latest
@@ -74,5 +76,5 @@ jobs:
           build_html: true
           publish_html: ${{ github.event_name == 'push' }}
           warn_as_errors: false
-          version: "1.0.0"
+          version: ${{ needs.increment-version.outputs.new-version }}
           api_dirs: action_utils
