@@ -53,7 +53,7 @@ runs:
     - name: Set new-version output
       shell: bash
       run: echo "::set-output name=new-version::$(git describe --tags)"
-    - name: Push new tag to GitHub - only runs when the calling workflow was triggered by a push event
+    - name: Push new tag to GitHub - only runs when the calling workflow was triggered by a push event to default branch
       if: ${{ github.event_name == 'push' && github.ref == github.event.repository.default_branch }}
       shell: bash
       run: git push --tags
