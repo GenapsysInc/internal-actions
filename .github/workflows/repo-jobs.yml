@@ -27,10 +27,10 @@ jobs:
     if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     outputs:
-      new-version: ${{ steps.increment-version.outputs.new-version }}
+      new-version: ${{ steps.run-increment-version.outputs.new-version }}
     steps:
       - name: Run the increment-version action
-        id: increment-version
+        id: run-increment-version
         uses: GenapsysInc/internal-actions/reusable-actions/increment-version@main
         with:
           token: ${{ secrets.GH_REST_API_TOKEN }}
