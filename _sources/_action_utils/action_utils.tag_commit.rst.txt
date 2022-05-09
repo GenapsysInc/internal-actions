@@ -1,7 +1,0 @@
-action\_utils.tag\_commit module
-================================
-
-.. automodule:: action_utils.tag_commit
-   :members:
-   :undoc-members:
-   :show-inheritance:
