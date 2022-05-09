@@ -14,6 +14,12 @@ inputs:
     description: Token to checkout internal-actions
     required: true
 
+outputs:
+  new-version:
+    description: The newly tagged version
+    value: ${{ steps.output-new-version.outputs.new-version }}
+
+
 runs:
   using: composite
   steps:
@@ -21,6 +27,9 @@ runs:
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
+    - name: Pull tags down
+      shell: bash
+      run: git fetch origin --tags
     - name: Checkout internal-actions
       uses: actions/checkout@v3
       with:
@@ -42,7 +51,11 @@ runs:
           -r . \
           -j ${{ inputs.json }} \
           ${{ (fromJson(inputs.use-date) && '-d') || '' }}
-    - name: Push new tag to GitHub - only runs when the calling workflow was triggered by a push event
-      if: ${{ github.event_name == 'push' }}
+    - name: Set new-version output
+      id: output-new-version
+      shell: bash
+      run: echo "::set-output name=new-version::$(git describe --tags)"
+    - name: Push new tag to GitHub - only runs when the calling workflow was triggered by a push event to default branch
+      if: ${{ github.event_name == 'push' && github.ref == github.event.repository.default_branch }}
       shell: bash
       run: git push --tags

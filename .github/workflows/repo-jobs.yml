@@ -1,0 +1,78 @@
+name: internal-actions
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  schedule:
+    - cron: '21 13 * * 2'
+
+jobs:
+  run-unit-tests:
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ '3.7', '3.10' ]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Run pytest, Python version ${{ matrix.python-version }}
+        uses: GenapsysInc/internal-actions/reusable-actions/pytest@main
+        with:
+          python-version: ${{ matrix.python-version }}
+          requirements-txt: action_utils/tests/requirements.txt
+  increment-version:
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    outputs:
+      new-version: ${{ steps.run-increment-version.outputs.new-version }}
+    steps:
+      - name: Run the increment-version action
+        id: run-increment-version
+        uses: GenapsysInc/internal-actions/reusable-actions/increment-version@main
+        with:
+          token: ${{ secrets.GH_REST_API_TOKEN }}
+  sonarqube:
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    needs: run-unit-tests
+    steps:
+      - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@main
+        with:
+          token: ${{ secrets.SONAR_TOKEN }}
+          url: ${{ secrets.SONAR_HOST_URL }}
+  codeql:
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' || github.event_name == 'schedule' }}
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [python]
+    steps:
+      - name: Run CodeQL action with language ${{ matrix.language }}
+        uses: GenapsysInc/internal-actions/reusable-actions/codeql@main
+        with:
+          language: ${{ matrix.language }}
+  doc-build:
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
+    needs: increment-version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Documentation build and publish
+        uses: GenapsysInc/internal-actions/reusable-actions/build-docs@main
+        with:
+          token: ${{ secrets.GHCR_TOKEN }}
+          confluence_secret: ${{ secrets.CONFLUENCE_SECRET }}
+          build_confluence: true
+          publish_confluence: ${{ github.event_name == 'push' }}
+          build_html: true
+          publish_html: ${{ github.event_name == 'push' }}
+          warn_as_errors: false
+          version: ${{ needs.increment-version.outputs.new-version }}
+          api_dirs: action_utils

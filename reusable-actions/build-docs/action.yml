@@ -29,6 +29,10 @@ inputs:
     description: "Publish HTML to github pages - boolean"
     required: false
     default: false
+  version:
+    description: "The version string to use for HTML rendering"
+    required: false
+    default: ''
   warn_as_errors:
     description: "Treat warnings raised as errors - boolean"
     required: false
@@ -53,6 +57,7 @@ runs:
                 ${{ (fromJSON(inputs.publish_confluence) && '-p') || '' }} 
                 ${{ (fromJSON(inputs.warn_as_errors) && '-w') || '' }}
                 ${{ (fromJSON(inputs.build_html) && '-m') || '' }}
+                ${{ (inputs.version && '-v') || '' }} ${{ inputs.version }}
     - name: Build GitHub Pages
       if: ${{ fromJSON(inputs.publish_html) && fromJSON(inputs.build_html)}}
       uses: peaceiris/actions-gh-pages@v3

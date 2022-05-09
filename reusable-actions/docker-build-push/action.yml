@@ -73,6 +73,6 @@ runs:
         rm -rf /tmp/.buildx-cache
         mv /tmp/.buildx-cache-new /tmp/.buildx-cache
     - name: Image digest
-      if: ${{ inputs.load }}
+      if: ${{ fromJSON(inputs.load) }}
       shell: bash
       run: echo "${{ steps.docker-build.outputs.digest }}"

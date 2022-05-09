@@ -31,7 +31,10 @@ def tag_current_commit(git_repo: git.repo.base.Repo, new_version: common.Version
     if add_date:
         new_tag = f"{new_tag}-{curr_date}"
 
-    git_repo.create_tag(new_tag, m=new_tag)
+    try:
+        git_repo.create_tag(new_tag, m=new_tag)
+    except git.exc.GitCommandError as gce:
+        raise common.ConfigurationError(f"Could not lay down tag {new_tag} - try pulling main/master") from gce
 
     print(f"Created new tag {new_tag}")
 

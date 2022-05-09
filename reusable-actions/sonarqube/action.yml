@@ -31,4 +31,4 @@ runs:
           -Dsonar.python.coverage.reportPaths=.test-reports/pytest-coverage-report.xml
           -Dsonar.python.xunit.reportPath=.test-reports/pytest-test-report.xml
           -Dsonar.exclusions=.test-reports/**
-          -Dsonar.coverage.exclusions=**/tests/**,**/pytests/**
+          -Dsonar.coverage.exclusions=**/tests/**,**/pytests/**,**/docs/**

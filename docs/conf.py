@@ -11,9 +11,9 @@
 project = 'Internal Actions'
 copyright = '2021, Genapsys'
 
-# The short X.Y version
-version = '0.0.1'
 # The full version, including alpha/beta/rc tags
+version = '0.0.1'
+# The short X.Y version
 release = '1.0'
 
 import os

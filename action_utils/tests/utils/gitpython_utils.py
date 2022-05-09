@@ -6,6 +6,8 @@ __maintainer__ = "David McConnell"
 
 from unittest import mock
 
+import git
+
 
 class MockIterableList(mock.Mock):
     def __init__(self, items):
@@ -71,6 +73,9 @@ class MockGitRepo(mock.Mock):
         return iter(self.submodules)
 
     def create_tag(self, tag_str, m=None):
+        if tag_str in [tag.tag for tag in self.tags]:
+            raise git.exc.GitCommandError(f"Tag {tag_str} already exists")
+
         new_tag = MockGitTag(tag_str, message=m)
 
         self.tags.append(new_tag)

@@ -81,3 +81,12 @@ class TestTagCurrentCommit:
 
         with pytest.raises(common.InvalidVersion):
             tag_commit.tag_current_commit(git_repo, new_version)
+
+    @staticmethod
+    def test_duplicate_version(git_repo):
+        """Test handling of error produced when trying to lay down a tag that already exists"""
+        git_repo.create_tag("2.0.0-1", m="2.0.0-1")
+        new_version = common.VersionTag("2.0.0-1")
+
+        with pytest.raises(common.ConfigurationError):
+            tag_commit.tag_current_commit(git_repo, new_version)
