@@ -11,8 +11,11 @@ on:
 jobs:
   increment-version:
     runs-on: ubuntu-latest
+    outputs:
+      new-version: ${{ steps.run-increment-version.outputs.new-version }}
     steps:
       - name: Run the increment-version action
+        id: run-increment-version
         uses: GenapsysInc/internal-actions/reusable-actions/increment-version@main
         with:
           token: ${{ secrets.GH_REST_API_TOKEN }}
