@@ -27,7 +27,7 @@ jobs:
     if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     outputs:
-      new-version: ${{ steps.increment-version.outputs.new-version }}
+      new-version: ${{ steps.increment-version.outputs.new-version.value }}
     steps:
       - name: Run the increment-version action
         id: increment-version
@@ -35,7 +35,7 @@ jobs:
         with:
           token: ${{ secrets.GH_REST_API_TOKEN }}
       - name: Check output version?
-        run: echo "${{ steps.increment-version.outputs.new-version }}"
+        run: echo "${{ steps.increment-version.outputs.new-version.value }}"
   # sonarqube:
   #   if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
   #   runs-on: ubuntu-latest
