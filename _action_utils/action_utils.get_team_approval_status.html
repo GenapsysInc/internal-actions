@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>action_utils.get_team_approval_status module &mdash; Internal Actions 1.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.js"></script>
+        <script src="../_static/traceability.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="action_utils.tag_commit module" href="action_utils.tag_commit.html" />
+    <link rel="prev" title="action_utils.common module" href="action_utils.common.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Internal Actions
+          </a>
+              <div class="version">
+                1.1.0-1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../actions/build-docs.html">Build Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/codeql.html">CodeQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/docker-build-push.html">Docker Build and Push</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/docker-run.html">Docker Run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/increment-version.html">Increment Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/pytest.html">PyTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/setup-python.html">Setup Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/sonarqube.html">SonarQube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/submodule-check.html">Submodule Check</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/team-approval.html">Team Approval</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">action_utils</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="action_utils.html">action_utils package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="action_utils.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="action_utils.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="action_utils.check_submodule_commits.html">action_utils.check_submodule_commits module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="action_utils.common.html">action_utils.common module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">action_utils.get_team_approval_status module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="action_utils.tag_commit.html">action_utils.tag_commit module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">Internal Actions Releases</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Internal Actions</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">action_utils</a> &raquo;</li>
+          <li><a href="action_utils.html">action_utils package</a> &raquo;</li>
+      <li>action_utils.get_team_approval_status module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_action_utils/action_utils.get_team_approval_status.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-action_utils.get_team_approval_status">
+<span id="action-utils-get-team-approval-status-module"></span><h1>action_utils.get_team_approval_status module<a class="headerlink" href="#module-action_utils.get_team_approval_status" title="Permalink to this headline"></a></h1>
+<p>Determine if a PR has approvals from specific teams</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="action_utils.get_team_approval_status.parse_args">
+<span class="sig-prename descclassname"><span class="pre">action_utils.get_team_approval_status.</span></span><span class="sig-name descname"><span class="pre">parse_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.get_team_approval_status.parse_args" title="Permalink to this definition"></a></dt>
+<dd><p>Parse commandline args</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="action_utils.get_team_approval_status.pr_has_appropriate_reviews">
+<span class="sig-prename descclassname"><span class="pre">action_utils.get_team_approval_status.</span></span><span class="sig-name descname"><span class="pre">pr_has_appropriate_reviews</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">github.MainClass.Github</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pr_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">team_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#action_utils.get_team_approval_status.pr_has_appropriate_reviews" title="Permalink to this definition"></a></dt>
+<dd><p>Given a repository, PR number, and list of teams, determine if the given PR has at least one approval from each
+of the listed teams</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client</strong> – Authenticated Github client</p></li>
+<li><p><strong>repo</strong> – The GitHub repo to inspect</p></li>
+<li><p><strong>pr_num</strong> – The Pull Request number in the given repo</p></li>
+<li><p><strong>team_names</strong> – The list of teams that are required to be approvers</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the PR has appropriate reviews, False if not</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="action_utils.get_team_approval_status.team_member_has_approved_pr">
+<span class="sig-prename descclassname"><span class="pre">action_utils.get_team_approval_status.</span></span><span class="sig-name descname"><span class="pre">team_member_has_approved_pr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">team</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">github.Team.Team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">github.PullRequest.PullRequest</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#action_utils.get_team_approval_status.team_member_has_approved_pr" title="Permalink to this definition"></a></dt>
+<dd><p>Determine if a member of the given team as approved the given pull request</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>team</strong> – The Team in question</p></li>
+<li><p><strong>pull</strong> – The PullRequest in question</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if a member of the given team has approved the PR, False if not</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="action_utils.common.html" class="btn btn-neutral float-left" title="action_utils.common module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="action_utils.tag_commit.html" class="btn btn-neutral float-right" title="action_utils.tag_commit module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Genapsys.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

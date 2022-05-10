@@ -1,0 +1,7 @@
+action\_utils.tests.utils.gitpython\_utils module
+=================================================
+
+.. automodule:: action_utils.tests.utils.gitpython_utils
+   :members:
+   :undoc-members:
+   :show-inheritance:

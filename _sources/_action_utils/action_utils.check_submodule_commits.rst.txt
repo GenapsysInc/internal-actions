@@ -1,0 +1,7 @@
+action\_utils.check\_submodule\_commits module
+==============================================
+
+.. automodule:: action_utils.check_submodule_commits
+   :members:
+   :undoc-members:
+   :show-inheritance:
