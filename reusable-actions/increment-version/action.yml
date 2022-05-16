@@ -41,7 +41,7 @@ runs:
       with:
         repository: genapsysinc/internal-actions
         path: internal-actions
-        ref: repo-config
+        ref: main
         token: ${{ inputs.token }}
     - name: Set up git user based on current action environment
       uses: fregante/setup-git-user@v1
