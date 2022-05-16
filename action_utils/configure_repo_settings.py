@@ -20,7 +20,7 @@ defaults.update({common.REPO_SETTINGS["has_wiki"]: False, common.REPO_SETTINGS["
 
 def check_policy(repo: github.Repository.Repository, policy: dict) -> bool:
     """
-   Compare a series of settings to a GitHub repository
+    Compare a series of settings to a GitHub repository
 
     :param repo: Repository to check
     :param policy: Mapping of settings and values to compare
