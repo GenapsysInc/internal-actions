@@ -20,11 +20,15 @@ def tag_current_commit(git_repo: git.repo.base.Repo, new_version: common.Version
     :param add_date: Append current date to the tag
     :raises common.InvalidVersion: If the new version does not make sense with respect to the current version
     """
-    old_version = common.VersionTag(git_repo.git.describe(tags=True))
 
-    old_version.assert_valid_new_version(new_version)
+    try:
+        old_version = common.VersionTag(git_repo.git.describe(tags=True))
+        old_version.assert_valid_new_version(new_version)
+        new_tag = str(new_version) if new_version > old_version else old_version.get_new_release()
 
-    new_tag = str(new_version) if new_version > old_version else old_version.get_new_release()
+    except git.exc.GitCommandError:
+
+        new_tag = str(new_version)
 
     curr_date = date.today().strftime("%Y-%m-%d")
 
