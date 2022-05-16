@@ -1,0 +1,15 @@
+# This template is intended to be incorporated as a workflow on creation of a new repo as part of a template
+name: init-repo-configuration
+
+on:
+  <your trigger>
+
+jobs:
+  call-workflow:
+    name: Run the initial repo configuration
+    runs-on: ubuntu-latest
+    steps:
+      - uses: GenapsysInc/internal-actions/reusable-actions/repo-configuration@main
+        with:
+          init: true
+          token: ${{ secrets.GH_REST_API_TOKEN }}
