@@ -35,7 +35,7 @@ runs:
     - name: Pull tags down
       shell: bash
       run: git fetch origin --tags
-      if ${{ !inputs.skip-fetch }}
+      if: ${{ !(fromJson(inputs.skip-fetch)) }}
     - name: Checkout internal-actions
       uses: actions/checkout@v3
       with:
