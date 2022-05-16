@@ -21,6 +21,11 @@ RELEASE_VERSION_DELIM = "-"
 SEMANTIC_VERSION_DELIM = "."
 VERSION_TAG_REGEX = re.compile(rf"\d+{SEMANTIC_VERSION_DELIM}\d+{SEMANTIC_VERSION_DELIM}\d+{RELEASE_VERSION_DELIM}\d+")
 
+REPO_SETTINGS = {"has_issues": "has_issues", "allow_rebase_merge": "allow_rebase_merge",
+                 "delete_branch_on_merge": "delete_branch_on_merge", "has_wiki": "has_wiki",
+                 "has_projects": "has_projects", "allow_squash_merge": "allow_squash_merge",
+                 "allow_merge_commit": "allow_merge_commit"}
+
 
 class ConfigurationError(Exception):
     """Should be raised when input arguments are found to be incorrect/invalid"""

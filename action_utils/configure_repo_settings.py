@@ -10,10 +10,12 @@ import github
 from action_utils import common
 
 
-org_repo_policy = {"has_issues": True, "allow_rebase_merge": False, "delete_branch_on_merge": True}
+org_repo_policy = {common.REPO_SETTINGS["has_issues"]: True, common.REPO_SETTINGS["allow_rebase_merge"]: False,
+                   common.REPO_SETTINGS["delete_branch_on_merge"]: True}
 
 defaults = org_repo_policy.copy()
-defaults.update({"has_wiki": False, "has_projects": False, "allow_squash_merge": True, "allow_merge_commit": True})
+defaults.update({common.REPO_SETTINGS["has_wiki"]: False, common.REPO_SETTINGS["has_projects"]: False,
+                 common.REPO_SETTINGS["allow_squash_merge"]: True, common.REPO_SETTINGS["allow_merge_commit"]: True})
 
 
 def check_policy(repo: github.Repository.Repository, policy: dict) -> bool:

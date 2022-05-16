@@ -13,10 +13,6 @@ inputs:
   token:
     description: Token to checkout internal-actions
     required: true
-  skip-fetch:
-    description: skip the tag fetch
-    default: false
-    required: false
 
 
 outputs:
@@ -35,7 +31,6 @@ runs:
     - name: Pull tags down
       shell: bash
       run: git fetch origin --tags
-      if: ${{ !(fromJson(inputs.skip-fetch)) }}
     - name: Checkout internal-actions
       uses: actions/checkout@v3
       with:
