@@ -26,6 +26,11 @@ REPO_SETTINGS = {"has_issues": "has_issues", "allow_rebase_merge": "allow_rebase
                  "has_projects": "has_projects", "allow_squash_merge": "allow_squash_merge",
                  "allow_merge_commit": "allow_merge_commit"}
 
+BRANCH_PROTECTION = {"require_code_owner_reviews": "require_code_owner_reviews",
+                     "dismiss_stale_reviews": "dismiss_stale_reviews",
+                     "required_approving_review_count": "required_approving_review_count",
+                     "require_branches_uptodate": "strict", "required_passing_checks": "contexts"}
+
 
 class ConfigurationError(Exception):
     """Should be raised when input arguments are found to be incorrect/invalid"""
