@@ -11,5 +11,5 @@ jobs:
     steps:
       - uses: GenapsysInc/internal-actions/reusable-actions/repo-configuration@main
         with:
-          init: true
+          initialize: true
           token: ${{ secrets.GH_REST_API_TOKEN }}

@@ -79,6 +79,6 @@ if __name__ == "__main__":
         policy_match = check_policy(target_repo, org_repo_policy)
 
     if not policy_match:
-        sys.exit(0)
+        sys.exit(1)
 
-    sys.exit(1)
+    sys.exit(0)
