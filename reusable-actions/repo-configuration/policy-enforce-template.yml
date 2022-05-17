@@ -1,0 +1,16 @@
+# This template is intended to be incorporated as a workflow to do regular checks for a repo
+name: repo-policy-enforcement
+
+on:
+  schedule:
+    interval: "weekly"
+
+jobs:
+  call-workflow:
+    name: Run the repo configuration check and policy enforcement
+    runs-on: ubuntu-latest
+    steps:
+      - uses: GenapsysInc/internal-actions/reusable-actions/repo-configuration@main
+        with:
+          enforce_policy: true
+          token: ${{ secrets.GH_REST_API_TOKEN }}

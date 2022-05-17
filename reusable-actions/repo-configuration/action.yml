@@ -1,0 +1,44 @@
+name: repo-config-check
+description: Configure and check repo against policy
+
+inputs:
+  initialize:
+    description: "Configure and setup a new repo or return to org defaults"
+    default: false
+    required: false
+  enforce_policy:
+    description: "Enforce policy on repo to correct any policy violations"
+    default: false
+    required: false
+  disable_action:
+    description: "Upon completion disable action for a one and done workflow"
+    default: false
+    required: false
+  token:
+    description: "Github token for authentication to REST API"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        repository: genapsysinc/internal-actions
+        path: internal-actions
+        ref: main
+        token: ${{ inputs.token }}
+    - name: Set up Python 3.10 and install dependencies
+      uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main
+      with:
+        requirements-txt: 'internal-actions/action_utils/requirements.txt'
+    - name: Run configure_repo_settings.py with input args
+      shell: bash
+      run: |
+        export PYTHONPATH="`pwd`/internal-actions"
+        python internal-actions/action_utils/configure_repo_settings.py \
+          -s ${{ inputs.token }} \
+          -r ${{ github.event.repository.name }} \
+          ${{ (fromJSON(inputs.initialize) && '--init') || '' }} \
+          ${{ (fromJSON(inputs.enforce_policy) && '--enforce') || '' }} \
+          --disable ${{ (fromJSON(inputs.disable_action) && github.run_id) || '0' }}
