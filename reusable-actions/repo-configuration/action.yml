@@ -10,6 +10,10 @@ inputs:
     description: "Enforce policy on repo to correct any policy violations"
     default: false
     required: false
+  disable_action:
+    description: "Upon completion disable action for a one and done workflow"
+    default: false
+    required: false
   token:
     description: "Github token for authentication to REST API"
     required: true
@@ -28,7 +32,7 @@ runs:
       uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main
       with:
         requirements-txt: 'internal-actions/action_utils/requirements.txt'
-    - name: Run get_team_approval_status.py with input args
+    - name: Run configure_repo_settings.py with input args
       shell: bash
       run: |
         export PYTHONPATH="`pwd`/internal-actions"
@@ -37,3 +41,4 @@ runs:
           -r ${{ github.event.repository.name }} \
           ${{ (fromJSON(inputs.initialize) && '--init') || '' }} \
           ${{ (fromJSON(inputs.enforce_policy) && '--enforce') || '' }}
+          ${{ (fromJSON(inputs.disable_action) && '--disable ${{github.run_id}}') || '' }}

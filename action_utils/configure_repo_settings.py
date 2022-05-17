@@ -69,6 +69,12 @@ def setup_repo(connection: GhApi, settings: dict, branch_protections: dict = Non
     connection.repos.update(description=pages_url)
 
 
+def disable_action(connection: GhApi, run_id: str) -> None:
+
+    work_id = connection.actions.get_workflow_run(run_id)["workflow_id"]
+    connection.actions.disable_workflow(workflow_id=work_id)
+
+
 def parse_args():
     """Parse commandline args"""
 
@@ -81,7 +87,7 @@ def parse_args():
                         help="Print API preview calls for debugging")
     parser.add_argument("-f", "--enforce", required=False, default=False, action='store_true',
                         help="Enforce policy if repository has violations")
-
+    parser.add_argument("--disable", required=False, help="Disable the action calling this - Only for GH Action calls")
     return parser.parse_args()
 
 
@@ -102,6 +108,9 @@ if __name__ == "__main__":
         print("Policy violations found. Resetting to current policy")
         setup_repo(api, org_repo_policy, default_branch_protections)
         policy_match = check_policy(api, org_repo_policy)
+
+    if opts.disable:
+        disable_action(api, opts.disable)
 
     if not policy_match:
         sys.exit(1)
