@@ -24,7 +24,7 @@ VERSION_TAG_REGEX = re.compile(rf"\d+{SEMANTIC_VERSION_DELIM}\d+{SEMANTIC_VERSIO
 REPO_SETTINGS = {"has_issues": "has_issues", "allow_rebase_merge": "allow_rebase_merge",
                  "delete_branch_on_merge": "delete_branch_on_merge", "has_wiki": "has_wiki",
                  "has_projects": "has_projects", "allow_squash_merge": "allow_squash_merge",
-                 "allow_merge_commit": "allow_merge_commit"}
+                 "allow_merge_commit": "allow_merge_commit", "allow_auto_merge": "allow_auto_merge"}
 
 BRANCH_PROTECTION = {"require_code_owner_reviews": "require_code_owner_reviews",
                      "dismiss_stale_reviews": "dismiss_stale_reviews",

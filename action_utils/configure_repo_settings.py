@@ -15,7 +15,8 @@ org_repo_policy = {common.REPO_SETTINGS["has_issues"]: True, common.REPO_SETTING
 
 defaults = org_repo_policy.copy()
 defaults.update({common.REPO_SETTINGS["has_wiki"]: False, common.REPO_SETTINGS["has_projects"]: False,
-                 common.REPO_SETTINGS["allow_squash_merge"]: True, common.REPO_SETTINGS["allow_merge_commit"]: True})
+                 common.REPO_SETTINGS["allow_squash_merge"]: True, common.REPO_SETTINGS["allow_merge_commit"]: True,
+                 common.REPO_SETTINGS["allow_auto_merge"]: True})
 
 default_branch_protections = {common.BRANCH_PROTECTION["enforce_admins"]: False,
                               common.BRANCH_PROTECTION["required_conversation_resolution"]: True,
