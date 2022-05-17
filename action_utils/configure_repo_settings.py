@@ -9,9 +9,9 @@ from ghapi.all import GhApi, print_summary
 
 from action_utils import common
 
-# TODO: figure out why the policy won't correct itself - likely missing a required setting in the blob
 org_repo_policy = {common.REPO_SETTINGS["has_issues"]: True, common.REPO_SETTINGS["allow_rebase_merge"]: False,
-                   common.REPO_SETTINGS["delete_branch_on_merge"]: True}
+                   common.REPO_SETTINGS["delete_branch_on_merge"]: True,
+                   common.REPO_SETTINGS["allow_squash_merge"]: True}
 
 defaults = org_repo_policy.copy()
 defaults.update({common.REPO_SETTINGS["has_wiki"]: False, common.REPO_SETTINGS["has_projects"]: False,
