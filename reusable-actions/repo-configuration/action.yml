@@ -26,7 +26,7 @@ runs:
       with:
         repository: genapsysinc/internal-actions
         path: internal-actions
-        ref: main
+        ref: repo-config
         token: ${{ inputs.token }}
     - name: Set up Python 3.10 and install dependencies
       uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main
@@ -41,4 +41,4 @@ runs:
           -r ${{ github.event.repository.name }} \
           ${{ (fromJSON(inputs.initialize) && '--init') || '' }} \
           ${{ (fromJSON(inputs.enforce_policy) && '--enforce') || '' }}
-          ${{ (fromJSON(inputs.disable_action) && '--disable ${{github.run_id}}') || '' }}
+          ${{ (fromJSON(inputs.disable_action) && '--disable ' ${{github.run_id}}) || '' }}
