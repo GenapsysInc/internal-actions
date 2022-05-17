@@ -28,8 +28,13 @@ REPO_SETTINGS = {"has_issues": "has_issues", "allow_rebase_merge": "allow_rebase
 
 BRANCH_PROTECTION = {"require_code_owner_reviews": "require_code_owner_reviews",
                      "dismiss_stale_reviews": "dismiss_stale_reviews",
+                     "required_conversation_resolution": "required_conversation_resolution",
                      "required_approving_review_count": "required_approving_review_count",
-                     "require_branches_uptodate": "strict", "required_passing_checks": "contexts"}
+                     "enforce_admins": "enforce_admins",
+                     "required_pull_request_reviews": "required_pull_request_reviews",
+                     "restrictions": "restrictions",
+                     "require_branches_uptodate": "strict", "required_passing_checks": "contexts",
+                     "required_status_checks": "required_status_checks"}
 
 
 class ConfigurationError(Exception):
