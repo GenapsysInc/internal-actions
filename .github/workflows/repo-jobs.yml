@@ -34,6 +34,15 @@ jobs:
         uses: GenapsysInc/internal-actions/reusable-actions/increment-version@main
         with:
           token: ${{ secrets.GH_REST_API_TOKEN }}
+      - name: Protect tag
+        if: ${{ github.event_name == 'push' && github.ref_name == github.event.repository.default_branch }}
+        shell: bash
+        run: |
+          curl -u ${{ secrets.GH_REST_API_TOKEN }:x-oauth-basic -X POST -d '{"pattern": \
+          ${{ needs.increment-version.outputs.new-version }}}'  -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/Genapsysinc/internal-actions/tags/protection
+          
+
   sonarqube:
     if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
