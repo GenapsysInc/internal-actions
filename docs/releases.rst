@@ -2,6 +2,13 @@
 Internal Actions Releases
 #########################
 
+
+*****
+1.2.0
+*****
+
+  * Added ``repo-configuration`` action
+
 *****
 1.1.0
 *****
