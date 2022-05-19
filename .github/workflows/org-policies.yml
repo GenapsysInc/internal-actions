@@ -1,0 +1,22 @@
+name: Org Policies Reusable Workflow
+
+on:
+  workflow_call
+
+jobs:
+  fork-check:
+    if: ${{ github.event_name == 'pull_request' }}
+    name: Fork Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run the fork-check action
+        uses: GenapsysInc/internal-actions/reusable-actions/fork-check@main
+  repo-config:
+    if: ${{ github.event_name == 'schedule' }}
+    name: Repo Configuration
+    runs-on: ubuntu-latest
+    steps:
+      - uses: GenapsysInc/internal-actions/reusable-actions/repo-configuration@main
+        with:
+          enforce_policy: true
+          token: ${{ secrets.GH_REST_API_TOKEN }}
