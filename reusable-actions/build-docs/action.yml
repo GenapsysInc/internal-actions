@@ -44,6 +44,7 @@ runs:
     - name: Checkout calling repo
       uses: actions/checkout@v3
       with:
+        token: ${{ inputs.token }}
         submodules: recursive
     - name: Run docbuilder
       uses: GenapsysInc/internal-actions/reusable-actions/docker-run@main
