@@ -1,0 +1,55 @@
+name: fork-check
+description: Assert base and head refs in a PR are in the GenapsysInc fork of the repository
+
+runs:
+  using: composite
+  steps:
+    - name: Base ref pass, head ref fail
+      if: ${{ contains(github.base_ref, 'GenapsysInc') && !contains(github.head_ref, 'GenapsysInc') }}
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ github.token }}
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: 'Head branch found to be in a separate fork'
+          })
+    - name: Base ref fail, head ref pass
+      if: ${{ !contains(github.base_ref, 'GenapsysInc') && contains(github.head_ref, 'GenapsysInc') }}
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ github.token }}
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: 'Base branch found to be in a separate fork'
+          })
+    - name: Base ref fail, head ref fail
+      if: ${{ !contains(github.base_ref, 'GenapsysInc') && !contains(github.head_ref, 'GenapsysInc') }}
+    - name: Base ref pass, head ref pass
+      if: ${{ contains(github.base_ref, 'GenapsysInc') && contains(github.head_ref, 'GenapsysInc') }}
+
+    - name: Head ref assertion
+      if: ${{ !contains(github.head_ref), 'GenapsysInc' }}
+      run: |
+        echo "Head ref for pull request was not GenapsysInc - failing fork check"
+        exit 1
+    - name: Base ref assertion
+      if: ${{ !contains(github.base_ref), 'GenapsysInc' }}
+      run: |
+        echo "Base ref for pull request was not GenapsysInc - failing fork check"
+
+    - uses: actions/github-script@v5
+      with:
+        github-token: ${{ github.token }}
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: ''
+          })
