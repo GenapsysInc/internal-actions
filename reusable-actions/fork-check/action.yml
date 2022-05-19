@@ -11,7 +11,7 @@ runs:
   using: composite
   steps:
     - name: Base ref pass, head ref fail
-      if: ${{ !contains(github.event.pull_request.head.label, 'GenapsysInc') }}
+      if: ${{ !contains(github.event.pull_request.head.label, 'GenapsysInc') && !fromJSON(inputs.close-pull) }}
       uses: actions/github-script@v6
       with:
         github-token: ${{ github.token }}
@@ -30,6 +30,15 @@ runs:
       with:
         github-token: ${{ github.token }}
         script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `Pull Request head branch \`${{ github.event.pull_request.head.label }}\` is not owned by the Organization user
+
+          Use of private forks has been deprecated - this pull request will be closed`
+          })
+
           github.rest.pulls.update({
             pull_number: context.issue.number,
             owner: context.repo.owner,
