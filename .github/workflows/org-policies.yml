@@ -15,6 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run the fork-check action
-        uses: dvmcconnell/internal-actions/reusable-actions/fork-check@fork-check
+        uses: GenapsysInc/internal-actions/reusable-actions/fork-check@fork-check
         with:
-          close-pull: true
+          close-pull: false
