@@ -7,8 +7,8 @@ runs:
       - name: Check contexts
         shell: bash
         run: |
-          echo "${{ github.event.head.label }}"
-          echo "${{ github.event.base.label }}"
+          echo "${{ github.event.pull_request.head.label }}"
+          echo "${{ github.event.pull_request.base.label }}"
     # - name: Base ref pass, head ref fail
     #   if: ${{ contains(github.event.base_ref, 'GenapsysInc') && !contains(github.head_ref, 'GenapsysInc') }}
     #   uses: actions/github-script@v6
