@@ -70,7 +70,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Documentation build and publish
-        uses: GenapsysInc/internal-actions/reusable-actions/build-docs@main
+        uses: GenapsysInc/internal-actions/reusable-actions/build-docs@test_submodule_checkout
         with:
           token: ${{ secrets.GHCR_TOKEN }}
           confluence_secret: ${{ secrets.CONFLUENCE_SECRET }}
