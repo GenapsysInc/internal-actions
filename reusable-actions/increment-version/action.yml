@@ -69,5 +69,5 @@ runs:
       run: |
         curl -u ${{inputs.token}}:x-oauth-basic -X POST -d '{"pattern": ${{ steps.output-new-version.outputs.new-version }}}' \
         -H "Accept: application/vnd.github.v3+json" \
-        https://api.github.com/repos/${{ env.GITHUB_REPOSITORY_OWNER }}/${{ github.event.repository.name }}/tags/protection
+        https://api.github.com/repos/${{ github.GITHUB_REPOSITORY_OWNER }}/${{ github.event.repository.name }}/tags/protection
         
