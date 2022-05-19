@@ -7,7 +7,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
   schedule:
-    - cron: '21 13 * * 2'
+    - cron: '0 16 * * *'
   workflow_call: {}
 
 jobs:
@@ -15,23 +15,5 @@ jobs:
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Head ref assertion
-        if: ${{ !contains(github.head_ref), 'GenapsysInc' }}
-        run: |
-          echo "Head ref for pull request was not GenapsysInc - failing fork check"
-          exit 1
-      - name: Base ref assertion
-        if: ${{ !contains(github.base_ref), 'GenapsysInc' }}
-        run: |
-          echo "Base ref for pull request was not GenapsysInc - failing fork check"
-
-      - uses: actions/github-script@v5
-        with:
-          github-token: ${{ github.token }}
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '👋 Thanks for reporting!'
-            })
+      - name: Run the fork-check action
+        uses: GenapsysInc/internal-actions/reusable-actions/increment-version@fork-check
