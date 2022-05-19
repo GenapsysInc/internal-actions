@@ -10,4 +10,4 @@ on:
 
 jobs:
   run-jobs:
-    uses: GenapsysInc/internal-actions/.github/workflows/org-policies.yml@fork-check
+    uses: GenapsysInc/internal-actions/.github/workflows/org-policies.yml@main
