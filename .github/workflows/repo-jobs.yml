@@ -2,7 +2,7 @@ name: internal-actions
 
 on:
   push:
-    branches: [main]
+    branches: [main, test_submodule_checkout]
   pull_request:
     types: [opened, synchronize]
   schedule:
@@ -75,8 +75,8 @@ jobs:
           token: ${{ secrets.GHCR_TOKEN }}
           confluence_secret: ${{ secrets.CONFLUENCE_SECRET }}
           build_confluence: true
-          publish_confluence: ${{ github.event_name == 'push' }}
+          publish_confluence: false
           build_html: true
-          publish_html: ${{ github.event_name == 'push' }}
+          publish_html: true
           warn_as_errors: false
           api_dirs: action_utils Haiku
