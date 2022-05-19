@@ -43,6 +43,8 @@ runs:
   steps:
     - name: Checkout calling repo
       uses: actions/checkout@v3
+      with:
+        submodules: recursive
     - name: Run docbuilder
       uses: GenapsysInc/internal-actions/reusable-actions/docker-run@main
       with:
