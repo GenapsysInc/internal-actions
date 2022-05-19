@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run the fork-check action
-        uses: GenapsysInc/internal-actions/reusable-actions/fork-check@fork-check
+        uses: GenapsysInc/internal-actions/reusable-actions/fork-check@main
   repo-config:
     if: ${{ github.event_name == 'schedule' }}
     runs-on: ubuntu-latest
