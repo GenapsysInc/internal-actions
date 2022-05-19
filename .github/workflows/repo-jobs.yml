@@ -79,4 +79,4 @@ jobs:
           build_html: true
           publish_html: ${{ github.event_name == 'push' }}
           warn_as_errors: false
-          api_dirs: action_utils
+          api_dirs: action_utils Haiku
