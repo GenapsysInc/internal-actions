@@ -6,4 +6,4 @@ on:
 
 jobs:
   run-org-policies:
-    uses: GenapsysInc/internal-actions/.github/workflows/org-policies@fork-check
+    uses: GenapsysInc/internal-actions/.github/workflows/org-policies.yml@fork-check
