@@ -11,7 +11,7 @@ on:
 
 jobs:
   fork-check:
-    if: ${{ github.event_name == 'pull_request' && contains(fromJSON('["opened", "reopened"]'), github.event.action) }}
+    if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
       - name: Run the fork-check action

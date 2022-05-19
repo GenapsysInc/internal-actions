@@ -11,7 +11,7 @@ runs:
   using: composite
   steps:
     - name: Fork deprecation comment
-      if: ${{ !contains(github.event.pull_request.head.label, 'GenapsysInc') && !fromJSON(inputs.close-pull) }}
+      if: ${{ contains(fromJSON('["opened", "reopened"]'), github.event.action) && !contains(github.event.pull_request.head.label, 'GenapsysInc') && !fromJSON(inputs.close-pull) }}
       uses: actions/github-script@v6
       with:
         github-token: ${{ github.token }}
@@ -25,7 +25,7 @@ runs:
           Use of private forks has been deprecated and will be strictly enforced starting **July 1st, 2022**`
           })
     - name: Close PR
-      if: ${{ !contains(github.event.pull_request.head.label, 'GenapsysInc') && fromJSON(inputs.close-pull) }}
+      if: ${{ contains(fromJSON('["opened", "reopened"]'), github.event.action) && !contains(github.event.pull_request.head.label, 'GenapsysInc') && fromJSON(inputs.close-pull) }}
       uses: actions/github-script@v6
       with:
         github-token: ${{ github.token }}
