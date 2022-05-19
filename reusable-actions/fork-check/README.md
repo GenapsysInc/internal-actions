@@ -1,0 +1,3 @@
+# fork-check
+
+This action asserts that the head branch of a given pull request is from the GenapsysInc fork of the repository as opposed to some other private fork. This action is being create to support the eventual deprecation of forks as an organization policy in GitHub. If the head branch is found to be in another fork, a warning message will be commented on the pull request. Optionally (with the intent of full deprecation in the future), a `close-pull` flag may be given as true to cause github-actions to close the pull request in addition to commenting. This action is intended to be used as part of the org-wide policy checks reusable workflow in internal-actions.

@@ -1,0 +1,14 @@
+name: Fork Check
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  fork-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run the fork-check action
+        uses: GenapsysInc/internal-actions/reusable-actions/fork-check@main
+        with:
+          close-pull: <true|false> to leave PR open or close it
