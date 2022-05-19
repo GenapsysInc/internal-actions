@@ -1,0 +1,3 @@
+[submodule "Haiku"]
+	path = Haiku
+	url = git@github.com:GenapsysInc/Haiku.git
