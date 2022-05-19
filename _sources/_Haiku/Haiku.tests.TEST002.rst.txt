@@ -1,7 +1,0 @@
-Haiku.tests.TEST002 module
-==========================
-
-.. automodule:: Haiku.tests.TEST002
-   :members:
-   :undoc-members:
-   :show-inheritance:
