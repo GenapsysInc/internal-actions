@@ -17,4 +17,4 @@ jobs:
       - name: Run the fork-check action
         uses: GenapsysInc/internal-actions/reusable-actions/fork-check@fork-check
         with:
-          close-pull: true
+          close-pull: false
