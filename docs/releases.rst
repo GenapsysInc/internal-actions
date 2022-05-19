@@ -2,6 +2,13 @@
 Internal Actions Releases
 #########################
 
+*****
+1.3.0
+*****
+
+  * Adds the ``fork-check`` action
+  * Adds the ``org-policies.yml`` reusable workflow with the intent to be used to apply org-wide policies to repositories throughout the organization. This workflow current runs the ``fork-check`` and ``repo-configuration`` actions when called, with conditional logic to determine flow based on the triggering event.
+  * Adds ``run-org-policies.yml`` to run ``org-policies.yml`` within internal-actions
 
 *****
 1.2.0
