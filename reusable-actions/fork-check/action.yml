@@ -22,5 +22,5 @@ runs:
             repo: context.repo.repo,
             body: `Pull Request head branch \`${{ github.event.pull_request.head.label }}\` is not owned by Organization user
 
-              Use of private forks has been deprecated and will be strictly enforced starting **July 1st, 2022**`
+          Use of private forks has been deprecated and will be strictly enforced starting **July 1st, 2022**`
           })
