@@ -34,5 +34,6 @@ runs:
             pull_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            state: 'closed'
+            state: 'closed',
+            maintainer_can_modify: false
           })
