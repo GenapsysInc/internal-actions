@@ -10,5 +10,5 @@ on:
 
 jobs:
   run-jobs:
-    name: Run Jobs
+    name: Org Policy Check
     uses: GenapsysInc/internal-actions/.github/workflows/org-policies.yml@main
