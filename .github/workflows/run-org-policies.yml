@@ -1,0 +1,9 @@
+name: Test running of org policies as a reusable workflow
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  run-org-policies:
+    uses: GenapsysInc/internal-actions/.github/workflows/org-policies@fork-check
