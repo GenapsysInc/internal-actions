@@ -16,3 +16,5 @@ jobs:
     steps:
       - name: Run the fork-check action
         uses: dvmcconnell/internal-actions/reusable-actions/fork-check@fork-check
+        with:
+          close-pull: true
