@@ -33,6 +33,7 @@ jobs:
         id: run-increment-version
         uses: GenapsysInc/internal-actions/reusable-actions/increment-version@main
         with:
+          protect-tag: true
           token: ${{ secrets.GH_REST_API_TOKEN }}
   sonarqube:
     if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}

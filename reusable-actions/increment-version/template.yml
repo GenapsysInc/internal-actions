@@ -21,3 +21,4 @@ jobs:
           token: ${{ secrets.GH_REST_API_TOKEN }}
           json: <path/to/repo-data.json>
           use-date: <true|false>, append date string to generated version tag
+          protect-tag: <true|false>, protect the generated tag in GitHub
