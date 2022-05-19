@@ -5,8 +5,8 @@ on:
     branches: [main]
   pull_request:
     types: [opened, synchronize, reopened]
-  schedule:
-    - cron: '0 16 * * *'
+  # schedule:
+  #   - cron: '0 16 * * *'  # Turn on when something using a schedule is added
   workflow_call: {}
 
 jobs:

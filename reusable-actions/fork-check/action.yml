@@ -1,5 +1,5 @@
 name: fork-check
-description: Assert base and head refs in a PR are in the GenapsysInc fork of the repository
+description: Assert the head branch of a PR is in the GenapsysInc fork of the repository
 
 inputs:
   close-pull:
