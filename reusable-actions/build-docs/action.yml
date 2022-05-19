@@ -62,7 +62,7 @@ runs:
                 ${{ (fromJSON(inputs.warn_as_errors) && '-w') || '' }}
                 ${{ (fromJSON(inputs.build_html) && '-m') || '' }}
                 ${{ (inputs.version && '-v') || '' }} ${{ inputs.version }}
-                ${{ (inputs.build_options && '-u " ') || '' }}  ${{ inputs.build_options }} ${{ (inputs.build_options && ' "') || '' }}
+                ${{ (inputs.build_options && '-u "') || '' }} ${{ inputs.build_options }} ${{ (inputs.build_options && '"') || '' }}
     - name: Build GitHub Pages
       if: ${{ fromJSON(inputs.publish_html) && fromJSON(inputs.build_html)}}
       uses: peaceiris/actions-gh-pages@v3
