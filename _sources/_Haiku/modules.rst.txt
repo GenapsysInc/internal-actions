@@ -1,0 +1,6 @@
+Haiku
+=====
+
+.. toctree::
+   :maxdepth: 4
+
