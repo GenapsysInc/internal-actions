@@ -1,0 +1,7 @@
+Haiku.code.dummy module
+=======================
+
+.. automodule:: Haiku.code.dummy
+   :members:
+   :undoc-members:
+   :show-inheritance:

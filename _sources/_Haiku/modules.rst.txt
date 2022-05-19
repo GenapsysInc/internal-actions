@@ -4,3 +4,4 @@ Haiku
 .. toctree::
    :maxdepth: 4
 
+   Haiku
