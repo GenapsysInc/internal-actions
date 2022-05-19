@@ -14,7 +14,7 @@ runs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: 'Head branch found to be in a separate fork'
+            body: 'Head branch ${{ github.head_ref }} found to be in a separate fork'
           })
     - name: Base ref fail, head ref pass
       if: ${{ !contains(github.base_ref, 'GenapsysInc') && contains(github.head_ref, 'GenapsysInc') }}
@@ -26,24 +26,11 @@ runs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: 'Base branch found to be in a separate fork'
+            body: 'Base branch ${{ github.base_ref }} found to be in a separate fork'
           })
     - name: Base ref fail, head ref fail
       if: ${{ !contains(github.base_ref, 'GenapsysInc') && !contains(github.head_ref, 'GenapsysInc') }}
-    - name: Base ref pass, head ref pass
-      if: ${{ contains(github.base_ref, 'GenapsysInc') && contains(github.head_ref, 'GenapsysInc') }}
-
-    - name: Head ref assertion
-      if: ${{ !contains(github.head_ref), 'GenapsysInc' }}
-      run: |
-        echo "Head ref for pull request was not GenapsysInc - failing fork check"
-        exit 1
-    - name: Base ref assertion
-      if: ${{ !contains(github.base_ref), 'GenapsysInc' }}
-      run: |
-        echo "Base ref for pull request was not GenapsysInc - failing fork check"
-
-    - uses: actions/github-script@v5
+      uses: actions/github-script@v5
       with:
         github-token: ${{ github.token }}
         script: |
@@ -51,5 +38,9 @@ runs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: ''
+            body: 'Base branch ${{ github.base_ref }} and head branch ${{ github.head_ref }}found to be in separate forks'
           })
+    - name: Base ref pass, head ref pass
+      if: ${{ contains(github.base_ref, 'GenapsysInc') && contains(github.head_ref, 'GenapsysInc') }}
+      run: |
+        echo "Base and head branches passed fork check"
