@@ -7,8 +7,8 @@ runs:
       - name: Check contexts
         shell: bash
         run: |
-          echo ${{ github.event.head.label }}
-          echo ${{ github.event.base.label }}
+          echo "${{ github.event.head.label }}"
+          echo "${{ github.event.base.label }}"
     # - name: Base ref pass, head ref fail
     #   if: ${{ contains(github.event.base_ref, 'GenapsysInc') && !contains(github.head_ref, 'GenapsysInc') }}
     #   uses: actions/github-script@v6
@@ -45,8 +45,8 @@ runs:
     #         repo: context.repo.repo,
     #         body: 'Base branch ${{ github.base_ref }} and head branch ${{ github.head_ref }} found to be in separate forks'
     #       })
-    - name: Base ref pass, head ref pass
-      if: ${{ contains(github.base_ref, 'GenapsysInc') && contains(github.head_ref, 'GenapsysInc') }}
-      shell: bash
-      run: |
-        echo "Base and head branches passed fork check"
+    # - name: Base ref pass, head ref pass
+    #   if: ${{ contains(github.base_ref, 'GenapsysInc') && contains(github.head_ref, 'GenapsysInc') }}
+    #   shell: bash
+    #   run: |
+    #     echo "Base and head branches passed fork check"
