@@ -1,5 +1,4 @@
 name: Org Policies
-description: GenapsysInc Org-Wide GitHub Policies
 
 on:
   push:
@@ -17,3 +16,5 @@ jobs:
     steps:
       - name: Run the fork-check action
         uses: GenapsysInc/internal-actions/reusable-actions/increment-version@fork-check
+
+
