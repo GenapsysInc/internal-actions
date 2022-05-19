@@ -42,5 +42,6 @@ runs:
           })
     - name: Base ref pass, head ref pass
       if: ${{ contains(github.base_ref, 'GenapsysInc') && contains(github.head_ref, 'GenapsysInc') }}
+      shell: bash
       run: |
         echo "Base and head branches passed fork check"
