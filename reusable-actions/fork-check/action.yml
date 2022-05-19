@@ -1,52 +1,26 @@
 name: fork-check
 description: Assert base and head refs in a PR are in the GenapsysInc fork of the repository
 
+inputs:
+  fail-check:
+    description: Fail the calling workflow's status check
+    default: false
+    required: false
+
 runs:
   using: composite
   steps:
-      - name: Check contexts
-        shell: bash
-        run: |
-          echo "${{ github.event.pull_request.head.label }}"
-          echo "${{ github.event.pull_request.base.label }}"
-    # - name: Base ref pass, head ref fail
-    #   if: ${{ contains(github.event.base_ref, 'GenapsysInc') && !contains(github.head_ref, 'GenapsysInc') }}
-    #   uses: actions/github-script@v6
-    #   with:
-    #     github-token: ${{ github.token }}
-    #     script: |
-    #       github.rest.issues.createComment({
-    #         issue_number: context.issue.number,
-    #         owner: context.repo.owner,
-    #         repo: context.repo.repo,
-    #         body: 'Head branch ${{ github.head_ref }} found to be in a separate fork'
-    #       })
-    # - name: Base ref fail, head ref pass
-    #   if: ${{ !contains(github.base_ref, 'GenapsysInc') && contains(github.head_ref, 'GenapsysInc') }}
-    #   uses: actions/github-script@v6
-    #   with:
-    #     github-token: ${{ github.token }}
-    #     script: |
-    #       github.rest.issues.createComment({
-    #         issue_number: context.issue.number,
-    #         owner: context.repo.owner,
-    #         repo: context.repo.repo,
-    #         body: 'Base branch ${{ github.base_ref }} found to be in a separate fork'
-    #       })
-    # - name: Base ref fail, head ref fail
-    #   if: ${{ !contains(github.base_ref, 'GenapsysInc') && !contains(github.head_ref, 'GenapsysInc') }}
-    #   uses: actions/github-script@v6
-    #   with:
-    #     github-token: ${{ github.token }}
-    #     script: |
-    #       github.rest.issues.createComment({
-    #         issue_number: context.issue.number,
-    #         owner: context.repo.owner,
-    #         repo: context.repo.repo,
-    #         body: 'Base branch ${{ github.base_ref }} and head branch ${{ github.head_ref }} found to be in separate forks'
-    #       })
-    # - name: Base ref pass, head ref pass
-    #   if: ${{ contains(github.base_ref, 'GenapsysInc') && contains(github.head_ref, 'GenapsysInc') }}
-    #   shell: bash
-    #   run: |
-    #     echo "Base and head branches passed fork check"
+    - name: Base ref pass, head ref fail
+      if: ${{ !contains(github.event.pull_request.head.label, 'GenapsysInc') }}
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ github.token }}
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `Pull Request head branch ${{ github.event.pull_request.head.label }} is not owned by Organization user'
+
+                   Use of private forks has been deprecated and will be strictly enforced starting **July 1st, 2022**`
+          })
