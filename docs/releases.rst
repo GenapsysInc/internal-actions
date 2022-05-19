@@ -2,6 +2,15 @@
 Internal Actions Releases
 #########################
 
+
+*****
+1.2.0
+*****
+
+  * Adds ``repo-configuration`` action
+  * Adds ``protect-tag`` option to ``increment-version`` action to protect the created tag from deletion or modification
+
+
 *****
 1.1.0
 *****

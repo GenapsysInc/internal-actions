@@ -21,6 +21,21 @@ RELEASE_VERSION_DELIM = "-"
 SEMANTIC_VERSION_DELIM = "."
 VERSION_TAG_REGEX = re.compile(rf"\d+{SEMANTIC_VERSION_DELIM}\d+{SEMANTIC_VERSION_DELIM}\d+{RELEASE_VERSION_DELIM}\d+")
 
+REPO_SETTINGS = {"has_issues": "has_issues", "allow_rebase_merge": "allow_rebase_merge",
+                 "delete_branch_on_merge": "delete_branch_on_merge", "has_wiki": "has_wiki",
+                 "has_projects": "has_projects", "allow_squash_merge": "allow_squash_merge",
+                 "allow_merge_commit": "allow_merge_commit", "allow_auto_merge": "allow_auto_merge"}
+
+BRANCH_PROTECTION = {"require_code_owner_reviews": "require_code_owner_reviews",
+                     "dismiss_stale_reviews": "dismiss_stale_reviews",
+                     "required_conversation_resolution": "required_conversation_resolution",
+                     "required_approving_review_count": "required_approving_review_count",
+                     "enforce_admins": "enforce_admins",
+                     "required_pull_request_reviews": "required_pull_request_reviews",
+                     "restrictions": "restrictions",
+                     "require_branches_uptodate": "strict", "required_passing_checks": "contexts",
+                     "required_status_checks": "required_status_checks"}
+
 
 class ConfigurationError(Exception):
     """Should be raised when input arguments are found to be incorrect/invalid"""
