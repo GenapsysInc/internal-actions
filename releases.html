@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Internal Actions Releases &mdash; Internal Actions 1.2 documentation</title>
+  <title>Internal Actions Releases &mdash; Internal Actions 1.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                1.2.0-2
+                1.3.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -47,6 +47,7 @@
 <li class="toctree-l1"><a class="reference internal" href="actions/codeql.html">CodeQL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actions/docker-build-push.html">Docker Build and Push</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actions/docker-run.html">Docker Run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="actions/fork-check.html">Fork Check</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actions/increment-version.html">Increment Version</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actions/pytest.html">PyTest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actions/repo-configuration.html">Repo Configuration</a></li>
@@ -60,9 +61,10 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Internal Actions Releases</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">1.2.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">1.1.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">1.0.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">1.2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">1.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">1.0.0</a></li>
 </ul>
 </li>
 </ul>
@@ -94,7 +96,17 @@
   <section id="internal-actions-releases">
 <h1>Internal Actions Releases<a class="headerlink" href="#internal-actions-releases" title="Permalink to this headline"></a></h1>
 <section id="id1">
-<h2>1.2.0<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2>1.3.0<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>Adds the <code class="docutils literal notranslate"><span class="pre">fork-check</span></code> action</p></li>
+<li><p>Adds the <code class="docutils literal notranslate"><span class="pre">org-policies.yml</span></code> reusable workflow with the intent to be used to apply org-wide policies to repositories throughout the organization. This workflow current runs the <code class="docutils literal notranslate"><span class="pre">fork-check</span></code> and <code class="docutils literal notranslate"><span class="pre">repo-configuration</span></code> actions when called, with conditional logic to determine flow based on the triggering event.</p></li>
+<li><p>Adds <code class="docutils literal notranslate"><span class="pre">run-org-policies.yml</span></code> to run <code class="docutils literal notranslate"><span class="pre">org-policies.yml</span></code> within internal-actions</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id2">
+<h2>1.2.0<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Adds <code class="docutils literal notranslate"><span class="pre">repo-configuration</span></code> action</p></li>
@@ -102,8 +114,8 @@
 </ul>
 </div></blockquote>
 </section>
-<section id="id2">
-<h2>1.1.0<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<section id="id3">
+<h2>1.1.0<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Adds the <code class="docutils literal notranslate"><span class="pre">codeql</span></code> action and an example template, intended for use when using CodeQL in a multi-job workflow as opposed to a standalone workflow</p></li>
@@ -114,8 +126,8 @@
 </ul>
 </div></blockquote>
 </section>
-<section id="id3">
-<h2>1.0.0<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<section id="id4">
+<h2>1.0.0<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>First official release of <code class="docutils literal notranslate"><span class="pre">internal-actions</span></code>. Includes the following actions in a “prod-ready” state:</p>
