@@ -1,9 +1,13 @@
-name: Test running of org policies as a reusable workflow
+name: Org Policies
 
 on:
+  push:
+    branches: [main]
   pull_request:
-    types: [opened, reopened]
+    types: [opened, synchronize, reopened]
+  schedule:
+    - cron: '0 16 * * *'
 
 jobs:
-  run-org-policies:
+  run-jobs:
     uses: GenapsysInc/internal-actions/.github/workflows/org-policies.yml@fork-check

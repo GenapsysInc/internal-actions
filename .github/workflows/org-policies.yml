@@ -1,13 +1,7 @@
-name: Org Policies
+name: Org Policies Reusable Workflow
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    types: [opened, synchronize, reopened]
-  # schedule:
-  #   - cron: '0 16 * * *'  # Turn on when something using a schedule is added
-  workflow_call: {}
+  workflow_call
 
 jobs:
   fork-check:
