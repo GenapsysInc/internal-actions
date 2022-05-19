@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                1.2.0-1
+                1.2.0-2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -95,7 +95,7 @@
 <h1>Increment Version<a class="headerlink" href="#increment-version" title="Permalink to this headline"></a></h1>
 <section id="increment-version">
 <h2>increment-version<a class="headerlink" href="#increment-version" title="Permalink to this headline"></a></h2>
-<p>This action will create a new tag based on a version in a JSON file in source control, and on pushes to specified branches will push the newly created tag. This is intended to automate semantic versioning (https://semver.org/) tags for repositories for each PR merge to main (or another default branch). Version tags will be generated in the format <code class="docutils literal notranslate"><span class="pre">major.minor.patch-release</span></code> with a date string optionally appended to the tag if specified in the calling workflow. If the version is not changed for a given PR, the <code class="docutils literal notranslate"><span class="pre">release</span></code> number will be incremented by 1, intended to reflect changes to things like process, build, docs, tests, etc. that do not impact actual code. The new version will be set as an output of the action called <code class="docutils literal notranslate"><span class="pre">outputs.new-version</span></code>. This value can be used in subsequent steps/jobs where a version identifier is needed. An example template is included in this directory.</p>
+<p>This action will create a new tag based on a version in a JSON file in source control, and on pushes to specified branches will push the newly created tag. This is intended to automate semantic versioning (https://semver.org/) tags for repositories for each PR merge to main (or another default branch). Version tags will be generated in the format <code class="docutils literal notranslate"><span class="pre">major.minor.patch-release</span></code> with a date string optionally appended to the tag if specified in the calling workflow. If the version is not changed for a given PR, the <code class="docutils literal notranslate"><span class="pre">release</span></code> number will be incremented by 1, intended to reflect changes to things like process, build, docs, tests, etc. that do not impact actual code. A boolean flag may be provided to optionally protect the new tag in GitHub so that it cannot be deleted. The new version will be set as an output of the action called <code class="docutils literal notranslate"><span class="pre">outputs.new-version</span></code>. This value can be used in subsequent steps/jobs where a version identifier is needed. An example template is included in this directory.</p>
 </section>
 <section id="templates">
 <h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline"></a></h2>
@@ -122,6 +122,7 @@
 <span class="w">          </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GH_REST_API_TOKEN }}</span><span class="w"></span>
 <span class="w">          </span><span class="nt">json</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;path/to/repo-data.json&gt;</span><span class="w"></span>
 <span class="w">          </span><span class="nt">use-date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;true|false&gt;, append date string to generated version tag</span><span class="w"></span>
+<span class="w">          </span><span class="nt">protect-tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;true|false&gt;, protect the generated tag in GitHub</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
