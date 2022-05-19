@@ -1,0 +1,47 @@
+name: fork-check
+description: Assert the head branch of a PR is in the GenapsysInc fork of the repository
+
+inputs:
+  close-pull:
+    description: Close the pull request if the head branch is in a private fork
+    default: false
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Fork deprecation comment
+      if: ${{ contains(fromJSON('["opened", "reopened"]'), github.event.action) && !contains(github.event.pull_request.head.label, 'GenapsysInc') && !fromJSON(inputs.close-pull) }}
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ github.token }}
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `Pull Request head branch \`${{ github.event.pull_request.head.label }}\` is not owned by the Organization user
+
+          Use of private forks has been deprecated and will be strictly enforced starting **July 1st, 2022**`
+          })
+    - name: Close PR
+      if: ${{ contains(fromJSON('["opened", "reopened"]'), github.event.action) && !contains(github.event.pull_request.head.label, 'GenapsysInc') && fromJSON(inputs.close-pull) }}
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ github.token }}
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `Pull Request head branch \`${{ github.event.pull_request.head.label }}\` is not owned by the Organization user
+
+          Use of private forks has been deprecated - this pull request will be closed`
+          })
+
+          github.rest.pulls.update({
+            pull_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'closed'
+          })
