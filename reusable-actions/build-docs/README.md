@@ -18,6 +18,7 @@ This action will build the sphinx base documentation and if desired publish it t
           publish_html: false
           warn_as_errors: false
           api_dirs: "code" 
+          build_options: -n
 ```
 
 ## Build the HTML docs only 
@@ -36,6 +37,7 @@ This action will build the sphinx base documentation and if desired publish it t
           publish_html: true
           warn_as_errors: false
           api_dirs: "code"
+          build_options: -n
 ```
 
 ## Build and publish docs
@@ -54,6 +56,7 @@ This action will build the sphinx base documentation and if desired publish it t
           publish_html: true
           warn_as_errors: false
           api_dirs: "code"
+          build_options: -n
 ```
 
 ## Tag new version and pass into the doc builder
@@ -87,4 +90,5 @@ jobs:
           warn_as_errors: false
           version: ${{ needs.increment-version.outputs.new-version }}
           api_dirs: "code"
+          build_options: -n
 ```
