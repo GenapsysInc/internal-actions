@@ -20,4 +20,4 @@ jobs:
           publish_html: false # boolean true || false
           warn_as_errors: false # boolean true || false
           api_dirs: "code tests" # optional
-
+          build_options: -n # optional

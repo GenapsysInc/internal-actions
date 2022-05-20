@@ -30,13 +30,17 @@ inputs:
     required: false
     default: false
   version:
-    description: "The version string to use for HTML rendering"
+    description: "The version string to use for HTML rendering - string"
     required: false
     default: ''
   warn_as_errors:
     description: "Treat warnings raised as errors - boolean"
     required: false
     default: false
+  build_options:
+    description: "User specified options for sphinx build - string"
+    required: false
+    default: ''
 
 runs:
   using: composite
@@ -61,6 +65,7 @@ runs:
                 ${{ (fromJSON(inputs.warn_as_errors) && '-w') || '' }}
                 ${{ (fromJSON(inputs.build_html) && '-m') || '' }}
                 ${{ (inputs.version && '-v') || '' }} ${{ inputs.version }}
+                ${{ (inputs.build_options && '-u "') || '' }} ${{ inputs.build_options }} ${{ (inputs.build_options && '"') || '' }}
     - name: Build GitHub Pages
       if: ${{ fromJSON(inputs.publish_html) && fromJSON(inputs.build_html)}}
       uses: peaceiris/actions-gh-pages@v3
