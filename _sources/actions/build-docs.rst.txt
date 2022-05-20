@@ -21,5 +21,5 @@ Push Template
 
 Run the documentation and publish it.  This is good after the PR has been merged so that the published documents are always up-to-date.
 
-.. literalinclude:: ../../reusable-actions/build-docs/pr-template.yml
+.. literalinclude:: ../../reusable-actions/build-docs/push-template.yml
    :language: yaml

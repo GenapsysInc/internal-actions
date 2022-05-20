@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                1.3.0-2
+                1.3.0-3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -120,6 +120,7 @@
 <span class="w">          </span><span class="nt">publish_html</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 <span class="w">          </span><span class="nt">warn_as_errors</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 <span class="w">          </span><span class="nt">api_dirs</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;code&quot;</span><span class="w"></span>
+<span class="w">          </span><span class="nt">build_options</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-n</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -136,6 +137,7 @@
 <span class="w">          </span><span class="nt">publish_html</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">          </span><span class="nt">warn_as_errors</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 <span class="w">          </span><span class="nt">api_dirs</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;code&quot;</span><span class="w"></span>
+<span class="w">          </span><span class="nt">build_options</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-n</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -152,6 +154,7 @@
 <span class="w">          </span><span class="nt">publish_html</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">          </span><span class="nt">warn_as_errors</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 <span class="w">          </span><span class="nt">api_dirs</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;code&quot;</span><span class="w"></span>
+<span class="w">          </span><span class="nt">build_options</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-n</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -184,6 +187,7 @@
 <span class="w">          </span><span class="nt">warn_as_errors</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 <span class="w">          </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ needs.increment-version.outputs.new-version }}</span><span class="w"></span>
 <span class="w">          </span><span class="nt">api_dirs</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;code&quot;</span><span class="w"></span>
+<span class="w">          </span><span class="nt">build_options</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-n</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -215,6 +219,7 @@
 <span class="w">          </span><span class="nt">publish_html</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># boolean true || false</span><span class="w"></span>
 <span class="w">          </span><span class="nt">warn_as_errors</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># boolean true || false</span><span class="w"></span>
 <span class="w">          </span><span class="nt">api_dirs</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;code</span><span class="nv"> </span><span class="s">tests&quot;</span><span class="w"> </span><span class="c1"># optional</span><span class="w"></span>
+<span class="w">          </span><span class="nt">build_options</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-n</span><span class="w"> </span><span class="c1"># optional</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -222,27 +227,29 @@
 <h3>Push Template<a class="headerlink" href="#push-template" title="Permalink to this headline"></a></h3>
 <p>Run the documentation and publish it.  This is good after the PR has been merged so that the published documents are always up-to-date.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">opened</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">synchronize</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">reopened</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span><span class="w"> </span><span class="c1"># or the name of your main branch</span><span class="w"></span>
 
-<span class="c1"># Just run the documentation but don&#39;t publish it.  This is good to check that the documents build without errors</span><span class="w"></span>
+<span class="c1"># Run the documentation and publish it.  This is good after the PR has been merged so that the published documents are always up-to-date.</span><span class="w"></span>
 
 <span class="nt">jobs</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">call-workflow</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run the documentation builder workflow</span><span class="w"></span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w"></span>
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Documentation build</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Documentation build and publish</span><span class="w"></span>
 <span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/build-docs@main</span><span class="w"></span>
 <span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
 <span class="w">          </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GHCR_TOKEN }}</span><span class="w"> </span><span class="c1"># Token needs read access to the container registry</span><span class="w"></span>
 <span class="w">          </span><span class="nt">confluence_secret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.CONFLUENCE_SECRET }}</span><span class="w"> </span><span class="c1"># optional - Needed for confluence publishing</span><span class="w"></span>
 <span class="w">          </span><span class="nt">build_confluence</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># boolean true || false</span><span class="w"></span>
-<span class="w">          </span><span class="nt">publish_confluence</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># boolean true || false</span><span class="w"></span>
+<span class="w">          </span><span class="nt">publish_confluence</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># boolean true || false</span><span class="w"></span>
 <span class="w">          </span><span class="nt">build_html</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># boolean true || false</span><span class="w"></span>
-<span class="w">          </span><span class="nt">publish_html</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># boolean true || false</span><span class="w"></span>
+<span class="w">          </span><span class="nt">publish_html</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># boolean true || false</span><span class="w"></span>
 <span class="w">          </span><span class="nt">warn_as_errors</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># boolean true || false</span><span class="w"></span>
 <span class="w">          </span><span class="nt">api_dirs</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;code</span><span class="nv"> </span><span class="s">tests&quot;</span><span class="w"> </span><span class="c1"># optional</span><span class="w"></span>
+<span class="w">          </span><span class="nt">build_options</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-n</span><span class="w"> </span><span class="c1"># optional</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
