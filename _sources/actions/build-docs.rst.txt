@@ -2,8 +2,7 @@
 Build Docs
 **********
 
-.. include:: ../../reusable-actions/build-docs/README.md
-   :parser: myst_parser.sphinx_
+.. mdinclude:: ../../reusable-actions/build-docs/README.md
 
 Templates
 =========

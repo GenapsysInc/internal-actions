@@ -2,8 +2,7 @@
 PyTest
 ******
 
-.. include:: ../../reusable-actions/pytest/README.md
-   :parser: myst_parser.sphinx_
+.. mdinclude:: ../../reusable-actions/pytest/README.md
 
 Templates
 =========

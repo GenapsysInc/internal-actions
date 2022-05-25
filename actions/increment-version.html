@@ -33,7 +33,7 @@
             <a href="../index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                1.3.0-3
+                1.3.0-4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -50,7 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="docker-run.html">Docker Run</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fork-check.html">Fork Check</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Increment Version</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#increment-version">increment-version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">increment-version</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#templates">Templates</a></li>
 </ul>
 </li>
@@ -94,9 +94,9 @@
              
   <section id="increment-version">
 <h1>Increment Version<a class="headerlink" href="#increment-version" title="Permalink to this headline"></a></h1>
-<section id="increment-version">
-<h2>increment-version<a class="headerlink" href="#increment-version" title="Permalink to this headline"></a></h2>
-<p>This action will create a new tag based on a version in a JSON file in source control, and on pushes to specified branches will push the newly created tag. This is intended to automate semantic versioning (https://semver.org/) tags for repositories for each PR merge to main (or another default branch). Version tags will be generated in the format <code class="docutils literal notranslate"><span class="pre">major.minor.patch-release</span></code> with a date string optionally appended to the tag if specified in the calling workflow. If the version is not changed for a given PR, the <code class="docutils literal notranslate"><span class="pre">release</span></code> number will be incremented by 1, intended to reflect changes to things like process, build, docs, tests, etc. that do not impact actual code. A boolean flag may be provided to optionally protect the new tag in GitHub so that it cannot be deleted. The new version will be set as an output of the action called <code class="docutils literal notranslate"><span class="pre">outputs.new-version</span></code>. This value can be used in subsequent steps/jobs where a version identifier is needed. An example template is included in this directory.</p>
+<section id="id1">
+<h2>increment-version<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<p>This action will create a new tag based on a version in a JSON file in source control, and on pushes to specified branches will push the newly created tag. This is intended to automate semantic versioning (<a class="reference external" href="https://semver.org/">https://semver.org/</a>) tags for repositories for each PR merge to main (or another default branch). Version tags will be generated in the format <code class="docutils literal notranslate"><span class="pre">major.minor.patch-release</span></code> with a date string optionally appended to the tag if specified in the calling workflow. If the version is not changed for a given PR, the <code class="docutils literal notranslate"><span class="pre">release</span></code> number will be incremented by 1, intended to reflect changes to things like process, build, docs, tests, etc. that do not impact actual code. A boolean flag may be provided to optionally protect the new tag in GitHub so that it cannot be deleted. The new version will be set as an output of the action called <code class="docutils literal notranslate"><span class="pre">outputs.new-version</span></code>. This value can be used in subsequent steps/jobs where a version identifier is needed. An example template is included in this directory.</p>
 </section>
 <section id="templates">
 <h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline"></a></h2>
