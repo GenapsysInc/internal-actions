@@ -2,8 +2,7 @@
 Fork Check
 **********
 
-.. include:: ../../reusable-actions/fork-check/README.md
-   :parser: myst_parser.sphinx_
+.. mdinclude:: ../../reusable-actions/fork-check/README.md
 
 Templates
 =========
