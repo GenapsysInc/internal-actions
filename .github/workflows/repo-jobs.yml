@@ -79,6 +79,6 @@ jobs:
           publish_confluence: ${{ github.event_name == 'push' }}
           build_html: true
           publish_html: ${{ github.event_name == 'push' }}
-          warn_as_errors: false
+          warn_as_errors: true
           version: ${{ needs.increment-version.outputs.new-version }}
           api_dirs: action_utils

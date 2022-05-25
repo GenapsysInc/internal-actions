@@ -2,8 +2,7 @@
 Repo Configuration
 ******************
 
-.. include:: ../../reusable-actions/repo-configuration/README.md
-   :parser: myst_parser.sphinx_
+.. mdinclude:: ../../reusable-actions/repo-configuration/README.md
 
 Templates
 =========

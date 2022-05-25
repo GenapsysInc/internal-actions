@@ -2,8 +2,7 @@
 Submodule Check
 ***************
 
-.. include:: ../../reusable-actions/submodule-check/README.md
-   :parser: myst_parser.sphinx_
+.. mdinclude:: ../../reusable-actions/submodule-check/README.md
 
 Templates
 =========

@@ -2,8 +2,7 @@
 Increment Version
 *****************
 
-.. include:: ../../reusable-actions/increment-version/README.md
-   :parser: myst_parser.sphinx_
+.. mdinclude:: ../../reusable-actions/increment-version/README.md
 
 Templates
 =========
