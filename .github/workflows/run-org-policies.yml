@@ -2,7 +2,7 @@ name: Org Policies
 
 on:
   push:
-    branches: [main]
+    branches: [main, workflow_call_test]
   pull_request:
     types: [opened, synchronize, reopened]
   schedule:
