@@ -89,7 +89,8 @@ def parse_args():
                         help="Print API preview calls for debugging")
     parser.add_argument("-f", "--enforce", required=False, default=False, action='store_true',
                         help="Enforce policy if repository has violations")
-    parser.add_argument("--disable", required=False, help="Disable the action calling this - Only for GH Action calls")
+    parser.add_argument("--disable", required=False, type=str,
+                        help="Disable the action calling this - Only for GH Action calls")
     return parser.parse_args()
 
 
