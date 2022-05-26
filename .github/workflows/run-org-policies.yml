@@ -12,3 +12,5 @@ jobs:
   run-jobs:
     name: Org Policy Check
     uses: GenapsysInc/internal-actions/.github/workflows/org-policies.yml@main
+    secrets:
+      token: ${{ secrets.GH_REST_API_TOKEN }}
