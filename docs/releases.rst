@@ -6,7 +6,7 @@ Internal Actions Releases
 1.3.1
 *****
 
-  * Fixes the ``repo-configuration``'s handling of the ``--disable`` flag when passing it to the called action util
+  * Fixes the ``repo-configuration`` action's handling of the ``--disable`` flag when passing it to the called action util
 
 *****
 1.3.0
