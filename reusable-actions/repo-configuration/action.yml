@@ -12,7 +12,7 @@ inputs:
     required: false
   disable_action:
     description: "Upon completion disable action for a one and done workflow"
-    default: false
+    default: true
     required: false
   token:
     description: "Github token for authentication to REST API"
