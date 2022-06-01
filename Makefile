@@ -32,7 +32,7 @@ html:
 	docker pull ghcr.io/genapsysinc/docbuilder:latest
 	docker run -v `pwd`:/repo/ ghcr.io/genapsysinc/docbuilder:latest -m -d action_utils
 
-__TARGET_HELP += "  * confluence - Build the confluence documentation.
+__TARGET_HELP += "  * confluence - Build the confluence documentation."
 confluence:
 	docker pull ghcr.io/genapsysinc/docbuilder:latest
 	docker run -v `pwd`:/repo/ ghcr.io/genapsysinc/docbuilder:latest -c -d action_utils

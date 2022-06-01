@@ -96,7 +96,11 @@ def parse_args():
 if __name__ == "__main__":
     opts = parse_args()
 
-    api = GhApi(common.GENAPSYS_GITHUB, repo=opts.repo, token=opts.secret)
+    # Handle both the repo name and the github.repository value which includes the owner
+    repo = opts.repo.split("/")[1] if "/" in opts.repo else opts.repo
+
+    api = GhApi(common.GENAPSYS_GITHUB, repo=repo, token=opts.secret)
+
     if opts.debug:
         api.debug = print_summary
 
