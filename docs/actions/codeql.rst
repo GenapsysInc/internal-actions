@@ -2,8 +2,7 @@
 CodeQL
 ******
 
-.. include:: ../../reusable-actions/codeql/README.md
-   :parser: myst_parser.sphinx_
+.. mdinclude:: ../../reusable-actions/codeql/README.md
 
 Templates
 =========

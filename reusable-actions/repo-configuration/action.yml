@@ -41,4 +41,4 @@ runs:
           -r ${{ github.repository }} \
           ${{ (fromJSON(inputs.initialize) && '--init') || '' }} \
           ${{ (fromJSON(inputs.enforce_policy) && '--enforce') || '' }} \
-          --disable ${{ (fromJSON(inputs.disable_action) && github.run_id) || '0' }}
+          ${{ (fromJSON(inputs.disable_action) && format('--disable {0}', github.run_id)) || '' }}

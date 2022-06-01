@@ -2,8 +2,7 @@
 SonarQube
 **********
 
-.. include:: ../../reusable-actions/sonarqube/README.md
-   :parser: myst_parser.sphinx_
+.. mdinclude:: ../../reusable-actions/sonarqube/README.md
 
 Templates
 =========

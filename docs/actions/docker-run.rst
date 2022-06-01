@@ -2,6 +2,4 @@
 Docker Run
 **********
 
-.. include:: ../../reusable-actions/docker-run/README.md
-   :parser: myst_parser.sphinx_
-
+.. mdinclude:: ../../reusable-actions/docker-run/README.md
