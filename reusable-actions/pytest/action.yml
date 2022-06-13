@@ -23,7 +23,7 @@ runs:
       run: pip install pytest pytest-cov
       shell: bash
     - name: Run pytest and capture code coverage
-      run: 'python -m pytest -v --junitxml=pytest-test-report.xml -B --cov --cov-report xml:pytest-coverage-report.xml'
+      run: 'python -B -m pytest -v --junitxml=pytest-test-report.xml --cov --cov-report xml:pytest-coverage-report.xml'
       shell: bash
     - name: Archive test and coverage reports
       uses: actions/upload-artifact@v3
