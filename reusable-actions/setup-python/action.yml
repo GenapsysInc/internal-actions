@@ -27,7 +27,7 @@ runs:
       with:
         python-version: ${{ inputs.python-version }}
     - name: Install build dependencies
-      run: pip install wheel
+      run: pip install --upgrade wheel
       shell: bash
     - name: Install dependencies
       if: ${{ inputs.requirements-txt }}

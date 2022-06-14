@@ -10,7 +10,7 @@ inputs:
     description: Relative path to requirements.txt file. Wildcards can be submitted as well
     default: null
     required: true
-  build_command:
+  build-command:
     description: Build command to be executed prior to running unit tests.
     default: null
     required: false
