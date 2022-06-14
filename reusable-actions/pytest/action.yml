@@ -19,7 +19,7 @@ runs:
   using: composite
   steps:
     - name: Set up Python version ${{ inputs.python-version }}
-      uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main
+      uses: GenapsysInc/internal-actions/reusable-actions/setup-python@no_cache
       with:
         python-version: ${{ inputs.python-version }}
         requirements-txt: ${{ inputs.requirements-txt }}
@@ -27,8 +27,8 @@ runs:
       run: pip install pytest pytest-cov
       shell: bash
     - name: Run build command
-      if: ${{ inputs.build_command }}
-      run: ${{ inputs.build_command }}
+      if: ${{ inputs.build-command }}
+      run: ${{ inputs.build-command }}
       shell: bash
     - name: Run pytest and capture code coverage
       run: 'python -B -m pytest -v --junitxml=pytest-test-report.xml --cov --cov-report xml:pytest-coverage-report.xml'
