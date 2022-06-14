@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Repo Configuration &mdash; Internal Actions 1.3 documentation</title>
+  <title>Repo Configuration &mdash; Internal Actions 1.4 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.js"></script>
         <script src="../_static/traceability.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                1.3.1-2
+                1.4.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -97,15 +98,15 @@
            <div itemprop="articleBody">
              
   <section id="repo-configuration">
-<h1>Repo Configuration<a class="headerlink" href="#repo-configuration" title="Permalink to this headline"></a></h1>
+<h1>Repo Configuration<a class="headerlink" href="#repo-configuration" title="Permalink to this heading"></a></h1>
 <section id="id1">
-<h2>repo-configuration<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2>repo-configuration<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>This action will perform the initial configuration of a repo’s settings and/or compare the current settings to the org policy and enforce the policy for any violations.</p>
 </section>
 <section id="templates">
-<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline"></a></h2>
+<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this heading"></a></h2>
 <section id="repo-initialization-template">
-<h3>Repo Initialization Template<a class="headerlink" href="#repo-initialization-template" title="Permalink to this headline"></a></h3>
+<h3>Repo Initialization Template<a class="headerlink" href="#repo-initialization-template" title="Permalink to this heading"></a></h3>
 <p>This template is intended to be incorporated as a workflow on creation of a new repo as part of a template</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This template is intended to be incorporated as a workflow on creation of a new repo as part of a template</span><span class="w"></span>
 <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">init-repo-configuration</span><span class="w"></span>
@@ -127,7 +128,7 @@
 </div>
 </section>
 <section id="policy-enforcement-template">
-<h3>Policy Enforcement Template<a class="headerlink" href="#policy-enforcement-template" title="Permalink to this headline"></a></h3>
+<h3>Policy Enforcement Template<a class="headerlink" href="#policy-enforcement-template" title="Permalink to this heading"></a></h3>
 <p>This template is intended to be incorporated as a workflow to do regular checks for a repo</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This template is intended to be incorporated as a workflow to do regular checks for a repo</span><span class="w"></span>
 <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo-policy-enforcement</span><span class="w"></span>

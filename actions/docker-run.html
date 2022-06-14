@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Docker Run &mdash; Internal Actions 1.3 documentation</title>
+  <title>Docker Run &mdash; Internal Actions 1.4 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.js"></script>
         <script src="../_static/traceability.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                1.3.1-2
+                1.4.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -96,12 +97,12 @@
            <div itemprop="articleBody">
              
   <section id="docker-run">
-<h1>Docker Run<a class="headerlink" href="#docker-run" title="Permalink to this headline"></a></h1>
+<h1>Docker Run<a class="headerlink" href="#docker-run" title="Permalink to this heading"></a></h1>
 <section id="id1">
-<h2>docker-run<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2>docker-run<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>Inspiration from <a class="reference external" href="https://github.com/addnab/docker-run-action/releases/tag/v3">https://github.com/addnab/docker-run-action/releases/tag/v3</a>, converted to a composite action. Run a docker image pulled from a repository or built by a previous step, allowing options and arguments to be set for the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> command. See <code class="docutils literal notranslate"><span class="pre">action.yml</span></code> for available inputs.</p>
 <section id="pull-and-run-an-image">
-<h3>Pull and run an image<a class="headerlink" href="#pull-and-run-an-image" title="Permalink to this headline"></a></h3>
+<h3>Pull and run an image<a class="headerlink" href="#pull-and-run-an-image" title="Permalink to this heading"></a></h3>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout</span><span class="w"></span>
 <span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span><span class="w"> </span><span class="c1"># Required to mount the Github Workspace to a volume</span><span class="w"></span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/docker-run@main</span><span class="w"></span>
@@ -121,7 +122,7 @@ docker run -v <span class="si">${</span><span class="p">{ github.workspace </spa
 </div>
 </section>
 <section id="run-an-image-built-by-a-previous-step">
-<h3>Run an image built by a previous step<a class="headerlink" href="#run-an-image-built-by-a-previous-step" title="Permalink to this headline"></a></h3>
+<h3>Run an image built by a previous step<a class="headerlink" href="#run-an-image-built-by-a-previous-step" title="Permalink to this heading"></a></h3>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/docker-build-push@main</span><span class="w"></span>
 <span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span><span class="w"></span>

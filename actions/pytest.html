@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PyTest &mdash; Internal Actions 1.3 documentation</title>
+  <title>PyTest &mdash; Internal Actions 1.4 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.js"></script>
         <script src="../_static/traceability.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                1.3.1-2
+                1.4.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,15 +94,15 @@
            <div itemprop="articleBody">
              
   <section id="pytest">
-<h1>PyTest<a class="headerlink" href="#pytest" title="Permalink to this headline"></a></h1>
+<h1>PyTest<a class="headerlink" href="#pytest" title="Permalink to this heading"></a></h1>
 <section id="id1">
-<h2>pytest<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2>pytest<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>This action will set up python, install requirements, and then run pytest with code coverage capture turned on and reported in XML format. The test result and code coverage files will be uploaded as an artifact called <code class="docutils literal notranslate"><span class="pre">test-reports</span></code> and can be used by subsequent jobs/steps.</p>
 <p>This action will use a <code class="docutils literal notranslate"><span class="pre">.coveragerc</span></code> (or <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>, or <code class="docutils literal notranslate"><span class="pre">tox.ini</span></code>) in the root directory of the calling repository to configure coverage running and reporting. Information in the configuration file will define the set of files that will have coverage information captured. See <a class="reference external" href="https://coverage.readthedocs.io/en/6.3.2/source.html">https://coverage.readthedocs.io/en/6.3.2/source.html</a> for more information about source file configuration. Note that <code class="docutils literal notranslate"><span class="pre">relative_files</span></code> should be set to <code class="docutils literal notranslate"><span class="pre">True</span></code> to integrate a coverage report into another tool like SonarQube, in which the absolute path of where files exist might be different. An example <code class="docutils literal notranslate"><span class="pre">.coveragerc</span></code> is included in this directory to be used if wanted.</p>
 <p>This action can be called independently but is intended to be used as part of the <code class="docutils literal notranslate"><span class="pre">internal-actions/reusable-actions/sonarqube</span></code> action for test result and coverage report integration in a Sonar project. An example template for running pytest followed by SonarQube is included in that action’s directory.</p>
 </section>
 <section id="templates">
-<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline"></a></h2>
+<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this heading"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This template is intended to be incorporated as a workflow in another repository to gate pull requests</span><span class="w"></span>
 <span class="c1"># behind passing results. It should not be used if the sonarqube workflow is running unit tests.</span><span class="w"></span>
 <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run pytest</span><span class="w"></span>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>action_utils.common module &mdash; Internal Actions 1.3 documentation</title>
+  <title>action_utils.common module &mdash; Internal Actions 1.4 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.js"></script>
         <script src="../_static/traceability.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                1.3.1-2
+                1.4.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -105,7 +106,7 @@
            <div itemprop="articleBody">
              
   <section id="module-action_utils.common">
-<span id="action-utils-common-module"></span><h1>action_utils.common module<a class="headerlink" href="#module-action_utils.common" title="Permalink to this headline"></a></h1>
+<span id="action-utils-common-module"></span><h1>action_utils.common module<a class="headerlink" href="#module-action_utils.common" title="Permalink to this heading"></a></h1>
 <p>Constants, classes, and utilities related to git/GitHub common across scripts</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="action_utils.common.ConfigurationError">
@@ -128,7 +129,7 @@
 <p>Representation of a git tag in the form of major.minor.patch-release</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.common.VersionTag.assert_valid_new_version">
-<span class="sig-name descname"><span class="pre">assert_valid_new_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#action_utils.common.VersionTag" title="action_utils.common.VersionTag"><span class="pre">action_utils.common.VersionTag</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.common.VersionTag.assert_valid_new_version" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">assert_valid_new_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#action_utils.common.VersionTag" title="action_utils.common.VersionTag"><span class="pre">VersionTag</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.common.VersionTag.assert_valid_new_version" title="Permalink to this definition"></a></dt>
 <dd><p>Is the other VersionTag a valid increment of self? Asserts that the new version is &gt;= the old version, that
 the minor and patch versions are 0 for a major increment, that the patch version is 0 for a minor increment, and
 that version increments are equal to 1.</p>

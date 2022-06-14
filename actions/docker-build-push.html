@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Docker Build and Push &mdash; Internal Actions 1.3 documentation</title>
+  <title>Docker Build and Push &mdash; Internal Actions 1.4 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.js"></script>
         <script src="../_static/traceability.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                1.3.1-2
+                1.4.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -98,12 +99,12 @@
            <div itemprop="articleBody">
              
   <section id="docker-build-and-push">
-<h1>Docker Build and Push<a class="headerlink" href="#docker-build-and-push" title="Permalink to this headline"></a></h1>
+<h1>Docker Build and Push<a class="headerlink" href="#docker-build-and-push" title="Permalink to this heading"></a></h1>
 <section id="docker-build-push">
-<h2>docker-build-push<a class="headerlink" href="#docker-build-push" title="Permalink to this headline"></a></h2>
+<h2>docker-build-push<a class="headerlink" href="#docker-build-push" title="Permalink to this heading"></a></h2>
 <p>This action builds and optionally pushes a docker image. When given a registry, username, and password, it will authenticate to the registry to allow pulling private base images for builds, or pushing built images to a private registry. The action also caches docker layers across multiple runs to allow for docker to cache the way it was meant to. To use a built image in a subsequent step, the <code class="docutils literal notranslate"><span class="pre">load</span></code> flag must be set to <code class="docutils literal notranslate"><span class="pre">true</span></code>. See <code class="docutils literal notranslate"><span class="pre">action.yml</span></code> for available inputs.</p>
 <section id="build-and-load-an-image-use-it-in-a-subsequent-step">
-<h3>Build and load an image, use it in a subsequent step<a class="headerlink" href="#build-and-load-an-image-use-it-in-a-subsequent-step" title="Permalink to this headline"></a></h3>
+<h3>Build and load an image, use it in a subsequent step<a class="headerlink" href="#build-and-load-an-image-use-it-in-a-subsequent-step" title="Permalink to this heading"></a></h3>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and load an image</span><span class="w"></span>
 <span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/docker-build-push@main</span><span class="w"></span>
 <span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
@@ -119,7 +120,7 @@
 </div>
 </section>
 <section id="build-and-push-an-image">
-<h3>Build and push an image<a class="headerlink" href="#build-and-push-an-image" title="Permalink to this headline"></a></h3>
+<h3>Build and push an image<a class="headerlink" href="#build-and-push-an-image" title="Permalink to this heading"></a></h3>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and push an image</span><span class="w"></span>
 <span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/docker-build-push@main</span><span class="w"></span>
 <span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
@@ -131,7 +132,7 @@
 </div>
 </section>
 <section id="build-and-push-an-image-to-a-private-repository">
-<h3>Build and push an image to a private repository<a class="headerlink" href="#build-and-push-an-image-to-a-private-repository" title="Permalink to this headline"></a></h3>
+<h3>Build and push an image to a private repository<a class="headerlink" href="#build-and-push-an-image-to-a-private-repository" title="Permalink to this heading"></a></h3>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and push an image, authenticate to ghcr.io</span><span class="w"></span>
 <span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/docker-build-push@main</span><span class="w"></span>
 <span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
@@ -146,7 +147,7 @@
 </div>
 </section>
 <section id="build-and-push-an-image-to-a-private-repository-use-it-in-a-subsequent-job">
-<h3>Build and push an image to a private repository, use it in a subsequent job<a class="headerlink" href="#build-and-push-an-image-to-a-private-repository-use-it-in-a-subsequent-job" title="Permalink to this headline"></a></h3>
+<h3>Build and push an image to a private repository, use it in a subsequent job<a class="headerlink" href="#build-and-push-an-image-to-a-private-repository-use-it-in-a-subsequent-job" title="Permalink to this heading"></a></h3>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">build-and-push-my-image</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build the docker image and push it to ghcr.io</span><span class="w"></span>

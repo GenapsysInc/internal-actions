@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Build Docs &mdash; Internal Actions 1.3 documentation</title>
+  <title>Build Docs &mdash; Internal Actions 1.4 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.js"></script>
         <script src="../_static/traceability.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                1.3.1-2
+                1.4.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -103,12 +104,12 @@
            <div itemprop="articleBody">
              
   <section id="build-docs">
-<h1>Build Docs<a class="headerlink" href="#build-docs" title="Permalink to this headline"></a></h1>
+<h1>Build Docs<a class="headerlink" href="#build-docs" title="Permalink to this heading"></a></h1>
 <section id="id1">
-<h2>build-docs<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2>build-docs<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>This action will build the sphinx base documentation and if desired publish it to confluence and/or the repo’s github pages. The expectation of the code is that the index and sphinx <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> exist in the <code class="docutils literal notranslate"><span class="pre">/docs</span></code> dir. A version string to render in the HTML pages may optionally be passed in, which will override the version defined in the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>. This can be done in tandem with the <code class="docutils literal notranslate"><span class="pre">increment-version</span></code> action to have published docs reflect the latest tagged version of the repo.</p>
 <section id="build-the-docs-but-don-t-publish">
-<h3>Build the docs but don’t publish<a class="headerlink" href="#build-the-docs-but-don-t-publish" title="Permalink to this headline"></a></h3>
+<h3>Build the docs but don’t publish<a class="headerlink" href="#build-the-docs-but-don-t-publish" title="Permalink to this heading"></a></h3>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Documentation build and publish</span><span class="w"></span>
 <span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/build-docs@main</span><span class="w"></span>
 <span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
@@ -125,7 +126,7 @@
 </div>
 </section>
 <section id="build-the-html-docs-only">
-<h3>Build the HTML docs only<a class="headerlink" href="#build-the-html-docs-only" title="Permalink to this headline"></a></h3>
+<h3>Build the HTML docs only<a class="headerlink" href="#build-the-html-docs-only" title="Permalink to this heading"></a></h3>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Documentation build and publish</span><span class="w"></span>
 <span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/build-docs@main</span><span class="w"></span>
 <span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
@@ -142,7 +143,7 @@
 </div>
 </section>
 <section id="build-and-publish-docs">
-<h3>Build and publish docs<a class="headerlink" href="#build-and-publish-docs" title="Permalink to this headline"></a></h3>
+<h3>Build and publish docs<a class="headerlink" href="#build-and-publish-docs" title="Permalink to this heading"></a></h3>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Documentation build and publish</span><span class="w"></span>
 <span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/build-docs@main</span><span class="w"></span>
 <span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
@@ -159,7 +160,7 @@
 </div>
 </section>
 <section id="tag-new-version-and-pass-into-the-doc-builder">
-<h3>Tag new version and pass into the doc builder<a class="headerlink" href="#tag-new-version-and-pass-into-the-doc-builder" title="Permalink to this headline"></a></h3>
+<h3>Tag new version and pass into the doc builder<a class="headerlink" href="#tag-new-version-and-pass-into-the-doc-builder" title="Permalink to this heading"></a></h3>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">increment-version</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w"></span>
@@ -193,9 +194,9 @@
 </section>
 </section>
 <section id="templates">
-<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline"></a></h2>
+<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this heading"></a></h2>
 <section id="pr-template">
-<h3>PR Template<a class="headerlink" href="#pr-template" title="Permalink to this headline"></a></h3>
+<h3>PR Template<a class="headerlink" href="#pr-template" title="Permalink to this heading"></a></h3>
 <p>Run the documentation but don’t publish it.  This is good to check that the documents build without errors</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w"></span>
@@ -224,7 +225,7 @@
 </div>
 </section>
 <section id="push-template">
-<h3>Push Template<a class="headerlink" href="#push-template" title="Permalink to this headline"></a></h3>
+<h3>Push Template<a class="headerlink" href="#push-template" title="Permalink to this heading"></a></h3>
 <p>Run the documentation and publish it.  This is good after the PR has been merged so that the published documents are always up-to-date.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">on</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w"></span>

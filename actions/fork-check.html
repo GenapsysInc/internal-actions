@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fork Check &mdash; Internal Actions 1.3 documentation</title>
+  <title>Fork Check &mdash; Internal Actions 1.4 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.js"></script>
         <script src="../_static/traceability.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                1.3.1-2
+                1.4.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,13 +94,13 @@
            <div itemprop="articleBody">
              
   <section id="fork-check">
-<h1>Fork Check<a class="headerlink" href="#fork-check" title="Permalink to this headline"></a></h1>
+<h1>Fork Check<a class="headerlink" href="#fork-check" title="Permalink to this heading"></a></h1>
 <section id="id1">
-<h2>fork-check<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2>fork-check<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>This action asserts that the head branch of a given pull request is from the GenapsysInc fork of the repository as opposed to some other private fork. This action is being create to support the eventual deprecation of forks as an organization policy in GitHub. If the head branch is found to be in another fork, a warning message will be commented on the pull request. Optionally (with the intent of full deprecation in the future), a <code class="docutils literal notranslate"><span class="pre">close-pull</span></code> flag may be given as true to cause github-actions to close the pull request in addition to commenting. This action is intended to be used as part of the org-wide policy checks reusable workflow in internal-actions.</p>
 </section>
 <section id="templates">
-<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline"></a></h2>
+<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this heading"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Fork Check</span><span class="w"></span>
 
 <span class="nt">on</span><span class="p">:</span><span class="w"></span>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SonarQube &mdash; Internal Actions 1.3 documentation</title>
+  <title>SonarQube &mdash; Internal Actions 1.4 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -15,6 +15,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.js"></script>
         <script src="../_static/traceability.js"></script>
@@ -33,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                1.3.1-2
+                1.4.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -93,14 +94,14 @@
            <div itemprop="articleBody">
              
   <section id="sonarqube">
-<h1>SonarQube<a class="headerlink" href="#sonarqube" title="Permalink to this headline"></a></h1>
+<h1>SonarQube<a class="headerlink" href="#sonarqube" title="Permalink to this heading"></a></h1>
 <section id="id1">
-<h2>sonarqube<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2>sonarqube<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>This action runs the SonarQube workflow when given a SonarQube token and URL. These are preconfigured at the organization level as GitHub secrets but must be passed by the calling workflow. There is a preconfigured template in this directory that can be used as is, with the exception of updating branches to run the workflow on (should be at least the default branch of the repository).</p>
 <p>Currently the template also runs pytest and passes on code coverage to SonarQube. If this is not desired (although it is recommended), remove/comment out the <code class="docutils literal notranslate"><span class="pre">run-unit-tests</span></code> job and remove/comment out the <code class="docutils literal notranslate"><span class="pre">needs:</span> <span class="pre">run-unit-tests</span></code> line from the <code class="docutils literal notranslate"><span class="pre">run-sonarqube</span></code> job. An example <code class="docutils literal notranslate"><span class="pre">.coveragerc</span></code> file for code coverage integration lives in <code class="docutils literal notranslate"><span class="pre">internal-actions/reusable-actions/pytest</span></code>. Integration for testing code written in other languages will be added sometime soon.</p>
 </section>
 <section id="templates">
-<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline"></a></h2>
+<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this heading"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This template is intended to be incorporated as a workflow in another repository to run on pushes</span><span class="w"></span>
 <span class="c1"># to the default branch and to gate pull requests behind passing results</span><span class="w"></span>
 <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SonarQube</span><span class="w"></span>

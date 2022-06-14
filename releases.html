@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Internal Actions Releases &mdash; Internal Actions 1.3 documentation</title>
+  <title>Internal Actions Releases &mdash; Internal Actions 1.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -15,6 +15,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.js"></script>
         <script src="_static/traceability.js"></script>
@@ -32,7 +33,7 @@
             <a href="index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                1.3.1-2
+                1.4.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -61,11 +62,12 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Internal Actions Releases</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">1.3.1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">1.3.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">1.2.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">1.1.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">1.0.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">1.3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">1.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">1.2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">1.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">1.0.0</a></li>
 </ul>
 </li>
 </ul>
@@ -95,17 +97,26 @@
            <div itemprop="articleBody">
              
   <section id="internal-actions-releases">
-<h1>Internal Actions Releases<a class="headerlink" href="#internal-actions-releases" title="Permalink to this headline"></a></h1>
+<h1>Internal Actions Releases<a class="headerlink" href="#internal-actions-releases" title="Permalink to this heading"></a></h1>
 <section id="id1">
-<h2>1.3.1<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h2>1.4.0<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>Allows user to supply a build command via the <code class="docutils literal notranslate"><span class="pre">build-command</span></code> input to the <code class="docutils literal notranslate"><span class="pre">setup-python</span></code> action which is executed as the final step of setup.  For example, this allows for the building of Cython modules prior to running unit tests downstream.</p></li>
+<li><p>Added the install of wheel to the <code class="docutils literal notranslate"><span class="pre">setup-python</span></code> action in order to make the pip installs faster.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id2">
+<h2>1.3.1<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Fixes the <code class="docutils literal notranslate"><span class="pre">repo-configuration</span></code> action’s handling of the <code class="docutils literal notranslate"><span class="pre">--disable</span></code> flag when passing it to the called action util</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id2">
-<h2>1.3.0<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<section id="id3">
+<h2>1.3.0<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Adds the <code class="docutils literal notranslate"><span class="pre">fork-check</span></code> action</p></li>
@@ -114,8 +125,8 @@
 </ul>
 </div></blockquote>
 </section>
-<section id="id3">
-<h2>1.2.0<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<section id="id4">
+<h2>1.2.0<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Adds <code class="docutils literal notranslate"><span class="pre">repo-configuration</span></code> action</p></li>
@@ -123,8 +134,8 @@
 </ul>
 </div></blockquote>
 </section>
-<section id="id4">
-<h2>1.1.0<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<section id="id5">
+<h2>1.1.0<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Adds the <code class="docutils literal notranslate"><span class="pre">codeql</span></code> action and an example template, intended for use when using CodeQL in a multi-job workflow as opposed to a standalone workflow</p></li>
@@ -135,8 +146,8 @@
 </ul>
 </div></blockquote>
 </section>
-<section id="id5">
-<h2>1.0.0<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<section id="id6">
+<h2>1.0.0<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>First official release of <code class="docutils literal notranslate"><span class="pre">internal-actions</span></code>. Includes the following actions in a “prod-ready” state:</p>
