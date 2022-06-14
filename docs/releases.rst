@@ -6,7 +6,7 @@ Internal Actions Releases
 1.4.0
 *****
 
-  * Allows user to supply a build command via the ``build-command`` input to the ``pytest`` action which is executed prior to the unit tests.  For example, this allows for the building of Cython modules at runtime.
+  * Allows user to supply a build command via the ``build-command`` input to the ``setup-python`` action which is executed as the final step of setup.  For example, this allows for the building of Cython modules prior to running unit tests downstream.
   * Added the install of wheel to the ``setup-python`` action in order to make the pip installs faster.
 
 
