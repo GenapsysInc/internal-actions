@@ -10,6 +10,10 @@ inputs:
     description: 'Relative path to requirements.txt file. Wildcards can be submitted as well'
     default: null
     required: false
+  build-command:
+    description: Build command to be executed prior to running unit tests.
+    default: null
+    required: false
 
 runs:
   using: composite
@@ -26,7 +30,14 @@ runs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ inputs.python-version }}
+    - name: Install build dependencies
+      run: pip install --upgrade wheel
+      shell: bash
     - name: Install dependencies
       if: ${{ inputs.requirements-txt }}
       run: pip install `for r in ${{ inputs.requirements-txt }}; do echo "-r $r"; done`
+      shell: bash
+    - name: Run build command
+      if: ${{ inputs.build-command }}
+      run: ${{ inputs.build-command }}
       shell: bash

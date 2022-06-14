@@ -10,6 +10,10 @@ inputs:
     description: Relative path to requirements.txt file. Wildcards can be submitted as well
     default: null
     required: true
+  build-command:
+    description: Build command to be executed prior to running unit tests.
+    default: null
+    required: false
 
 runs:
   using: composite
@@ -19,6 +23,7 @@ runs:
       with:
         python-version: ${{ inputs.python-version }}
         requirements-txt: ${{ inputs.requirements-txt }}
+        build-command: ${{ inputs.build-command }}
     - name: Install pytest and pytest-cov
       run: pip install pytest pytest-cov
       shell: bash
