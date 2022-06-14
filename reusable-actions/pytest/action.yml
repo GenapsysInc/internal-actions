@@ -23,7 +23,7 @@ runs:
       run: pip install pytest pytest-cov
       shell: bash
     - name: Build Cython
-      run: pip install Cython==3.0a6 numpy==1.18.1; cd cython_code; python3 setup.py build_ext --build-lib ../gen_libs --build-temp ../gen_libs/temp; ls -aR ../gen_libs/; echo $PYTHON_PATH; cd -
+      run: pip install Cython==3.0a6 numpy==1.18.1; cd cython_code; python3 setup.py build_ext --build-lib ../gen_libs --build-temp ../gen_libs/temp; mv ../gen_libs/cython_code/* ../gen_libs; ls -aR ../gen_libs/; cd -
       shell: bash
     - name: Run pytest and capture code coverage
       run: 'python -B -m pytest -v --junitxml=pytest-test-report.xml --cov --cov-report xml:pytest-coverage-report.xml'
