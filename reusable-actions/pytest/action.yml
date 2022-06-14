@@ -19,7 +19,7 @@ runs:
   using: composite
   steps:
     - name: Set up Python version ${{ inputs.python-version }}
-      uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main
+      uses: GenapsysInc/internal-actions/reusable-actions/setup-python@no_cache
       with:
         python-version: ${{ inputs.python-version }}
         requirements-txt: ${{ inputs.requirements-txt }}
