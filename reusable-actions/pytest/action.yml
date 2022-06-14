@@ -23,12 +23,9 @@ runs:
       with:
         python-version: ${{ inputs.python-version }}
         requirements-txt: ${{ inputs.requirements-txt }}
+        build-command: ${{ inputs.build-command }}
     - name: Install pytest and pytest-cov
       run: pip install pytest pytest-cov
-      shell: bash
-    - name: Run build command
-      if: ${{ inputs.build-command }}
-      run: ${{ inputs.build-command }}
       shell: bash
     - name: Run pytest and capture code coverage
       run: 'python -m pytest -v --junitxml=pytest-test-report.xml --cov --cov-report xml:pytest-coverage-report.xml'
