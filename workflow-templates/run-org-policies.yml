@@ -1,0 +1,18 @@
+# This template is intended to be used to run the org-policies reusable workflow in a given repository. Changes made to
+# the called workflow will automatically be included when made by using this template.
+name: Org Policies
+
+on:
+  push:
+    branches: [main]  # Or the name of the repo's default branch
+  pull_request:
+    types: [opened, synchronize, reopened]
+  schedule:
+    - cron: 'mins hours * * 0'  # See https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+
+jobs:
+  run-jobs:
+    name: Org Policy Check
+    uses: GenapsysInc/internal-actions/.github/workflows/org-policies.yml@main
+    secrets:
+      token: ${{ secrets.GH_REST_API_TOKEN }}

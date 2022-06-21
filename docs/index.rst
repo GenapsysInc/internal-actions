@@ -14,6 +14,15 @@ Actions
 
    actions/*
 
+******************
+Workflow Templates
+******************
+
+.. toctree::
+   :glob:
+
+   workflow-templates
+
 ************
 Action Utils
 ************
