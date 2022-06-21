@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ '3.7', '3.10' ]
+        python-version: [ '3.7', '3.10' ]  # Replace as needed based on python versions used
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -29,7 +29,7 @@ jobs:
         uses: GenapsysInc/internal-actions/reusable-actions/pytest@main
         with:
           python-version: ${{ matrix.python-version }}
-          requirements-txt: action_utils/tests/requirements.txt
+          requirements-txt: <path to requirements.txt file, or remove this field>
   increment-version:
     if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
     name: Increment Version
@@ -64,7 +64,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [python]
+        language: [python]  # Add other languages based on the repository
     steps:
       - name: Run CodeQL action with language ${{ matrix.language }}
         uses: GenapsysInc/internal-actions/reusable-actions/codeql@main
@@ -87,4 +87,4 @@ jobs:
           publish_html: ${{ github.event_name == 'push' }}
           warn_as_errors: true
           version: ${{ needs.increment-version.outputs.new-version }}
-          api_dirs: action_utils
+          api_dirs: <space-delimited list of directories with code>
