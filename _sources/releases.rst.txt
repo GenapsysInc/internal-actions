@@ -3,6 +3,12 @@ Internal Actions Releases
 #########################
 
 *****
+1.5.0
+*****
+
+  * Adds ``pytest-args`` option to ``pytest`` action to allow users to pass arguments to pytest
+
+*****
 1.4.0
 *****
 
