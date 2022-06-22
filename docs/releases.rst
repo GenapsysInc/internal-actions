@@ -3,11 +3,16 @@ Internal Actions Releases
 #########################
 
 *****
-1.5.0
+1.6.0
 *****
 
   * Adds the ``workflow-templates`` directory with the intent of adding templates for workflows to be added in other repositories
 
+*****
+1.5.0
+*****
+
+  * Adds ``pytest-args`` option to ``pytest`` action to allow users to pass arguments to pytest
 
 *****
 1.4.0
