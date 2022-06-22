@@ -16,7 +16,7 @@ inputs:
     required: false
   pytest-args:
     description: Additional arguments passed to pytest.
-    default: -v
+    default: -v --cov
     required: false
 
 runs:
@@ -35,7 +35,6 @@ runs:
       run: >
         python -m pytest
         --junitxml=pytest-test-report.xml
-        --cov
         --cov-report xml:pytest-coverage-report.xml
         ${{ inputs.pytest-args }}
       shell: bash
