@@ -3,6 +3,12 @@ Internal Actions Releases
 #########################
 
 *****
+1.6.0
+*****
+
+  * Adds the ``workflow-templates`` directory with the intent of adding templates for workflows to be added in other repositories
+
+*****
 1.5.0
 *****
 
