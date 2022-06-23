@@ -4,7 +4,7 @@
 # documentation based on the event triggering the workflow. Each job includes a conditional which will control the flow
 # of the events based on the trigger. Delete this section when incorporating this workflow.
 
-name: <replace with repository name>
+name: Repo Actions
 
 on:
   push:
