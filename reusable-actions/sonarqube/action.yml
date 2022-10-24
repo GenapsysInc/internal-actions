@@ -14,6 +14,7 @@ runs:
   steps:
     - name: Default Pass Message
       run: echo SonarQube action turned off as the cloud instance is down
+      shell: bash
     # - uses: actions/checkout@v3
     #   with:
     #     fetch-depth: 0
