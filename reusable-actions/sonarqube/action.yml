@@ -12,23 +12,26 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    - name: Pull down test and coverage reports
-      uses: actions/download-artifact@v3
-      with:
-        name: test-reports
-        path: .test-reports
-      continue-on-error: true  # If tests weren't run upstream, that's ok - keep going
-    - uses: sonarsource/sonarqube-scan-action@master
-      env:
-        SONAR_TOKEN: ${{ inputs.token }}
-        SONAR_HOST_URL: ${{ inputs.url }}
-      with:
-        args: >
-          -Dsonar.sources=/github/workspace/
-          -Dsonar.python.coverage.reportPaths=.test-reports/pytest-coverage-report.xml
-          -Dsonar.python.xunit.reportPath=.test-reports/pytest-test-report.xml
-          -Dsonar.exclusions=.test-reports/**
-          -Dsonar.coverage.exclusions=**/tests/**,**/pytests/**,**/docs/**
+    - name: Default Pass Message
+      run: echo SonarQube action turned off as the cloud instance is down
+      shell: bash
+    # - uses: actions/checkout@v3
+    #   with:
+    #     fetch-depth: 0
+    # - name: Pull down test and coverage reports
+    #   uses: actions/download-artifact@v3
+    #   with:
+    #     name: test-reports
+    #     path: .test-reports
+    #   continue-on-error: true  # If tests weren't run upstream, that's ok - keep going
+    # - uses: sonarsource/sonarqube-scan-action@master
+    #   env:
+    #     SONAR_TOKEN: ${{ inputs.token }}
+    #     SONAR_HOST_URL: ${{ inputs.url }}
+    #   with:
+    #     args: >
+    #       -Dsonar.sources=/github/workspace/
+    #       -Dsonar.python.coverage.reportPaths=.test-reports/pytest-coverage-report.xml
+    #       -Dsonar.python.xunit.reportPath=.test-reports/pytest-test-report.xml
+    #       -Dsonar.exclusions=.test-reports/**
+    #       -Dsonar.coverage.exclusions=**/tests/**,**/pytests/**,**/docs/**
