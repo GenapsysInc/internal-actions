@@ -1,4 +1,5 @@
 """Utilities for testing PyGithub usage, mocking of a lot of PyGithub classes"""
+# pylint: disable=missing-function-docstring,missing-class-docstring
 
 __author__ = "David McConnell"
 __credits__ = ["David McConnell"]

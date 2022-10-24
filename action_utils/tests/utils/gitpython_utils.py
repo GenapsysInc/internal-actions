@@ -1,4 +1,5 @@
 """Utilities for testing GitPython usage, mocking of a lot of GitPyhon classes"""
+# pylint: disable=missing-function-docstring,missing-class-docstring,too-few-public-methods
 
 __author__ = "David McConnell"
 __credits__ = ["David McConnell"]
@@ -56,6 +57,16 @@ class MockGitTag(mock.Mock):
         self.message = message
 
 
+class GitErrorRaiser:
+    """Object that will raise a GitError when called"""
+
+    def __init__(self, msg):
+        self.msg = msg
+
+    def __call__(self, *args, **kwargs):
+        raise git.GitError(self.msg)
+
+
 class MockGitRepo(mock.Mock):
     def __init__(self, remotes, submodules=None, tags=None, latest_tag=None):
         super().__init__()
@@ -68,13 +79,15 @@ class MockGitRepo(mock.Mock):
 
         if latest_tag:
             self.git.describe = mock.Mock(return_value=self.latest_tag.tag)
+        else:
+            self.git.describe = GitErrorRaiser("No tags exist")
 
     def iter_submodules(self):
         return iter(self.submodules)
 
-    def create_tag(self, tag_str, m=None):
+    def create_tag(self, tag_str, m=None):  # pylint: disable=invalid-name
         if tag_str in [tag.tag for tag in self.tags]:
-            raise git.exc.GitCommandError(f"Tag {tag_str} already exists")
+            raise git.GitError(f"Tag {tag_str} already exists")
 
         new_tag = MockGitTag(tag_str, message=m)
 

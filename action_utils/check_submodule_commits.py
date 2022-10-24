@@ -13,7 +13,7 @@ import github
 from action_utils import common
 
 
-def submodule_is_valid(git_submodule: git.Submodule, github_repo: github.Repository.Repository) -> bool:
+def submodule_is_valid(git_submodule: common.Submodule, github_repo: github.Repository.Repository) -> bool:
     """Determines if the given submodule is valid by looking through the git history for the default
     branch of the submodule
 
@@ -29,7 +29,7 @@ def submodule_is_valid(git_submodule: git.Submodule, github_repo: github.Reposit
     return False
 
 
-def repo_has_valid_submodules(git_repo: git.repo.base.Repo, github_client: github.MainClass.Github) -> bool:
+def repo_has_valid_submodules(git_repo: common.Repo, github_client: github.MainClass.Github) -> bool:
     """Run validation check on each of the given Repo's submodules
 
     :param repo: The Repo to inspect

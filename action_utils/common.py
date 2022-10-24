@@ -11,6 +11,10 @@ import re
 
 import git
 
+# For type annotation simplification
+Repo = git.repo.base.Repo
+Submodule = git.objects.submodule.base.Submodule
+
 GENAPSYS_GITHUB = "GenapsysInc"
 
 APPROVED = "APPROVED"
@@ -55,10 +59,10 @@ class VersionTag:
         :param tag: Tag string in "major.minor.patch-release" format
         """
         # Will be set by setting self.tag
-        self.__major = None
-        self.__minor = None
-        self.__patch = None
-        self.__release = None
+        self.__major: int
+        self.__minor: int
+        self.__patch: int
+        self.__release: int
 
         self.tag = tag
 
@@ -87,15 +91,17 @@ class VersionTag:
         return self.__tag
 
     @tag.setter
-    def tag(self, new_tag: str):
+    def tag(self, new_tag: str) -> None:
         """Assert valid format, store the given tag, and determine major, minor, patch, and release numbers
 
         :param new_tag: The new tag to store and parse
         """
-        try:
-            self.__tag = re.match(VERSION_TAG_REGEX, new_tag).group()
-        except AttributeError as attr_error:
-            raise InvalidVersion(f"{new_tag} did not conform to major.minor.patch-release format") from attr_error
+        match = re.match(VERSION_TAG_REGEX, new_tag)
+
+        if match:
+            self.__tag = match.group()
+        else:
+            raise InvalidVersion(f"{new_tag} did not conform to major.minor.patch-release format")
 
         major_minor_patch, release = self.tag.split(RELEASE_VERSION_DELIM)
         major, minor, patch = major_minor_patch.split(SEMANTIC_VERSION_DELIM)
@@ -177,7 +183,7 @@ def get_repo_name_from_url(url: str) -> str:
     return url.split(".git")[0].split("/")[-1]
 
 
-def get_repo_name(git_repo: git.repo.base.Repo) -> str:
+def get_repo_name(git_repo: Repo) -> str:
     """Given a GitPython Repo object, determine the name of the repository based on the remote
 
     :param git_repo: The Repo instance
@@ -186,7 +192,7 @@ def get_repo_name(git_repo: git.repo.base.Repo) -> str:
     return get_repo_name_from_url(git_repo.remotes.origin.url)
 
 
-def get_submodule_name(git_submodule: git.Submodule) -> str:
+def get_submodule_name(git_submodule: Submodule) -> str:
     """Given a GitPython Submodule object, determine the name of the submodule based on the remote
 
     :param git_submodule: The Submodule instance
