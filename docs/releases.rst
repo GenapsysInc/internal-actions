@@ -3,6 +3,12 @@ Internal Actions Releases
 #########################
 
 *****
+2.0.0
+*****
+
+  * Changes the ``sonarqube`` reusable action to not actually run anything other than print a message informing the user that the SonarQube instance is down
+
+*****
 1.6.0
 *****
 
