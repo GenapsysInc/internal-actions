@@ -2,7 +2,7 @@ name: internal-actions
 
 on:
   push:
-    branches: [main]
+    branches: [main, turn_off_sonarqube]
   pull_request:
     types: [opened, synchronize]
   schedule:
@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: run-unit-tests
     steps:
-      - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@main
+      - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@turn_off_sonarqube
         with:
           token: ${{ secrets.SONAR_TOKEN }}
           url: ${{ secrets.SONAR_HOST_URL }}
