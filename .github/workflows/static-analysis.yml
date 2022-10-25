@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ${{ inputs.python-versions }}
+        python-version: ${{ fromJSON(inputs.python-versions) }}
     steps:
       - name: Run mypy
         uses: GenapsysInc/internal-actions/reusable-actions/mypy@linter_action
