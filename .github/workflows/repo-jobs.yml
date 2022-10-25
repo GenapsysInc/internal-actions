@@ -91,5 +91,3 @@ jobs:
         uses: GenapsysInc/internal-actions/reusable-actions/pylint@linter_action
         with:
           requirements-txt: action_utils/tests/requirements.txt
-          pylint-version: '2.15.2'
-
