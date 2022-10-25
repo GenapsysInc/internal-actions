@@ -2,7 +2,7 @@ name: testing-defaults
 
 on:
   push:
-    branches: [linter-action]
+    branches: [linter_action]
 
 jobs:
   run-jobs-1:
@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run the defaults check action
-        uses: GenapsysInc/internal-actions/reusable-actions/test-required-defaults@linter-action
+        uses: GenapsysInc/internal-actions/reusable-actions/test-required-defaults@linter_action
   run-jobs-2:
     name: testing-defaults all given
     runs-on: ubuntu-latest
     steps:
       - name: Run the defaults check action
-        uses: GenapsysInc/internal-actions/reusable-actions/test-required-defaults@linter-action
+        uses: GenapsysInc/internal-actions/reusable-actions/test-required-defaults@linter_action
         with:
           true-none: string_1
           true-string: string_2
