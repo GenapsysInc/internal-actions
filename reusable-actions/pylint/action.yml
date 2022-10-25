@@ -5,12 +5,15 @@ inputs:
   python-version:
     description: Version of python to setup
     default: '3.10'
+    required: true
   requirements-txt:
     description: Relative path to requirements.txt file. Wildcards can be submitted as well
     default: null
+    required: true
   build-command:
     description: Build command to be executed prior to installing and running pylint
     default: null
+    required: true
   pylint-version:
     description: Version of pylint to setup, defaulting to latest
     default: null
