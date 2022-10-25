@@ -4,7 +4,7 @@ on:
   workflow_call:
     inputs:
       python-versions:
-        default: ['3.10']
+        default: '[3.10]'
       requirements-txt:
         default: null
       build-command:
@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ${{ inputs.python-versions }}
+        python-version: ${{ fromJSON(inputs.python-versions) }}
     steps:
       - name: Run pylint
         uses: GenapsysInc/internal-actions/reusable-actions/pylint@main
