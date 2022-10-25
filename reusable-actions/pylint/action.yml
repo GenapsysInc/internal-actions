@@ -33,7 +33,7 @@ runs:
         requirements-txt: ${{ inputs.requirements-txt }}
         build-command: ${{ inputs.build-command }}
     - name: Install pylint
-      run: pip install pylint${{ (inputs.pylint-version && '==inputs.pylint-version') || '' }}
+      run: pip install pylint${{ (inputs.pylint-version && '==') || '' }}${{ inputs.pylint-version }}
       shell: bash
     - name: Run pylint
       run: pylint ${{ inputs.args }}
