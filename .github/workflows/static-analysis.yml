@@ -7,28 +7,22 @@ on:
         default: '[3.10]'
         type: string
       requirements-txt:
-        default: null
         type: string
       build-command:
-        default: null
         type: string
       run-pylint:
         default: true
         type: boolean
       pylint-version:
-        default: null
         type: string
       pylint-args:
-        default: null
         type: string
       run-mypy:
         default: true
         type: boolean
       mypy-version:
-        default: null
         type: string
       mypy-args:
-        default: null
         type: string
 
 jobs:
