@@ -1,0 +1,13 @@
+name: testing-defaults
+
+on:
+  push:
+    branches: [linter-action]
+
+jobs:
+  run-jobs:
+    name: testing-defaults
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run the defaults check action
+        uses: GenapsysInc/internal-actions/reusable-actions/test-required-defaults@linter-action

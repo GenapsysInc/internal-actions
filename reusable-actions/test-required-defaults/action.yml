@@ -1,0 +1,38 @@
+name: test-required-defaults
+description: beep boop
+
+inputs:
+  true-none:
+    description: true + none
+    required: true
+  true-string:
+    description: true + string
+    required: true
+    default: true-string
+  false-none:
+    description: false + none
+    required: false
+  false-string:
+    description: false + string
+    required: false
+    default: false-string
+
+runs:
+  using: composite
+  steps:
+    - name: true-none
+      run: echo ${{ inputs.true-none }}
+      shell: bash
+      continue-on-error: true
+    - name: true-string
+      run: echo ${{ inputs.true-string }}
+      shell: bash
+      continue-on-error: true
+    - name: false-none
+      run: echo ${{ inputs.false-none }}
+      shell: bash
+      continue-on-error: true
+    - name: false-string
+      run: echo ${{ inputs.false-string }}
+      shell: bash
+      continue-on-error: true
