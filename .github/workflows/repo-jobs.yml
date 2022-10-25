@@ -82,21 +82,7 @@ jobs:
   #         warn_as_errors: true
   #         version: ${{ needs.increment-version.outputs.new-version }}
   #         api_dirs: action_utils
-  pylint:
-    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
-    name: pylint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run pylint
-        uses: GenapsysInc/internal-actions/reusable-actions/pylint@linter_action
-        with:
-          requirements-txt: action_utils/tests/requirements.txt
-  mypy:
-    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
-    name: mypy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run mypy
-        uses: GenapsysInc/internal-actions/reusable-actions/mypy@linter_action
-        with:
-          requirements-txt: action_utils/tests/requirements.txt
+  static-analysis:
+    uses: GenapsysInc/internal-actions/.github/workflows/static-analysis.yml@linter_action
+    with:
+      requirements-txt: action_utils/tests/requirements.txt

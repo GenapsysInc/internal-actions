@@ -1,0 +1,57 @@
+name: Static Analysis Reusable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      python-versions:
+        default: ['3.10']
+      requirements-txt:
+        default: null
+      build-command:
+        default: null
+      run-pylint:
+        default: true
+      run-pylint:
+        default: null
+      pylint-args:
+        default: null
+      run-mypy:
+        default: true
+      mypy-version:
+        default: null
+      mypy-args:
+        default: null
+
+jobs:
+  pylint:
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
+    name: pylint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ${{ inputs.python-versions }}
+    steps:
+      - name: Run pylint
+        uses: GenapsysInc/internal-actions/reusable-actions/pylint@main
+        with:
+          python-version: ${{ matrix.python-version }}
+          requirements-txt: ${{ inputs.requirements-txt }}
+          build-command: ${{ inputs.build-command }}
+          pylint-version: ${{ inputs.pylint-version }}
+          args: ${{ inputs.pylint-args }}
+  mypy:
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
+    name: mypy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ${{ inputs.python-versions }}
+    steps:
+      - name: Run mypy
+        uses: GenapsysInc/internal-actions/reusable-actions/mypy@main
+        with:
+          python-version: ${{ matrix.python-version }}
+          requirements-txt: ${{ inputs.requirements-txt }}
+          build-command: ${{ inputs.build-command }}
+          mypy-version: ${{ inputs.mypy-version }}
+          args: ${{ inputs.mypy-args }}

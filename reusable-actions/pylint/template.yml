@@ -1,4 +1,4 @@
-name: lint
+name: pylint
 
 on:
   push:
@@ -7,16 +7,15 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  increment-version:
+  pylint:
+    name: pylint
     runs-on: ubuntu-latest
-    outputs:
-      new-version: ${{ steps.run-increment-version.outputs.new-version }}
     steps:
-      - name: Run the increment-version action
-        id: run-increment-version
-        uses: GenapsysInc/internal-actions/reusable-actions/increment-version@main
+      - name: Run pylint
+        uses: GenapsysInc/internal-actions/reusable-actions/pylint@main
         with:
-          token: ${{ secrets.GH_REST_API_TOKEN }}
-          json: <path/to/repo-data.json>
-          use-date: <true|false>, append date string to generated version tag
-          protect-tag: <true|false>, protect the generated tag in GitHub
+          python-version: <default 3.10>
+          requirements-txt: <path/to/requirements.txt>
+          build-command: <optional command to run before pylint>
+          pylint-version: <default latest>
+          args: <default --ignore docs,confluence --recursive=true .>
