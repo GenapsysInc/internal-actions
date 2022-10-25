@@ -87,7 +87,7 @@ jobs:
     name: pylint
     runs-on: ubuntu-latest
     steps:
-      - name: Documentation build and publish
+      - name: Run pylint
         uses: GenapsysInc/internal-actions/reusable-actions/pylint@linter_action
         with:
           requirements-txt: action_utils/tests/requirements.txt
