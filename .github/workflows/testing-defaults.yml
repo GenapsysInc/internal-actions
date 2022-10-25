@@ -5,9 +5,20 @@ on:
     branches: [linter-action]
 
 jobs:
-  run-jobs:
-    name: testing-defaults
+  run-jobs-1:
+    name: testing-defaults none given
     runs-on: ubuntu-latest
     steps:
       - name: Run the defaults check action
         uses: GenapsysInc/internal-actions/reusable-actions/test-required-defaults@linter-action
+  run-jobs-2:
+    name: testing-defaults all given
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run the defaults check action
+        uses: GenapsysInc/internal-actions/reusable-actions/test-required-defaults@linter-action
+        with:
+          true-none: string_1
+          true-string: string_2
+          false-none: string_3
+          false-string: string_4
