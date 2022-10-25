@@ -25,7 +25,7 @@ runs:
   using: composite
   steps:
     - name: Check out repository code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v3g
     - name: Set up Python version ${{ inputs.python-version }}
       uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main
       with:
@@ -33,7 +33,7 @@ runs:
         requirements-txt: ${{ inputs.requirements-txt }}
         build-command: ${{ inputs.build-command }}
     - name: Install pylint
-      run: pip install pylint${{ (fromJson(inputs.pylint-version) && '==inputs.pylint-version') || '' }}
+      run: pip install pylint${{ inputs.pylint-version && '==inputs.pylint-version') || '' }}
       shell: bash
     - name: Run pylint
       run: pylint ${{ inputs.args }}
