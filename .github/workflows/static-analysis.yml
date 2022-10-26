@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run pylint
-        uses: GenapsysInc/internal-actions/reusable-actions/pylint@main
+        uses: GenapsysInc/internal-actions/reusable-actions/pylint@linter_action_test
         with:
           python-version: ${{ inputs.python-version }}
           requirements-txt: ${{ inputs.requirements-txt }}
@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run mypy
-        uses: GenapsysInc/internal-actions/reusable-actions/mypy@main
+        uses: GenapsysInc/internal-actions/reusable-actions/mypy@linter_action_test
         with:
           python-version: ${{ inputs.python-version }}
           requirements-txt: ${{ inputs.requirements-txt }}
