@@ -25,7 +25,7 @@ on:
         type: string
       mypy-args:
         type: string
-        default: --exclude docs --exclude confluence .
+        default: --exclude docs --exclude confluence --hide-column-numbers .
 
 jobs:
   pylint:
