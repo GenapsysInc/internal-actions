@@ -80,6 +80,6 @@ jobs:
           api_dirs: action_utils
   static-analysis:
     name: Static Analysis
-    uses: GenapsysInc/internal-actions/.github/workflows/static-analysis.yml@linter_action
+    uses: GenapsysInc/internal-actions/.github/workflows/static-analysis.yml@main
     with:
       requirements-txt: action_utils/tests/requirements.txt
