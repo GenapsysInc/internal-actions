@@ -53,7 +53,7 @@ class InvalidVersion(Exception):
 class VersionTag:
     """Representation of a git tag in the form of major.minor.patch-release"""
 
-    def __init__(self, tag: str):
+    def __init__(self, tag: str) -> None:
         """Ctor.
 
         :param tag: Tag string in "major.minor.patch-release" format
@@ -66,13 +66,13 @@ class VersionTag:
 
         self.tag = tag
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.tag
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return self.major == other.major and self.minor == other.minor and self.patch == other.patch
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         if self.major != other.major:
             return self.major < other.major
 
@@ -131,7 +131,7 @@ class VersionTag:
         """The release number"""
         return self.__release
 
-    def assert_valid_new_version(self, other: VersionTag):
+    def assert_valid_new_version(self, other: VersionTag) -> None:
         """Is the other VersionTag a valid increment of self? Asserts that the new version is >= the old version, that
         the minor and patch versions are 0 for a major increment, that the patch version is 0 for a minor increment, and
         that version increments are equal to 1.
