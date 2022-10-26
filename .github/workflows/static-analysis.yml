@@ -17,6 +17,7 @@ on:
         type: string
       pylint-args:
         type: string
+        default: --ignore docs,confluence --recursive=true .
       run-mypy:
         default: true
         type: boolean
@@ -24,6 +25,7 @@ on:
         type: string
       mypy-args:
         type: string
+        default: --exclude docs --exclude confluence .
 
 jobs:
   pylint:
@@ -35,10 +37,10 @@ jobs:
         uses: GenapsysInc/internal-actions/reusable-actions/pylint@linter_action
         with:
           python-version: ${{ inputs.python-version }}
-          requirements-txt: ${{ inputs.requirements-txt || null }}
-          build-command: ${{ inputs.build-command || null }}
-          pylint-version: ${{ inputs.pylint-version || null }}
-          # args: ${{ inputs.pylint-args || null }}
+          requirements-txt: ${{ inputs.requirements-txt }}
+          build-command: ${{ inputs.build-command }}
+          pylint-version: ${{ inputs.pylint-version }}
+          args: ${{ inputs.pylint-args }}
   mypy:
     if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
     name: mypy
@@ -48,7 +50,7 @@ jobs:
         uses: GenapsysInc/internal-actions/reusable-actions/mypy@linter_action
         with:
           python-version: ${{ inputs.python-version }}
-          requirements-txt: ${{ inputs.requirements-txt || null }}
-          build-command: ${{ inputs.build-command || null }}
-          mypy-version: ${{ inputs.mypy-version || null }}
-          # args: ${{ inputs.mypy-args || null }}
+          requirements-txt: ${{ inputs.requirements-txt }}
+          build-command: ${{ inputs.build-command }}
+          mypy-version: ${{ inputs.mypy-version }}
+          args: ${{ inputs.mypy-args }}
