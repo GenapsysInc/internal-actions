@@ -83,3 +83,4 @@ jobs:
     uses: GenapsysInc/internal-actions/.github/workflows/static-analysis.yml@linter_action_test
     with:
       requirements-txt: action_utils/tests/requirements.txt
+      run-mypy: false
