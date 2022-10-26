@@ -84,3 +84,4 @@ jobs:
     with:
       requirements-txt: action_utils/tests/requirements.txt
       run-mypy: false
+      run-pylint: false
