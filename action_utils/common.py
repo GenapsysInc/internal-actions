@@ -9,11 +9,9 @@ __maintainer__ = "David McConnell"
 from functools import total_ordering
 import re
 
-import git
-
-# For type annotation simplification
-Repo = git.repo.base.Repo
-Submodule = git.objects.submodule.base.Submodule
+# For type annotation simplification other modules may import Repo and Submodule from this module
+from git.repo.base import Repo
+from git.objects.submodule.base import Submodule
 
 GENAPSYS_GITHUB = "GenapsysInc"
 
@@ -96,9 +94,7 @@ class VersionTag:
 
         :param new_tag: The new tag to store and parse
         """
-        match = re.match(VERSION_TAG_REGEX, new_tag)
-
-        if match:
+        if match := re.match(VERSION_TAG_REGEX, new_tag):
             self.__tag = match.group()
         else:
             raise InvalidVersion(f"{new_tag} did not conform to major.minor.patch-release format")
