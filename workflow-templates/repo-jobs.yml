@@ -92,4 +92,4 @@ jobs:
     name: Static Analysis
     uses: GenapsysInc/internal-actions/.github/workflows/static-analysis.yml@main
     with:
-      requirements-txt: action_utils/tests/requirements.txt
+      requirements-txt: <path/to/requirements.txt>
