@@ -78,9 +78,7 @@ def pr_has_appropriate_reviews(client: github.MainClass.Github, repo: str, pr_nu
 
     teams = [team for team in org.get_teams() if _format_team_name(team.name) in team_names]
 
-    missing_teams = set(team_names) - {_format_team_name(team.name) for team in teams}
-
-    if missing_teams:
+    if missing_teams := set(team_names) - {_format_team_name(team.name) for team in teams}:
         raise common.ConfigurationError(f"Could not find these teams: {', '.join(missing_teams)}")
 
     try:

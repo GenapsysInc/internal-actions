@@ -16,7 +16,7 @@ inputs:
     default: null
   args:
     description: Args for mypy
-    default: --exclude docs --exclude confluence .
+    default: --exclude docs --exclude confluence --hide-column-numbers .
 
 runs:
   using: composite
