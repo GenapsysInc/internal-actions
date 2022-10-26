@@ -84,4 +84,4 @@ jobs:
     with:
       requirements-txt: action_utils/tests/requirements.txt
       run-mypy: false
-      run-pylint: false
+      pylint-version: '2.14.0'
