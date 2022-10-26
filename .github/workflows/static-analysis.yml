@@ -38,7 +38,7 @@ jobs:
           requirements-txt: ${{ inputs.requirements-txt || null }}
           build-command: ${{ inputs.build-command || null }}
           pylint-version: ${{ inputs.pylint-version || null }}
-          args: ${{ inputs.pylint-args || null }}
+          # args: ${{ inputs.pylint-args || null }}
   mypy:
     if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
     name: mypy
@@ -51,4 +51,4 @@ jobs:
           requirements-txt: ${{ inputs.requirements-txt || null }}
           build-command: ${{ inputs.build-command || null }}
           mypy-version: ${{ inputs.mypy-version || null }}
-          args: ${{ inputs.mypy-args || null }}
+          # args: ${{ inputs.mypy-args || null }}
