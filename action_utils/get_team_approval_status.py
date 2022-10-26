@@ -6,7 +6,6 @@ __maintainer__ = "David McConnell"
 
 import argparse
 from collections import defaultdict
-from typing import List
 import sys
 
 import github
@@ -59,7 +58,7 @@ def team_member_has_approved_pr(team: github.Team.Team, pull: github.PullRequest
     return False
 
 
-def pr_has_appropriate_reviews(client: github.MainClass.Github, repo: str, pr_num: int, team_names: List[str]) -> bool:
+def pr_has_appropriate_reviews(client: github.MainClass.Github, repo: str, pr_num: int, team_names: list[str]) -> bool:
     """Given a repository, PR number, and list of teams, determine if the given PR has at least one approval from each
     of the listed teams
 

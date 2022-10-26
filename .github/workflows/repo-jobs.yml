@@ -11,18 +11,14 @@ on:
 jobs:
   run-unit-tests:
     if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
-    name: Run Unit Tests ${{ matrix.python-version }}
+    name: Run Unit Tests
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ '3.7', '3.10' ]
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Run pytest, Python version ${{ matrix.python-version }}
         uses: GenapsysInc/internal-actions/reusable-actions/pytest@main
         with:
-          python-version: ${{ matrix.python-version }}
           requirements-txt: action_utils/tests/requirements.txt
   increment-version:
     if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
@@ -83,10 +79,7 @@ jobs:
           version: ${{ needs.increment-version.outputs.new-version }}
           api_dirs: action_utils
   static-analysis:
+    name: Static Analysis
     uses: GenapsysInc/internal-actions/.github/workflows/static-analysis.yml@linter_action
-    strategy:
-      matrix:
-        python-version: ['3.7', '3.10']
     with:
-      python-version: ${{ matrix.python-version }}
       requirements-txt: action_utils/tests/requirements.txt
