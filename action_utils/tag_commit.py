@@ -64,3 +64,8 @@ if __name__ == "__main__":
     json_version = common.VersionTag(f"{json_content['version']}-1")
 
     tag_current_commit(git.Repo(opts.repo_path), json_version, opts.date)
+
+
+
+def function_that_fails_linting(arg: int, arg2) -> str:
+    return bool(arg)
