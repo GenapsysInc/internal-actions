@@ -97,7 +97,7 @@ class MockGitRepo(mock.Mock):
     def iter_submodules(self) -> Iterable[MockGitSubmodule]:
         return iter(self.submodules)
 
-    def create_tag(self, tag_str: str, m: str = None) -> MockGitTag:  # pylint: disable=invalid-name
+    def create_tag(self, tag_str: int, m: str = None) -> MockGitTag:  # pylint: disable=invalid-name
         if tag_str in [tag.tag for tag in self.tags]:
             raise git.GitError(f"Tag {tag_str} already exists")
 
