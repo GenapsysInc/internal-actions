@@ -23,6 +23,7 @@ on:
       mypy-version:
         type: string
       mypy-args:
+        default: null
         type: string
 
 jobs:
