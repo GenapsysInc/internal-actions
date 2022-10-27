@@ -28,19 +28,28 @@ runs:
   using: composite
   steps:
     - name: Add issue/PR to project
+      id: add-item
       uses: actions/add-to-project@v0.3.0
       with:
         project-url: https://github.com/orgs/${{ inputs.organization }}/projects/${{ inputs.project-number }}
         github-token: ${{ inputs.token }}
         labeled: ${{ inputs.labeled }}
         label-operator: ${{ inputs.label-operator }}
+    # - name: Move issue/PR to given column
+    #   if: ${{ inputs.column-name }}
+    #   uses: peter-evans/create-or-update-project-card@v2
+    #   with:
+    #     project-location: ${{ inputs.organization }}
+    #     project-number: ${{ inputs.project-number }}
+    #     column-name: ${{ inputs.column-name }}
+    #     token: ${{ inputs.token }}
+    #     repository: ${{ github.repository }}
+    #     issue-number: ${{ github.event.number }}
     - name: Move issue/PR to given column
       if: ${{ inputs.column-name }}
-      uses: peter-evans/create-or-update-project-card@v2
+      uses: kalgurn/update-project-item-status@main
       with:
-        project-location: ${{ inputs.organization }}
-        project-number: ${{ inputs.project-number }}
-        column-name: ${{ inputs.column-name }}
-        token: ${{ inputs.token }}
-        repository: ${{ github.repository }}
-        issue-number: ${{ github.event.number }}
+        project-url: https://github.com/orgs/${{ inputs.organization }}/projects/${{ inputs.project-number }}
+        github-token: ${{ inputs.token }}
+        item-id: ${{ steps.add-item.outputs.itemId }}
+        status: ${{ inputs.column-name }}
