@@ -42,3 +42,5 @@ runs:
         project-number: ${{ inputs.project-number }}
         column-name: ${{ inputs.column-name }}
         token: ${{ inputs.token }}
+        repository: ${{ github.repository }}
+        issue-number: ${{ github.event.number }}
