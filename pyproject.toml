@@ -1,0 +1,20 @@
+[tool.mypy]
+show_error_codes = true
+no_strict_optional = true
+
+[[tool.mypy.overrides]]
+module = "action_utils.tests.*"
+allow_untyped_defs = true
+allow_untyped_calls = true
+
+[tool.pylint.main]
+# Specify a score threshold to be exceeded before program exits with error.
+fail-under = 9.5
+
+[tool.pylint.exceptions]
+# Exceptions that will emit a warning when caught.
+overgeneral-exceptions = []
+
+[tool.pylint.format]
+# Maximum number of characters on a single line.
+max-line-length = 120

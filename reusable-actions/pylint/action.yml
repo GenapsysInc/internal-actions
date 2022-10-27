@@ -1,0 +1,39 @@
+name: pylint
+description: Setup Python, install dependencies in given requirements.txt files, and run pylint
+
+inputs:
+  python-version:
+    description: Version of python to setup
+    default: '3.10'
+  requirements-txt:
+    description: Relative path to requirements.txt file. Wildcards can be submitted as well
+    default: null
+  build-command:
+    description: Build command to be executed prior to installing and running pylint
+    default: null
+  pylint-version:
+    description: Version of pylint to setup, defaulting to latest
+    default: null
+  args:
+    description: Args for pylint
+    default: --ignore docs,confluence --recursive=true .
+
+runs:
+  using: composite
+  steps:
+    - name: Check out repository code
+      uses: actions/checkout@v3
+    - name: Set up Python version ${{ inputs.python-version }}
+      uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main
+      with:
+        python-version: ${{ inputs.python-version }}
+        requirements-txt: ${{ inputs.requirements-txt }}
+        build-command: ${{ inputs.build-command }}
+    - name: Add pylint annotator
+      uses: pr-annotators/pylint-pr-annotator@v0.0.1
+    - name: Install pylint
+      run: pip install pylint${{ (inputs.pylint-version && '==') || '' }}${{ inputs.pylint-version }}
+      shell: bash
+    - name: Run pylint
+      run: pylint ${{ inputs.args }}
+      shell: bash

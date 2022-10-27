@@ -9,7 +9,9 @@ __maintainer__ = "David McConnell"
 from functools import total_ordering
 import re
 
-import git
+# For type annotation simplification other modules may import Repo and Submodule from this module
+from git.repo.base import Repo
+from git.objects.submodule.base import Submodule
 
 GENAPSYS_GITHUB = "GenapsysInc"
 
@@ -49,26 +51,26 @@ class InvalidVersion(Exception):
 class VersionTag:
     """Representation of a git tag in the form of major.minor.patch-release"""
 
-    def __init__(self, tag: str):
+    def __init__(self, tag: str) -> None:
         """Ctor.
 
         :param tag: Tag string in "major.minor.patch-release" format
         """
         # Will be set by setting self.tag
-        self.__major = None
-        self.__minor = None
-        self.__patch = None
-        self.__release = None
+        self.__major: int
+        self.__minor: int
+        self.__patch: int
+        self.__release: int
 
         self.tag = tag
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.tag
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return self.major == other.major and self.minor == other.minor and self.patch == other.patch
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         if self.major != other.major:
             return self.major < other.major
 
@@ -87,15 +89,15 @@ class VersionTag:
         return self.__tag
 
     @tag.setter
-    def tag(self, new_tag: str):
+    def tag(self, new_tag: str) -> None:
         """Assert valid format, store the given tag, and determine major, minor, patch, and release numbers
 
         :param new_tag: The new tag to store and parse
         """
-        try:
-            self.__tag = re.match(VERSION_TAG_REGEX, new_tag).group()
-        except AttributeError as attr_error:
-            raise InvalidVersion(f"{new_tag} did not conform to major.minor.patch-release format") from attr_error
+        if match := re.match(VERSION_TAG_REGEX, new_tag):
+            self.__tag = match.group()
+        else:
+            raise InvalidVersion(f"{new_tag} did not conform to major.minor.patch-release format")
 
         major_minor_patch, release = self.tag.split(RELEASE_VERSION_DELIM)
         major, minor, patch = major_minor_patch.split(SEMANTIC_VERSION_DELIM)
@@ -125,7 +127,7 @@ class VersionTag:
         """The release number"""
         return self.__release
 
-    def assert_valid_new_version(self, other: VersionTag):
+    def assert_valid_new_version(self, other: VersionTag) -> None:
         """Is the other VersionTag a valid increment of self? Asserts that the new version is >= the old version, that
         the minor and patch versions are 0 for a major increment, that the patch version is 0 for a minor increment, and
         that version increments are equal to 1.
@@ -177,7 +179,7 @@ def get_repo_name_from_url(url: str) -> str:
     return url.split(".git")[0].split("/")[-1]
 
 
-def get_repo_name(git_repo: git.repo.base.Repo) -> str:
+def get_repo_name(git_repo: Repo) -> str:
     """Given a GitPython Repo object, determine the name of the repository based on the remote
 
     :param git_repo: The Repo instance
@@ -186,7 +188,7 @@ def get_repo_name(git_repo: git.repo.base.Repo) -> str:
     return get_repo_name_from_url(git_repo.remotes.origin.url)
 
 
-def get_submodule_name(git_submodule: git.Submodule) -> str:
+def get_submodule_name(git_submodule: Submodule) -> str:
     """Given a GitPython Submodule object, determine the name of the submodule based on the remote
 
     :param git_submodule: The Submodule instance

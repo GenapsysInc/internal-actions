@@ -1,0 +1,56 @@
+name: Static Analysis Reusable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      python-version:
+        default: '3.10'
+        type: string
+      requirements-txt:
+        type: string
+      build-command:
+        type: string
+      run-pylint:
+        default: true
+        type: boolean
+      pylint-version:
+        type: string
+      pylint-args:
+        type: string
+        default: --ignore docs,confluence --recursive=true .
+      run-mypy:
+        default: true
+        type: boolean
+      mypy-version:
+        type: string
+      mypy-args:
+        type: string
+        default: --exclude docs --exclude confluence --hide-column-numbers .
+
+jobs:
+  pylint:
+    if: ${{ (github.event_name == 'push' || github.event_name == 'pull_request') && inputs.run-pylint }}
+    name: pylint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run pylint
+        uses: GenapsysInc/internal-actions/reusable-actions/pylint@main
+        with:
+          python-version: ${{ inputs.python-version }}
+          requirements-txt: ${{ inputs.requirements-txt }}
+          build-command: ${{ inputs.build-command }}
+          pylint-version: ${{ inputs.pylint-version }}
+          args: ${{ inputs.pylint-args }}
+  mypy:
+    if: ${{ (github.event_name == 'push' || github.event_name == 'pull_request') && inputs.run-mypy }}
+    name: mypy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run mypy
+        uses: GenapsysInc/internal-actions/reusable-actions/mypy@main
+        with:
+          python-version: ${{ inputs.python-version }}
+          requirements-txt: ${{ inputs.requirements-txt }}
+          build-command: ${{ inputs.build-command }}
+          mypy-version: ${{ inputs.mypy-version }}
+          args: ${{ inputs.mypy-args }}

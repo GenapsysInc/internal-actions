@@ -5,7 +5,7 @@ __author__ = "Aaron Berlin"
 import argparse
 import sys
 
-from ghapi.all import GhApi, print_summary
+from ghapi.all import GhApi, print_summary  # type: ignore[import]
 
 from action_utils import common
 
@@ -42,9 +42,9 @@ def check_policy(connection: GhApi, policy: dict) -> bool:
     policy_correct = True
     repo_details = connection.repos.get()
 
-    for k, v in policy.items():
-        if getattr(repo_details, k) != v:
-            print("POLICY VIOLATION - {} : {}".format(k, getattr(repo_details, k)))
+    for key, value in policy.items():
+        if getattr(repo_details, key) != value:
+            print(f"POLICY VIOLATION - {key} : {getattr(repo_details, key)}")
             policy_correct = False
 
     return policy_correct
@@ -72,7 +72,7 @@ def setup_repo(connection: GhApi, settings: dict, branch_protections: dict = Non
 
 
 def disable_action(connection: GhApi, run_id: str) -> None:
-
+    """Disables future runs of the action"""
     work_id = connection.actions.get_workflow_run(run_id)["workflow_id"]
     connection.actions.disable_workflow(workflow_id=work_id)
 
@@ -93,7 +93,8 @@ def parse_args():
     return parser.parse_args()
 
 
-if __name__ == "__main__":
+def main():
+    """Main workflow entrypoint"""
     opts = parse_args()
 
     # Handle both the repo name and the github.repository value which includes the owner
@@ -122,3 +123,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     sys.exit(0)
+
+
+if __name__ == "__main__":
+    main()

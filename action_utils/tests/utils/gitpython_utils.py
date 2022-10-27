@@ -1,24 +1,28 @@
 """Utilities for testing GitPython usage, mocking of a lot of GitPyhon classes"""
+# pylint: disable=missing-function-docstring,missing-class-docstring,too-few-public-methods
 
 __author__ = "David McConnell"
 __credits__ = ["David McConnell"]
 __maintainer__ = "David McConnell"
 
+from typing import Iterable, Any
 from unittest import mock
 
 import git
 
 
 class MockIterableList(mock.Mock):
-    def __init__(self, items):
+    """Mock of GitPython's IterableList class"""
+
+    def __init__(self, items: list[Any]) -> None:
         super().__init__()
 
         self.items = items
 
-    def __getitem__(self, item):
+    def __getitem__(self, item: int) -> Any:
         return self.items[item]
 
-    def __getattr__(self, attr):
+    def __getattr__(self, attr: str) -> Any:
         for item in self.items:
             if hasattr(item, attr):
                 return item
@@ -27,19 +31,23 @@ class MockIterableList(mock.Mock):
 
 
 class MockGitSubmodule(mock.Mock):
-    def __init__(self, url, commit):
+    """Mock of GitPython's Submodule class"""
+
+    def __init__(self, url: str, commit: str) -> None:
         super().__init__()
 
         self.url = url
         self.commit = commit
 
     @property
-    def hexsha(self):
+    def hexsha(self) -> str:
         return self.commit
 
 
 class MockGitRemote(mock.Mock):
-    def __init__(self, name, url):
+    """Mock of GitPython's Remote class"""
+
+    def __init__(self, name: str, url: str) -> None:
         super().__init__()
 
         self.name = name
@@ -49,15 +57,30 @@ class MockGitRemote(mock.Mock):
 
 
 class MockGitTag(mock.Mock):
-    def __init__(self, tag, message):
+    """Mock of GitPython's Tag class"""
+
+    def __init__(self, tag: str, message: str) -> None:
         super().__init__()
 
         self.tag = tag
         self.message = message
 
 
+class GitErrorRaiser:
+    """Object that will raise a GitError when called"""
+
+    def __init__(self, msg: str) -> None:
+        self.msg = msg
+
+    def __call__(self, *args, **kwargs):
+        raise git.GitError(self.msg)
+
+
 class MockGitRepo(mock.Mock):
-    def __init__(self, remotes, submodules=None, tags=None, latest_tag=None):
+    """Mock of GitPython's Repo class"""
+
+    def __init__(self, remotes: list[MockGitRemote], submodules: list[MockGitSubmodule] = None,
+                 tags: list[MockGitTag] = None, latest_tag: MockGitTag = None):
         super().__init__()
 
         self.remotes = MockIterableList(remotes)
@@ -68,13 +91,15 @@ class MockGitRepo(mock.Mock):
 
         if latest_tag:
             self.git.describe = mock.Mock(return_value=self.latest_tag.tag)
+        else:
+            self.git.describe = GitErrorRaiser("No tags exist")
 
-    def iter_submodules(self):
+    def iter_submodules(self) -> Iterable[MockGitSubmodule]:
         return iter(self.submodules)
 
-    def create_tag(self, tag_str, m=None):
+    def create_tag(self, tag_str: str, m: str = None) -> MockGitTag:  # pylint: disable=invalid-name
         if tag_str in [tag.tag for tag in self.tags]:
-            raise git.exc.GitCommandError(f"Tag {tag_str} already exists")
+            raise git.GitError(f"Tag {tag_str} already exists")
 
         new_tag = MockGitTag(tag_str, message=m)
 

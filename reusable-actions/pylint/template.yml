@@ -1,0 +1,21 @@
+name: pylint
+
+on:
+  push:
+    branches: [main]  # Or the name of your default branch
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  pylint:
+    name: pylint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run pylint
+        uses: GenapsysInc/internal-actions/reusable-actions/pylint@main
+        with:
+          python-version: <default 3.10>
+          requirements-txt: <path/to/requirements.txt>
+          build-command: <optional command to run before pylint>
+          pylint-version: <default latest>
+          args: <default --ignore docs,confluence --recursive=true .>

@@ -1,48 +1,58 @@
 """Utilities for testing PyGithub usage, mocking of a lot of PyGithub classes"""
+# pylint: disable=missing-function-docstring,missing-class-docstring
 
 __author__ = "David McConnell"
 __credits__ = ["David McConnell"]
 __maintainer__ = "David McConnell"
 
 from collections import defaultdict
+from typing import DefaultDict, ValuesView
 from unittest import mock
 
 import github
 
 
 class MockGithubException(github.GithubException):
-    def __init__(self, msg):
+    """Subclass of GithubException that acts like a "normal" Exception"""
+
+    def __init__(self, msg: str) -> None:
         super().__init__(None, None, None)
 
         self.msg = msg
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.msg
 
 
 class MockGithubUser(mock.Mock):
-    def __init__(self, name):
+    """Mock of PyGithub's NamedUser class"""
+
+    def __init__(self, name: str):
         super().__init__()
 
         self.name = name
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash(self.name)
 
 
 class MockGithubTeam(mock.Mock):
-    def __init__(self, name, users):
+    """Mock of PyGithub's Team class"""
+
+    def __init__(self, name: str, users: list[MockGithubUser]):
         super().__init__()
 
         self.name = name
         self.users = users
 
-    def get_members(self):
+    def get_members(self) -> list[MockGithubUser]:
         return self.users
 
 
 class MockGithubReview(mock.Mock):
-    def __init__(self, user, state):
+    """Mock of PyGithub's PullRequestReview class"""
+
+    def __init__(self, user: MockGithubUser, state: str) -> None:
         super().__init__()
 
         self.user = user
@@ -50,25 +60,37 @@ class MockGithubReview(mock.Mock):
 
 
 class MockGithubCommit(mock.Mock):
-    def __init__(self, sha):
+    """Mock of PyGithub's Commit class"""
+
+    def __init__(self, sha: str) -> None:
         super().__init__()
 
         self.sha = sha
 
 
 class MockGithubPull(mock.Mock):
-    def __init__(self, pull_num, reviews):
+    """Mock of PyGithub's PullRequest class"""
+
+    def __init__(self, pull_num: int, reviews: list[MockGithubReview]):
         super().__init__()
 
         self.num = pull_num
         self.reviews = reviews
 
-    def get_reviews(self):
+    def get_reviews(self) -> list[MockGithubReview]:
         return self.reviews
 
 
 class MockGithubRepo(mock.Mock):
-    def __init__(self, name, default_branch="main", commits=None, pulls=None):
+    """Mock of PyGithub's Repository class"""
+
+    def __init__(
+            self,
+            name: str,
+            default_branch: str = "main",
+            commits: DefaultDict[str, list[MockGithubCommit]] = None,
+            pulls: dict[int, MockGithubPull] = None
+        ) -> None:
         super().__init__()
 
         self.name = name
@@ -76,16 +98,16 @@ class MockGithubRepo(mock.Mock):
         self.commits = commits if commits else defaultdict(list)
         self.pulls = pulls if pulls else {}
 
-    def add_commit(self, branch, commit):
+    def add_commit(self, branch: str, commit: MockGithubCommit) -> None:
         self.commits[branch].append(commit)
 
-    def get_commits(self, sha=None):
+    def get_commits(self, sha: str = None) -> list[MockGithubCommit]:
         return self.commits[sha]
 
-    def add_pull(self, pull):
+    def add_pull(self, pull: MockGithubPull) -> None:
         self.pulls[pull.num] = pull
 
-    def get_pull(self, pull_num):
+    def get_pull(self, pull_num: int) -> MockGithubPull:
         if pull_num not in self.pulls:
             raise MockGithubException(f"Couldn't find pull request {pull_num}")
 
@@ -93,46 +115,55 @@ class MockGithubRepo(mock.Mock):
 
 
 class MockGithubOrg(mock.Mock):
-    def __init__(self, name, teams=None, repos=None):
+    """Mock of PyGithub's Organization class"""
+
+    def __init__(
+            self,
+            name: str,
+            teams: dict[str, MockGithubTeam] = None,
+            repos: dict[str, MockGithubRepo] = None
+        ) -> None:
         super().__init__()
 
         self.name = name
         self.teams = teams if teams else {}
         self.repos = repos if repos else {}
 
-    def add_repo(self, repo):
+    def add_repo(self, repo: MockGithubRepo) -> None:
         self.repos[repo.name] = repo
 
-    def get_repo(self, repo_name):
+    def get_repo(self, repo_name: str) -> MockGithubRepo:
         if repo_name not in self.repos:
             raise MockGithubException(f"Couldn't find repo {repo_name}")
 
         return self.repos[repo_name]
 
-    def get_repos(self):
+    def get_repos(self) -> ValuesView[MockGithubRepo]:
         return self.repos.values()
 
-    def add_team(self, team):
+    def add_team(self, team: MockGithubTeam) -> None:
         self.teams[team.name] = team
 
-    def get_team(self, team_name):
+    def get_team(self, team_name: str) -> MockGithubTeam:
         if team_name not in self.teams:
             raise MockGithubException(f"Couldn't find team {team_name}")
 
         return self.teams[team_name]
 
-    def get_teams(self):
+    def get_teams(self) -> ValuesView[MockGithubTeam]:
         return self.teams.values()
 
 
 class MockGithubClient(mock.Mock):
-    def __init__(self, orgs, authenticated=True):
+    """Mock of PyGithub's Github class"""
+
+    def __init__(self, orgs: dict[str, MockGithubOrg], authenticated: bool = True):
         super().__init__()
 
         self.orgs = orgs if orgs else {}
         self.authenticated = authenticated
 
-    def get_organization(self, org):
+    def get_organization(self, org: str) -> MockGithubOrg:
         if not self.authenticated:
             raise MockGithubException("Authentication failed")
 
