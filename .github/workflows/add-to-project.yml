@@ -2,7 +2,7 @@ name: Add PR to projects
 
 on:
   pull_request:
-    types: [opened, synchronized]
+    types: [opened, synchronize]
 
 jobs:
   add-pr-to-project:
