@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>action_utils.tests.test_common module &mdash; Internal Actions 2.0 documentation</title>
+  <title>action_utils.tests.test_common module &mdash; Internal Actions 2.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -34,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                2.0.0-1
+                2.1.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -51,6 +51,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../actions/docker-run.html">Docker Run</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/fork-check.html">Fork Check</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/increment-version.html">Increment Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/mypy.html">mypy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/pylint.html">Pylint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/pytest.html">PyTest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/repo-configuration.html">Repo Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/setup-python.html">Setup Python</a></li>
@@ -115,7 +117,7 @@
 <p>Tests for the get_repo_name function</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestGetRepoName.test_get_repo_name">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_get_repo_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestGetRepoName.test_get_repo_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_get_repo_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestGetRepoName.test_get_repo_name" title="Permalink to this definition"></a></dt>
 <dd><p>Test getting repository name from Repo object</p>
 </dd></dl>
 
@@ -128,13 +130,13 @@
 <p>Tests for the get_repo_name_from_url function</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestGetRepoNameFromUrl.test_from_git_url">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_from_git_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestGetRepoNameFromUrl.test_from_git_url" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_from_git_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestGetRepoNameFromUrl.test_from_git_url" title="Permalink to this definition"></a></dt>
 <dd><p>Assert correct parsing of a git url</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestGetRepoNameFromUrl.test_from_https_url">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_from_https_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">https_url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestGetRepoNameFromUrl.test_from_https_url" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_from_https_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">https_url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestGetRepoNameFromUrl.test_from_https_url" title="Permalink to this definition"></a></dt>
 <dd><p>Assert correct parsing of a https url</p>
 </dd></dl>
 
@@ -147,7 +149,7 @@
 <p>Tests for the get_submodule_name function</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestGetSubmoduleName.test_get_submodule_name">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_get_submodule_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">submodule</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestGetSubmoduleName.test_get_submodule_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_get_submodule_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">submodule</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestGetSubmoduleName.test_get_submodule_name" title="Permalink to this definition"></a></dt>
 <dd><p>Test getting repository name from Submodule object</p>
 </dd></dl>
 
@@ -160,145 +162,145 @@
 <p>Tests for the VersionTag class</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_assert_valid_new_version_major_bump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">major_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_assert_valid_new_version_major_bump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">major_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump" title="Permalink to this definition"></a></dt>
 <dd><p>Test version increment assertion with a valid major version bump</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump_bad_new_minor">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_assert_valid_new_version_major_bump_bad_new_minor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump_bad_new_minor" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_assert_valid_new_version_major_bump_bad_new_minor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump_bad_new_minor" title="Permalink to this definition"></a></dt>
 <dd><p>Test that minor version cannot be incremented when major version is incremented</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump_bad_new_patch">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_assert_valid_new_version_major_bump_bad_new_patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump_bad_new_patch" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_assert_valid_new_version_major_bump_bad_new_patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump_bad_new_patch" title="Permalink to this definition"></a></dt>
 <dd><p>Test that patch version cannot be incremented when major version is incremented</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump_too_big">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_assert_valid_new_version_major_bump_too_big</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump_too_big" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_assert_valid_new_version_major_bump_too_big</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump_too_big" title="Permalink to this definition"></a></dt>
 <dd><p>Test major version increment &gt; 1 is treated as invalid</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_minor_bump">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_assert_valid_new_version_minor_bump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minor_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_minor_bump" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_assert_valid_new_version_minor_bump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minor_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_minor_bump" title="Permalink to this definition"></a></dt>
 <dd><p>Test version increment assertion with a valid minor version bump</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_minor_bump_bad_new_patch">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_assert_valid_new_version_minor_bump_bad_new_patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minor_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_minor_bump_bad_new_patch" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_assert_valid_new_version_minor_bump_bad_new_patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minor_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_minor_bump_bad_new_patch" title="Permalink to this definition"></a></dt>
 <dd><p>Test that patch version cannot be incremented when minor version is incremented</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_minor_bump_too_big">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_assert_valid_new_version_minor_bump_too_big</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minor_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_minor_bump_too_big" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_assert_valid_new_version_minor_bump_too_big</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minor_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_minor_bump_too_big" title="Permalink to this definition"></a></dt>
 <dd><p>Test minor version increment &gt; 1 is treated as invalid</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_patch_bump">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_assert_valid_new_version_patch_bump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patch_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_patch_bump" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_assert_valid_new_version_patch_bump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patch_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_patch_bump" title="Permalink to this definition"></a></dt>
 <dd><p>Test version increment assertion with a valid patch version bump</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_patch_bump_too_big">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_assert_valid_new_version_patch_bump_too_big</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_patch_bump_too_big" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_assert_valid_new_version_patch_bump_too_big</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_patch_bump_too_big" title="Permalink to this definition"></a></dt>
 <dd><p>Test patch version increment &gt; 1 is treated as invalid</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_smaller_version_major">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_assert_valid_new_version_smaller_version_major</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_smaller_version_major" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_assert_valid_new_version_smaller_version_major</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_smaller_version_major" title="Permalink to this definition"></a></dt>
 <dd><p>Test version increment assertion with a new version less than current version wrt to major version</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_smaller_version_minor">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_assert_valid_new_version_smaller_version_minor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minor_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_smaller_version_minor" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_assert_valid_new_version_smaller_version_minor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minor_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_smaller_version_minor" title="Permalink to this definition"></a></dt>
 <dd><p>Test version increment assertion with a new version less than current version wrt to minor version</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_smaller_version_patch">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_assert_valid_new_version_smaller_version_patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_smaller_version_patch" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_assert_valid_new_version_smaller_version_patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_smaller_version_patch" title="Permalink to this definition"></a></dt>
 <dd><p>Test version increment assertion with a new version less than current version wrt to patch version</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_get_new_release">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_get_new_release</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_with_new_release</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_get_new_release" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_get_new_release</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_with_new_release</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_get_new_release" title="Permalink to this definition"></a></dt>
 <dd><p>Test the get_new_release method correctly increments the release number</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_invalid_tag_handling">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_invalid_tag_handling</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_invalid_tag_handling" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_invalid_tag_handling</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_invalid_tag_handling" title="Permalink to this definition"></a></dt>
 <dd><p>Test that different invalid versions correctly cause an InvalidVersion Exception to be raised</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_commit_addded">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_major_minor_patch_release_commit_addded</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version_with_commit</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_commit_addded" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_major_minor_patch_release_commit_addded</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version_with_commit</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_commit_addded" title="Permalink to this definition"></a></dt>
 <dd><p>Test parsing of version with commit string appended</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_date_added">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_major_minor_patch_release_date_added</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version_with_date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_date_added" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_major_minor_patch_release_date_added</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version_with_date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_date_added" title="Permalink to this definition"></a></dt>
 <dd><p>Test parsing of version with date appended</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_date_and_commit_added">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_major_minor_patch_release_date_and_commit_added</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version_with_date_and_commit</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_date_and_commit_added" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_major_minor_patch_release_date_and_commit_added</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version_with_date_and_commit</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_date_and_commit_added" title="Permalink to this definition"></a></dt>
 <dd><p>Test parsing of version with both date and commit appended</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_standard">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_major_minor_patch_release_standard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_with_new_release</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_standard" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_major_minor_patch_release_standard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_with_new_release</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_standard" title="Permalink to this definition"></a></dt>
 <dd><p>Test parsing of version with standard tag format</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_operator_major_major">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_operator_major_major</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">major_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_operator_major_major" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_operator_major_major</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">major_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_operator_major_major" title="Permalink to this definition"></a></dt>
 <dd><p>Test comparators with 2 versions only differing by major version</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_operator_major_minor">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_operator_major_minor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_operator_major_minor" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_operator_major_minor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_operator_major_minor" title="Permalink to this definition"></a></dt>
 <dd><p>Test comparators with 2 versions differing by major and minor versions</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_operator_major_patch">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_operator_major_patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patch_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_operator_major_patch" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_operator_major_patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patch_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_operator_major_patch" title="Permalink to this definition"></a></dt>
 <dd><p>Test comparators with 2 versions differing by major and patch versions</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_operator_minor_minor">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_operator_minor_minor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minor_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_operator_minor_minor" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_operator_minor_minor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minor_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_operator_minor_minor" title="Permalink to this definition"></a></dt>
 <dd><p>Test comparators with 2 versions only differing by minor version</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_operator_minor_patch">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_operator_minor_patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minor_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patch_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_operator_minor_patch" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_operator_minor_patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minor_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patch_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_operator_minor_patch" title="Permalink to this definition"></a></dt>
 <dd><p>Test comparators with 2 versions differing by minor and patch versions</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_common.TestVersionTag.test_operator_patch_patch">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_operator_patch_patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patch_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_operator_patch_patch" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_operator_patch_patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patch_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_common.TestVersionTag.test_operator_patch_patch" title="Permalink to this definition"></a></dt>
 <dd><p>Test comparators with 2 versions only differing by patch version</p>
 </dd></dl>
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>action_utils.tests.utils.gitpython_utils module &mdash; Internal Actions 2.0 documentation</title>
+  <title>action_utils.tests.utils.gitpython_utils module &mdash; Internal Actions 2.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -34,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                2.0.0-1
+                2.1.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -51,6 +51,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../actions/docker-run.html">Docker Run</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/fork-check.html">Fork Check</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/increment-version.html">Increment Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/mypy.html">mypy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/pylint.html">Pylint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/pytest.html">PyTest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/repo-configuration.html">Repo Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/setup-python.html">Setup Python</a></li>
@@ -110,23 +112,32 @@
 <span id="action-utils-tests-utils-gitpython-utils-module"></span><h1>action_utils.tests.utils.gitpython_utils module<a class="headerlink" href="#module-action_utils.tests.utils.gitpython_utils" title="Permalink to this heading"></a></h1>
 <p>Utilities for testing GitPython usage, mocking of a lot of GitPyhon classes</p>
 <dl class="py class">
+<dt class="sig sig-object py" id="action_utils.tests.utils.gitpython_utils.GitErrorRaiser">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">action_utils.tests.utils.gitpython_utils.</span></span><span class="sig-name descname"><span class="pre">GitErrorRaiser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.utils.gitpython_utils.GitErrorRaiser" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Object that will raise a GitError when called</p>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="action_utils.tests.utils.gitpython_utils.MockGitRemote">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">action_utils.tests.utils.gitpython_utils.</span></span><span class="sig-name descname"><span class="pre">MockGitRemote</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.utils.gitpython_utils.MockGitRemote" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Mock</span></code></p>
+<p>Mock of GitPython’s Remote class</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="action_utils.tests.utils.gitpython_utils.MockGitRepo">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">action_utils.tests.utils.gitpython_utils.</span></span><span class="sig-name descname"><span class="pre">MockGitRepo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.utils.gitpython_utils.MockGitRepo" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Mock</span></code></p>
+<p>Mock of GitPython’s Repo class</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.utils.gitpython_utils.MockGitRepo.create_tag">
-<span class="sig-name descname"><span class="pre">create_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.utils.gitpython_utils.MockGitRepo.create_tag" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">create_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#action_utils.tests.utils.gitpython_utils.MockGitTag" title="action_utils.tests.utils.gitpython_utils.MockGitTag"><span class="pre">MockGitTag</span></a></span></span><a class="headerlink" href="#action_utils.tests.utils.gitpython_utils.MockGitRepo.create_tag" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.utils.gitpython_utils.MockGitRepo.iter_submodules">
-<span class="sig-name descname"><span class="pre">iter_submodules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.utils.gitpython_utils.MockGitRepo.iter_submodules" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">iter_submodules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#action_utils.tests.utils.gitpython_utils.MockGitSubmodule" title="action_utils.tests.utils.gitpython_utils.MockGitSubmodule"><span class="pre">MockGitSubmodule</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#action_utils.tests.utils.gitpython_utils.MockGitRepo.iter_submodules" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -135,9 +146,10 @@
 <dt class="sig sig-object py" id="action_utils.tests.utils.gitpython_utils.MockGitSubmodule">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">action_utils.tests.utils.gitpython_utils.</span></span><span class="sig-name descname"><span class="pre">MockGitSubmodule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.utils.gitpython_utils.MockGitSubmodule" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Mock</span></code></p>
+<p>Mock of GitPython’s Submodule class</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="action_utils.tests.utils.gitpython_utils.MockGitSubmodule.hexsha">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hexsha</span></span><a class="headerlink" href="#action_utils.tests.utils.gitpython_utils.MockGitSubmodule.hexsha" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hexsha</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#action_utils.tests.utils.gitpython_utils.MockGitSubmodule.hexsha" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -146,12 +158,14 @@
 <dt class="sig sig-object py" id="action_utils.tests.utils.gitpython_utils.MockGitTag">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">action_utils.tests.utils.gitpython_utils.</span></span><span class="sig-name descname"><span class="pre">MockGitTag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.utils.gitpython_utils.MockGitTag" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Mock</span></code></p>
+<p>Mock of GitPython’s Tag class</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="action_utils.tests.utils.gitpython_utils.MockIterableList">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">action_utils.tests.utils.gitpython_utils.</span></span><span class="sig-name descname"><span class="pre">MockIterableList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.utils.gitpython_utils.MockIterableList" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Mock</span></code></p>
+<p>Mock of GitPython’s IterableList class</p>
 </dd></dl>
 
 </section>

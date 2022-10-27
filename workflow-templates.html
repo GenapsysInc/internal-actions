@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Workflow Templates &mdash; Internal Actions 2.0 documentation</title>
+  <title>Workflow Templates &mdash; Internal Actions 2.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -34,7 +34,7 @@
             <a href="index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                2.0.0-1
+                2.1.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -51,6 +51,8 @@
 <li class="toctree-l1"><a class="reference internal" href="actions/docker-run.html">Docker Run</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actions/fork-check.html">Fork Check</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actions/increment-version.html">Increment Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="actions/mypy.html">mypy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="actions/pylint.html">Pylint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actions/pytest.html">PyTest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actions/repo-configuration.html">Repo Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actions/setup-python.html">Setup Python</a></li>
@@ -200,6 +202,11 @@
 <span class="w">          </span><span class="nt">warn_as_errors</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 <span class="w">          </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ needs.increment-version.outputs.new-version }}</span><span class="w"></span>
 <span class="w">          </span><span class="nt">api_dirs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;space-delimited list of directories with code&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">static-analysis</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Static Analysis</span><span class="w"></span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/.github/workflows/static-analysis.yml@main</span><span class="w"></span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">requirements-txt</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;path/to/requirements.txt&gt;</span><span class="w"></span>
 </pre></div>
 </div>
 </section>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>action_utils.common module &mdash; Internal Actions 2.0 documentation</title>
+  <title>action_utils.common module &mdash; Internal Actions 2.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -34,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                2.0.0-1
+                2.1.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -51,6 +51,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../actions/docker-run.html">Docker Run</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/fork-check.html">Fork Check</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/increment-version.html">Increment Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/mypy.html">mypy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/pylint.html">Pylint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/pytest.html">PyTest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/repo-configuration.html">Repo Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/setup-python.html">Setup Python</a></li>
@@ -132,7 +134,7 @@
 <p>Representation of a git tag in the form of major.minor.patch-release</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.common.VersionTag.assert_valid_new_version">
-<span class="sig-name descname"><span class="pre">assert_valid_new_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#action_utils.common.VersionTag" title="action_utils.common.VersionTag"><span class="pre">VersionTag</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.common.VersionTag.assert_valid_new_version" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">assert_valid_new_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#action_utils.common.VersionTag" title="action_utils.common.VersionTag"><span class="pre">VersionTag</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#action_utils.common.VersionTag.assert_valid_new_version" title="Permalink to this definition"></a></dt>
 <dd><p>Is the other VersionTag a valid increment of self? Asserts that the new version is &gt;= the old version, that
 the minor and patch versions are 0 for a major increment, that the patch version is 0 for a minor increment, and
 that version increments are equal to 1.</p>
@@ -219,7 +221,7 @@ that version increments are equal to 1.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="action_utils.common.get_submodule_name">
-<span class="sig-prename descclassname"><span class="pre">action_utils.common.</span></span><span class="sig-name descname"><span class="pre">get_submodule_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_submodule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">git.Submodule</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#action_utils.common.get_submodule_name" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">action_utils.common.</span></span><span class="sig-name descname"><span class="pre">get_submodule_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">git_submodule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">git.objects.submodule.base.Submodule</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#action_utils.common.get_submodule_name" title="Permalink to this definition"></a></dt>
 <dd><p>Given a GitPython Submodule object, determine the name of the submodule based on the remote</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

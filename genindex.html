@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; Internal Actions 2.0 documentation</title>
+  <title>Index &mdash; Internal Actions 2.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -31,7 +31,7 @@
             <a href="index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                2.0.0-1
+                2.1.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -48,6 +48,8 @@
 <li class="toctree-l1"><a class="reference internal" href="actions/docker-run.html">Docker Run</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actions/fork-check.html">Fork Check</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actions/increment-version.html">Increment Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="actions/mypy.html">mypy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="actions/pylint.html">Pylint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actions/pytest.html">PyTest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actions/repo-configuration.html">Repo Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="actions/setup-python.html">Setup Python</a></li>
@@ -314,10 +316,10 @@
 </li>
       <li><a href="_action_utils/action_utils.tests.test_check_submodule_commits.html#action_utils.tests.test_check_submodule_commits.fixture_github_unauthed_client">fixture_github_unauthed_client() (in module action_utils.tests.test_check_submodule_commits)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.fixture_https_url">fixture_https_url() (in module action_utils.tests.test_common)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.fixture_major_1">fixture_major_1() (in module action_utils.tests.test_common)</a>
 </li>
       <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.fixture_major_2">fixture_major_2() (in module action_utils.tests.test_common)</a>
@@ -327,6 +329,8 @@
       <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.fixture_minor_1">fixture_minor_1() (in module action_utils.tests.test_common)</a>
 </li>
       <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.fixture_minor_2">fixture_minor_2() (in module action_utils.tests.test_common)</a>
+</li>
+      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.fixture_no_tag_repo">fixture_no_tag_repo() (in module action_utils.tests.test_tag_commit)</a>
 </li>
       <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.fixture_origin_remote">fixture_origin_remote() (in module action_utils.tests.test_common)</a>
 </li>
@@ -400,10 +404,10 @@
 </li>
       <li><a href="_action_utils/action_utils.tests.utils.pygithub_utils.html#action_utils.tests.utils.pygithub_utils.MockGithubOrg.get_repo">get_repo() (action_utils.tests.utils.pygithub_utils.MockGithubOrg method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_action_utils/action_utils.common.html#action_utils.common.get_repo_name">get_repo_name() (in module action_utils.common)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_action_utils/action_utils.common.html#action_utils.common.get_repo_name_from_url">get_repo_name_from_url() (in module action_utils.common)</a>
 </li>
       <li><a href="_action_utils/action_utils.tests.utils.pygithub_utils.html#action_utils.tests.utils.pygithub_utils.MockGithubOrg.get_repos">get_repos() (action_utils.tests.utils.pygithub_utils.MockGithubOrg method)</a>
@@ -415,6 +419,8 @@
       <li><a href="_action_utils/action_utils.tests.utils.pygithub_utils.html#action_utils.tests.utils.pygithub_utils.MockGithubOrg.get_team">get_team() (action_utils.tests.utils.pygithub_utils.MockGithubOrg method)</a>
 </li>
       <li><a href="_action_utils/action_utils.tests.utils.pygithub_utils.html#action_utils.tests.utils.pygithub_utils.MockGithubOrg.get_teams">get_teams() (action_utils.tests.utils.pygithub_utils.MockGithubOrg method)</a>
+</li>
+      <li><a href="_action_utils/action_utils.tests.utils.gitpython_utils.html#action_utils.tests.utils.gitpython_utils.GitErrorRaiser">GitErrorRaiser (class in action_utils.tests.utils.gitpython_utils)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -442,6 +448,8 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_action_utils/action_utils.configure_repo_settings.html#action_utils.configure_repo_settings.main">main() (in module action_utils.configure_repo_settings)</a>
+</li>
       <li><a href="_action_utils/action_utils.common.html#action_utils.common.VersionTag.major">major (action_utils.common.VersionTag property)</a>
 </li>
       <li><a href="_action_utils/action_utils.common.html#action_utils.common.VersionTag.minor">minor (action_utils.common.VersionTag property)</a>
@@ -567,129 +575,139 @@
 </li>
       <li><a href="_action_utils/action_utils.get_team_approval_status.html#action_utils.get_team_approval_status.team_member_has_approved_pr">team_member_has_approved_pr() (in module action_utils.get_team_approval_status)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_check_submodule_commits.html#action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_all_valid">test_all_valid() (action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_check_submodule_commits.html#action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_all_valid">test_all_valid() (action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump">test_assert_valid_new_version_major_bump() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump">test_assert_valid_new_version_major_bump() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump_bad_new_minor">test_assert_valid_new_version_major_bump_bad_new_minor() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump_bad_new_minor">test_assert_valid_new_version_major_bump_bad_new_minor() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump_bad_new_patch">test_assert_valid_new_version_major_bump_bad_new_patch() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump_bad_new_patch">test_assert_valid_new_version_major_bump_bad_new_patch() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump_too_big">test_assert_valid_new_version_major_bump_too_big() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_major_bump_too_big">test_assert_valid_new_version_major_bump_too_big() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_minor_bump">test_assert_valid_new_version_minor_bump() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_minor_bump">test_assert_valid_new_version_minor_bump() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_minor_bump_bad_new_patch">test_assert_valid_new_version_minor_bump_bad_new_patch() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_minor_bump_bad_new_patch">test_assert_valid_new_version_minor_bump_bad_new_patch() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_minor_bump_too_big">test_assert_valid_new_version_minor_bump_too_big() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_minor_bump_too_big">test_assert_valid_new_version_minor_bump_too_big() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_patch_bump">test_assert_valid_new_version_patch_bump() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_patch_bump">test_assert_valid_new_version_patch_bump() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_patch_bump_too_big">test_assert_valid_new_version_patch_bump_too_big() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_patch_bump_too_big">test_assert_valid_new_version_patch_bump_too_big() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_smaller_version_major">test_assert_valid_new_version_smaller_version_major() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_smaller_version_major">test_assert_valid_new_version_smaller_version_major() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_smaller_version_minor">test_assert_valid_new_version_smaller_version_minor() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_smaller_version_minor">test_assert_valid_new_version_smaller_version_minor() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_smaller_version_patch">test_assert_valid_new_version_smaller_version_patch() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_assert_valid_new_version_smaller_version_patch">test_assert_valid_new_version_smaller_version_patch() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_check_submodule_commits.html#action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_auth_failure">test_auth_failure() (action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_check_submodule_commits.html#action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_auth_failure">test_auth_failure() (action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_authentication_fail">test_authentication_fail() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_authentication_fail">test_authentication_fail() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_bump_with_date">test_bump_with_date() (action_utils.tests.test_tag_commit.TestTagCurrentCommit static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_bump_with_date">test_bump_with_date() (action_utils.tests.test_tag_commit.TestTagCurrentCommit method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_duplicate_version">test_duplicate_version() (action_utils.tests.test_tag_commit.TestTagCurrentCommit static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_duplicate_version">test_duplicate_version() (action_utils.tests.test_tag_commit.TestTagCurrentCommit method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_change_request">test_false_change_request() (action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_change_request">test_false_change_request() (action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_false_changes_requested">test_false_changes_requested() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_false_changes_requested">test_false_changes_requested() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_comment">test_false_comment() (action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_comment">test_false_comment() (action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_false_comments">test_false_comments() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_false_comments">test_false_comments() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_false_mixed">test_false_mixed() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_false_mixed">test_false_mixed() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_multiple_reviews_1">test_false_multiple_reviews_1() (action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_multiple_reviews_1">test_false_multiple_reviews_1() (action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_multiple_reviews_2">test_false_multiple_reviews_2() (action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_multiple_reviews_2">test_false_multiple_reviews_2() (action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestGetRepoNameFromUrl.test_from_git_url">test_from_git_url() (action_utils.tests.test_common.TestGetRepoNameFromUrl static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestGetRepoNameFromUrl.test_from_git_url">test_from_git_url() (action_utils.tests.test_common.TestGetRepoNameFromUrl method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestGetRepoNameFromUrl.test_from_https_url">test_from_https_url() (action_utils.tests.test_common.TestGetRepoNameFromUrl static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestGetRepoNameFromUrl.test_from_https_url">test_from_https_url() (action_utils.tests.test_common.TestGetRepoNameFromUrl method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_get_new_release">test_get_new_release() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_get_new_release">test_get_new_release() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestGetRepoName.test_get_repo_name">test_get_repo_name() (action_utils.tests.test_common.TestGetRepoName static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestGetRepoName.test_get_repo_name">test_get_repo_name() (action_utils.tests.test_common.TestGetRepoName method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestGetSubmoduleName.test_get_submodule_name">test_get_submodule_name() (action_utils.tests.test_common.TestGetSubmoduleName static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestGetSubmoduleName.test_get_submodule_name">test_get_submodule_name() (action_utils.tests.test_common.TestGetSubmoduleName method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_check_submodule_commits.html#action_utils.tests.test_check_submodule_commits.TestSubmoduleIsValid.test_invalid">test_invalid() (action_utils.tests.test_check_submodule_commits.TestSubmoduleIsValid static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_check_submodule_commits.html#action_utils.tests.test_check_submodule_commits.TestSubmoduleIsValid.test_invalid">test_invalid() (action_utils.tests.test_check_submodule_commits.TestSubmoduleIsValid method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_invalid_bump">test_invalid_bump() (action_utils.tests.test_tag_commit.TestTagCurrentCommit static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_invalid_bump">test_invalid_bump() (action_utils.tests.test_tag_commit.TestTagCurrentCommit method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_invalid_pull">test_invalid_pull() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_invalid_pull">test_invalid_pull() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_invalid_repo">test_invalid_repo() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_invalid_repo">test_invalid_repo() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews method)</a>
+</li>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_invalid_tag_handling">test_invalid_tag_handling() (action_utils.tests.test_common.TestVersionTag method)</a>
+</li>
+      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_major_bump">test_major_bump() (action_utils.tests.test_tag_commit.TestTagCurrentCommit method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_invalid_tag_handling">test_invalid_tag_handling() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_commit_addded">test_major_minor_patch_release_commit_addded() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_major_bump">test_major_bump() (action_utils.tests.test_tag_commit.TestTagCurrentCommit static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_date_added">test_major_minor_patch_release_date_added() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_commit_addded">test_major_minor_patch_release_commit_addded() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_date_and_commit_added">test_major_minor_patch_release_date_and_commit_added() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_date_added">test_major_minor_patch_release_date_added() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_standard">test_major_minor_patch_release_standard() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_date_and_commit_added">test_major_minor_patch_release_date_and_commit_added() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_minor_bump">test_minor_bump() (action_utils.tests.test_tag_commit.TestTagCurrentCommit method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_major_minor_patch_release_standard">test_major_minor_patch_release_standard() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_missing_teams">test_missing_teams() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_minor_bump">test_minor_bump() (action_utils.tests.test_tag_commit.TestTagCurrentCommit static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_check_submodule_commits.html#action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_mixed_valid">test_mixed_valid() (action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_missing_teams">test_missing_teams() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_no_current_tag_bad_version">test_no_current_tag_bad_version() (action_utils.tests.test_tag_commit.TestTagCurrentCommit method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_check_submodule_commits.html#action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_mixed_valid">test_mixed_valid() (action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_no_current_tag_major">test_no_current_tag_major() (action_utils.tests.test_tag_commit.TestTagCurrentCommit method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_check_submodule_commits.html#action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_no_submodules">test_no_submodules() (action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_no_current_tag_minor">test_no_current_tag_minor() (action_utils.tests.test_tag_commit.TestTagCurrentCommit method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_check_submodule_commits.html#action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_none_valid">test_none_valid() (action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_no_current_tag_patch">test_no_current_tag_patch() (action_utils.tests.test_tag_commit.TestTagCurrentCommit method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_operator_major_major">test_operator_major_major() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_no_current_tag_release">test_no_current_tag_release() (action_utils.tests.test_tag_commit.TestTagCurrentCommit method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_operator_major_minor">test_operator_major_minor() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_check_submodule_commits.html#action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_no_submodules">test_no_submodules() (action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_operator_major_patch">test_operator_major_patch() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_check_submodule_commits.html#action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules.test_none_valid">test_none_valid() (action_utils.tests.test_check_submodule_commits.TestRepoHasValidSubmodules method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_operator_minor_minor">test_operator_minor_minor() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_operator_major_major">test_operator_major_major() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_operator_minor_patch">test_operator_minor_patch() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_operator_major_minor">test_operator_major_minor() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_operator_patch_patch">test_operator_patch_patch() (action_utils.tests.test_common.TestVersionTag static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_operator_major_patch">test_operator_major_patch() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_patch_bump">test_patch_bump() (action_utils.tests.test_tag_commit.TestTagCurrentCommit static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_operator_minor_minor">test_operator_minor_minor() (action_utils.tests.test_common.TestVersionTag method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_release_bump">test_release_bump() (action_utils.tests.test_tag_commit.TestTagCurrentCommit static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_operator_minor_patch">test_operator_minor_patch() (action_utils.tests.test_common.TestVersionTag method)</a>
+</li>
+      <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_operator_patch_patch">test_operator_patch_patch() (action_utils.tests.test_common.TestVersionTag method)</a>
+</li>
+      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_patch_bump">test_patch_bump() (action_utils.tests.test_tag_commit.TestTagCurrentCommit method)</a>
+</li>
+      <li><a href="_action_utils/action_utils.tests.test_tag_commit.html#action_utils.tests.test_tag_commit.TestTagCurrentCommit.test_release_bump">test_release_bump() (action_utils.tests.test_tag_commit.TestTagCurrentCommit method)</a>
 </li>
       <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestVersionTag.test_str">test_str() (action_utils.tests.test_common.TestVersionTag static method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_true_all">test_true_all() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_true_all">test_true_all() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews method)</a>
 
       <ul>
-        <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_all">(action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR static method)</a>
+        <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_all">(action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR method)</a>
 </li>
       </ul></li>
-      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_true_mixed">test_true_mixed() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_true_mixed">test_true_mixed() (action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_mixed_team">test_true_mixed_team() (action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_mixed_team">test_true_mixed_team() (action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_multiple_reviews_1">test_true_multiple_reviews_1() (action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_multiple_reviews_1">test_true_multiple_reviews_1() (action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_multiple_reviews_2">test_true_multiple_reviews_2() (action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_get_team_approval_status.html#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_multiple_reviews_2">test_true_multiple_reviews_2() (action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR method)</a>
 </li>
-      <li><a href="_action_utils/action_utils.tests.test_check_submodule_commits.html#action_utils.tests.test_check_submodule_commits.TestSubmoduleIsValid.test_valid">test_valid() (action_utils.tests.test_check_submodule_commits.TestSubmoduleIsValid static method)</a>
+      <li><a href="_action_utils/action_utils.tests.test_check_submodule_commits.html#action_utils.tests.test_check_submodule_commits.TestSubmoduleIsValid.test_valid">test_valid() (action_utils.tests.test_check_submodule_commits.TestSubmoduleIsValid method)</a>
 </li>
       <li><a href="_action_utils/action_utils.tests.test_common.html#action_utils.tests.test_common.TestGetRepoName">TestGetRepoName (class in action_utils.tests.test_common)</a>
 </li>

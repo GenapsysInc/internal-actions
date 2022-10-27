@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>action_utils.tests.test_get_team_approval_status module &mdash; Internal Actions 2.0 documentation</title>
+  <title>action_utils.tests.test_get_team_approval_status module &mdash; Internal Actions 2.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -34,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                2.0.0-1
+                2.1.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -51,6 +51,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../actions/docker-run.html">Docker Run</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/fork-check.html">Fork Check</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/increment-version.html">Increment Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/mypy.html">mypy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/pylint.html">Pylint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/pytest.html">PyTest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/repo-configuration.html">Repo Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/setup-python.html">Setup Python</a></li>
@@ -115,55 +117,55 @@
 <p>Tests for the pr_has_appropriate_reviews function</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_authentication_fail">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_authentication_fail</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unauthenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_approved</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_teams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_authentication_fail" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_authentication_fail</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unauthenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_approved</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_teams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_authentication_fail" title="Permalink to this definition"></a></dt>
 <dd><p>End-to-end style test to assert proper handling of authentication failure</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_false_changes_requested">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_false_changes_requested</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_requested_changes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_teams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_false_changes_requested" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_false_changes_requested</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_requested_changes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_teams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_false_changes_requested" title="Permalink to this definition"></a></dt>
 <dd><p>End-to-end style test for when a PR has only change requests</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_false_comments">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_false_comments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_commented</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_teams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_false_comments" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_false_comments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_commented</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_teams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_false_comments" title="Permalink to this definition"></a></dt>
 <dd><p>End-to-end style test for when a PR has only comments</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_false_mixed">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_false_mixed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_qa_recent_approval_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_teams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_false_mixed" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_false_mixed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_qa_recent_approval_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_teams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_false_mixed" title="Permalink to this definition"></a></dt>
 <dd><p>End-to-end style test for when a PR has some change requests and some approvals but meets overall approval</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_invalid_pull">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_invalid_pull</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_teams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_invalid_pull" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_invalid_pull</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_teams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_invalid_pull" title="Permalink to this definition"></a></dt>
 <dd><p>End-to-end style test to assert proper handling of invalid PR number</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_invalid_repo">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_invalid_repo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_approved</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_teams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_invalid_repo" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_invalid_repo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_approved</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_teams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_invalid_repo" title="Permalink to this definition"></a></dt>
 <dd><p>End-to-end style test to assert proper handling of invalid repo</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_missing_teams">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_missing_teams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_approved</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_missing_teams" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_missing_teams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_approved</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_missing_teams" title="Permalink to this definition"></a></dt>
 <dd><p>End-to-end style test to assert proper handling of invalid team name</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_true_all">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_true_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_approved</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_teams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_true_all" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_true_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_approved</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_teams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_true_all" title="Permalink to this definition"></a></dt>
 <dd><p>End-to-end style test for when a PR has required team approvals</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_true_mixed">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_true_mixed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_mixed_reviews</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_teams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_true_mixed" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_true_mixed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authenticated_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_repo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_mixed_reviews</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_teams</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestPRHasAppropriateReviews.test_true_mixed" title="Permalink to this definition"></a></dt>
 <dd><p>End-to-end style test for when a PR has some change requests and some approvals but meets overall approval</p>
 </dd></dl>
 
@@ -176,49 +178,49 @@
 <p>Tests for the team_member_has_approved_pr function</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_change_request">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_false_change_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa_team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_requested_changes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_change_request" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_false_change_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa_team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_requested_changes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_change_request" title="Permalink to this definition"></a></dt>
 <dd><p>All teams have only requested changes, QA should not be marked as having approved</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_comment">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_false_comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa_team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_commented</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_comment" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_false_comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa_team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_commented</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_comment" title="Permalink to this definition"></a></dt>
 <dd><p>All teams have only commented, QA should not be marked as having approved</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_multiple_reviews_1">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_false_multiple_reviews_1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa_team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_qa_recent_change_request_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_multiple_reviews_1" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_false_multiple_reviews_1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa_team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_qa_recent_change_request_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_multiple_reviews_1" title="Permalink to this definition"></a></dt>
 <dd><p>QA previously approved, but the most recent review is a change request, should not be marked as approved</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_multiple_reviews_2">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_false_multiple_reviews_2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa_team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_qa_recent_change_request_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_multiple_reviews_2" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_false_multiple_reviews_2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa_team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_qa_recent_change_request_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_false_multiple_reviews_2" title="Permalink to this definition"></a></dt>
 <dd><p>QA previously approved, but the most recent was a change request, should not be marked as approved</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_all">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_true_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa_team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_approved</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_all" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_true_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa_team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_all_teams_approved</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_all" title="Permalink to this definition"></a></dt>
 <dd><p>All teams have approved, so QA should be marked as having approved</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_mixed_team">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_true_mixed_team</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa_team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_mixed_reviews</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_mixed_team" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_true_mixed_team</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa_team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_mixed_reviews</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_mixed_team" title="Permalink to this definition"></a></dt>
 <dd><p>Case where 1 QA team member has not approved but another has, QA should be marked as having approved</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_multiple_reviews_1">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_true_multiple_reviews_1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa_team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_qa_recent_approval_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_multiple_reviews_1" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_true_multiple_reviews_1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa_team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_qa_recent_approval_1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_multiple_reviews_1" title="Permalink to this definition"></a></dt>
 <dd><p>QA previously requested changes, but the most recent review is an approval, should be marked as approved</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_multiple_reviews_2">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test_true_multiple_reviews_2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa_team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_qa_recent_approval_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_multiple_reviews_2" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">test_true_multiple_reviews_2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qa_team</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pull_qa_recent_approval_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.test_get_team_approval_status.TestTeamMemberHasApprovedPR.test_true_multiple_reviews_2" title="Permalink to this definition"></a></dt>
 <dd><p>QA previously requested changes, but the most recent was an approval, should be marked as approved</p>
 </dd></dl>
 
