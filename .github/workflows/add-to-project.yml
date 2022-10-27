@@ -1,5 +1,4 @@
 name: Add PR to projects
-description: Add pull requests to configured projects and optionally a specific column within those projects
 
 on:
   pull_request:
