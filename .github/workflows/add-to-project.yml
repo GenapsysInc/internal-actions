@@ -1,0 +1,21 @@
+name: Add PR to projects
+description: Add pull requests to configured projects and optionally a specific column within those projects
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  add-pr-to-project:
+    name: Add PR to project
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project-board:
+          - { number: 3, column: null }
+    steps:
+      - uses: GenapsysInc/internal-actions/reusable-actions/add-to-project@auto-project-action
+        with:
+          project-number: ${{ matrix.project-board.number }}
+          column-name: ${{ matrix.project-board.column }}
+          token: ${{ secrets.GH_ACTION }}
