@@ -17,4 +17,4 @@ jobs:
         with:
           project-number: ${{ matrix.project-board.number }}
           column-name: ${{ matrix.project-board.column }}
-          token: ${{ secrets.GH_REST_API_TOKEN }}
+          token: ${{ secrets.PROJECT_UPDATE }}
