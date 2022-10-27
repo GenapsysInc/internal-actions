@@ -1,0 +1,44 @@
+name: add-to-project
+description: Adds an issue or pull request to a given project and optionally moves it to a specific column
+
+inputs:
+  organization:
+    description: Organization the project belongs to, default GenapsysInc
+    default: GenapsysInc
+  project-number:
+    description: The number of the project within the organization
+    required: true
+  column-name:
+    description: Name of the column to move the issue/PR to (optional)
+    required: false
+    default: null
+  labeled:
+    description: Comma-delimited list of labels the issue/PR must have for this action to run (optional)
+    required: false
+    default: null
+  label-operator:
+    description: Boolean operator for labels - AND, OR, NOT e.g. must have all given labels (AND) or one of given labels (OR)
+    required: false
+    default: OR
+  token:
+    description: GitHub token for authentication
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Add issue/PR to project
+      uses: actions/add-to-project@0.3.0
+      with:
+        project-url: https://github.com/orgs/${{ inputs.organization }}/projects/${{ inputs.project-number }}
+        github-token: ${{ inputs.token }}
+        labeled: ${{ inputs.labeled }}
+        label-operator: ${{ inputs.label-operator }}
+    - name: Move issue/PR to given column
+      if: ${{ inputs.column-name }}
+      uses: peter-evans/create-or-update-project-card@v2
+      with:
+        project-location: ${{ inputs.organization }}
+        project-number: ${{ inputs.project-number }}
+        column-name: ${{ inputs.column-name }}
+        token: ${{ inputs.token }}
