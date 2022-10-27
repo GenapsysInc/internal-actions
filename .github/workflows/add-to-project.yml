@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         project-board:
-          - { number: 3, column: null }
+          - { number: 3, column: In Progress }
     steps:
       - uses: GenapsysInc/internal-actions/reusable-actions/add-to-project@auto-project-action
         with:
