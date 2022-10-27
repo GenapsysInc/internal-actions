@@ -28,7 +28,7 @@ runs:
   using: composite
   steps:
     - name: Add issue/PR to project
-      uses: actions/add-to-project@0.3.0
+      uses: actions/add-to-project@v0.3.0
       with:
         project-url: https://github.com/orgs/${{ inputs.organization }}/projects/${{ inputs.project-number }}
         github-token: ${{ inputs.token }}
