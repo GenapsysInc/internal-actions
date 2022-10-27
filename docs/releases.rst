@@ -3,6 +3,13 @@ Internal Actions Releases
 #########################
 
 *****
+2.1.0
+*****
+
+  * Adds ``mypy`` and ``pylint`` actions
+  * Adds the ``static-analysis.yml`` reusable workflow
+
+*****
 2.0.0
 *****
 
