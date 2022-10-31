@@ -51,7 +51,7 @@ runs:
         token: ${{ inputs.token }}
         submodules: recursive
     - name: Run docbuilder
-      uses: GenapsysInc/internal-actions/reusable-actions/docker-run@set-output-updates
+      uses: GenapsysInc/internal-actions/reusable-actions/docker-run@set-output-updates-test
       with:
           username: ${{ github.repository_owner }}
           password: ${{ inputs.token }}
