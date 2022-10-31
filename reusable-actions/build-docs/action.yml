@@ -51,7 +51,7 @@ runs:
         token: ${{ inputs.token }}
         submodules: recursive
     - name: Run docbuilder
-      uses: GenapsysInc/internal-actions/reusable-actions/docker-run@main
+      uses: GenapsysInc/internal-actions/reusable-actions/docker-run@set-output-updates
       with:
           username: ${{ github.repository_owner }}
           password: ${{ inputs.token }}
@@ -60,8 +60,8 @@ runs:
           options: -v ${{ github.workspace }}:/repo
           args: ${{ (inputs.confluence_secret && '-s') || '' }} ${{ inputs.confluence_secret }}
                 ${{ (inputs.api_dirs && '-d') || '' }} ${{ inputs.api_dirs }}
-                ${{ (fromJSON(inputs.build_confluence) && '-c') || '' }} 
-                ${{ (fromJSON(inputs.publish_confluence) && '-p') || '' }} 
+                ${{ (fromJSON(inputs.build_confluence) && '-c') || '' }}
+                ${{ (fromJSON(inputs.publish_confluence) && '-p') || '' }}
                 ${{ (fromJSON(inputs.warn_as_errors) && '-w') || '' }}
                 ${{ (fromJSON(inputs.build_html) && '-m') || '' }}
                 ${{ (inputs.version && '-v') || '' }} ${{ inputs.version }}
