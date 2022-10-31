@@ -17,7 +17,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Run pytest
-        uses: GenapsysInc/internal-actions/reusable-actions/pytest@sset-output-updates-test
+        uses: GenapsysInc/internal-actions/reusable-actions/pytest@set-output-updates-test
         with:
           requirements-txt: action_utils/tests/requirements.txt
   increment-version:
