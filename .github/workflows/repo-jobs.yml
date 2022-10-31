@@ -17,7 +17,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Run pytest
-        uses: GenapsysInc/internal-actions/reusable-actions/pytest@main
+        uses: GenapsysInc/internal-actions/reusable-actions/pytest@set-output-updates
         with:
           requirements-txt: action_utils/tests/requirements.txt
   increment-version:
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: run-unit-tests
     steps:
-      - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@main
+      - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@set-output-updates
         with:
           token: ${{ secrets.SONAR_TOKEN }}
           url: ${{ secrets.SONAR_HOST_URL }}
@@ -57,7 +57,7 @@ jobs:
         language: [python]
     steps:
       - name: Run CodeQL action with language ${{ matrix.language }}
-        uses: GenapsysInc/internal-actions/reusable-actions/codeql@main
+        uses: GenapsysInc/internal-actions/reusable-actions/codeql@set-output-updates
         with:
           language: ${{ matrix.language }}
   doc-build:
@@ -67,7 +67,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Documentation build and publish
-        uses: GenapsysInc/internal-actions/reusable-actions/build-docs@main
+        uses: GenapsysInc/internal-actions/reusable-actions/build-docs@set-output-updates
         with:
           token: ${{ secrets.GHCR_TOKEN }}
           confluence_secret: ${{ secrets.CONFLUENCE_SECRET }}
@@ -80,6 +80,6 @@ jobs:
           api_dirs: action_utils
   static-analysis:
     name: Static Analysis
-    uses: GenapsysInc/internal-actions/.github/workflows/static-analysis.yml@main
+    uses: GenapsysInc/internal-actions/.github/workflows/static-analysis.yml@set-output-updates
     with:
       requirements-txt: action_utils/tests/requirements.txt
