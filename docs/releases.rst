@@ -3,6 +3,12 @@ Internal Actions Releases
 #########################
 
 *****
+2.1.1
+*****
+
+  * Updates the ``codeql``, ``docker-run``, and ``increment-version`` actions to address https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+
+*****
 2.1.0
 *****
 

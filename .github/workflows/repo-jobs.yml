@@ -33,16 +33,16 @@ jobs:
         with:
           protect-tag: true
           token: ${{ secrets.GH_REST_API_TOKEN }}
-  sonarqube:
-    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
-    name: SonarQube
-    runs-on: ubuntu-latest
-    needs: run-unit-tests
-    steps:
-      - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@main
-        with:
-          token: ${{ secrets.SONAR_TOKEN }}
-          url: ${{ secrets.SONAR_HOST_URL }}
+  # sonarqube:
+  #   if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
+  #   name: SonarQube
+  #   runs-on: ubuntu-latest
+  #   needs: run-unit-tests
+  #   steps:
+  #     - uses: GenapsysInc/internal-actions/reusable-actions/sonarqube@main
+  #       with:
+  #         token: ${{ secrets.SONAR_TOKEN }}
+  #         url: ${{ secrets.SONAR_HOST_URL }}
   codeql:
     if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' || github.event_name == 'schedule' }}
     name: CodeQL ${{ matrix.language }}
