@@ -12,6 +12,7 @@ import re
 # For type annotation simplification other modules may import Repo and Submodule from this module
 from git.repo.base import Repo
 from git.objects.submodule.base import Submodule
+import github
 
 GENAPSYS_GITHUB = "GenapsysInc"
 
@@ -195,3 +196,23 @@ def get_submodule_name(git_submodule: Submodule) -> str:
     :return: The name of the repository
     """
     return get_repo_name_from_url(git_submodule.url)
+
+
+def get_organization(client, org_name):
+    """Wraps call to GitHub's Organization REST endpoint in a try/except
+
+    """
+    try:
+        return client.get_organization(org_name)
+    except github.GithubException as exc:
+        raise ConfigurationError(f"Could not retrieve organization {org_name} with given secret") from exc
+
+
+def get_pull(org, repo_name, pr_num):
+    """Wraps call to GitHub's Pulls REST endpoint in a try/except
+
+    """
+    try:
+        return org.get_repo(repo_name).get_pull(pr_num)
+    except github.GithubException as exc:
+        raise ConfigurationError(f"Could not find PR in repo {repo_name} with number {pr_num}") from exc
