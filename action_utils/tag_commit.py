@@ -56,6 +56,7 @@ def parse_args():
 
 
 if __name__ == "__main__":
+    # comment to change this file
     opts = parse_args()
 
     with open(opts.json, "r", encoding="utf-8") as json_fh:
