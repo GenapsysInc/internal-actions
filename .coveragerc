@@ -12,4 +12,5 @@ omit =
 [report]
 exclude_lines =
     def parse_args
+    def main
     if __name__ == "__main__"
