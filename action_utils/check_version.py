@@ -48,29 +48,21 @@ def file_is_relevant(file_name: str, includes: list[str] = None, excludes: list[
 
 
 def missing_version_bump(
-        client: github.MainClass.Github,
-        org_name: str,
-        repo_name: str,
-        pull_number: int,
+        repo: github.Repository.Repository,
+        pull: github.PullRequest.PullRequest,
         version: common.VersionTag,
         includes: list[str] = None,
         excludes: list[str] = None
     ) -> bool:
     """Determines if a pull request should have incurred a version bump, and if so asserts that the version was bumped
 
-    :param client: Authenticated PyGithub client
-    :param org_name: The GitHub organization name
-    :param repo_name: The GitHub repo name
-    :param pull_number: The number of the pull request to inspect
+    :param repo: PyGithub Repository instance
+    :param pull: PyGithub PullRequest instance
     :param version: Version parsed from repo data JSON file
     :param includes: List of paths/patterns that when changed should incur a version bump
     :param excludes: List of paths/patterns that do not matter for version bumping - takes priority over includes
     :return: True if a version bump is required but was not made, False otherwise
     """
-    org = common.get_organization(client, org_name)
-    repo = common.get_repo(org, repo_name)
-    pull = common.get_pull(repo, pull_number)
-
     version_bump_required = False
 
     for file in pull.get_files():
@@ -96,11 +88,12 @@ def main():
     json_version = common.VersionTag(f"{json_content['version']}-1")
 
     client = github.Github(opts.secret)
+    org = common.get_organization(client, opts.organization)
+    repo = common.get_repo(org, opts.repo)
+    pull = common.get_pull(repo, opts.pull_number)
 
-    if missing_version_bump(client, opts.organization, opts.repo, opts.pull_number,
-                            json_version, opts.include, opts.exclude):
-        print(f"Version {json_version.tag} needs to be incremented based on found changes")
-        sys.exit(1)
+    if missing_version_bump(repo, pull, json_version, opts.include, opts.exclude):
+        pull.create_issue_comment("test")
 
     sys.exit(0)
 
