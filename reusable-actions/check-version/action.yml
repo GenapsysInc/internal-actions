@@ -44,7 +44,7 @@ runs:
           -j ${{ inputs.json }} \
           -s ${{ inputs.token }} \
           -p ${{ github.event.number }} \
-          -r ${{ github.event.repository }} \
-          -o ${{ github.event.organization }} \
+          -r ${{ github.event.repository.name }} \
+          -o ${{ github.event.organization.name }} \
           -i ${{ inputs.include-paths }} \
           -e ${{ inputs.exclude-paths }}
