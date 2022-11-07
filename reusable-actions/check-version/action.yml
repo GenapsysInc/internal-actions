@@ -30,7 +30,7 @@ runs:
       with:
         repository: genapsysinc/internal-actions
         path: internal-actions
-        ref: main
+        ref: version-bump-check-test
         token: ${{ inputs.token }}
     - name: Set up Python 3.10 and install dependencies
       uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main
