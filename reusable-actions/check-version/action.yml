@@ -42,7 +42,7 @@ runs:
         export PYTHONPATH="`pwd`/internal-actions"
         python internal-actions/action_utils/check_version.py \
           -j ${{ inputs.json }} \
-          -s ${{ inputs.token }} \
+          -s ${{ github.token }} \
           -p ${{ github.event.number }} \
           -r ${{ github.event.repository.name }} \
           -o ${{ github.event.organization.login }} \
