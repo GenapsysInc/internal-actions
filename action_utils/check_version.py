@@ -94,12 +94,8 @@ def main():
 
     if missing_version_bump(repo, pull, json_version, opts.include, opts.exclude):
         msg = "Version bump was expected based on changed files but was not found"
-        if comment := next((c for c in pull.get_issue_comments() if c.body == msg), None):
-            comment.delete()
-        print("ya")
-        pull.create_issue_comment(msg)
-
-    sys.exit(0)
+        if not next((c for c in pull.get_issue_comments() if c.body == msg), None):
+            pull.create_issue_comment(msg)
 
 
 def parse_args():
