@@ -113,7 +113,7 @@ def parse_args():
 
     parser.add_argument("-s", "--secret", required=True, help="GitHub auth token")
 
-    parser.add_argument("-p", "--pull-number", required=True, help="Pull request number")
+    parser.add_argument("-p", "--pull-number", required=True, type=int, help="Pull request number")
 
     parser.add_argument("-r", "--repo", required=True, help="Name of repo the pull request lives in")
 
