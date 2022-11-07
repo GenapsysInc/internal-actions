@@ -44,7 +44,7 @@ jobs:
         with:
           include-paths: '*.py *.yml'
           exclude-paths: 'docs action_utils/tests'
-          token: ${{ secrets.GH_REST_API_TOKEN }}
+          token: ${{ secrets.GH_ACTIONS }}
 
   # sonarqube:
   #   if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
