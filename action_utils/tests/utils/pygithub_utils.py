@@ -68,17 +68,45 @@ class MockGithubCommit(mock.Mock):
         self.sha = sha
 
 
+class MockGithubTag(mock.Mock):
+    """Mock of PyGithub's Tag class"""
+
+    def __init__(self, name: str, commit: MockGithubCommit) -> None:
+        super().__init__()
+
+        self.name = name
+        self.commit = commit
+
+
+class MockGithubFile(mock.Mock):
+    """Mock of PyGithub's File class"""
+
+    def __init__(self, filename: str, sha: str) -> None:
+        super().__init__()
+
+        self.filename = filename
+        self.sha = sha
+
+
 class MockGithubPull(mock.Mock):
     """Mock of PyGithub's PullRequest class"""
 
-    def __init__(self, pull_num: int, reviews: list[MockGithubReview]):
+    def __init__(self,
+            pull_num: int,
+            reviews: list[MockGithubReview] = None,
+            files: list[MockGithubFile] = None
+        ) -> None:
         super().__init__()
 
         self.num = pull_num
         self.reviews = reviews
+        self.files = files
 
     def get_reviews(self) -> list[MockGithubReview]:
         return self.reviews
+
+    def get_files(self) -> list[MockGithubFile]:
+        return self.files
 
 
 class MockGithubRepo(mock.Mock):
@@ -89,7 +117,8 @@ class MockGithubRepo(mock.Mock):
             name: str,
             default_branch: str = "main",
             commits: DefaultDict[str, list[MockGithubCommit]] = None,
-            pulls: dict[int, MockGithubPull] = None
+            pulls: dict[int, MockGithubPull] = None,
+            tags: list[MockGithubTag] = None
         ) -> None:
         super().__init__()
 
@@ -97,6 +126,7 @@ class MockGithubRepo(mock.Mock):
         self.default_branch = default_branch
         self.commits = commits if commits else defaultdict(list)
         self.pulls = pulls if pulls else {}
+        self.tags = tags if tags else []
 
     def add_commit(self, branch: str, commit: MockGithubCommit) -> None:
         self.commits[branch].append(commit)
@@ -112,6 +142,9 @@ class MockGithubRepo(mock.Mock):
             raise MockGithubException(f"Couldn't find pull request {pull_num}")
 
         return self.pulls[pull_num]
+
+    def get_tags(self) -> list[MockGithubTag]:
+        return self.tags
 
 
 class MockGithubOrg(mock.Mock):

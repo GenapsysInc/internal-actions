@@ -208,11 +208,21 @@ def get_organization(client, org_name):
         raise ConfigurationError(f"Could not retrieve organization {org_name} with given secret") from exc
 
 
-def get_pull(org, repo_name, pr_num):
+def get_repo(org, repo_name):
+    """Wraps call to GitHub's Organization REST endpoint in a try/except
+
+    """
+    try:
+        return org.get_repo(repo_name)
+    except github.GithubException as exc:
+        raise ConfigurationError(f"Could not find repo {repo_name} in organization {org.name}") from exc
+
+
+def get_pull(repo, pull_number):
     """Wraps call to GitHub's Pulls REST endpoint in a try/except
 
     """
     try:
-        return org.get_repo(repo_name).get_pull(pr_num)
+        return repo.get_pull(pull_number)
     except github.GithubException as exc:
-        raise ConfigurationError(f"Could not find PR in repo {repo_name} with number {pr_num}") from exc
+        raise ConfigurationError(f"Could not find PR in repo {repo.name} with number {pull_number}") from exc

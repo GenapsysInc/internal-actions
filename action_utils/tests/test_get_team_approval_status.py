@@ -99,42 +99,43 @@ def fixture_bioinformatics_change_request(user_4):
 
 @pytest.fixture(name="pull_all_teams_approved")
 def fixture_pull_all_teams_approved(qa_approval, devops_approval, bioinformatics_approval):
-    return pgh_utils.MockGithubPull(1, [qa_approval, devops_approval, bioinformatics_approval])
+    return pgh_utils.MockGithubPull(1, reviews=[qa_approval, devops_approval, bioinformatics_approval])
 
 
 @pytest.fixture(name="pull_all_teams_commented")
 def fixture_pull_all_teams_commented(qa_comment, devops_comment, bioinformatics_comment):
-    return pgh_utils.MockGithubPull(2, [qa_comment, devops_comment, bioinformatics_comment])
+    return pgh_utils.MockGithubPull(2, reviews=[qa_comment, devops_comment, bioinformatics_comment])
 
 
 @pytest.fixture(name="pull_all_teams_requested_changes")
 def fixture_pull_all_teams_requested_changes(qa_change_request, devops_change_request, bioinformatics_change_request):
-    return pgh_utils.MockGithubPull(3, [qa_change_request, devops_change_request, bioinformatics_change_request])
+    return pgh_utils.MockGithubPull(3, reviews=[qa_change_request, devops_change_request,
+                                                bioinformatics_change_request])
 
 
 @pytest.fixture(name="pull_mixed_reviews")
 def fixture_pull_mixed_reviews(qa_change_request, devops_approval, bioinformatics_approval):
-    return pgh_utils.MockGithubPull(4, [qa_change_request, devops_approval, bioinformatics_approval])
+    return pgh_utils.MockGithubPull(4, reviews=[qa_change_request, devops_approval, bioinformatics_approval])
 
 
 @pytest.fixture(name="pull_qa_recent_approval_1")
 def fixture_pull_qa_recent_approval_1(qa_approval, qa_comment, qa_change_request):
-    return pgh_utils.MockGithubPull(5, [qa_change_request, qa_comment, qa_comment, qa_approval])
+    return pgh_utils.MockGithubPull(5, reviews=[qa_change_request, qa_comment, qa_comment, qa_approval])
 
 
 @pytest.fixture(name="pull_qa_recent_approval_2")
 def fixture_pull_qa_recent_approval_2(qa_approval, qa_comment, qa_change_request):
-    return pgh_utils.MockGithubPull(6, [qa_change_request, qa_comment, qa_approval, qa_comment])
+    return pgh_utils.MockGithubPull(6, reviews=[qa_change_request, qa_comment, qa_approval, qa_comment])
 
 
 @pytest.fixture(name="pull_qa_recent_change_request_1")
 def fixture_pull_qa_recent_change_request_1(qa_approval, qa_comment, qa_change_request):
-    return pgh_utils.MockGithubPull(7, [qa_approval, qa_comment, qa_comment, qa_change_request])
+    return pgh_utils.MockGithubPull(7, reviews=[qa_approval, qa_comment, qa_comment, qa_change_request])
 
 
 @pytest.fixture(name="pull_qa_recent_change_request_2")
 def fixture_pull_qa_recent_change_request_2(qa_approval, qa_comment, qa_change_request):
-    return pgh_utils.MockGithubPull(8, [qa_approval, qa_comment, qa_change_request, qa_comment])
+    return pgh_utils.MockGithubPull(8, reviews=[qa_approval, qa_comment, qa_change_request, qa_comment])
 
 
 @pytest.fixture(name="test_repo")
