@@ -99,6 +99,7 @@ def main():
 
     if missing_version_bump(client, opts.organization, opts.repo, opts.pull_number,
                             json_version, opts.include, opts.exclude):
+        print(f"Version {json_version.tag} needs to be incremented based on found changes")
         sys.exit(1)
 
     sys.exit(0)
