@@ -96,7 +96,7 @@ def main():
         msg = "Version bump was expected based on changed files but was not found"
         if comment := next((c for c in pull.get_issue_comments() if c.body == msg), None):
             comment.delete()
-            pull.create_issue_comment(msg)
+        pull.create_issue_comment(msg)
 
     sys.exit(0)
 
