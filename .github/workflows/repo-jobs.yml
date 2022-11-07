@@ -40,7 +40,7 @@ jobs:
     steps:
       - name: Run the check-version action
         id: run-check-version
-        uses: GenapsysInc/internal-actions/reusable-actions/check-version@main
+        uses: GenapsysInc/internal-actions/reusable-actions/check-version@version-bump-check-test
         with:
           include-paths: '*.py *.yml'
           exclude-paths: 'docs action_utils/tests'
