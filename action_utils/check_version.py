@@ -97,8 +97,6 @@ def main():
         if not next((c for c in pull.get_issue_comments() if c.body == msg), None):
             pull.create_issue_comment(msg)
 
-    sys.exit(0)
-
 
 def parse_args():
     """Parse commandline args"""
