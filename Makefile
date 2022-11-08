@@ -32,7 +32,19 @@ html:
 	docker pull ghcr.io/genapsysinc/docbuilder:latest
 	docker run -v `pwd`:/repo/ ghcr.io/genapsysinc/docbuilder:latest -m -d action_utils
 
-__TARGET_HELP += "  * confluence - Build the confluence documentation."
+__TARGET_HELP += "  * confluence - Build the confluence documentation.\n"
 confluence:
 	docker pull ghcr.io/genapsysinc/docbuilder:latest
 	docker run -v `pwd`:/repo/ ghcr.io/genapsysinc/docbuilder:latest -c -d action_utils
+
+__TARGET_HELP += "  * test - Run pytest and produce term-missing coverage report\n"
+test:
+	python3 -m pytest --cov-report=term-missing --cov=action_utils
+
+__TARGET_HELP += "  * mypy - Run mypy, ignoring docs and confluence dirs\n"
+mypy:
+	mypy --exclude docs --exclude confluence .
+
+__TARGET_HELP += "  * pylint - Run pylint, ignoring docs and confluence dirs\n"
+pylint:
+	pylint --ignore docs,confluence --recursive=true .

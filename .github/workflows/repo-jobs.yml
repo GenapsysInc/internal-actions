@@ -33,6 +33,19 @@ jobs:
         with:
           protect-tag: true
           token: ${{ secrets.GH_REST_API_TOKEN }}
+  check-version:
+    if: ${{ github.event_name == 'pull_request' }}
+    name: Check Version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run the check-version action
+        id: run-check-version
+        uses: GenapsysInc/internal-actions/reusable-actions/check-version@main
+        with:
+          include-paths: '*.py *.yml'
+          exclude-paths: 'docs action_utils/tests'
+          token: ${{ secrets.GH_ACTION }}
+
   # sonarqube:
   #   if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
   #   name: SonarQube
