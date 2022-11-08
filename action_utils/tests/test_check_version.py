@@ -55,16 +55,6 @@ class TestFileIsRelevant:
         assert check_version.file_is_relevant("file.py", includes=["*.py"])
 
 
-@pytest.fixture(name="gh_client")
-def fixture_gh_client(gh_org):
-    return pygh_utils.MockGithubClient({gh_org.name: gh_org})
-
-
-@pytest.fixture(name="gh_org")
-def fixture_gh_org(gh_repo):
-    return pygh_utils.MockGithubOrg("my_org", repos={gh_repo.name: gh_repo})
-
-
 @pytest.fixture(name="gh_repo")
 def fixture_gh_repo(gh_pull, gh_tags):
     return pygh_utils.MockGithubRepo("my_repo", pulls={gh_pull.num: gh_pull}, tags=gh_tags)
@@ -97,29 +87,26 @@ def fixture_fh_files():
 class TestMissingVersionBump:
     """Tests for the missing_version_bump function"""
 
-    def test_no_relevant_files_changed(self, gh_client, gh_org, gh_repo, gh_pull):
+    def test_no_relevant_files_changed(self, gh_repo, gh_pull):
         """Test that when no relevant files were changed, the check returns False"""
         version = common.VersionTag("1.0.0-1")
         includes = ["*.yml", "*.json"]
         excludes = []
 
-        assert not check_version.missing_version_bump(gh_client, gh_org.name, gh_repo.name, gh_pull.num,
-                                                      version, includes, excludes)
+        assert not check_version.missing_version_bump(gh_repo, gh_pull, version, includes, excludes)
 
-    def test_relevant_files_changed_version_bump(self, gh_client, gh_org, gh_repo, gh_pull):
+    def test_relevant_files_changed_version_bump(self, gh_repo, gh_pull):
         """Test that when relevant files were changed, and the version was bumped, the check returns False"""
         version = common.VersionTag("1.1.1-1")
         includes = ["*.py"]
         excludes = ["docs"]
 
-        assert not check_version.missing_version_bump(gh_client, gh_org.name, gh_repo.name, gh_pull.num,
-                                                      version, includes, excludes)
+        assert not check_version.missing_version_bump(gh_repo, gh_pull, version, includes, excludes)
 
-    def test_relevant_files_changed_no_version_bump(self, gh_client, gh_org, gh_repo, gh_pull):
+    def test_relevant_files_changed_no_version_bump(self, gh_repo, gh_pull):
         """Test that when relevant files were changed, and the version was not bumped, the check returns True"""
         version = common.VersionTag("1.1.0-1")
         includes = ["*.py"]
         excludes = ["docs"]
 
-        assert check_version.missing_version_bump(gh_client, gh_org.name, gh_repo.name, gh_pull.num,
-                                                  version, includes, excludes)
+        assert check_version.missing_version_bump(gh_repo, gh_pull, version, includes, excludes)
