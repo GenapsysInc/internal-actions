@@ -199,9 +199,7 @@ def get_submodule_name(git_submodule: Submodule) -> str:
 
 
 def get_organization(client, org_name):
-    """Wraps call to GitHub's Organization REST endpoint in a try/except
-
-    """
+    """Wraps call to GitHub's Organization REST endpoint in a try/except"""
     try:
         return client.get_organization(org_name)
     except github.GithubException as exc:
@@ -209,9 +207,7 @@ def get_organization(client, org_name):
 
 
 def get_repo(org, repo_name):
-    """Wraps call to GitHub's Organization REST endpoint in a try/except
-
-    """
+    """Wraps call to GitHub's Repository REST endpoint in a try/except"""
     try:
         return org.get_repo(repo_name)
     except github.GithubException as exc:
@@ -219,9 +215,7 @@ def get_repo(org, repo_name):
 
 
 def get_pull(repo, pull_number):
-    """Wraps call to GitHub's Pulls REST endpoint in a try/except
-
-    """
+    """Wraps call to GitHub's Pulls REST endpoint in a try/except"""
     try:
         return repo.get_pull(pull_number)
     except github.GithubException as exc:
