@@ -93,7 +93,7 @@ def main():
     pull = common.get_pull(repo, opts.pull_number)
 
     if missing_version_bump(repo, pull, json_version, opts.include, opts.exclude):
-        msg = f"👀 Version bump was expected based on changed files but was not found - consider updating {opts.json}"
+        msg = f"👀 Version bump was expected based on changed files but was not found - consider updating `{opts.json}`"
         if not next((c for c in pull.get_issue_comments() if c.body == msg), None):
             pull.create_issue_comment(msg)
 
