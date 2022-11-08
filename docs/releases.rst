@@ -3,6 +3,12 @@ Internal Actions Releases
 #########################
 
 *****
+2.2.0
+*****
+
+  * Adds the ``check-version`` action for version bump reminders when opening/updating pull requests
+
+*****
 2.1.1
 *****
 

@@ -1,0 +1,19 @@
+name: check-version
+description: Check that the repo data JSON was updated if functional changes were made
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check-version:
+    name: Check Version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run the check-version action
+        id: run-check-version
+        uses: GenapsysInc/internal-actions/reusable-actions/check-version@main
+        with:
+          include-paths: '*.py static'
+          exclude-paths: 'docs action_utils/tests static/*.txt'
+          token: ${{ secrets.GH_ACTION }}
