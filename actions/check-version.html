@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>mypy &mdash; Internal Actions 2.2 documentation</title>
+  <title>check-version &mdash; Internal Actions 2.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Pylint" href="pylint.html" />
-    <link rel="prev" title="Increment Version" href="increment-version.html" /> 
+    <link rel="next" title="CodeQL" href="codeql.html" />
+    <link rel="prev" title="Build Docs" href="build-docs.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,17 +46,17 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="build-docs.html">Build Docs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="check-version.html">check-version</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">check-version</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">check-version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#templates">Templates</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="codeql.html">CodeQL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docker-build-push.html">Docker Build and Push</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docker-run.html">Docker Run</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fork-check.html">Fork Check</a></li>
 <li class="toctree-l1"><a class="reference internal" href="increment-version.html">Increment Version</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">mypy</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">mypy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#templates">Templates</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="mypy.html">mypy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pylint.html">Pylint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="repo-configuration.html">Repo Configuration</a></li>
@@ -89,9 +89,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>mypy</li>
+      <li>check-version</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/actions/mypy.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/actions/check-version.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -99,37 +99,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="mypy">
-<h1>mypy<a class="headerlink" href="#mypy" title="Permalink to this heading"></a></h1>
+  <section id="check-version">
+<h1>check-version<a class="headerlink" href="#check-version" title="Permalink to this heading"></a></h1>
 <section id="id1">
-<h2>mypy<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
-<p>This action will set up python, install requirements, and then run mypy. Passing checks are gated by any settings defined in mypy’s configuration. By default, mypy runs in the root directory of the repo, ignoring the <code class="docutils literal notranslate"><span class="pre">docs</span></code> and <code class="docutils literal notranslate"><span class="pre">confluence</span></code> directories, which may be present for doc building. The arguments to mypy may be overridden by supplying a <code class="docutils literal notranslate"><span class="pre">args</span></code> input to the action.</p>
-<p>This action will use a <code class="docutils literal notranslate"><span class="pre">mypy.ini</span></code> (or <code class="docutils literal notranslate"><span class="pre">.mypy.ini</span></code>, <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, or <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>) file in the root directory of the calling repository to configure how mypy runs. See <a class="reference external" href="https://mypy.readthedocs.io/en/stable/config_file.html">https://mypy.readthedocs.io/en/stable/config_file.html</a>.</p>
-<p>This action can be called independently or called via the <code class="docutils literal notranslate"><span class="pre">internal-actions/.github/workflows/static-analysis.yml</span></code> reusable workflow.</p>
+<h2>check-version<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>This action will inspect the changed files in a pull request and inspect a JSON file with version information to determine if the configured version should have been bumped but was not in a given pull request. It will create a comment on the pull request reminding the author to update the version if it thinks a bump is needed. A list of directories, file names, or patterns to include for the check, and ones to exclude for the check can be submitted as a list of space-delimited strings. This action will <em>not</em> gate pull request merges, its purpose is only to act as a reminder.</p>
 </section>
 <section id="templates">
 <h2>Templates<a class="headerlink" href="#templates" title="Permalink to this heading"></a></h2>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mypy</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">check-version</span><span class="w"></span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Check that the repo data JSON was updated if functional changes were made</span><span class="w"></span>
 
 <span class="nt">on</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># Or the name of your default branch</span><span class="w"></span>
 <span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="nt">types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">opened</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">synchronize</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">reopened</span><span class="p p-Indicator">]</span><span class="w"></span>
 
 <span class="nt">jobs</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">mypy</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mypy</span><span class="w"></span>
+<span class="w">  </span><span class="nt">check-version</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Check Version</span><span class="w"></span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w"></span>
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run mypy</span><span class="w"></span>
-<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/mypy@main</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run the check-version action</span><span class="w"></span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">run-check-version</span><span class="w"></span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/check-version@main</span><span class="w"></span>
 <span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;default 3.10&gt;</span><span class="w"></span>
-<span class="w">          </span><span class="nt">requirements-txt</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;path/to/requirements.txt&gt;</span><span class="w"></span>
-<span class="w">          </span><span class="nt">build-command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;optional command to run before mypy&gt;</span><span class="w"></span>
-<span class="w">          </span><span class="nt">mypy-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;default latest&gt;</span><span class="w"></span>
-<span class="w">          </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;default --exclude docs --exclude confluence .&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="nt">include-paths</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;*.py</span><span class="nv"> </span><span class="s">static&#39;</span><span class="w"></span>
+<span class="w">          </span><span class="nt">exclude-paths</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;docs</span><span class="nv"> </span><span class="s">action_utils/tests</span><span class="nv"> </span><span class="s">static/*.txt&#39;</span><span class="w"></span>
+<span class="w">          </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GH_ACTION }}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -139,8 +135,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="increment-version.html" class="btn btn-neutral float-left" title="Increment Version" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pylint.html" class="btn btn-neutral float-right" title="Pylint" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="build-docs.html" class="btn btn-neutral float-left" title="Build Docs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="codeql.html" class="btn btn-neutral float-right" title="CodeQL" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -21,6 +21,7 @@ Submodules
    :maxdepth: 4
 
    action_utils.check_submodule_commits
+   action_utils.check_version
    action_utils.common
    action_utils.configure_repo_settings
    action_utils.get_team_approval_status

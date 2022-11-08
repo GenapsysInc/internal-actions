@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>action_utils.tests.utils.pygithub_utils module &mdash; Internal Actions 2.1 documentation</title>
+  <title>action_utils.tests.utils.pygithub_utils module &mdash; Internal Actions 2.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -34,7 +34,7 @@
             <a href="../index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                2.1.1-1
+                2.2.0-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -46,6 +46,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../actions/build-docs.html">Build Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../actions/check-version.html">check-version</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/codeql.html">CodeQL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/docker-build-push.html">Docker Build and Push</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../actions/docker-run.html">Docker Run</a></li>
@@ -138,6 +139,13 @@
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="action_utils.tests.utils.pygithub_utils.MockGithubFile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">action_utils.tests.utils.pygithub_utils.</span></span><span class="sig-name descname"><span class="pre">MockGithubFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.utils.pygithub_utils.MockGithubFile" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Mock</span></code></p>
+<p>Mock of PyGithub’s File class</p>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="action_utils.tests.utils.pygithub_utils.MockGithubOrg">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">action_utils.tests.utils.pygithub_utils.</span></span><span class="sig-name descname"><span class="pre">MockGithubOrg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.utils.pygithub_utils.MockGithubOrg" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Mock</span></code></p>
@@ -180,6 +188,11 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Mock</span></code></p>
 <p>Mock of PyGithub’s PullRequest class</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="action_utils.tests.utils.pygithub_utils.MockGithubPull.get_files">
+<span class="sig-name descname"><span class="pre">get_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#action_utils.tests.utils.pygithub_utils.MockGithubFile" title="action_utils.tests.utils.pygithub_utils.MockGithubFile"><span class="pre">action_utils.tests.utils.pygithub_utils.MockGithubFile</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#action_utils.tests.utils.pygithub_utils.MockGithubPull.get_files" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="action_utils.tests.utils.pygithub_utils.MockGithubPull.get_reviews">
 <span class="sig-name descname"><span class="pre">get_reviews</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#action_utils.tests.utils.pygithub_utils.MockGithubReview" title="action_utils.tests.utils.pygithub_utils.MockGithubReview"><span class="pre">action_utils.tests.utils.pygithub_utils.MockGithubReview</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#action_utils.tests.utils.pygithub_utils.MockGithubPull.get_reviews" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -211,6 +224,11 @@
 <span class="sig-name descname"><span class="pre">get_pull</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pull_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#action_utils.tests.utils.pygithub_utils.MockGithubPull" title="action_utils.tests.utils.pygithub_utils.MockGithubPull"><span class="pre">MockGithubPull</span></a></span></span><a class="headerlink" href="#action_utils.tests.utils.pygithub_utils.MockGithubRepo.get_pull" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="action_utils.tests.utils.pygithub_utils.MockGithubRepo.get_tags">
+<span class="sig-name descname"><span class="pre">get_tags</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#action_utils.tests.utils.pygithub_utils.MockGithubTag" title="action_utils.tests.utils.pygithub_utils.MockGithubTag"><span class="pre">action_utils.tests.utils.pygithub_utils.MockGithubTag</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#action_utils.tests.utils.pygithub_utils.MockGithubRepo.get_tags" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -218,6 +236,13 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">action_utils.tests.utils.pygithub_utils.</span></span><span class="sig-name descname"><span class="pre">MockGithubReview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.utils.pygithub_utils.MockGithubReview" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Mock</span></code></p>
 <p>Mock of PyGithub’s PullRequestReview class</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="action_utils.tests.utils.pygithub_utils.MockGithubTag">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">action_utils.tests.utils.pygithub_utils.</span></span><span class="sig-name descname"><span class="pre">MockGithubTag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_utils.tests.utils.pygithub_utils.MockGithubTag" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Mock</span></code></p>
+<p>Mock of PyGithub’s Tag class</p>
 </dd></dl>
 
 <dl class="py class">
