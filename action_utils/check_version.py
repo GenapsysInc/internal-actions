@@ -8,7 +8,6 @@ import argparse
 from fnmatch import fnmatch
 import json
 from pathlib import Path
-import sys
 
 import github
 
