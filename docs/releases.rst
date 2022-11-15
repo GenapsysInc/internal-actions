@@ -3,6 +3,12 @@ Internal Actions Releases
 #########################
 
 *****
+2.2.1
+*****
+
+  * Exclude the ``build`` directory from ``mypy`` and ``pylint`` reusable actions and the ``static-analysis.yml`` reusable workflow to play nicer with src-layout packages that are being installed as part of the static analysis jobs
+
+*****
 2.2.0
 *****
 

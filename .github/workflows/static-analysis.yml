@@ -17,7 +17,7 @@ on:
         type: string
       pylint-args:
         type: string
-        default: --ignore docs,confluence --recursive=true .
+        default: --ignore build,docs --recursive=true .
       run-mypy:
         default: true
         type: boolean
@@ -25,7 +25,7 @@ on:
         type: string
       mypy-args:
         type: string
-        default: --exclude docs --exclude confluence --hide-column-numbers .
+        default: --exclude build --exclude docs --hide-column-numbers .
 
 jobs:
   pylint:
