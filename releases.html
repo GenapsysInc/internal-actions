@@ -33,7 +33,7 @@
             <a href="index.html" class="icon icon-home"> Internal Actions
           </a>
               <div class="version">
-                2.2.0-1
+                2.2.1-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -68,18 +68,19 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Internal Actions Releases</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">2.2.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">2.1.1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">2.1.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">2.0.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">1.6.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">1.5.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id7">1.4.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id8">1.3.1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id9">1.3.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id10">1.2.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id11">1.1.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id12">1.0.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">2.2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2.1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">2.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">2.0.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">1.6.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">1.5.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">1.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">1.3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">1.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">1.2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">1.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">1.0.0</a></li>
 </ul>
 </li>
 </ul>
@@ -111,23 +112,31 @@
   <section id="internal-actions-releases">
 <h1>Internal Actions Releases<a class="headerlink" href="#internal-actions-releases" title="Permalink to this heading"></a></h1>
 <section id="id1">
-<h2>2.2.0<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2>2.2.1<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>Exclude the <code class="docutils literal notranslate"><span class="pre">build</span></code> directory from <code class="docutils literal notranslate"><span class="pre">mypy</span></code> and <code class="docutils literal notranslate"><span class="pre">pylint</span></code> reusable actions and the <code class="docutils literal notranslate"><span class="pre">static-analysis.yml</span></code> reusable workflow to play nicer with src-layout packages that are being installed as part of the static analysis jobs</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id2">
+<h2>2.2.0<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Adds the <code class="docutils literal notranslate"><span class="pre">check-version</span></code> action for version bump reminders when opening/updating pull requests</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id2">
-<h2>2.1.1<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<section id="id3">
+<h2>2.1.1<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Updates the <code class="docutils literal notranslate"><span class="pre">codeql</span></code>, <code class="docutils literal notranslate"><span class="pre">docker-run</span></code>, and <code class="docutils literal notranslate"><span class="pre">increment-version</span></code> actions to address <a class="reference external" href="https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/">https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/</a></p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id3">
-<h2>2.1.0<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<section id="id4">
+<h2>2.1.0<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Adds <code class="docutils literal notranslate"><span class="pre">mypy</span></code> and <code class="docutils literal notranslate"><span class="pre">pylint</span></code> actions</p></li>
@@ -135,32 +144,32 @@
 </ul>
 </div></blockquote>
 </section>
-<section id="id4">
-<h2>2.0.0<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<section id="id5">
+<h2>2.0.0<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Changes the <code class="docutils literal notranslate"><span class="pre">sonarqube</span></code> reusable action to not actually run anything other than print a message informing the user that the SonarQube instance is down</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id5">
-<h2>1.6.0<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<section id="id6">
+<h2>1.6.0<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Adds the <code class="docutils literal notranslate"><span class="pre">workflow-templates</span></code> directory with the intent of adding templates for workflows to be added in other repositories</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id6">
-<h2>1.5.0<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<section id="id7">
+<h2>1.5.0<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Adds <code class="docutils literal notranslate"><span class="pre">pytest-args</span></code> option to <code class="docutils literal notranslate"><span class="pre">pytest</span></code> action to allow users to pass arguments to pytest</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id7">
-<h2>1.4.0<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<section id="id8">
+<h2>1.4.0<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Allows user to supply a build command via the <code class="docutils literal notranslate"><span class="pre">build-command</span></code> input to the <code class="docutils literal notranslate"><span class="pre">setup-python</span></code> action which is executed as the final step of setup.  For example, this allows for the building of Cython modules prior to running unit tests downstream.</p></li>
@@ -168,16 +177,16 @@
 </ul>
 </div></blockquote>
 </section>
-<section id="id8">
-<h2>1.3.1<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<section id="id9">
+<h2>1.3.1<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Fixes the <code class="docutils literal notranslate"><span class="pre">repo-configuration</span></code> action’s handling of the <code class="docutils literal notranslate"><span class="pre">--disable</span></code> flag when passing it to the called action util</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="id9">
-<h2>1.3.0<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+<section id="id10">
+<h2>1.3.0<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Adds the <code class="docutils literal notranslate"><span class="pre">fork-check</span></code> action</p></li>
@@ -186,8 +195,8 @@
 </ul>
 </div></blockquote>
 </section>
-<section id="id10">
-<h2>1.2.0<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
+<section id="id11">
+<h2>1.2.0<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Adds <code class="docutils literal notranslate"><span class="pre">repo-configuration</span></code> action</p></li>
@@ -195,8 +204,8 @@
 </ul>
 </div></blockquote>
 </section>
-<section id="id11">
-<h2>1.1.0<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
+<section id="id12">
+<h2>1.1.0<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Adds the <code class="docutils literal notranslate"><span class="pre">codeql</span></code> action and an example template, intended for use when using CodeQL in a multi-job workflow as opposed to a standalone workflow</p></li>
@@ -207,8 +216,8 @@
 </ul>
 </div></blockquote>
 </section>
-<section id="id12">
-<h2>1.0.0<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
+<section id="id13">
+<h2>1.0.0<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>First official release of <code class="docutils literal notranslate"><span class="pre">internal-actions</span></code>. Includes the following actions in a “prod-ready” state:</p>
