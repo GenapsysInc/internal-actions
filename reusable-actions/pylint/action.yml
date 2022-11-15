@@ -16,7 +16,7 @@ inputs:
     default: null
   args:
     description: Args for pylint
-    default: --ignore docs,confluence --recursive=true .
+    default: --ignore build,docs --recursive=true .
 
 runs:
   using: composite
