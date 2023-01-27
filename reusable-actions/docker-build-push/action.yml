@@ -31,7 +31,10 @@ inputs:
   password:
     description: Password for private registry login
     required: false
-
+  build-args:
+    description: Args expected at build time 
+    required: false
+    
 runs:
   using: composite
   steps:
@@ -67,6 +70,7 @@ runs:
         push: ${{ inputs.push }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new
+        build-args: ${{ inputs.build-args }}
     - name: Move cache
       shell: bash
       run: |
