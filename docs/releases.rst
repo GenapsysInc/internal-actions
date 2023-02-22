@@ -3,6 +3,18 @@ Internal Actions Releases
 #########################
 
 *****
+2.4.0
+*****
+
+  * Add ``api_exclude`` as an input to the ``build-docs`` action to exclude certain directories from being processed by ``sphinx-apidoc``
+
+*****
+2.3.0
+*****
+
+  * Add ``build-args`` input for build args for building docker images with the ``docker-build-push`` action
+
+*****
 2.2.1
 *****
 

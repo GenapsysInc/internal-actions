@@ -13,7 +13,7 @@ inputs:
     description: "Directories to build api docs for (space separated) - str"
     required: false
     default: ''
-  api_dir_exclude:
+  api_exclude:
     description: "Patterns to exclude from api doc building (space separated) - str"
     required: false
     default: ''
@@ -64,7 +64,7 @@ runs:
           options: -v ${{ github.workspace }}:/repo
           args: ${{ (inputs.confluence_secret && '-s') || '' }} ${{ inputs.confluence_secret }}
                 ${{ (inputs.api_dirs && '-d') || '' }} ${{ inputs.api_dirs }}
-                ${{ (inputs.api_dir_exclude && '-e') || '' }} ${{ inputs.api_dir_exclude }}
+                ${{ (inputs.api_exclude && '-e') || '' }} ${{ inputs.api_exclude }}
                 ${{ (fromJSON(inputs.build_confluence) && '-c') || '' }}
                 ${{ (fromJSON(inputs.publish_confluence) && '-p') || '' }}
                 ${{ (fromJSON(inputs.warn_as_errors) && '-w') || '' }}
