@@ -21,4 +21,5 @@ jobs:
           publish_html: true # boolean true || false
           warn_as_errors: false # boolean true || false
           api_dirs: "code tests" # optional
+          api_exclude: "tests/**/data tests/bad_syntax/*.py"
           build_options: -n # optional

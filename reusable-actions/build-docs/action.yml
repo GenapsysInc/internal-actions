@@ -13,6 +13,10 @@ inputs:
     description: "Directories to build api docs for (space separated) - str"
     required: false
     default: ''
+  api_exclude:
+    description: "Patterns to exclude from api doc building (space separated) - str"
+    required: false
+    default: ''
   build_confluence:
     description: "Build documentation as pages for Confluence - boolean"
     required: false
@@ -60,8 +64,9 @@ runs:
           options: -v ${{ github.workspace }}:/repo
           args: ${{ (inputs.confluence_secret && '-s') || '' }} ${{ inputs.confluence_secret }}
                 ${{ (inputs.api_dirs && '-d') || '' }} ${{ inputs.api_dirs }}
-                ${{ (fromJSON(inputs.build_confluence) && '-c') || '' }} 
-                ${{ (fromJSON(inputs.publish_confluence) && '-p') || '' }} 
+                ${{ (inputs.api_exclude && '-e') || '' }} ${{ inputs.api_exclude }}
+                ${{ (fromJSON(inputs.build_confluence) && '-c') || '' }}
+                ${{ (fromJSON(inputs.publish_confluence) && '-p') || '' }}
                 ${{ (fromJSON(inputs.warn_as_errors) && '-w') || '' }}
                 ${{ (fromJSON(inputs.build_html) && '-m') || '' }}
                 ${{ (inputs.version && '-v') || '' }} ${{ inputs.version }}

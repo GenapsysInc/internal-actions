@@ -17,11 +17,12 @@ This action will build the sphinx base documentation and if desired publish it t
           build_html: true
           publish_html: false
           warn_as_errors: false
-          api_dirs: "code" 
+          api_dirs: "code"
+          api_exclude: "tests/**/data tests/bad_syntax/*.py"
           build_options: -n
 ```
 
-## Build the HTML docs only 
+## Build the HTML docs only
 
 
 ```yaml
@@ -37,6 +38,7 @@ This action will build the sphinx base documentation and if desired publish it t
           publish_html: true
           warn_as_errors: false
           api_dirs: "code"
+          api_exclude: "tests/**/data tests/bad_syntax/*.py"
           build_options: -n
 ```
 
@@ -56,6 +58,7 @@ This action will build the sphinx base documentation and if desired publish it t
           publish_html: true
           warn_as_errors: false
           api_dirs: "code"
+          api_exclude: "tests/**/data tests/bad_syntax/*.py"
           build_options: -n
 ```
 
@@ -90,5 +93,6 @@ jobs:
           warn_as_errors: false
           version: ${{ needs.increment-version.outputs.new-version }}
           api_dirs: "code"
+          api_exclude: "tests/**/data tests/bad_syntax/*.py"
           build_options: -n
 ```
