@@ -8,7 +8,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Setup Python &mdash; Internal Actions 2.4 documentation</title>
+  <title>Setup Python &mdash; Internal Actions 2.5 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                2.4.0-1
+                2.5.0-1
               </div>
             
           
@@ -202,7 +202,7 @@
 <h1>Setup Python<a class="headerlink" href="#setup-python" title="Permalink to this heading">¶</a></h1>
 <section id="id1">
 <h2>setup-python<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
-<p>This action is intended to be used by other actions/workflows to setup a given python environment. It will run python setup (default is version 3.10), install python requirements given a requirements.txt file path, and cache dependency installation appropriately. Wildcards may be used for the path to the requirements.txt file(s).</p>
+<p>This action is intended to be used by other actions/workflows to setup a given python environment. It will run python setup (default is version 3.10), install python requirements given a requirements.txt file path and/or list of python packages, and cache dependency installation appropriately. Wildcards may be used for the path to the requirements.txt file(s).</p>
 <section id="setup-python-3-10">
 <h3>Setup Python 3.10<a class="headerlink" href="#setup-python-3-10" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install and set up Python 3.10</span>
@@ -227,6 +227,7 @@
 <span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/setup-python@main</span>
 <span class="w">  </span><span class="nt">with</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">requirements-txt</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path/to/requirements.txt</span>
+<span class="w">    </span><span class="nt">packages</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;package 1&gt; &lt;package 2&gt; ...</span>
 </pre></div>
 </div>
 </section>
