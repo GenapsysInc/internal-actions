@@ -3,6 +3,12 @@ Internal Actions Releases
 #########################
 
 *****
+2.5.0
+*****
+
+  * Add the ability for the ``setup-python`` reusable action to install specific python packages without using a requirements.txt file via the ``packages`` input.
+
+*****
 2.4.0
 *****
 
