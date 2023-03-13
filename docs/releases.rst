@@ -3,6 +3,12 @@ Internal Actions Releases
 #########################
 
 *****
+2.5.1
+*****
+
+  * Update versions of actions calls in the ``docker-build-push`` action to use versions that are not using deprecated actions
+
+*****
 2.5.0
 *****
 
