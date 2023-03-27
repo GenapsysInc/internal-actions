@@ -46,6 +46,7 @@ runs:
         python -m coverage combine -q
         && coverage xml -o pytest-coverage-report.xml
         && python -m coverage report -m
+      shell: bash
     - name: Archive test and coverage reports
       uses: actions/upload-artifact@v3
       with:
