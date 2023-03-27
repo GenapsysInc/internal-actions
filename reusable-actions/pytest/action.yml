@@ -1,5 +1,5 @@
 name: pytest Action
-description: Setup Python, install dependencies in given requirements.txt files, and run pytest
+description: Setup Python, install dependencies in given requirements.txt files, and run pytest via coverage run
 
 inputs:
   python-version:
@@ -14,9 +14,13 @@ inputs:
     description: Build command to be executed prior to running unit tests.
     default: null
     required: false
+  coverage-args:
+    description: Additional arguments passed to coverage run, before invoking pytest
+    default: null
+    required: false
   pytest-args:
     description: Additional arguments passed to pytest.
-    default: -v --cov
+    default: -v
     required: false
 
 runs:
@@ -33,11 +37,15 @@ runs:
       shell: bash
     - name: Run pytest and capture code coverage
       run: >
-        python -m pytest
-        --junitxml=pytest-test-report.xml
-        --cov-report xml:pytest-coverage-report.xml
-        ${{ inputs.pytest-args }}
+        python
+        -m coverage run ${{ inputs.coverage-args }}
+        -m pytest ${{ inputs.pytest-args }} --junitxml=pytest-test-report.xml
       shell: bash
+    - name: Merge and report coverage
+      run: >
+        python -m coverage combine -q
+        && coverage xml -o pytest-coverage-report.xml
+        && python -m coverage report -m
     - name: Archive test and coverage reports
       uses: actions/upload-artifact@v3
       with:
