@@ -3,6 +3,13 @@ Internal Actions Releases
 #########################
 
 *****
+2.6.0
+*****
+
+  * Updates the ``pytest`` reusable action to invoke pytest via ``python -m coverage run -m pytest``, rather than ``python -m pytest --cov`` based on https://stackoverflow.com/questions/62221654/how-to-get-coverage-reporting-when-testing-a-pytest-plugin in order to support testing of pytest plugin packages.
+  * Adds a ``coverage-args`` input to the ``pytest`` action. ``coverage run`` will be run with these arguments. Note that ``pytest-args`` are distinct and control how pytest is being run.
+
+*****
 2.5.1
 *****
 
