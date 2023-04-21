@@ -1,0 +1,34 @@
+name: add-to-pypi Action
+description: When run from a python package repo, will add a new package version to the internal-pypi index
+
+inputs:
+  token:
+    description: Token to checkout internal-pypi and push a commit
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout calling repo
+      uses: actions/checkout@v3
+    - name: Set up Python
+      uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main
+    - name: Install setuptools
+      run: pip install setuptools
+      shell: bash
+    - name: Get package name
+      run: echo ::set-env name=PACKAGE_NAME::$(python -c 'from setuptools.config.setupcfg import read_configuration as c; print(c("setup.cfg")["metadata"]["name"])')
+      shell: bash
+    - name: Get package version
+      run: echo ::set-env name=PACKAGE_VERSION::$(python -c 'from setuptools.config.setupcfg import read_configuration as c; print(c("setup.cfg")["metadata"]["version"])')
+      shell: bash
+    - name: Get git commit
+      run: echo ::set-env name=GIT_COMMIT::$(git rev-parse HEAD)
+      shell: bash
+    - name: Run internal-pypi/add action
+      uses: GenapsysInc/internal-pypi/add@main
+      with:
+        package-name: ${{ env.PACKAGE_NAME }}
+        version: ${{ env.VERSION }}
+        link: git+https://github.com/${{ github.repository }}@${{ env.GIT_COMMIT }}
+        token: ${{ inputs.token }}
