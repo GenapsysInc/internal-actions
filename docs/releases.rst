@@ -7,6 +7,7 @@ Internal Actions Releases
 *****
 
   * Adds the ``add-to-pypi`` reusable action, which will automatically add a new package version to the ``internal-pypi`` repo if the version was incremented.
+  * Changes the ``setup-python`` action to point to `internal-pypi` by default, with the public pypi as a backup
 
 *****
 2.6.0
