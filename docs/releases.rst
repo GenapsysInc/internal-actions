@@ -3,6 +3,12 @@ Internal Actions Releases
 #########################
 
 *****
+2.7.0
+*****
+
+  * Adds the ``add-to-pypi`` reusable action, which will automatically add a new package version to the ``internal-pypi`` repo if the version was incremented.
+
+*****
 2.6.0
 *****
 
