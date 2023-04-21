@@ -26,7 +26,7 @@ runs:
       run: echo ::set-env name=GIT_COMMIT::$(git rev-parse HEAD)
       shell: bash
     - name: Run internal-pypi/add action
-      uses: GenapsysInc/internal-pypi/add@main
+      uses: GenapsysInc/internal-pypi/actions/add@main
       with:
         package-name: ${{ env.PACKAGE_NAME }}
         version: ${{ env.VERSION }}
