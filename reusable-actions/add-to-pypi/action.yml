@@ -17,18 +17,21 @@ runs:
       run: pip install setuptools
       shell: bash
     - name: Get package name
-      run: echo ::set-env name=PACKAGE_NAME::$(python -c 'from setuptools.config.setupcfg import read_configuration as c; print(c("setup.cfg")["metadata"]["name"])')
+      id: package-name
+      run: echo PACKAGE_NAME=$(python -c 'from setuptools.config.setupcfg import read_configuration as c; print(c("setup.cfg")["metadata"]["name"])') >> $GITHUB_OUTPUT
       shell: bash
     - name: Get package version
-      run: echo ::set-env name=PACKAGE_VERSION::$(python -c 'from setuptools.config.setupcfg import read_configuration as c; print(c("setup.cfg")["metadata"]["version"])')
+      id: package-version
+      run: echo PACKAGE_VERSION=$(python -c 'from setuptools.config.setupcfg import read_configuration as c; print(c("setup.cfg")["metadata"]["version"])') >> $GITHUB_OUTPUT
       shell: bash
     - name: Get git commit
-      run: echo ::set-env name=GIT_COMMIT::$(git rev-parse HEAD)
+      id: git-commit
+      run: echo GIT_COMMIT=$(git rev-parse HEAD) >> $GITHUB_OUTPUT
       shell: bash
     - name: Run internal-pypi/add action
       uses: GenapsysInc/internal-pypi/actions/add@main
       with:
-        package-name: ${{ env.PACKAGE_NAME }}
-        version: ${{ env.VERSION }}
-        link: git+https://github.com/${{ github.repository }}@${{ env.GIT_COMMIT }}
+        package-name: ${{ steps.package-name.outputs.PACKAGE_NAME }}
+        version: ${{ steps.package-version.outputs.PACKAGE_VERSION }}
+        link: git+https://github.com/${{ github.repository }}@${{ steps.git-commit.outputs.GIT_COMMIT }}
         token: ${{ inputs.token }}
