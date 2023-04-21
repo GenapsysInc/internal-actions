@@ -29,6 +29,8 @@ runs:
       run: echo GIT_COMMIT=$(git rev-parse HEAD) >> $GITHUB_OUTPUT
       shell: bash
     - name: Run internal-pypi/add action
+      if: ${{ github.event_name == 'push' && github.ref_name == github.event.repository.default_branch }}
+      continue-on-error: true
       uses: GenapsysInc/internal-pypi/actions/add@main
       with:
         package-name: ${{ steps.package-name.outputs.PACKAGE_NAME }}
