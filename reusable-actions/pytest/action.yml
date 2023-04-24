@@ -32,8 +32,8 @@ runs:
         python-version: ${{ inputs.python-version }}
         requirements-txt: ${{ inputs.requirements-txt }}
         build-command: ${{ inputs.build-command }}
-    - name: Install pytest and coverage
-      run: pip install pytest coverage
+    - name: Install pytest, coverage, and other dependencies for testing
+      run: pip install pytest coverage pytest-xdist psutil
       shell: bash
     - name: Run pytest and capture code coverage
       run: >
