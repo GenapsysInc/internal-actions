@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Increment Version &mdash; Internal Actions 2.7 documentation</title>
+  <title>add-to-pypi &mdash; Internal Actions 2.7 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -23,8 +23,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="mypy" href="mypy.html" />
-    <link rel="prev" title="Fork Check" href="fork-check.html" /> 
+    <link rel="next" title="Build Docs" href="build-docs.html" />
+    <link rel="prev" title="Internal Actions" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,18 +50,18 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="add-to-pypi.html">add-to-pypi</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">add-to-pypi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">add-to-pypi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#templates">Templates</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="build-docs.html">Build Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="check-version.html">check-version</a></li>
 <li class="toctree-l1"><a class="reference internal" href="codeql.html">CodeQL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docker-build-push.html">Docker Build and Push</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docker-run.html">Docker Run</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fork-check.html">Fork Check</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Increment Version</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">increment-version</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#templates">Templates</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="increment-version.html">Increment Version</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mypy.html">mypy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pylint.html">Pylint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">PyTest</a></li>
@@ -95,9 +95,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Increment Version</li>
+      <li class="breadcrumb-item active">add-to-pypi</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/actions/increment-version.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/actions/add-to-pypi.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -105,38 +105,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="increment-version">
-<h1>Increment Version<a class="headerlink" href="#increment-version" title="Permalink to this heading"></a></h1>
+  <section id="add-to-pypi">
+<h1>add-to-pypi<a class="headerlink" href="#add-to-pypi" title="Permalink to this heading"></a></h1>
 <section id="id1">
-<h2>increment-version<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
-<p>This action will create a new tag based on a version in a JSON file in source control, and on pushes to specified branches will push the newly created tag. This is intended to automate semantic versioning (<a class="reference external" href="https://semver.org/">https://semver.org/</a>) tags for repositories for each PR merge to main (or another default branch). Version tags will be generated in the format <code class="docutils literal notranslate"><span class="pre">major.minor.patch-release</span></code> with a date string optionally appended to the tag if specified in the calling workflow. If the version is not changed for a given PR, the <code class="docutils literal notranslate"><span class="pre">release</span></code> number will be incremented by 1, intended to reflect changes to things like process, build, docs, tests, etc. that do not impact actual code. A boolean flag may be provided to optionally protect the new tag in GitHub so that it cannot be deleted. The new version will be set as an output of the action called <code class="docutils literal notranslate"><span class="pre">outputs.new-version</span></code>. This value can be used in subsequent steps/jobs where a version identifier is needed. An example template is included in this directory.</p>
+<h2>add-to-pypi<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>This action will determine a python package name, version, and git commit from the calling repository, and register a new version of the package in the internal-pypi repo. The package <em>must</em> be configured with a <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> file (as opposed to <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>). The action calls the internal-pypi/actions/add action, which will only add a new entry if one with a matching version does not already exist. A new version will only be added if the current branch is the repo’s default branch, to protect against accidentally adding a new version if the calling repo’s workflow is not set up correctly.</p>
 </section>
 <section id="templates">
 <h2>Templates<a class="headerlink" href="#templates" title="Permalink to this heading"></a></h2>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># This template is intended to be incorporated as a workflow in another repository to semi-automatically increment</span>
-<span class="c1"># an internal/external version number for a repository</span>
-<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tag-pr-merge</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">internal-pypi-upload</span>
 
 <span class="nt">on</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">push</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># Or the name of your default branch</span>
-<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">opened</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">synchronize</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">reopened</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># The repo&#39;s default branch</span>
 
 <span class="nt">jobs</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">increment-version</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">add-to-pypi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Add New Version to PyPI</span>
 <span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">new-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.run-increment-version.outputs.new-version }}</span>
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run the increment-version action</span>
-<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">run-increment-version</span>
-<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/increment-version@main</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run add-to-pypi action</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/add-to-pypi@main</span>
 <span class="w">        </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GH_REST_API_TOKEN }}</span>
-<span class="w">          </span><span class="nt">json</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;path/to/repo-data.json&gt;</span>
-<span class="w">          </span><span class="nt">use-date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;true|false&gt;, append date string to generated version tag</span>
-<span class="w">          </span><span class="nt">protect-tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;true|false&gt;, protect the generated tag in GitHub</span>
+<span class="w">          </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GH_ACTION }}</span>
 </pre></div>
 </div>
 </section>
@@ -146,8 +137,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="fork-check.html" class="btn btn-neutral float-left" title="Fork Check" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="mypy.html" class="btn btn-neutral float-right" title="mypy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="Internal Actions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="build-docs.html" class="btn btn-neutral float-right" title="Build Docs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
