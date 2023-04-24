@@ -1,0 +1,15 @@
+name: internal-pypi-upload
+
+on:
+  push:
+    branches: [main] # The repo's default branch
+
+jobs:
+  add-to-pypi:
+    name: Add New Version to PyPI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run add-to-pypi action
+        uses: GenapsysInc/internal-actions/reusable-actions/add-to-pypi@main
+        with:
+          token: ${{ secrets.GH_ACTION }}

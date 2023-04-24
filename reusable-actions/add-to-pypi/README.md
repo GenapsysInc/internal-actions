@@ -1,0 +1,3 @@
+# add-to-pypi
+
+This action will determine a python package name, version, and git commit from the calling repository, and register a new version of the package in the internal-pypi repo. The package *must* be configured with a `setup.cfg` file (as opposed to `setup.py`). The action calls the internal-pypi/actions/add action, which will only add a new entry if one with a matching version does not already exist. A new version will only be added if the current branch is the repo's default branch, to protect against accidentally adding a new version if the calling repo's workflow is not set up correctly.
