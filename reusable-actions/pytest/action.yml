@@ -33,19 +33,10 @@ runs:
         requirements-txt: ${{ inputs.requirements-txt }}
         build-command: ${{ inputs.build-command }}
     - name: Install pytest, coverage, and other dependencies for testing
-      run: pip install pytest coverage pytest-xdist psutil
+      run: pip install pytest pytest-cov pytest-xdist psutil
       shell: bash
     - name: Run pytest and capture code coverage
-      run: >
-        python
-        -m coverage run ${{ inputs.coverage-args }}
-        -m pytest ${{ inputs.pytest-args }} --junitxml=pytest-test-report.xml
-      shell: bash
-    - name: Merge and report coverage
-      run: >
-        python -m coverage combine -q
-        || python -m coverage xml -o pytest-coverage-report.xml
-        && python -m coverage report -m
+      run: python -m pytest --cov --junitxml=pytest-test-report.xml ${{ inputs.pytest-args }}
       shell: bash
     - name: Archive test and coverage reports
       uses: actions/upload-artifact@v3
