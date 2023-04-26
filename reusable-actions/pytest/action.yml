@@ -53,7 +53,7 @@ runs:
       shell: bash
       env:
           COV_CORE_SOURCE: .
-          COV_CORE_CONFIG: pyproject.toml
+          COV_CORE_CONFIG: .coveragerc
           COV_CORE_DATAFILE: .coverage.eager
     - name: Archive test and coverage reports
       uses: actions/upload-artifact@v3
