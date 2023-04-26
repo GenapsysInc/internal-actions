@@ -6,7 +6,7 @@ Internal Actions Releases
 2.8.0
 *****
 
-  * The ``pytest`` action installs ``pytest-xdist`` and ``psutil`` prior to running tests in order to support running tests in parallel.
+  * The ``pytest`` action installs ``pytest-xdist`` and ``psutil`` prior to running tests in order to support running tests in parallel. Tests are now always run in parallel.
   * The ``pytest`` action now (once again) invokes coverage via pytest to support running tests in parallel while capturing coverage information.
 
 *****
