@@ -3,6 +3,12 @@ Internal Actions Releases
 #########################
 
 *****
+2.8.0
+*****
+
+  * the ``pytest`` Installs ``pytest-xdist`` and ``psutil`` prior to running tests in order to support running tests in parallel
+
+*****
 2.7.0
 *****
 
