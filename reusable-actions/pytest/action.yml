@@ -22,6 +22,9 @@ inputs:
     description: Additional arguments passed to pytest.
     default: -v
     required: false
+  token:
+    description: Token to checkout internal-actions
+    required: true
 
 runs:
   using: composite
@@ -34,6 +37,16 @@ runs:
         build-command: ${{ inputs.build-command }}
     - name: Install pytest, coverage, and other dependencies for testing
       run: pip install pytest pytest-cov pytest-xdist psutil
+      shell: bash
+    - name: Checkout internal-actions
+      uses: actions/checkout@v3
+      with:
+        repository: genapsysinc/internal-actions
+        path: internal-actions
+        ref: main
+        token: ${{ inputs.token }}
+    - name: Patch pluggy._manager
+      run: python internal-actions/action_utils/patch_pluggy_manager.py
       shell: bash
     - name: Run pytest and capture code coverage
       run: pytest -p pytest_cov --cov --junitxml=pytest-test-report.xml ${{ inputs.pytest-args }}
