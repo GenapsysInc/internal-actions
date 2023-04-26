@@ -20,7 +20,7 @@ inputs:
     required: false
   pytest-args:
     description: Additional arguments passed to pytest.
-    default: -v
+    default: -v -n logical
     required: false
 
 runs:
