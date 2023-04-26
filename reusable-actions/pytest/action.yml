@@ -22,9 +22,6 @@ inputs:
     description: Additional arguments passed to pytest.
     default: -v
     required: false
-  token:
-    description: Token to checkout internal-actions
-    required: true
 
 runs:
   using: composite
