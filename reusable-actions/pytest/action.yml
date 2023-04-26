@@ -51,6 +51,10 @@ runs:
     - name: Run pytest and capture code coverage
       run: pytest --ignore=internal-actions --cov --junitxml=pytest-test-report.xml ${{ inputs.pytest-args }}
       shell: bash
+      env:
+          COV_CORE_SOURCE: .
+          COV_CORE_CONFIG: .coveragerc
+          COV_CORE_DATAFILE: .coverage.eager
     - name: Archive test and coverage reports
       uses: actions/upload-artifact@v3
       with:
