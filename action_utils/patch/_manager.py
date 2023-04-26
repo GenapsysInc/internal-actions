@@ -278,15 +278,20 @@ class PluginManager:
         # Always try to load pytest-cov before any other plugin
         for dist in list(importlib_metadata.distributions()):
             for ep in dist.entry_points:
-                if ep.name == "pytest_cov":
-                    plugin = ep.load()
-                    self.register(plugin, name=ep.name)
-                    self._plugin_distinfo.append((plugin, DistFacade(dist)))
-                    count += 1
-                    break
-            if count >= 1:
-                break
-        print(__name__)
+                if ep.name != "pytest_cov":
+                    continue
+                if (
+                    ep.group != group
+                    or (name is not None and ep.name != name)
+                    # already registered
+                    or self.get_plugin(ep.name)
+                    or self.is_blocked(ep.name)
+                ):
+                    continue
+                plugin = ep.load()
+                self.register(plugin, name=ep.name)
+                self._plugin_distinfo.append((plugin, DistFacade(dist)))
+                count += 1
 
         for dist in list(importlib_metadata.distributions()):
             for ep in dist.entry_points:
