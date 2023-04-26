@@ -43,7 +43,7 @@ runs:
       with:
         repository: genapsysinc/internal-actions
         path: internal-actions
-        ref: main
+        ref: pytest-xdist
         token: ${{ inputs.token }}
     - name: Patch pluggy._manager
       run: python internal-actions/action_utils/patch_pluggy_manager.py
