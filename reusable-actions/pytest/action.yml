@@ -42,11 +42,11 @@ runs:
       uses: actions/checkout@v3
       with:
         repository: genapsysinc/internal-actions
-        path: internal-actions
+        path: /home/runner/work/internal-actions
         ref: pytest-xdist
         token: ${{ inputs.token }}
     - name: Patch pluggy._manager
-      run: python internal-actions/action_utils/patch_pluggy_manager.py
+      run: python /home/runner/work/internal-actions/action_utils/patch_pluggy_manager.py
       shell: bash
     - name: Run pytest and capture code coverage
       run: pytest -p pytest_cov --cov --junitxml=pytest-test-report.xml ${{ inputs.pytest-args }}
