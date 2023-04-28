@@ -33,7 +33,7 @@ runs:
         requirements-txt: ${{ inputs.requirements-txt }}
         build-command: ${{ inputs.build-command }}
     - name: Install pytest and other dependencies for testing
-      run: pip install pytest pytest-cov pytest-xdist psutil
+      run: pip install pytest pytest-cov pytest-xdist[psutil]
       shell: bash
     - name: Run pytest and capture code coverage
       run: pytest --cov --junitxml=pytest-test-report.xml -n logical ${{ inputs.pytest-args }}
