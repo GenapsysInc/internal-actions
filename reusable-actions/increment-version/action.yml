@@ -10,9 +10,6 @@ inputs:
     description: Include a date string in the tag
     required: false
     default: false
-  token:
-    description: Token to checkout internal-actions
-    required: true
   protect-tag:
     description: Protect tag from being modified or deleted
     required: false
@@ -40,7 +37,6 @@ runs:
         repository: genapsysinc/internal-actions
         path: internal-actions
         ref: main
-        token: ${{ inputs.token }}
     - name: Set up git user based on current action environment
       uses: fregante/setup-git-user@v1
     - name: Set up Python 3.10 and install dependencies
