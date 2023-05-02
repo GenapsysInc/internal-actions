@@ -13,7 +13,7 @@ jobs:
       - name: Documentation build and publish
         uses: GenapsysInc/internal-actions/reusable-actions/build-docs@main
         with:
-          token: ${{ secrets.GHCR_TOKEN }} # Token needs read access to the container registry
+          token: ${{ secrets.GHCR_TOKEN }} # Token needs read access to any submodules used in the doc build. Not needed if no submodules.
           confluence_secret: ${{ secrets.CONFLUENCE_SECRET }} # optional - Needed for confluence publishing
           build_confluence: true # boolean true || false
           publish_confluence: true # boolean true || false

@@ -13,9 +13,8 @@ runs:
       uses: actions/checkout@v3
     - name: Set up Python
       uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main
-    - name: Install setuptools
-      run: pip install setuptools
-      shell: bash
+      with:
+        packages: setuptools
     - name: Get package name
       id: package-name
       run: echo PACKAGE_NAME=$(python -c 'from setuptools.config.setupcfg import read_configuration as c; print(c("setup.cfg")["metadata"]["name"])') >> $GITHUB_OUTPUT

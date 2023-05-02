@@ -18,7 +18,6 @@ runs:
         repository: genapsysinc/internal-actions
         path: internal-actions
         ref: main
-        token: ${{ inputs.token }}
     - name: Set up Python 3.10 and install dependencies
       uses: GenapsysInc/internal-actions/reusable-actions/setup-python@main
       with:
@@ -29,6 +28,7 @@ runs:
         export PYTHONPATH="`pwd`/internal-actions"
         python internal-actions/action_utils/get_team_approval_status.py \
           -s ${{ inputs.token }} \
+          -o ${{ github.repository_owner }} \
           -r ${{ github.event.repository.name }} \
           -p ${{ github.event.pull_request.number }} \
           -t ${{ inputs.teams }}

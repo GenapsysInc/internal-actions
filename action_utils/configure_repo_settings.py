@@ -82,7 +82,8 @@ def parse_args():
 
     parser = argparse.ArgumentParser(description="Configure repository settings")
     parser.add_argument("-s", "--secret", required=True, help="GitHub token for authentication")
-    parser.add_argument("-r", "--repo", required=True, help="The repository to inspect")
+    parser.add_argument("-o", "--org", required=True, help="The GitHub organization to inspect")
+    parser.add_argument("-r", "--repo", required=True, help="The GitHub repository to inspect")
     parser.add_argument("-i", "--init", required=False, default=False, action='store_true',
                         help="Initialize repository to default settings")
     parser.add_argument("-d", "--debug", required=False, default=False, action='store_true',
@@ -100,7 +101,7 @@ def main():
     # Handle both the repo name and the github.repository value which includes the owner
     repo = opts.repo.split("/")[1] if "/" in opts.repo else opts.repo
 
-    api = GhApi(common.GENAPSYS_GITHUB, repo=repo, token=opts.secret)
+    api = GhApi(opts.org, repo=repo, token=opts.secret)
 
     if opts.debug:
         api.debug = print_summary

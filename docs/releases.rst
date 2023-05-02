@@ -3,6 +3,12 @@ Internal Actions Releases
 #########################
 
 *****
+3.0.0
+*****
+
+  * Work across the repo to open-source the repository
+
+*****
 2.8.0
 *****
 

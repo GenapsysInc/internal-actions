@@ -165,7 +165,7 @@ def fixture_test_repo(
 
 @pytest.fixture(name="test_org")
 def fixture_test_org(all_teams, test_repo):
-    return pgh_utils.MockGithubOrg(common.GENAPSYS_GITHUB, teams=all_teams, repos={test_repo.name: test_repo})
+    return pgh_utils.MockGithubOrg("GenapsysInc", teams=all_teams, repos={test_repo.name: test_repo})
 
 
 @pytest.fixture(name="authenticated_client")
@@ -217,55 +217,55 @@ class TestTeamMemberHasApprovedPR:
 class TestPRHasAppropriateReviews:
     """Tests for the pr_has_appropriate_reviews function"""
 
-    def test_true_all(self, authenticated_client, test_repo, pull_all_teams_approved, all_teams):
+    def test_true_all(self, authenticated_client, test_org, test_repo, pull_all_teams_approved, all_teams):
         """End-to-end style test for when a PR has required team approvals"""
         assert gtas.pr_has_appropriate_reviews(
-            authenticated_client, test_repo.name, pull_all_teams_approved.num, all_teams
+            authenticated_client, test_org.name, test_repo.name, pull_all_teams_approved.num, all_teams
         )
 
-    def test_true_mixed(self, authenticated_client, test_repo, pull_mixed_reviews, all_teams):
+    def test_true_mixed(self, authenticated_client, test_org, test_repo, pull_mixed_reviews, all_teams):
         """End-to-end style test for when a PR has some change requests and some approvals but meets overall approval"""
-        assert gtas.pr_has_appropriate_reviews(authenticated_client, test_repo.name, pull_mixed_reviews.num, all_teams)
+        assert gtas.pr_has_appropriate_reviews(authenticated_client, test_org.name, test_repo.name, pull_mixed_reviews.num, all_teams)
 
-    def test_false_comments(self, authenticated_client, test_repo, pull_all_teams_commented, all_teams):
+    def test_false_comments(self, authenticated_client, test_org, test_repo, pull_all_teams_commented, all_teams):
         """End-to-end style test for when a PR has only comments"""
         assert not gtas.pr_has_appropriate_reviews(
-            authenticated_client, test_repo.name, pull_all_teams_commented.num, all_teams
+            authenticated_client, test_org.name, test_repo.name, pull_all_teams_commented.num, all_teams
         )
 
-    def test_false_changes_requested(self, authenticated_client, test_repo, pull_all_teams_requested_changes,
+    def test_false_changes_requested(self, authenticated_client, test_org, test_repo, pull_all_teams_requested_changes,
                                      all_teams):
         """End-to-end style test for when a PR has only change requests"""
         assert not gtas.pr_has_appropriate_reviews(
-            authenticated_client, test_repo.name, pull_all_teams_requested_changes.num, all_teams
+            authenticated_client, test_org.name, test_repo.name, pull_all_teams_requested_changes.num, all_teams
         )
 
-    def test_false_mixed(self, authenticated_client, test_repo, pull_qa_recent_approval_1, all_teams):
+    def test_false_mixed(self, authenticated_client, test_org, test_repo, pull_qa_recent_approval_1, all_teams):
         """End-to-end style test for when a PR has some change requests and some approvals but meets overall approval"""
         assert not gtas.pr_has_appropriate_reviews(
-            authenticated_client, test_repo.name, pull_qa_recent_approval_1.num, all_teams
+            authenticated_client, test_org.name, test_repo.name, pull_qa_recent_approval_1.num, all_teams
         )
 
-    def test_authentication_fail(self, unauthenticated_client, test_repo, pull_all_teams_approved, all_teams):
+    def test_authentication_fail(self, unauthenticated_client, test_org, test_repo, pull_all_teams_approved, all_teams):
         """End-to-end style test to assert proper handling of authentication failure"""
         with pytest.raises(common.ConfigurationError):
             gtas.pr_has_appropriate_reviews(
-                unauthenticated_client, test_repo.name, pull_all_teams_approved.num, all_teams
+                unauthenticated_client, test_org.name, test_repo.name, pull_all_teams_approved.num, all_teams
             )
 
-    def test_invalid_repo(self, authenticated_client, pull_all_teams_approved, all_teams):
+    def test_invalid_repo(self, authenticated_client, test_org, pull_all_teams_approved, all_teams):
         """End-to-end style test to assert proper handling of invalid repo"""
         with pytest.raises(common.ConfigurationError):
-            gtas.pr_has_appropriate_reviews(authenticated_client, "not-a-repo", pull_all_teams_approved.num, all_teams)
+            gtas.pr_has_appropriate_reviews(authenticated_client, test_org.name, "not-a-repo", pull_all_teams_approved.num, all_teams)
 
-    def test_invalid_pull(self, authenticated_client, test_repo, all_teams):
+    def test_invalid_pull(self, authenticated_client, test_org, test_repo, all_teams):
         """End-to-end style test to assert proper handling of invalid PR number"""
         with pytest.raises(common.ConfigurationError):
-            gtas.pr_has_appropriate_reviews(authenticated_client, test_repo, 10000, all_teams)
+            gtas.pr_has_appropriate_reviews(authenticated_client, test_org.name, test_repo, 10000, all_teams)
 
-    def test_missing_teams(self, authenticated_client, test_repo, pull_all_teams_approved):
+    def test_missing_teams(self, authenticated_client, test_org, test_repo, pull_all_teams_approved):
         """End-to-end style test to assert proper handling of invalid team name"""
         with pytest.raises(common.ConfigurationError):
             gtas.pr_has_appropriate_reviews(
-                authenticated_client, test_repo, pull_all_teams_approved.num, ["not-a-team"]
+                authenticated_client, test_org.name, test_repo, pull_all_teams_approved.num, ["not-a-team"]
             )

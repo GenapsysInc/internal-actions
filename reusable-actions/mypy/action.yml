@@ -29,11 +29,9 @@ runs:
         python-version: ${{ inputs.python-version }}
         requirements-txt: ${{ inputs.requirements-txt }}
         build-command: ${{ inputs.build-command }}
+        packages: mypy${{ (inputs.mypy-version && '==') || '' }}${{ inputs.mypy-version }}
     - name: add mypy annotator
       uses: pr-annotators/mypy-pr-annotator@v1.0.0
-    - name: Install mypy
-      run: pip install mypy${{ (inputs.mypy-version && '==') || '' }}${{ inputs.mypy-version }}
-      shell: bash
     - name: Run mypy
       run: mypy ${{ inputs.args }}
       shell: bash

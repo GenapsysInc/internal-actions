@@ -29,15 +29,16 @@ def submodule_is_valid(git_submodule: common.Submodule, github_repo: github.Repo
     return False
 
 
-def repo_has_valid_submodules(git_repo: common.Repo, github_client: github.MainClass.Github) -> bool:
+def repo_has_valid_submodules(org_str: str, git_repo: common.Repo, github_client: github.MainClass.Github) -> bool:
     """Run validation check on each of the given Repo's submodules
 
+    :param org_str: The GitHub organization to inspect
     :param repo: The Repo to inspect
     :param client: Authenticated Github client
     :return: True if all submodules passed the check, else False
     """
     try:
-        org = github_client.get_organization(common.GENAPSYS_GITHUB)
+        org = github_client.get_organization(org_str)
     except github.GithubException as failed_org_query:
         raise common.ConfigurationError("Could not authenticate with given secret") from failed_org_query
 
@@ -67,6 +68,8 @@ def parse_args():
 
     parser.add_argument("-s", "--secret", required=True, help="GitHub token for authentication")
 
+    parser.add_argument("-o", "--org", required=True, help="The GitHub organization to inspect")
+
     parser.add_argument("-r", "--repo-path", required=True, help="Local path to the repository to inspect")
 
     return parser.parse_args()
@@ -75,7 +78,7 @@ def parse_args():
 if __name__ == "__main__":
     opts = parse_args()
 
-    if repo_has_valid_submodules(git.Repo(opts.repo_path), github.Github(opts.secret)):
+    if repo_has_valid_submodules(opts.org, git.Repo(opts.repo_path), github.Github(opts.secret)):
         sys.exit(0)
 
     sys.exit(1)

@@ -29,11 +29,9 @@ runs:
         python-version: ${{ inputs.python-version }}
         requirements-txt: ${{ inputs.requirements-txt }}
         build-command: ${{ inputs.build-command }}
+        packages: pylint${{ (inputs.pylint-version && '==') || '' }}${{ inputs.pylint-version }}
     - name: Add pylint annotator
       uses: pr-annotators/pylint-pr-annotator@v0.0.1
-    - name: Install pylint
-      run: pip install pylint${{ (inputs.pylint-version && '==') || '' }}${{ inputs.pylint-version }}
-      shell: bash
     - name: Run pylint
       run: pylint ${{ inputs.args }}
       shell: bash

@@ -14,6 +14,6 @@ jobs:
         id: run-check-version
         uses: GenapsysInc/internal-actions/reusable-actions/check-version@main
         with:
+          json: path/to/repo-data.json  # Remove if repo-data.json lives in root directory of the repo
           include-paths: '*.py static'
           exclude-paths: 'docs action_utils/tests static/*.txt'
-          token: ${{ secrets.GH_ACTION }}

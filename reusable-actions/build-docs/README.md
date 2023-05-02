@@ -1,9 +1,8 @@
 # build-docs
 
-This action will build the sphinx base documentation and if desired publish it to confluence and/or the repo's github pages. The expectation of the code is that the index and sphinx `conf.py` exist in the `/docs` dir. A version string to render in the HTML pages may optionally be passed in, which will override the version defined in the `conf.py`. This can be done in tandem with the `increment-version` action to have published docs reflect the latest tagged version of the repo.
+This action will build the sphinx base documentation and if desired publish it to confluence and/or the repo's github pages. The expectation of the code is that the index and sphinx `conf.py` exist in the `/docs` dir. A version string to render in the HTML pages may optionally be passed in, which will override the version defined in the `conf.py`. This can be done in tandem with the `increment-version` action to have published docs reflect the latest tagged version of the repo. A `token` input is required if the doc build includes submodules of the repository, but can be removed otherwise.
 
 ## Build the docs but don't publish
-
 
 ```yaml
 
@@ -23,7 +22,6 @@ This action will build the sphinx base documentation and if desired publish it t
 ```
 
 ## Build the HTML docs only
-
 
 ```yaml
 
@@ -75,8 +73,6 @@ jobs:
       - name: Run the increment-version action
         id: run-increment-version
         uses: GenapsysInc/internal-actions/reusable-actions/increment-version@main
-        with:
-          token: ${{ secrets.GH_REST_API_TOKEN }}
   doc-build:
     needs: increment-version
     runs-on: ubuntu-latest

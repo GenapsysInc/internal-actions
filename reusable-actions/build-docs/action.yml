@@ -3,8 +3,9 @@ description: Build documentation based on sphinx
 
 inputs:
   token:
-    description: "Token to pull the docbuilder container"
-    required: true
+    description: "Token to recursively checkout submodules for a doc build, if needed"
+    required: false
+    default: ''
   confluence_secret:
     description: "Confluence API token for publication"
     required: false
@@ -49,7 +50,11 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Checkout calling repo
+    - name: Checkout calling repo (submodules disabled)
+      if: ${{ !inputs.token }}
+      uses: actions/checkout@v3
+    - name: Checkout calling repo (submodules enabled)
+      if: ${{ inputs.token }}
       uses: actions/checkout@v3
       with:
         token: ${{ inputs.token }}
@@ -57,8 +62,6 @@ runs:
     - name: Run docbuilder
       uses: GenapsysInc/internal-actions/reusable-actions/docker-run@main
       with:
-          username: ${{ github.repository_owner }}
-          password: ${{ inputs.token }}
           registry: ghcr.io
           image: ghcr.io/genapsysinc/docbuilder:latest
           options: -v ${{ github.workspace }}:/repo
@@ -75,5 +78,4 @@ runs:
       if: ${{ fromJSON(inputs.publish_html) && fromJSON(inputs.build_html)}}
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ inputs.token }}
         publish_dir: _builder/html
