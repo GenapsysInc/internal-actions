@@ -58,7 +58,7 @@ def team_member_has_approved_pr(team: github.Team.Team, pull: github.PullRequest
     return False
 
 
-def pr_has_appropriate_reviews(client: github.MainClass.Github, org: str, repo: str, pr_num: int, team_names: list[str]) -> bool:
+def pr_has_appropriate_reviews(client: github.MainClass.Github, org_str: str, repo: str, pr_num: int, team_names: list[str]) -> bool:
     """Given a repository, PR number, and list of teams, determine if the given PR has at least one approval from each
     of the listed teams
 
@@ -73,7 +73,7 @@ def pr_has_appropriate_reviews(client: github.MainClass.Github, org: str, repo: 
     team_names = [_format_team_name(team_name) for team_name in team_names]
 
     try:
-        org = client.get_organization(org)
+        org = client.get_organization(org_str)
     except github.GithubException as failed_org_query:
         raise common.ConfigurationError("Could not authenticate with given secret") from failed_org_query
 
@@ -119,7 +119,7 @@ if __name__ == "__main__":
 
     github_client = github.Github(opts.secret)
 
-    if pr_has_appropriate_reviews(github_client, opts.repo, opts.pull_request, opts.teams):
+    if pr_has_appropriate_reviews(github_client, opts.org, opts.repo, opts.pull_request, opts.teams):
         sys.exit(0)
 
     sys.exit(1)
