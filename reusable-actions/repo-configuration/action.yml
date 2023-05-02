@@ -37,6 +37,7 @@ runs:
         export PYTHONPATH="`pwd`/internal-actions"
         python internal-actions/action_utils/configure_repo_settings.py \
           -s ${{ inputs.token }} \
+          -o ${{ github.repository_owner }} \
           -r ${{ github.repository }} \
           ${{ (fromJSON(inputs.initialize) && '--init') || '' }} \
           ${{ (fromJSON(inputs.enforce_policy) && '--enforce') || '' }} \

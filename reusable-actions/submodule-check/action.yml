@@ -27,4 +27,5 @@ runs:
         export PYTHONPATH="`pwd`/internal-actions"
         python internal-actions/action_utils/check_submodule_commits.py \
           -s ${{ inputs.token }} \
+          -o ${{ github.repository_owner }} \
           -r .

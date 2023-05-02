@@ -41,6 +41,6 @@ runs:
           -s ${{ github.token }} \
           -p ${{ github.event.number }} \
           -r ${{ github.event.repository.name }} \
-          -o ${{ github.event.organization.login }} \
+          -o ${{ github.repository_owner }} \
           -i ${{ inputs.include-paths }} \
           -e ${{ inputs.exclude-paths }}

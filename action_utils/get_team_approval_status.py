@@ -103,9 +103,9 @@ def parse_args():
 
     parser.add_argument("-s", "--secret", required=True, help="GitHub token for authentication")
 
-    parser.add_argument("-r", "--repo", required=True, help="The GitHub repository to inspect")
-
     parser.add_argument("-o", "--org", required=True, help="The GitHub organization to inspect")
+
+    parser.add_argument("-r", "--repo", required=True, help="The GitHub repository to inspect")
 
     parser.add_argument("-p", "--pull-request", type=int, required=True, help="The PR to inspect")
 
