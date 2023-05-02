@@ -121,17 +121,17 @@ def fixture_github_submodule_4(github_commits_2):
 def fixture_github_org(github_submodule_1, github_submodule_2, github_submodule_3, github_submodule_4):
     org_repos = [github_submodule_1, github_submodule_2, github_submodule_3, github_submodule_4]
     repo_map = {repo.name: repo for repo in org_repos}
-    return pgh_utils.MockGithubOrg(common.GENAPSYS_GITHUB, repos=repo_map)
+    return pgh_utils.MockGithubOrg("GenapsysInc", repos=repo_map)
 
 
 @pytest.fixture(name="github_authed_client")
 def fixture_github_authed_client(github_org):
-    return pgh_utils.MockGithubClient({common.GENAPSYS_GITHUB: github_org}, authenticated=True)
+    return pgh_utils.MockGithubClient({"GenapsysInc": github_org}, authenticated=True)
 
 
 @pytest.fixture(name="github_unauthed_client")
 def fixture_github_unauthed_client(github_org):
-    return pgh_utils.MockGithubClient({common.GENAPSYS_GITHUB: github_org}, authenticated=False)
+    return pgh_utils.MockGithubClient({"GenapsysInc": github_org}, authenticated=False)
 
 
 class TestSubmoduleIsValid:
@@ -151,21 +151,21 @@ class TestRepoHasValidSubmodules:
 
     def test_all_valid(self, git_repo_all_valid, github_authed_client):
         """End-to-end style test, repo has 2 submodules on valid commits"""
-        assert csc.repo_has_valid_submodules(git_repo_all_valid, github_authed_client)
+        assert csc.repo_has_valid_submodules("GenapsysInc", git_repo_all_valid, github_authed_client)
 
     def test_mixed_valid(self, git_repo_mixed, github_authed_client):
         """End-to-end style test, repo has 1 submodule on a valid commit, but another on an invalid commit"""
-        assert not csc.repo_has_valid_submodules(git_repo_mixed, github_authed_client)
+        assert not csc.repo_has_valid_submodules("GenapsysInc", git_repo_mixed, github_authed_client)
 
     def test_none_valid(self, git_repo_all_invalid, github_authed_client):
         """End-to-end style test, repo has 2 submodules on invalid commits"""
-        assert not csc.repo_has_valid_submodules(git_repo_all_invalid, github_authed_client)
+        assert not csc.repo_has_valid_submodules("GenapsysInc", git_repo_all_invalid, github_authed_client)
 
     def test_no_submodules(self, git_repo_no_submodules, github_authed_client):
         """End-to-end style test, repo has no submodules so it should pass by default"""
-        assert csc.repo_has_valid_submodules(git_repo_no_submodules, github_authed_client)
+        assert csc.repo_has_valid_submodules("GenapsysInc", git_repo_no_submodules, github_authed_client)
 
     def test_auth_failure(self, git_repo_all_valid, github_unauthed_client):
         """Assert proper handling of authentication failure"""
         with pytest.raises(common.ConfigurationError):
-            csc.repo_has_valid_submodules(git_repo_all_valid, github_unauthed_client)
+            csc.repo_has_valid_submodules("GenapsysInc", git_repo_all_valid, github_unauthed_client)

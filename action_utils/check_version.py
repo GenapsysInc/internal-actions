@@ -87,7 +87,7 @@ def main():
     json_version = common.VersionTag(f"{json_content['version']}-1")
 
     client = github.Github(opts.secret)
-    org = common.get_organization(client, opts.organization)
+    org = common.get_organization(client, opts.org)
     repo = common.get_repo(org, opts.repo)
     pull = common.get_pull(repo, opts.pull_number)
 
@@ -110,7 +110,7 @@ def parse_args():
 
     parser.add_argument("-r", "--repo", required=True, help="Name of repo the pull request lives in")
 
-    parser.add_argument("-o", "--organization", default=common.GENAPSYS_GITHUB, help="Organization the repo lives in")
+    parser.add_argument("-o", "--org", required=True, help="Organization the repo lives in")
 
     parser.add_argument("-i", "--include", nargs="*", help="Paths/wildcards to include in diff check")
 

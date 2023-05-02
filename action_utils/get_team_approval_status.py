@@ -58,11 +58,12 @@ def team_member_has_approved_pr(team: github.Team.Team, pull: github.PullRequest
     return False
 
 
-def pr_has_appropriate_reviews(client: github.MainClass.Github, repo: str, pr_num: int, team_names: list[str]) -> bool:
+def pr_has_appropriate_reviews(client: github.MainClass.Github, org: str, repo: str, pr_num: int, team_names: list[str]) -> bool:
     """Given a repository, PR number, and list of teams, determine if the given PR has at least one approval from each
     of the listed teams
 
     :param client: Authenticated Github client
+    :param org: The GitHub organization to inspect
     :param repo: The GitHub repo to inspect
     :param pr_num: The Pull Request number in the given repo
     :param team_names: The list of teams that are required to be approvers
@@ -72,7 +73,7 @@ def pr_has_appropriate_reviews(client: github.MainClass.Github, repo: str, pr_nu
     team_names = [_format_team_name(team_name) for team_name in team_names]
 
     try:
-        org = client.get_organization(common.GENAPSYS_GITHUB)
+        org = client.get_organization(org)
     except github.GithubException as failed_org_query:
         raise common.ConfigurationError("Could not authenticate with given secret") from failed_org_query
 
@@ -102,7 +103,9 @@ def parse_args():
 
     parser.add_argument("-s", "--secret", required=True, help="GitHub token for authentication")
 
-    parser.add_argument("-r", "--repo", required=True, help="The repository to inspect")
+    parser.add_argument("-r", "--repo", required=True, help="The GitHub repository to inspect")
+
+    parser.add_argument("-o", "--org", required=True, help="The GitHub organization to inspect")
 
     parser.add_argument("-p", "--pull-request", type=int, required=True, help="The PR to inspect")
 

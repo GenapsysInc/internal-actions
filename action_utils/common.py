@@ -14,8 +14,6 @@ from git.repo.base import Repo
 from git.objects.submodule.base import Submodule
 import github
 
-GENAPSYS_GITHUB = "GenapsysInc"
-
 APPROVED = "APPROVED"
 COMMENTED = "COMMENTED"
 CHANGES_REQUESTED = "CHANGES_REQUESTED"
