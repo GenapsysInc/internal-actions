@@ -3,6 +3,12 @@ Internal Actions Releases
 #########################
 
 *****
+3.0.1
+*****
+
+  * Fix issue with ``build-docs`` where github pages deployments were failing because of lack of a token input
+
+*****
 3.0.0
 *****
 

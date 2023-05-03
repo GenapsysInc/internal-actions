@@ -3,9 +3,8 @@ description: Build documentation based on sphinx
 
 inputs:
   token:
-    description: "Token to recursively checkout submodules for a doc build, if needed"
-    required: false
-    default: ''
+    description: "Token to checkout submodules (if needed) and to push to GitHub Pages"
+    required: true
   confluence_secret:
     description: "Confluence API token for publication"
     required: false
@@ -50,11 +49,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Checkout calling repo (submodules disabled)
-      if: ${{ !inputs.token }}
-      uses: actions/checkout@v3
-    - name: Checkout calling repo (submodules enabled)
-      if: ${{ inputs.token }}
+    - name: Checkout calling repo
       uses: actions/checkout@v3
       with:
         token: ${{ inputs.token }}
@@ -78,4 +73,5 @@ runs:
       if: ${{ fromJSON(inputs.publish_html) && fromJSON(inputs.build_html)}}
       uses: peaceiris/actions-gh-pages@v3
       with:
+        github_token: ${{ inputs.token }}
         publish_dir: _builder/html
