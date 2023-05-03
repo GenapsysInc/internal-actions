@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>check-version &mdash; Internal Actions 2.8 documentation</title>
+  <title>check-version &mdash; Internal Actions 3.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="https://cdn.rawgit.com/aexmachina/jquery-bonsai/master/jquery.bonsai.css" type="text/css" />
@@ -39,7 +39,7 @@
             Internal Actions
           </a>
               <div class="version">
-                2.8.0-2
+                3.0.1-1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -129,9 +129,9 @@
 <span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">run-check-version</span>
 <span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenapsysInc/internal-actions/reusable-actions/check-version@main</span>
 <span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">json</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path/to/repo-data.json</span><span class="w">  </span><span class="c1"># Remove if repo-data.json lives in root directory of the repo</span>
 <span class="w">          </span><span class="nt">include-paths</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;*.py</span><span class="nv"> </span><span class="s">static&#39;</span>
 <span class="w">          </span><span class="nt">exclude-paths</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;docs</span><span class="nv"> </span><span class="s">action_utils/tests</span><span class="nv"> </span><span class="s">static/*.txt&#39;</span>
-<span class="w">          </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GH_ACTION }}</span>
 </pre></div>
 </div>
 </section>
